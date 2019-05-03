@@ -1,0 +1,120 @@
+redis
+----- [基础数据结构]
+String字符串
+1.key-value: set
+2.批量： mset name1 boy name2 girl name3 unknown
+3.过期和set命令扩展： expire name 5； setnx name codehole  # 如果 name 不存在就执行 set 创建
+
+List列表：相当于 Java 语言里面的 LinkedList，注意它是链表而不是数组。
+1.入队： rpush books python java golang
+2.左进右出： lpop books  --python,java,golang
+3.左进左出： rpop books  --golang,java,python
+4.查询： lindex books 1  --相当于对链表的查询 O(n)慢
+5.区间： lrange books 0 -1  -- 获取所有元素
+6.截取定长链表： ltrim books 1 0  -- 这其实是清空了整个列表，因为区间范围长度为负 
+ziplist --> quicklist
+
+Hash字典：Key-Value(Map结构)
+1.set： hset books java "think in java"； hset books golang "concurrency in go"
+
+
+Set集合：内部的键值对是无序的唯一相当于HashSet
+1.sadd books python； 
+  spop books  # 弹出一个
+  
+  
+Zset有序集合：
+1.zadd books 9.0 "think in java"； zadd books 8.9 "java concurrency"
+  zrange books 0 -1 
+2.zrem 
+3.跳表排序，
+
+
+分布式锁：1.set lock:codehole true ex 5 nx； 解决在setnx和expire之间非原子性的问题
+  SET key random_value NX PX 30000； random_value这里的随机字符串很有必要，NX主要防止覆盖之前的key导致无法上锁，
+  
+  
+延迟队列：blpop/brpop  阻塞式读数据解决lpop/rpop在队列空的情况下死循环
+
+
+位图：较少数据的存储空间如0/1, 一个字节就可以存储八位。
+零存零取
+整存整取
+
+HyperLogLog：存放计数 jedis.pfcount("codehole") 存在0.81%的误差
+> pfadd codehole user1
+> pfcount codehole
+需要占据一定12K的内存成本不适合单个但适合上亿数据量的统计
+
+Bloom Filter布隆过滤器：解决去重问题比如推荐新闻时不重复，有一定的误差率
+
+Redis-Cell：Redis 4.0 提供了一个分布式下限流 Redis 模块
+> cl.throttle laoqian:reply 15 30 60 1
+  允许15容量的漏斗以每60s 30的添加令牌速度。它能保证在分布式下拿取令牌，减少令牌，回写令牌整个过程的原子性
+
+GeoHash：
+
+Scan：相比于Keys的O(n)时间复杂度它不会阻塞线程
+> scan 0 match key99* count 1000
+
+Redis的线程I/O模型：多路I/O复用及非阻塞I/O技术。
+  redis是基于内存操作CPU不是redis的瓶颈，其瓶颈最可能是机器内存大小或网络带宽
+  多路指多个网络连接，复用指复用同一个线程。
+
+持久化：redis作为单线程I/O模型怎么在响应客户端套字节的同时进行定时的文件I/O操作？
+  COW(Copy On Write)机制，fork函数产生一个和父进程共享代码段和数据段的子进程
+  1.RDB快照，全量备份
+  2.AOF日志，连续的增量日志备份。AOF 日志只记录对内存进行修改的指令记录，同时它是先执行指令才将日志存盘
+	fsync：文件存放到内核为文件描述符分配的内存缓存中命令强制将脏数据回刷到磁盘
+	AOF日志瘦身： bgrewriteaof指令 开辟一个子进程对内存进行遍历转换成一系列 Redis 的操作指令序列化到一个新的 AOF 日志文件中
+	              (redis服务器会通过溢出AOF文件中冗余的命令来重写（rewrite）AOF)
+  3.混合持久化
+  redis是先指令再写aof日志 为什么和传统的数据库不一样？
+      1.多在内存 不需要通过日志保证顺序写 
+      2.其他数据库多线程操作要保证并发下以及对应事物隔离下的数据可见性，所以采取的是日子先行的策略。通过日志才能达到事物回滚的目的
+	  
+管道Pipeline：
+	redis-benchmarkd
+	pipe = redis.pipeline(transaction=true) 多次指令再管道内同时读写减少网络I/O消耗
+
+	
+事务：分别是 multi/exec/discard。multi 指示事务的开始，exec 指示事务的执行，discard 指示事务的丢弃。
+    Redis 的事务根本不能算「原子性」，而仅仅是满足了事务的「隔离性」，隔离性中的串行化——当前执行的事务有着不被其它事务打断的权利
+	
+	
+主从：
+	分布式理论基石CAP原理：Consistent一致性，Avability可用性，Partition tolerance分区容忍性
+	在网络节点之间断开网络分区时节点之间数据不能同步导致一致性出现问题，除非牺牲可用性
+	
+Redis Sentinel集群：可以看成zk集群
+当主节点挂了之后未及时同步的数据可能会丢失两个参数可以限制主从延时过大
+min-slaves-to-write 1		// 主节点必须至少有一个从节点在进行正常复制，否则就停止对外写服务，丧失可用性
+min-slaves-max-lag 10		// 如果 10s 没有收到从节点的反馈，就意味着从节点同步不正常
+
+
+Codis 是无状态的只是一个转发代理中间件
+
+Redis Cluster 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -4,4 +4,4 @@
 
 TCP长连接优势在于：1.避免频繁的三次握手 2.避免TCP滑动窗口冷启动的低效问题
 Netty在.option(ChannelOption.SO_KEEPALIVE, true)中利用Socket的底层设置SocketOptions.SO_KEEPALIVE属性。
-JDK关于此socket属性的大意是：当2个小时没有发生数据交换时，TCP会发送一个探针给对方，如果收到的是ACK标记的应答，则连接保持，否则关闭连接。
+   JDK关于此socket属性的大意是：当2个小时没有发生数据交换时，TCP会发送一个探针给对方，如果收到的是ACK标记的应答，则连接保持，否则关闭连接。

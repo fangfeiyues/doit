@@ -1,0 +1,662 @@
+cat /proc/meminfo
+
+[Producer][Order-]
+   DefaultMQProducer.start()
+      -- ServiceState控制状态
+	  -- 创建MQClientInstance
+	       // (饿汉)式创建一个new MQClientInstance()实例化
+	     --MQClientManager.getAndCreateMQClientInstance()  
+	  -- mQClientFactory.registerProducer(this.defaultMQProducer.getProducerGroup(), this) 注册到MQClientInstance的map中
+	  -- this.topicPublishInfoTable.put(this.defaultMQProducer.getCreateTopicKey(), new TopicPublishInfo()); // topicKey - TopicPublishInfo()
+	      AUTO_CREATE_TOPIC_KEY_TOPIC = "TBW102"; // Will be created at broker when isAutoCreateTopicEnable
+		  
+      -- MQClientInstance.start()
+	     -- this.mQClientAPIImpl.fetchNameServerAddr();
+	     -- this.mQClientAPIImpl.start(); 
+		      // 开启Netty客户端Producer(Client) -- Broker(Server)
+		    -- NettyRemotingClient.start();  
+			   -- nettyClientConfig.isUseTLS() --> pipeline.addFirst(defaultEventExecutorGroup, "sslHandler", sslContext.newHandler(ch.alloc()));
+               -- 开启Timer定时器延迟3s每1s执行一次scanResponseTable -- responseTable	
+         -- this.startScheduledTask();			   
+					  Task1  定时120s fetchNameServerAddr()获取namesrv的地址
+					-- MQClientInstance.this.mQClientAPIImpl.fetchNameServerAddr();
+					  -- String addrs = this.topAddressing.fetchNSAddr(); 拿取最新的Namesrv address信息
+						  // 连接namesrv HTTP短连接
+						-- HttpTinyClient.HttpResult result = HttpTinyClient.httpGet(url, null, null, "UTF-8", timeoutMills); // 无连接池?
+						-- AtomicReference<List<String>> namesrvAddrList
+					  --  this.updateNameServerAddressList(addrs);
+					  
+						Task2 默认30s  从Namesrv拿到最新并更新topic
+					-- updateTopicRouteInfoFromNameServer()   ConcurrentMap<String, MQConsumerInner> consumerTable = new ConcurrentHashMap<String, MQConsumerInner>()
+						  // 分为Producer和Consumer
+					   -- Producer拿到topic Set<String> lst = impl.getPublishTopicList();
+					   -- updateTopicRouteInfoFromNameServer(topic)
+				 
+					   Task3 
+					-- MQClientInstance.this.cleanOfflineBroker(); // 清除broker
+					-- MQClientInstance.this.sendHeartbeatToAllBrokerWithLock(); 
+						  // 给所有的broker发送心跳
+					   -- this.sendHeartbeatToAllBroker();
+							 // 拿到version
+						  -- int version = this.mQClientAPIImpl.sendHearbeat(addr, heartbeatData, 3000);
+							 -- MQClientAPIImpl.sendHearbeat()
+								-- RemotingCommand response = NettyRemotingClient.invokeSync(addr, request, timeoutMillis);
+								   -- RemotingCommand response = NettyRemotingClient.invokeSyncImpl(channel, request, timeoutMillis);
+									 -- channel.writeAndFlush(request).addListener({...})
+					   -- this.uploadFilterClassSource();
+					   
+					   // Consumer本地持久化   
+					   Task4 定时5s persistAllConsumerOffset()
+				   
+					   // 针对DefaultMQPushConsumerImpl启动线程池线程数调整线程
+					   Task5 定时1min adjustThreadPool();
+					 
+			 // 针对consumerTable操作
+       -- this.pullMessageService.start();	
+             -- PullRequest pullRequest = this.pullRequestQueue.take();
+                this.pullMessage(pullRequest);
+
+			// 还是consumerTable
+       --this.rebalanceService.start();
+
+		  // DefaultMQProducerImpl开始运行ServiceState=RUNNING
+	   --this.defaultMQProducer.getDefaultMQProducerImpl().start(false);
+
+  DefaultMQProducer.send() / send(Message, MessageQueueSelector, Object arg)
+  // 默认是同步请求
+  -- SendResult= DefaultMQProducerImpl.this.sendDefaultImpl(msg, selector, arg,CommunicationMode.SYNC, null, timeout)
+        // 获取publishInfo
+     -- TopicPublishInfo topicPublishInfo = this.tryToFindTopicPublishInfo(msg.getTopic());
+	       // new TopicPublishInfo并保存内存
+	    -- this.topicPublishInfoTable.putIfAbsent(topic, new TopicPublishInfo());
+		
+		   // 
+		-- MQClientInstance.updateTopicRouteInfoFromNameServer(topic);
+		   -- MQClientInstance.updateTopicRouteInfoFromNameServer(topic, false, null)
+		     -- isDefault=false -->topicRouteData = this.mQClientAPIImpl.getTopicRouteInfoFromNameServer(topic, 1000 * 3);
+			     // 同时成功返回TopicRouteData.decode(body, TopicRouteData.class) 
+				 // TopicRouteData= orderTopic+ queueDatas(brokerName,readQueueNums..) +brokerDatas(brokerName,cluster,<bId,Addr>)
+			    --MQClientAPIImpl.getTopicRouteInfoFromNameServer(topic, timeoutMillis, true)
+				     // Neety远程调用
+				   --RemotingCommand response = NettyRemotingClient.invokeSync(null, request, timeoutMillis);
+				       // 统一包装的请求
+				     --NettyRemotingAbstract.invokeSyncImpl(Channel, RemotingCommand request,timeoutMillis)
+	  - timesTotal = communicationMode == CommunicationMode.SYNC ? 1 + this.defaultMQProducer.getRetryTimesWhenSendFailed() : 1;  
+	  
+	  // 选择重试队列
+	  - MessageQueue = MQFaultStrategy.selectOneMessageQueue(TopicPublishInfo tpInfo, String lastBrokerName)
+	     -sendLatencyFaultEnable 消息失败延迟策略开关，是指对之前失败的按一定的时间做退避。 默认关闭不做退避就全部在内的直接随机选择
+	     -如果打开：
+	      -1.遍历Queue并随机递增取模
+		  -2.再过滤掉not available的Broker代理isAvailable(mq.getBrokerName()) --(System.currentTimeMillis() - startTimestamp) >= 0
+		      faultItem.setStartTimestamp(System.currentTimeMillis() + notAvailableDuration)这里的startTime指的是可以开始重新使用broker的时间
+			  如果所有的broker都不是available,那么currentLatency小则小再startTimestamp小在小，进行排序.
+			  排序之后依次选择
+		  -3.所有的broker容错时间还没到 对之前失败的按一定的时间做退避.如果上次请求的latency超过550Lms，就退避3000Lms
+	  
+	  // 开始发送
+	  - SendResult DefaultMQProducerImpl.sendKernelImpl(Message,MessageQueue,CommunicationMode,SendCallback,TopicPublishInfo,timeout) 
+	     // 重新包装VIPChannel -> brokerAddr的port-2
+	    - brokerAddr = brokerVIPChannel(isChange, brokerAddr)
+		- executeCheckForbiddenHook, executeSendMessageHookBefore 钩子方法
+		- 构建 SendMessageRequestHeader
+		  - producerGroup,topic,queueid,
+		- 1.ASYNC  SendResult = MQClientAPIImpl.sendMessage(addr,...)
+		- 2.ONEWAY 什么也没做...
+		- 3.SYNC
+			-MQClientAPIImpl.sendMessage(...)
+				- OneWay: NettyRemotingClient.invokeOneway(addr, RemotingCommand, timeoutMillis) 
+					- NettyRemotingAbstract.invokeOnewayImpl()
+						- acquired = this.semaphoreOneway.tryAcquire(timeoutMillis, TimeUnit.MILLISECONDS) // 加了计数器
+						-channel.writeAndFlush(request).addListener(new ChannelFutureListener() {  }
+				- ASYNC: NettyRemotingClient.sendMessageAsync() -- NettyRemotingAbstract.invokeAsyncImpl(Channel, RemotingCommand, timeoutMillis, InvokeCallback)
+					- responseTable.put(opaque, responseFuture);
+						- NettyRemotingClient.start()中会开启schedule执行executeInvokeCallback(rf); 执行异步调用时实现的内部方法 invokeCallback.operationComplete(this);
+				- SYNC；
+					- responseFuture.waitResponse(timeoutMillis)  	// 因为netty是全异步实现的这对异步进行了封装
+						- countDownLatch.await(timeoutMillis, TimeUnit.MILLISECONDS);
+						- responseFuture.putResponse(null);
+							- countDownLatch.countDown();		// 在netty返回中实现countDown 实现同步的效果
+		  
+RocketMQ 底层Netty发送方式
+	ChannelFuture = this.bootstrap.connect(RemotingHelper.string2SocketAddress(addr))  
+	====> Channel = channelFuture.channel()  
+	====> channel.writeAndFlush(request).addListener(new ChannelFutureListener() {  ... }
+10911
+10909 
+----------------------------------------------------------------------
+自动创建topic
+1.broker根据autoCreateTopicEnable=true创建"TBW102"的topic
+2.将"TBW102"的topic心跳注册到NameServer
+3.producer在拉取NameSrv的TopicRouteData中为发现这个topic则会isDefault=true来拉取"TBW102"的topic队列
+4.producer把消息发送到"TBW102"的topic队列中 broker会createTopicInSendMessageMethod()加入到本地的topicConfigInfo
+5.broker更新nameSrv的topic数据
+同时对列数取producer设置和
+createTopicInSendMessageMethod# int queueNums = clientDefaultTopicQueueNums > defaultTopicConfig.getWriteQueueNums() ? defaultTopicConfig.getWriteQueueNums() : clientDefaultTopicQueueNums;
+
+---------------------------------------------------------------------
+
+[broker]
+         nohup sh mqbroker -n 47.100.237.162:9876 autoCreateTopicEnable=true -c /usr/cloud/rocketmq/rocketmq-all-4.3.0/distribution/target/apache-rocketmq/conf/broker.conf &
+  shell: nohup sh bin/mqbroker -n localhost:9876 -c  &  --> runbroker.sh org.apache.rocketmq.broker.BrokerStartup
+         args: autoCreateTopic=true..
+	BrokerController.initialize()
+	    - topic,consumerOffset,subscriptionGroup,consumerFilter.load()
+	    - remotingServer = NettyRemotingServer(), 
+	    - fastRemotingServer 端口10911-2=10908
+	    - sendMessageExecutor 1  ==接受Producer消息
+	    - pullMessageExecutor  16 + Runtime.getRuntime().availableProcessors() * 2
+	    - queryMessageExecutor 8 + Runtime.getRuntime().availableProcessors()
+	    - adminBrokerExecutor 16
+	    - clientManageExecutor 32
+	    - heartbeatExecutor Math.min(32, Runtime.getRuntime().availableProcessors())
+	    - endTransactionExecutor 8 + Runtime.getRuntime().availableProcessors() * 2
+	    - consumerManageExecutor 32
+	    - this.registerProcessor();
+     
+	BrokerController.start()
+	    - messageStore.start()  // haService, reputMessageService(index)
+		- remotingServer.start()
+		- fastRemotingServer.start()
+		- fileWatchService.start()
+		- brokerOuterAPI.start()
+		- pullRequestHoldService.start()
+		- clientHousekeepingService.start()
+		- filterServerManager.start()
+		  // 上报broker信息定时器 默认30s不超过60s不小于10s
+		- BrokerController.this.registerBrokerAll(checkOrderConfig: true, oneway:false, boolean forceRegister)
+		   - doRegisterBrokerAll(checkOrderConfig, oneway, topicConfigWrapper)
+		      -  List<RegisterBrokerResult> = BrokerOuterAPI.registerBrokerAll()
+			     - remotingClient.getNameServerAddressList()        // 拿到所有的namesrv地址
+				 - for (final String namesrvAddr : nameServerAddressList)       // 对每个地址注册
+				    - registerBroker( namesrvAddr, oneway, timeoutMills, RegisterBrokerRequestHeader,byte[] body)
+					    -NettyRemotingClient.invokeOneway(namesrvAddr, request, timeoutMills);
+					         - Channel channel = this.getAndCreateChannel(addr);  
+							 - ChannelFuture channelFuture = NettyRemotingClient.bootstrap.connect(RemotingHelper.string2SocketAddress(addr))
+							 - cw = new ChannelWrapper(channelFuture)
+						     - ChannelFuture channelFuture = cw.getChannelFuture()
+						     - cw.getChannel()
+						     - NettyRemotingAbstract.invokeOnewayImpl( Channel , RemotingCommand request,   timeoutMillis)      // !!!重要
+						        - boolean acquired = this.semaphoreOneway.tryAcquire(timeoutMillis, TimeUnit.MILLISECONDS);   // server oneway:256; Async:64 用信号量防止过多的心跳？
+								- channel.writeAndFlush(request).addListener(new ChannelFutureListener() { public void operationComplete(ChannelFuture f){   once.release();    } }
+								- 没有规定时间内 invokeOnewayImpl invoke too fast   RemotingTimeoutException
+						-RemotingCommand response = this.remotingClient.invokeSync(namesrvAddr, request, timeoutMills);
+                            - .........
+								- RemotingCommand responseCommand = responseFuture.waitResponse(timeoutMillis);
+     
+2. 接受producer的消息
+   === 对于顺序消息来说，集群模式下怎么控制多个消费者并行消费时的顺序问题??? 时候并行消费只是对一个队列进行并行？
+   NettyRemotingServer.NettyServerHandler.channelRead0()
+    - processMessageReceived(ChannelHandlerContext, RemotingCommand)
+	  - processRequestCommand(ctx, cmd)
+	    - 根据cmd.getCode()从processorTable拿取Pair<NettyRequestProcessor, ExecutorService> 这个主要是在broker初始化的时候注入。每种RequestCode有不同的NettyRequestProcessor
+         // 构建请求头
+		- SendMessageRequestHeader requestHeader = parseRequestHeader(request)
+		- SendMessageHook.executeSendMessageHookBefore()
+		// ==================> 开始存储消息
+		- response = SendMessageProcessor.sendMessage(ctx, request, mqtraceContext, requestHeader);
+		   // ..............
+		    - 
+		    - DefaultMessageStore.putMessage(MessageExtBrokerInner)
+			  - BrokerRole.SLAVE == this.messageStoreConfig.getBrokerRole() SALVE直接返回，等待HA?
+			  - msg.getTopic().length() > Byte.MAX_VALUE  topic的长度限制
+		
+		
+3.broker的消息存储
+             // 经过DefaultMessageStore逻辑层的数据校验 开始真正进行存储操作
+             - PutMessageResult result = CommitLog.putMessage(msg);
+			   - msg.setBodyCRC(UtilAll.crc32(msg.getBody())) 设置消息体 CRC 校验值 
+			   - tranType事务?
+			     - msg.getDelayTimeLevel 有延时处理
+			   - lock()串行	
+			   - MappedFile mappedFile = MappedFileQueue.getLastMappedFile();
+				  - MappedFileQueue.getLastMappedFile(startOffset:0, needCreate:true)
+					- 1. mappedFile = AllocateMappedFileService.putRequestAndReturnMappedFile(nextFilePath, nextNextFilePath, 1G);
+					   - new AllocateRequest(nextFilePath, fileSize)  // 新建next及nextnext的mappedFile  并放入requestTable
+					   - requestQueue.offer(nextNextReq)       // 存入PriorityBlockingQueue<AllocateRequest> requestQueue
+					     // AllocateMappedFileService.run()   线程不断的创建next及nextnextMappedFile这样达到避免创建的时候重新创建减少交互时间
+					     - mmapOperation()
+						   - isTransientStorePoolEnable()   // 即是 transientStorePoolEnable & ASYNC_FLUSH异步刷盘 & 是Matser Broker
+						     - 是：mappedFile = ServiceLoader.load(MappedFile.class).iterator().next(); mappedFile.init(req.getFilePath(), req.getFileSize(), messageStore.getTransientStorePool());
+							 - 否：mappedFile = new MappedFile(req.getFilePath(), req.getFileSize());
+						     // 根据条件是否对MappedFile进行预热加入Page cache数据，下次读取数据不比缺页中断了
+						   - mappedFile.warmMappedFile(FlushDiskType, pages:4*16); 
+						     - ByteBuffer byteBuffer = this.mappedByteBuffer.slice(); 拿取一个子数据公用一个底层数组
+							 - for (int i = 0, j = 0; i < this.fileSize; i += MappedFile.OS_PAGE_SIZE, j++)  这里只是地址映射???
+							 - if ((i / OS_PAGE_SIZE) - (flush / OS_PAGE_SIZE) >= pages) 已经写入的-已经提交磁盘的
+							 - type == FlushDiskType.SYNC_FLUSH  同步刷盘???
+						       - force()将缓冲区的内容强制刷新到存储设备中去
+							 - mlock() 防止交换空间Swap
+							    // 调用mmap()时内核只是建立了逻辑地址到物理地址的映射表，并没有映射任何数据到内存
+							    - int ret = LibC.INSTANCE.mlock(pointer, new NativeLong(this.fileSize));	
+								// 这个函数会传入一个地址指针，已经一个区间长度madvise会向内核提供一个针对于于地址区间的I/O的建议 内核会做一些预读的操作。
+							    - int ret = LibC.INSTANCE.madvise(pointer, new NativeLong(this.fileSize), LibC.MADV_WILLNEED);
+					  - 2. mappedFile = new MappedFile(nextFilePath, this.mappedFileSize)
+					  
+				  // 把消息写入缓存Page Cache
+				  - result = MappedFile.appendMessage(msg, this.appendMessageCallback);
+					- AppendMessageResult = MappedFile.appendMessagesInner(MessageExt, AppendMessageCallback)
+					  //文件开始的下标；byteBuffer的副本；这个byteBuffer还剩多少大小可供写入
+					  - AppendMessageResult = CommitLog.doAppend(fileFromOffset, byteBuffer, maxBlank, MessageExtBrokerInner)
+					     - byteBuffer.put(this.msgStoreItemMemory.array(), 0, msgLen);
+	                 
+					  
+- SendMessageHook.sendMessageAfter(context)
+  
+MappedFile 完成内存和文件的映射;      
+    fileSize= 1G(commitLog)  / ; OS_PAGE_SIZE = 4k 映射页大小				  
+----------------------------------------
+mmap 将一个程序指定的文件映射进虚拟内存(Virtual Memory) 对文件的读写就变成了对内存的读写，能充分利用Page Cache.
+    Mmap内存映射和普通标准IO操作的本质区别在于它并不需要将文件中的数据先拷贝至OS的内核IO缓冲区，而是可以直接将用户进程私有地址空间中的一块区域与文件对象建立映射关系\
+    做Mmap内存映射的同时进行madvise系统调用，目的是使OS做一次内存映射后对应的文件数据尽可能多的预加载至内存中，从而达到内存预热的效果
+MMU 内存管理单元 查找页表将虚拟内存映射成物理内存 调用了mmap并且传入了一个文件的fd 是在进程地址空间（虚拟内存）分配了一段连续的地址用以映射文件，
+内核是不会分配真实的物理内存来将文件装入内存
+如果映射的文件非常大，程序访问局部映射不到物理内存的虚拟内存时，产生缺页中断，OS需要读写磁盘文件的真实数据再加载到内存。
+如同我们的应用程序没有Cache住某块数据，直接访问数据库要数据再把结果写到Cache一样，这个过程相对而言是非常慢的
+但是顺序IO时，读和写的区域都是被OS智能Cache过的热点区域，不会产生大量缺页中断，文件的IO几乎等同于内存的IO，性能当然就上去了
+
+
+// 在你要访问数据时内核会检查数据所在分页是否在内存，如果不在，则发出一次缺页中断，linux默认分页为4K，可以想象读一个1G的消息存储文件要发生多少次中断。
+// 当用户态应用使用MADV_WILLNEED命令执行madvise()系统调用时，它会通知内核，某个文件内存映射区域中的给定范围的文件页不久将要被访问
+---------------------------------------				  
+				  
+ConsumeQueue搜索 --> commitLog_offset(8) + size(4) + message_tag_hashcode(8) = 20
+1.by 
+2.by timestamp  根据consumequeue单元在文件中不断二分查找
+
+			  				  
+4.同步/异步刷盘
+               - handleDiskFlush(result, putMessageResult, msg)
+			      // SYNC_FLUSH 同步刷盘
+					  - GroupCommitRequest request = new GroupCommitRequest(result.getWroteOffset() + result.getWroteBytes()); // 创建请求
+					  - service.putRequest(request); // 同步等待
+						- synchronized (this.requestsWrite) { this.requestsWrite.add(request); }   // 加入写队列
+						- if (hasNotified.compareAndSet(false, true)) { waitPoint.countDown(); }  // notify 
+						- GroupCommitService.run()
+						  - this.waitForRunning(10);
+							- this.onWaitEnd();
+							  - this.swapRequests();      // 交换读写队列 双缓存队列实现读写分离，这样内部消费就可以避免加锁
+						  - doCommit()
+							- for (int i = 0; i < 2 && !flushOK; i++)  对每个requestsRead尝试2次刷盘	
+							- flushOK = CommitLog.this.mappedFileQueue.getFlushedWhere() >= req.getNextOffset(); 	
+                   // 异步刷盘
+				   - isTransientStorePoolEnable()		// commit/flush: 必须异步刷盘 & Master Broker & transientStorePoolEnable是否开启堆缓存
+					 - flushCommitLogService = new FlushRealTimeService();
+					 - flushCommitLogTimed 		// 等待方法
+					 - interval					// 获取刷盘时间间隔
+					 - flushPhysicQueueLeastPages		// 每次至少刷盘页数 默认4  lastFlushTimestamp+flushPhysicQueueThoroughInterval
+				  - commitLogService = new CommitRealTimeService()	
+
+				  
+a.主服务器启动并在特定端口上监听从服务器的连接 (AcceptSocketService)
+b.从服务器主动连接主服务器，主服务接受到客户端的连接并建立相关的TCP连接
+c.从服务器主动向主服务器发送待拉取消息偏移量,主服务器解析请求并返回消息给从服务器
+d.从服务器保存消息并继续发送新的消息同步请求
+
+5. broker HA异步
+-handleHA(AppendMessageResult result, PutMessageResult putMessageResult, MessageExt messageExt)
+	-HAService service = this.defaultMessageStore.getHaService();   		      // HAService 是作为HA的Server端服务
+	   - if (service.isSlaveOK(result.getWroteOffset() + result.getWroteBytes()))
+	        // Master和Slaver之间同步的最大差不能大于0.25G否则直接返回producer SLAVE_NOT_AVAILABLE
+		   - (masterPutWhere - this.push2SlaveMaxOffset.get()) < this.defaultMessageStore.getMessageStoreConfig().getHaSlaveFallbehindMax()  
+						
+BrokerController.messageStore.start();
+    - HAService.start()
+		- 1.acceptSocketService.beginAccept();  		  
+		- 2.acceptSocketService.start();			 		
+		     - class AcceptSocketService.run()
+				-while (!this.isStopped())									// 不断轮训
+				   - Set<SelectionKey> selected = this.selector.selectedKeys();  
+					  - if ((k.readyOps() & SelectionKey.OP_ACCEPT) != 0)				// 接受ACCEPT请求
+						- SocketChannel sc = ((ServerSocketChannel) k.channel()).accept();
+						- HAConnection conn = new HAConnection(HAService.this, sc);     // 每一个Slave请求都会建立一个conn连接
+						- conn.start() 
+							- A. readSocketService.start()    				// NIO. Master读Slaver的数据
+								-this.selector.select(1000);				// 多路复用阻塞等待选择有效事件
+								- boolean ok = this.processReadEvent();     // Slaver每次消息的大小为8byte 解决粘包问题
+									- 等待Slave
+									
+							// 分为两次发送: msgHeader(12byte = 8masterPhyOffset master已经同步给slave的字节数+ 4bodySize) + msgBody. 解决粘包拆包		
+							- B. writeSocketService.start()  
+									- if (-1 == HAConnection.this.slaveRequestOffset)  continue;     // 说明Slave还未向Master发送report offset
+							
+		所有Slave中已成功复制的最大偏移量是否大于等于消息生产者发送消息后消息服务端返回下一条消息的起始偏移量，
+		如果是则表示主从同步复制已经完成，唤醒消息发送线程，否则等待1s,再次判断，每一个任务在一批任务中循环判断5次。
+		消息消费者返回有两种情况：如果等待超过5s或 GroupTransferService通知主从复制完成则返回。可以通过syncFlushTimeout来设置等待时间。
+		- 3.groupTransferService.start();			   // 判断同步HA是否完成
+			- if (!this.requestsRead.isEmpty()) 			
+				- for (CommitLog.GroupCommitRequest req : this.requestsRead) 
+					- for (int i = 0; !transferOK && i < 5; i++)						
+					- boolean transferOK = HAService.this.push2SlaveMaxOffset.get() >= req.getNextOffset();		
+																
+		- 4.haClient.start();										// client连接
+			- boolean = this.connectMaster()
+				- socketChannel = RemotingUtil.connect(socketAddress) 
+				- socketChannel.register(this.selector, SelectionKey.OP_READ);     // 注册读事件这里说一下为什么不监听可写事件？应为一般情况下，tcp的send buffer 发送缓冲区都是非满状态的，所以，直接调用int len = socketChannel.write(ByteBuffer),都可以写成功的；那什么时候需要注册写事件呢，就是发送消息太频繁，导致send buffer满了，然后len=0的情况下，我们就可以注册写事件了
+				- currentReportedOffset = HAService.this.defaultMessageStore.getMaxPhyOffset();   // 获取当前已经同步的最大offset
+			- if (this.isTimeToReportOffset()) 						// 是否需要向Master汇报拉取量
+				-  boolean needHeart = interval > getMessageStoreConfig().getHaSendHeartbeatInterval();				// 上一次间隔大于心跳间隔
+			- boolean result = this.reportSlaveMaxOffset(this.currentReportedOffset);  
+				- reportOffset.putLong(maxOffset)					// Slave的当期拉取偏移量
+			    - this.socketChannel.write(this.reportOffset);  					 //  Slave之间直接发送8个字节的maxOffset
+			- this.selector.select(1000);				
+			- boolean ok = this.processReadEvent();  				// 接受Slave数据
+				- while (this.byteBufferRead.hasRemaining())		// 读写队列交换之后
+				- int readSize = this.socketChannel.read(this.byteBufferRead);
+				- boolean result = this.dispatchReadRequest(); 			// HA的时候自己解决了粘包拆包问题(与dubbo类似) 
+					- int diff = this.byteBufferRead.position() - this.dispatchPostion;		          // 1.拿取包头文件
+					- if (diff >= 12)
+						- long masterPhyOffset = this.byteBufferRead.getLong(this.dispatchPostion);		// 2.读取8字节的masterPhyOffset
+						- int bodySize = this.byteBufferRead.getInt(this.dispatchPostion + 8);			// 3. 4字节的bodySize
+						- long slavePhyOffset = HAService.this.defaultMessageStore.getMaxPhyOffset();
+						- if (slavePhyOffset != masterPhyOffset) 
+							- return false;
+						- if (diff >= (msgHeaderSize + bodySize))    // 可能粘包
+						- this.byteBufferRead.position(this.dispatchPostion + msgHeaderSize);
+						- this.byteBufferRead.get(bodyData);
+						- HAService.this.defaultMessageStore.appendToCommitLog(masterPhyOffset, bodyData)
+							- CommitLog.appendData(startOffset, byte[] data)
+								- MappedFile = this.mappedFileQueue.getLastMappedFile(startOffset);
+								- mappedFile.appendMessage(data)			// commitLog数据添加到Slave服务器
+						
+
+---------------------------------- Consumer消费 ------------------------------------- 							
+6. broker&consumer
+
+   DefaultMQPushConsumerImpl.start()
+	- this.mQClientFactory = MQClientManager.getInstance().getAndCreateMQClientInstance(this.defaultMQPushConsumer, this.rpcHook);
+	     // 创建客户端 = nettyClientConfig+ mQClientAPIImpl+ mQAdminImpl+ pullMessageService+ rebalanceService+ defaultMQProducer 的初始化
+		- new MQClientInstance(ClientConfig, int instanceIndex, String clientId, RPCHook rpcHook) 
+	- rebalanceImpl		// 负载
+	- pullAPIWrapper   // push只是用pull包装一下
+	- offsetStore   // 避免重复存储的消费进度，同时集群下只能保存在Broker
+		-this.offsetStore = new LocalFileOffsetStore(this.mQClientFactory, this.defaultMQPushConsumer.getConsumerGroup());
+		-this.offsetStore = new RemoteBrokerOffsetStore(this.mQClientFactory, this.defaultMQPushConsumer.getConsumerGroup());
+	- this.offsetStore.load();
+		-LocalFileOffsetStore.load()  // BROADCASTING广播模式 -- 本地存储
+			- OffsetSerializeWrapper offsetSerializeWrapper = this.readLocalOffset(); 	// 读rocketmq.client.localOffsetStoreDir.下文件并转换为Map<MessageQueue, AtomicLong>
+			- offsetTable.putAll(offsetSerializeWrapper.getOffsetTable());    // 保存已消费 offsetTable ConcurrentMap<MessageQueue, AtomicLong>	
+		-RemoteBrokerOffsetStore.load()		// CLUSTERING集群模式 -- Broker存储		
+	- ConsumeMessageService = new ConsumeMessageOrderlyService() / new ConsumeMessageConcurrentlyService(); 
+	- 1. consumeMessageService.start();  		
+		- cleanExpireMsg();				  // 清除过期消息???
+	- registerOK = mQClientFactory.registerConsumer(this.defaultMQPushConsumer.getConsumerGroup(), this);		// 放入consumerTable </* group */, MQConsumerInner> 一个MQClientInstance可以有多个消费 
+	- 2. mQClientFactory.start();
+		- this.mQClientAPIImpl.start();				
+			- 2.1 this.remotingClient.start()  			// a.启动NettyClient服务
+				- Bootstrap handler = this.bootstrap.group()
+				- timer.scheduleAtFixedRate -- NettyRemotingClient.this.scanResponseTable();		// 定时处理异步ResponseFuture
+					- responseFuture.executeInvokeCallback();
+			- 2.2 this.startScheduledTask();					// 开启定时任务
+				- mQClientAPIImpl.fetchNameServerAddr()		// 120s获取一次namesrv地址
+				- updateTopicRouteInfoFromNameServer()  	// 30s从namesrv更新topic信息，防止broker挂了
+				- sendHeartbeatToAllBrokerWithLock()        // 30s broker心跳检测		
+				- persistAllConsumerOffset();               // 5s持久化offset
+					- Set<MessageQueue> allocateMq = this.rebalanceImpl.getProcessQueueTable().keySet();    // 从rebalanceImpl拿到processQueueTable  
+					- this.offsetStore.persistAll(mqs);
+					- 
+						- if (mqs.contains(entry.getKey()))    // 判断消费的MessageQueue是否在offsetTable中？？？并从offsetTable拿取存储？？？
+						- MixAll.string2File(jsonString, this.storePath);     // consumer本地存储
+					- RemoteBrokerOffsetStore.persistAll(Set<MessageQueue> mqs) 
+						-  updateConsumeOffsetToBroker(MessageQueue mq, long offset)
+						// 1.拿到broker
+						- FindBrokerResult findBrokerResult = this.mQClientFactory.findBrokerAddressInAdmin(mq.getBrokerName());
+						// 2. if 这个broker刚刚好挂了 从namesrv上拿取最新的topic的broker(会有broker主动更新topic信息到ns)并更新本地
+						- this.mQClientFactory.updateTopicRouteInfoFromNameServer(mq.getTopic());
+						- MQClientAPIImpl.updateConsumerOffsetOneway(addr,UpdateConsumerOffsetRequestHeader,timeoutMillis)
+						- brokerVIPChannel( isChange, String brokerAddr)  			// VIP就是把端口号port-2
+						- invokeOneway(addr, RemotingCommand request, long timeoutMillis)   		// 发送请求
+						- Broker保存 topic@group
+				- adjustThreadPool()                        
+
+			- 2.3 pullMessageService.start()			
+				- PullRequest = this.pullRequestQueue.take()     	   // 阻塞 pullRequestQueue
+					- RebalanceService.run()  						   // 从这里开始,下面接..
+				// PullRequest: {consumerGroup, MessageQueue, ProcessQueue}  经过负载线程的负载已经知道拉取的broker
+				- DefaultMQPushConsumerImpl.pullMessage(pullRequest)							// 每个 MQClientInstance 一个 pullMessageService
+					- cachedMessageCount >1000 || pullThresholdSizeForQueue > 100				// 失败
+					- if (!this.consumeOrderly) 						// 是否顺序消费
+					- subscriptionData = this.rebalanceImpl.getSubscriptionInner().get(pullRequest.getMessageQueue().getTopic());	// RebalanceImpl.subscriptionInner<topic, SubscriptionData> 
+					- PullCallback pullCallback = new PullCallback() {}
+					- if (MessageModel.CLUSTERING == this.defaultMQPushConsumer.getMessageModel()) 		// 集群模式
+						- commitOffsetValue = this.offsetStore.readOffset(pullRequest.getMessageQueue(), ReadOffsetType.READ_FROM_MEMORY);   // 当前消息在内存的偏移
+					
+					// MessageQueue, subExpression, expressionType, subVersion, offset, maxNums, sysFlag, commitOffset,
+					// brokerSuspendMaxTimeMillis,timeoutMillis, CommunicationMode.ASYNC(异步),pullCallback
+					- PullResult PullAPIWrapper.pullKernelImpl(...) 			// 从Broker上拉取消息
+						- FindBrokerResult = this.mQClientFactory.findBrokerAddressInSubscribe(mq.getBrokerName(),this.recalculatePullFromWhichNode(mq), false)
+						- PullMessageRequestHeader requestHeader = new PullMessageRequestHeader();
+						- RemotingCommand request = RemotingCommand.createRequestCommand(RequestCode.PULL_MESSAGE, requestHeader);
+						- remotingClient.invokeAsync(addr, request, timeoutMillis, new InvokeCallback() {}
+						- public void operationComplete(ResponseFuture responseFuture) {
+							- RemotingCommand response = responseFuture.getResponseCommand();			// MQClientAPIImpl完成调用后callback
+							- PullResult = MQClientAPIImpl.this.processPullResponse(response);	
+							- pullCallback.onSuccess(pullResult);
+								- pullRequest.setNextOffset(pullResult.getNextBeginOffset());		//更新
+								- boolean dispatchToConsume = processQueue.putMessage(pullResult.getMsgFoundList());		// 返回信息保存processQueue
+								// 顺序和非顺序消费
+								- consumeMessageService.submitConsumeRequest(List<MessageExt> msgs,processQueue,messageQueue,dispatchToConsume);	
+									- status = listener.consumeMessage(Collections.unmodifiableList(msgs), context);
+								// 存放到 pullRequestQueue
+								- if (DefaultMQPushConsumerImpl.this.defaultMQPushConsumer.getPullInterval() > 0)
+									- DefaultMQPushConsumerImpl.this.executePullRequestLater(pullRequest, defaultMQPushConsumer.getPullInterval());
+									- DefaultMQPushConsumerImpl.this.executePullRequestImmediately(pullRequest);
+										- this.pullRequestQueue.put(pullRequest);
+									
+			- 2.4 rebalanceService.start()			
+			 // 20s负载一次 1.拿到当前所有的注册信息及topic对应的cid  2.负载出MQ  3.更新PQ(防止被其他Consumer消费)
+					-this.waitForRunning(20000);				
+					- mqClientFactory.doRebalance()
+						- for (Map.Entry<String, MQConsumerInner> entry : this.consumerTable.entrySet())     			// 针对于每个comsume
+							- impl.doRebalance();							// 分为pull和push
+								- RebalanceImpl doRebalance(isOrder)
+									- for (final Map.Entry<String, SubscriptionData> entry : subTable.entrySet()) 		// 当前comsumer订阅的主题
+										- switch (messageModel) 		    // 负载方式有集群和广播
+											- Set<MessageQueue> = this.topicSubscribeInfoTable.get(topic);
+											- List<String> cidAll = this.mQClientFactory.findConsumerIdList(topic, consumerGroup);	// topicSubscribeInfoTable订阅该主题的消费组ID列表
+												- brokerAddr = this.findBrokerAddrByTopic(topic);		// 每个NS都维护了一份相同的对于同一个topic customerid???
+												// 负载，但分布式下多个消费者如何统一???
+												- List<MessageQueue> = strategy.allocate(consumerGroup, currentCID, List<MessageQueue> mqAll, cidAll)  
+												- updateProcessQueueTableInRebalance(topic, Set<MessageQueue>, isOrder)
+													- if (mq.getTopic().equals(topic)) 					// 只和该主题相关的
+														- if (!mqSet.contains(mq)) 		 				// 如果mq不在当前处理可能因为该消息队列已经分配给别的消费者去消费了???
+														
+														- if(pq.isPullExpired())						// 当前时间 - 最后一次拉取消息时间 > 120s BUG
+														- CONSUME_ACTIVELY(PULL主动地) || CONSUME_PASSIVELY(PUSH被动的)    // if对列正常消费则移除
+															- PUSH -- pq.setDropped(true); 				// 丢失对列
+															- PUSH -- this.removeUnnecessaryMessageQueue(mq, pq)   			// ???
+																- persist(mq)	
+																- removeOffset(mq)
+															- it.remove();
+													- for (MessageQueue mq : mqSet) 
+													- removeDirtyOffset(mq)
+														- defaultMQPushConsumerImpl.getOffsetStore().removeOffset(mq)		// 移除脏数据???
+													- dispatchPullRequest(List<PullRequest> pullRequestList) 
+														- pullRequestQueue.put(pullRequest);			// 提供给阻塞的pullMessageService消费
+														
+pullRequest{consumerGroup, MessageQueue, ProcessQueue}		只有在负载时创建拿到allMQ和cid之后负载得到MQ
+processQueue:
+MessageQueue: TopicRouteData(queueDatas,brokerDatas) 
+              --> updateTopicRouteInfoFromNameServer#topicRouteData2TopicSubscribeInfo#new MessageQueue(topic, qd.getBrokerName(), queueDatas->i) 
+			  --> topicSubscribeInfoTable# ConcurrentMap<String/* topic */, Set<MessageQueue>>
+			  --> rebalanceByTopic#pullRequest 
+TopicRouteData: 
+{"brokerDatas":[
+{"brokerAddrs":{0:"10.63.102.218:10911"},"brokerName":"broker-a","cluster":"DefaultCluster"}],
+"filterServerTable":{},
+"queueDatas":[{"brokerName":"broker-a","perm":7,"readQueueNums":4,"topicSynFlag":0,"writeQueueNums":4}]
+}		  
+a.拉取的MessageQueueID; --NS的DataQueue-->MessageQueue(i)
+b.会不会切换slave; --Broker于最大的offset相差40%切换到slaveID; 
+c.长轮训机制; --C 20s负载PullRequestHoldService / ReputMessageService
+
+--------------------------------------一些重要的点!!!--------------------------------------------
+PUSH: 消费者订阅主题，然后自动进行集群内消息队列的动态负载，自动拉取消息。准实时。 
+PULL: 消费者无需订阅主题，由业务方（应用程序）直接根据MessageQueue拉取消息。 
+	
+------------------------ I.ACK进度保存 -------------------------------------------
+   "offsetTable":{
+                "TopicTest@please_rename_unique_group_name_4":{0:533,1:533,2:533,3:532,4:60,5:60,6:60,7:62,8:62,9:61,10:21,11:25,12:23,13:23,14:21,15:20
+                },
+                "TopicTest@please_rename_unique_group_name_3":{0:0,1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0,10:0,11:0,12:0,13:0,14:0,15:0
+                },
+                "%RETRY%please_rename_unique_group_name_4@please_rename_unique_group_name_4":{0:0
+                },
+                "%RETRY%group_name_test@group_name_test":{0:0
+                },
+                "%RETRY%please_rename_unique_group_name_3@please_rename_unique_group_name_3":{0:0
+                },
+                "TopicTest@group_name_test":{0:535,1:535,2:535,3:534,4:62,5:62,6:61,7:64,8:64,9:63,10:23,11:26,12:25,13:25,14:23,15:22
+                }
+        }
+	
+----------------------- II.PULL长轮询&短轮询	longPollingEnable !!!----------------
+	BrokerController.start()
+		- pullRequestHoldService.start()
+			- getBrokerConfig().isLongPollingEnable() -- this.waitForRunning(5 * 1000) ||  this.waitForRunning(1000);
+			- this.checkHoldRequest();
+				- notifyMessageArriving(topic, queueId, offset)
+					- ManyPullRequest mpr = this.pullRequestTable.get(key);			// 从 pullRequestTable
+					- PullMessageProcessor.executeRequestWhenWakeup(Channel, RemotingCommand request) 
+						- RemotingCommand response = PullMessageProcessor.this.processRequest(channel, request, false)		
+			
+
+---------------------- III.顺序消费 ----------------------------
+顺序消费时对broker加锁的原因; 顺序拉取时再次从broker确认offset?;  
+   1.负载取PullRequest. topicSubscribeInfoTable 对mq broker加锁同时processQueue.setLocked(true);
+       a. 20s负载一次 topicSubscribeInfoTable
+   2.拉取消息pullMessage. 
+	   a.未加锁的 processQueue->executePullRequestLater;重新放回pullRequestQueue等待拉取
+	   b.加锁的 offset=computePullFromWhere(pullRequest.getMessageQueue()) 重新计算offset
+   3.消费消息 ConsumeMessageOrderlyService.
+	   a.启动lockMQPeriodically(); 把processQueueTable的在broker端lockBatchMQ
+	   b.PullCallback()拉取后放到ConsumeRequest线程池；
+   ===》RebalanceService在重新分配完队列后，有可能processQueue中的msgTreeMap并没有消费完成；
+1、一个队列同时只被一台机器消费
+RebalanceService在重新分配完队列后有可能processQueue中的msgTreeMap并没有消费完成也就是在途数据即可能同时存在两台机器消费同一个队列的消息这个在顺序消费中显然是不允许的
+所以rocketmq设置了在broker加队列锁并且锁默认60s失效（为什么失效，便于当机器宕机时，能被分配给其他在线的消费者消费），20s一次负载 isExpired()
+只有获得锁的ProcessQueue才能执行ConsumeRequest线程
+
+2、上一个队列id没有消费完成，则不能消费下一个线程
+ConsumeRequest是多线程消费的，显然这个在顺序消费中也是有问题的。
+rocketmq是怎么解决的呢？
+1、ConsumeRequest运行时加了队列的内存锁
+2、ConsumeRequest在顺序消费中，是从msgTreeMap中取offset小的消息先消费
+
+Broker服务端锁 RebalanceLockManager#tryLockBatch(String group, Set<MessageQueue> mqs, String clientId) LOCK_BATCH_MQ
+	-- this.isLocked(group, mq, clientId)	  											// 该mq是否被锁到 mqLockTable
+		- boolean locked = lockEntry.isLocked(clientId);								// 是否已经被当前请求的clientId锁到
+		- if(locked) lockEntry.setLastUpdateTimestamp(System.currentTimeMillis());      // 如果是更新当前时间
+	- lockedMqs.add(mq)   		// 如果是当前clientId锁到直接加入返回mqSet
+	- notLockedMqs.add(mq);
+		- 判断是 null == lockEntry ||lockEntry.isLocked(clientId) ||lockEntry.isExpired()  
+		- 否则说明该mq还在被锁 不能使用
+
+-------------------- IV.分布式事务 -------------------
+主要在Producer实现了 executeLocalTransaction 和 checkLocalTransaction 的执行和查看事务的两方面接口
+  1. Producer发送half msg开启事务
+  2. Producer执行本地事务	-- 在整个本地过程可能涉及很多表尤其资金方面建议提供一张transaction
+  3. Producer根据本地执行的成功失败决定commit/rollback  -- oneway单向发送消息的情况
+  4. 提交到Consumer
+  5. broker定时回查Producer状态  -- 防止本地执行成功commit/rollback失败
+
+Broker回查
+TransactionalMessageServiceImpl.check(long transactionTimeout, int transactionCheckMax,AbstractTransactionalMessageCheckListener listener)
+	- Set<MessageQueue> msgQueues = transactionalMessageBridge.fetchMessageQueues("RMQ_SYS_TRANS_HALF_TOPIC");		
+	- long halfOffset = transactionalMessageBridge.fetchConsumeOffset(messageQueue);		      // 队列的消费进度
+    - long opOffset = transactionalMessageBridge.fetchConsumeOffset(opQueue);				      // 待操作的消费队列的消费进度
+	- PullResult = fillOpRemoveMap(removeMap, opQueue, opOffset, halfOffset, doneOpOffset);
+ 
+ 
+桥接模式：
+1、定义一个桥接口，使其与一方绑定，这一方的扩展全部使用实现桥接口的方式
+2、定义一个抽象类，来表示另一方，在这个抽象类内部要引入桥接口，而这一方的扩展全部使用继承该抽象类的方式
+ 
+ 
+--------------------- V.定时消息和延迟消息 ------------------------
+定时消息：Producer 将消息发送到 MQ 服务端，但并不期望这条消息立马投递，而是推迟到在当前时间点之后的某一个时间投递到 Consumer 进行消费，该消息即定时消息。
+延迟消息：Producer 将消息发送到 MQ 服务端，但并不期望这条消息立马投递，而是延迟一定时间后才投递到 Consumer 进行消费，该消息即延时消息。
+消息回朔，即回去重新消费
+失败延迟策略：
+private String messageDelayLevel = "1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h";
+
+对于消费失败的消息如拉取了100条2101-2200但是在消费2101失败后面99条成功的情况下回写给broker
+defaultMQPushConsumer.getConsumeTimeout();		  //  每次开始消费之前每15min清楚一次 ConsumeMessageConcurrentlyService#cleanExpireMsg()#
+ 
+CONSUME_FROM_LAST_OFFSET //默认策略，从该队列最尾开始消费，即跳过历史消息
+CONSUME_FROM_FIRST_OFFSET //从队列最开始开始消费，即历史消息（还储存在broker的）全部消费一遍
+CONSUME_FROM_TIMESTAMP//从某个时间点开始消费，和setConsumeTimestamp()配合使用，默认是半个小时以前
+"sh mqadmin brokerStatus"  查看当前的消费进度
+
+
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+consumequeue: 目录下是以Topic作为文件名称每个Topic下又以queue id作为文件夹分组，用于记录每个消息在commitlog目录下文件中消息的位置，consumequeue目录下文件中记录的内容格式为 queueoffset/size/tag	
+commmitlog: 000000所有的消息都会写在同一个文件大小为1G，超过1G会新创建一个文件消息持久化有效时间为3天。	
+config：主要记录一些消费者的配置信息
+	consumerFilter：消费者的消息过滤器
+    consumeroffset：集群消息每个消费者的消费消息偏移量由name server来维护
+    delayoffset：延时消息的偏移量
+    topics：所有的topic的一些配置信息
+    subscriptionGroup：订阅分组信息 
+index：消息索引文件信息，根据topic和tag名称生成哈希键，值为消息在commitlog的偏移量
+	-ReputMessageService.run()
+		-doReput()			// 没有参数 reputFromOffset
+			-SelectMappedBufferResult result = DefaultMessageStore.this.commitLog.getData(reputFromOffset); 
+			// 映射文件内待构建索引的字业务消息字节内容均存在于SelectMappedBufferResult临时实例中
+				- MappedFile mappedFile = this.mappedFileQueue.findMappedFileByOffset(offset, returnFirstOnNotFound); 		// offset对应的MappedFile
+				-int pos = (int) (offset % mappedFileSize);  // 当前offset的位置
+				-SelectMappedBufferResult result = mappedFile.selectMappedBuffer(pos);
+					- 构建的新的byteBuffer:limit(readPosition - pos),position(pos);
+		    -DispatchRequest = CommitLog.checkMessageAndReturnSize(result.getByteBuffer(), false, false);  		// DispatchRequest-一条业务消息
+			// 构建逻辑索引 该索引类比于List的index,conusmer端可以通过该index，查询出具体的业务消息
+			-DefaultMessageStore.this.doDispatch(dispatchRequest); 
+				-FlushConsumeQueueService.run()   // 逻辑索引的刷盘
+				
+				
+
+两种索引方式		
+1.【根据逻辑位移索引】
+物理位移计算方式为cqOffset * CQ_STORE_UNIT_SIZE, 
+其中cqOffset为逻辑位移，类比于List的index;
+CQ_STORE_UNIT_SIZE为每一个【逻辑位移索引】的大小，值为20;
+换言之我们需要查询指定index的业务消息时我们先通过cqOffset * CQ_STORE_UNIT_SIZE运算，查询出【逻辑位移索引】的具体内容，
+然后在通过8字节的业务消息的物理位移找出业务消息所在的物理存储位移，就可以找出一条完整的业务消息内容了
+2.【根据key查询索引】
+Index存储结构：
+Header(40B): beginTimestampIndex + endTimestampIndex+ beginPhyoffsetIndex(8)+ endPhyoffsetIndex(8)+ hashSlotcountIndex(4)+ indexCountIndex
+hashSlot(500w) * hashSlotSize(4): 存储的是相对应的hash值索引的在当前的索引文件索引个数
+indexNum(4*500w 即默认hash冲突4) * indexSize(20): hash_value(4) + phyOffset(8 message在CommitLog的物理文件地址) + timeDiff(4)+ prevIndex(4)
+
+mappedFile 映射到内存 IndexFile.mappedFile = new MappedFile(fileName, fileTotalSize);
+加入新的index的绝对位置：int absIndexPos = IndexHeader.INDEX_HEADER_SIZE + this.hashSlotNum * hashSlotSize(一开始就填充满的0x000..) + this.indexHeader.getIndexCount() * indexSize;
+		
+			
+[CommitLog]
+msgSize(4)+ MAGICCODE(4 = daa320a7)+ BODY CRC(4)+ queueId(4)+ flag(4)+ QUEUEOFFSET(8)+ PHYSICALOFFSET(8)+ SYSFLAG(4)+
+BORNTIMESTAMP(8)+ BORNHOST(8)+ STORETIMESTAMP(8)+ STOREHOSTADDRESS(8)+ RECONSUMETIMES(8)+ PreparedTransaction Offset(8)+
+messagebodyLength(4)+ messagebody()+ topicLength(1)+ topic()+ 
+
+commitLog.getMaxOffset(): 最后一个MappedFile的fromOffset+
+
+-----------------------------------------------------	 
+DirectBuffer在哪 -- 本身在java堆的 malloc()/mmap()分配出来的内存是用户态(只读，数据段，堆，文件映射段，栈)且在堆和文件映射段
+fileChannel.write(byteBuffer)到哪 -- 基于通道Channel分配在堆外通过DirectByteBuffer
+pageCache -- 直接内存
+虚拟内存，堆内存，堆外内存，用户态内存，内核态内存(关联物理内存)
+Pointer
+堆外内存 --->(commit) 内存映射Buffer --->(flush) 磁盘
+
+直接内存模型出现之前，java堆上的数据如果想要与外界交换数据，必须要经过native堆，这样数据从java堆被拷贝到native堆再由native被拷贝到外界，其中多了一次无用的拷贝
+所以直接内存设计解决这个无用拷贝的问题，形成了0拷贝，使得数据直接从java堆交换到外界，效率很高！
+
+2. FileChannel 的read(ByteBuffer dst)函数,write(ByteBuffer src)函数中如果传入的参数是HeapBuffer类型,则会临时申请一块DirectBuffer,进行数据拷贝，
+   而不是直接进行数据传输，这是出于什么原因？
+		
+isTransientStorePoolEnable 如果开启则使用直接内存进行写入数据，最后从直接内存中 commit 到 FileChannel 中
+		
+mmap是一种将文件映射到虚拟内存的技术，可以将文件在磁盘位置的地址和在虚拟内存中的虚拟地址通过映射对应起来，之后就可以在内存这块区域进行读写数据，而不必调用系统级别的read,wirte这些函数，从而提升IO操作性能，另外一点就是mmap后的虚拟内存大小必须是内存页大小(通常是4K)的倍数，之所以这么做是为了匹配内存操作。		
+
+-n "47.100.237.162:9876" autoCreateTopicEnable=true -c D:\workspace\rocketmq\distribution\conf\broker.conf &
+java -jar rocketmq-console-ng-1.0.0.jar &
+		

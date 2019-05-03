@@ -53,10 +53,11 @@ public class Client {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             ChannelPipeline p = socketChannel.pipeline();
-                            // 如果客户端在间隔5s后都没收到Server的消息或向Server发送消息则产生ALL_IDLE事件 不能全部为0
-                            p.addLast(new IdleStateHandler(0, 0, 5));
-                            p.addLast(new LengthFieldBasedFrameDecoder(1024, 0, 4, -4, 0));
-                            p.addLast(new ClientHandler(Client.this));
+                            //// 如果客户端在间隔5s后都没收到Server的消息或向Server发送消息则产生ALL_IDLE事件 不能全部为0
+                            //p.addLast(new IdleStateHandler(0, 0, 5));
+                            //p.addLast(new LengthFieldBasedFrameDecoder(1024, 0, 4, -4, 0));
+                            //p.addLast(new ClientHandler(Client.this));
+                            p.addLast(new EchoOutClientHandler());
                         }
                     });
             doConnect();

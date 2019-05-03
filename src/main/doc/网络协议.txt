@@ -1,0 +1,88 @@
+
+【网络分层】
+应用层 
+传输层，send_tcp(buffer)    +tcp三次握手的时候ip和mac同样会
+网络层，send_layer3(buffer) +IP头	ip地址网络寻址
+物理层，send_layer2(buffer) +MAC头  mac地址局域网寻址(这IP常有变动)
+只要是在网络上跑的包，都是完整的。可以有下层没上层，绝对不可能有上层没下层
+
+【ipconfig】
+ifconfig & ip addr
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 1000
+    link/ether 00:16:3e:0c:04:7b brd ff:ff:ff:ff:ff:ff
+    inet 172.16.42.225/18 brd 172.16.63.255 scope global eth0
+       valid_lft forever preferred_lft forever
+mac更像是身份ID，而ip则是具体的标识。比如你找xxx地址的人 到了之后喊一句身份ID是谁就可以找到。即mac局限在一个范围内
+BROADCAST: 这个网卡有广播地址 可以发送广播包
+MULTICAST: 可以发送多播包
+
+固定值 + 网络号 + 主机号
+A类  1 + 7 + 24
+B类  2 + 14 + 16
+C类  3 + 21 + 8
+
+CIDR 10.100.122.2/24
+共有IP  由统一分配 需要去买
+私有IP  私有的机器一般不会超过254过 所以/24 如常用192.168.0.1
+1.广播 2.子网掩码  可以判断是不是本地人
+
+
+【DHCP & PXE】
+DHCP(Dynamic Host Configuration Protocol) 动态主机配置协议
+PXE 
+
+【物理层到MAC层】
+ARP协议 已知IP地址求MAC地址的协议 这层缓存会不断的刷新 通过鸿的方式拿到IP-MAC的映射
+交换机  不断获取局域网内的MAC地址 得到转发表 这个表是有一定的缓存期限的  可以理解在拿到mac之后准确的发送到相应的电脑网络上
+Mac层是用来解决多路访问的堵车问题的
+
+【交换机和LAN】
+
+【ICMP & ping】
+
+【UDP】
+1. 网页或APP访问：移动中TCP断了还会重连
+2. 流媒体协议：直播可以选择丢失过去的帧而不必一定等到前一个收到了下一个才能确认
+3. 实时游戏：海量客户端下系统维护TCP资源过大
+4. IoT物联网：1.嵌入式系统  2.实时性
+
+
+【TCP】
+包头格式 = 
+   源端口号 + 目的端口号 
+   + 序号  []
+   + 确认序号 
+   + 首部长度 + 保留 + (URG/ACK/PSH/RST/SYN/FIN) + 窗口大小
+   + 校验和 + 紧急指针
+ 
+TCP五个问题：顺序问题，丢包问题，连接维护，流量控制，拥塞控制
+
+拥塞窗口 -- 避免保丢失和超时重传 -- 慢启动
+rwnd & cwnd
+
+
+【HTTP】
+http1.1
+http2.0
+
+【HTTPS】
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

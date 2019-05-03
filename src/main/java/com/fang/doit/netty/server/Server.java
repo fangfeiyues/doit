@@ -16,23 +16,24 @@ import io.netty.handler.timeout.IdleStateHandler;
  */
 public class Server {
     public static void main(String[] args) {
-        NioEventLoopGroup bossGroup = new NioEventLoopGroup(1);
+        NioEventLoopGroup bossGroup = new NioEventLoopGroup(2);
         NioEventLoopGroup workGroup = new NioEventLoopGroup(4);
         try {
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap
-                    .group(bossGroup, workGroup)
-                    .channel(NioServerSocketChannel.class)
-                    .handler(new LoggingHandler())
-                    .childHandler(new ChannelInitializer<SocketChannel>() {
-                        @Override
-                        protected void initChannel(SocketChannel socketChannel) throws Exception {
-                            ChannelPipeline p = socketChannel.pipeline();
-                            p.addLast(new IdleStateHandler(0, 0, 5));
-                            p.addLast(new LengthFieldBasedFrameDecoder(1024, 0, 4, -4, 0));
-                            p.addLast(new ServerHandler());
-                        }
-                    });
+                .group(bossGroup, workGroup)
+                .channel(NioServerSocketChannel.class)
+                .handler(new LoggingHandler("INFO"))
+                .childHandler(new ChannelInitializer<SocketChannel>() {
+                    @Override
+                    protected void initChannel(SocketChannel socketChannel) throws Exception {
+                        ChannelPipeline p = socketChannel.pipeline();
+                        //p.addLast(new IdleStateHandler(0, 0, 5));
+                        //p.addLast(new LengthFieldBasedFrameDecoder(1024, 0, 4, -4, 0));
+                        //p.addLast(new ServerHandler());
+                        p.addLast(new EchoInServerHandler());
+                    }
+                });
 
             Channel ch = bootstrap.bind(8088).sync().channel();
             ch.closeFuture().sync();

@@ -1,0 +1,399 @@
+【Consumer】
+0. DubboNamespaceHandler ReferenceBean 标签解析 -->ReferenceConfig.init()	
+	a. invoker = refprotocol.refer(interfaceClass, url);      生成invoker，并开启netty-client
+	  1.1 RegistryProtocol 注册zookeeper
+	      RegistryProtocol#refer(Class<T> type, URL url)
+			- subscribe:157, RegistryDirectory 
+			- subscribe:290, FailbackRegistry 
+			- doSubscribe:169, ZookeeperRegistry 
+			- notify:355, FailbackRegistry 
+			- doNotify:364, FailbackRegistry 
+			- notify:399, AbstractRegistry 
+			- notify:218, RegistryDirectory 
+			- refreshOverrideAndInvoker:224, RegistryDirectory 
+			- refreshInvoker:265, RegistryDirectory 
+			- toInvokers:408, RegistryDirectory 
+			- Protocol$Adaptive(Dubbo) 	
+	  1.2 ProtocolFilterWrapper 拿到DubboInvoker之后组装一链串的new Invoker(){ invoke(){ filter.invoke(next, invocation) }}
+	  1.3 ProtocolListenerWrapper
+	  1.4 DubboProtocol
+		  1.4.0 DubboProtocol / RedisProtocol / InjvmProtocol / ThriftProtocol
+		  1.4.1 DubboInvoker<T> invoker = new DubboInvoker<T>(serviceType, url, getClients(url), invokers);     即new了一个DubboInvoker
+		  1.4.2 ExchangeClient = Exchanges.connect(URL, ExchangeHandler) exchanger层开始连接 + ChannelHandler的心路历程     每个interface一个client?
+				  ExchangeHandler(ChannelHandler)== received到Server返回之后最后的处理步骤??  HeaderExchangeHandler - AbstractChannelHandlerDelegate - DecodeHandler
+				  Transports  - ChannelHandlerDispatcher NettyClient.connect(URL url, ChannelHandler listener), - HeartbeatHandler AbstractChannelHandlerDelegate - MultiMessageHandler
+		  1.4.3 开启心跳机制，打开netty客户端，数据序列化配置...
+	b. (T) proxyFactory.getProxy(invoker)         把对interface接口的方法调用代理成对invoke的调用
+	   2.1 JavassistProxyFactory  字节码生成代理
+	   2.2 JdkProxyFactory  jdk.proxy生成代理   InvokerInvocationHandler类
+	   2.3 每次都会生成一个invoker然后通过invoker对接口生成代理会不会导致初始化启动太慢？
+
+1.Proxy层 InvokerInvocationHandler 
+   接口调用进入InvokerInvocationHandler调用invoker.invoker(Invocation invocation)，这里为每个Handler初始化的时候构造了特定的invoker
+
+2.MockClusterInvoker -- local,mock,cache 服务降级
+  c1: noMock
+  c2: value.startsWith("force")  mock=force:return+null
+	  判断hasMockProviders protocol='mock' 如果没有则 minvoker = (Invoker<T>) new MockInvoker(directory.getUrl());	  
+  c3:fail-mock 
+   mock=fail:return+null  消费方对该服务的方法调用在失败后，再返回 null 值，不抛异常。用来容忍不重要服务不稳定时对调用方的影响
+   
+3.Directory 路由选择，主要是根据url.protocol-mock及invocation-invocation.need.mock后者这是对于上c1情况下的需要并过滤Provider中"mock"的invoker
+     - AbstractClusterInvoker.invoke
+	     - AbstractClusterInvoker.list(invocation)
+		    - AbstractDirectory.list 
+			   - RegistryDirectory.doList 			 // !!!从初始化的<method,List<Invoker>> 拿到Provider提供的url
+			   - List<Invoker<T>> = MockInvokersSelector.route(invokers, getConsumerUrl(), invocation)
+			      - getNormalInvokers(invokers) 			 // 过滤Provider提供的url中是否含有"mock"
+	     - LoadBalance loadbalance = AbstractClusterInvoker.initLoadBalance(invokers, invocation)		 // 选择配置的loadbalance策略
+		 - Result = doInvoke(invocation, invokers, loadbalance)
+		    - Invoker<T> invoker = FailoverClusterInvoker.select(loadbalance, invocation, copyInvokers, invoked)
+     
+4.LoadBalance 四种(随机，最近活跃，hash一致，轮训) + 权重的配比
+    Invoker<T> invoker = select(loadbalance, invocation, copyInvokers, invoked);
+	doSelect(invokers, url, invocation)
+	
+5.Cluster缺省Failover    <dubbo:service cluster="failsafe" />
+   a.  初始化 MockClusterWrapper.join()是一个aop切面类
+       extension = (Cluster) ExtensionLoader.getExtensionLoader(Cluster.class).getExtension("failover");
+	   注入(T) wrapperClass.getConstructor(type).newInstance(instance)获取到构造方法为Wrapper注入FailoverClusterInvoker的instance 
+	   然后实现Wrappper的AOP injectExtension((T) wrapperClass.getConstructor(type).newInstance(instance));
+   b. FailoverClusterInvoker 失败自动切换其他服务器  默认retries="2" 会在失败之后重新选择invoker然后和之前invoked比较是否contains决定是否再次选择。invoked时间仅仅针对这一次请求
+   c. FailfastClusterInvoker 快速失败只发起一次请求
+   d. FailbackCluster 定时重发 把invoker保存下来放在定时器中定时触发
+   e. ForkingCluster
+   
+6.filter -- ConsumerContextFilter,FutureFilter,MonitorFilter,limit...
+     请求完成路由负载容错之后拿到确定的invoker开始调用逻辑. 这里需要注意的是之前的选择都是Provider的invoker选择，现在的invoker.invoke()再次回到Consumer???
+  -- Result = InvokerWrapper.invoke(Invocation)  
+       这是一层转变？ RegistryProtocol -...--ZookeeperRegistry.doSubscribe()在订阅完成之后notify(url, listener, urls) -- ..
+	              -- RegistryDirectory.notify开始refreshInvoker,toInvokers(invokerUrls)进行包装，把provider的URL包装成Consumer自己的invoker再来负载这是Consumer调用的开始!!!
+				  -- invoker = new InvokerDelegate<T>(protocol.refer(serviceType, url), url, providerUrl); 同时开始DubboProtocol的执行
+     -- ProtocolFilterWrapper
+	 // 串起来Filters
+	 for (int i = filters.size() - 1; i >= 0; i--) {
+                final Filter filter = filters.get(i);
+                final Invoker<T> next = last;
+                last = new Invoker<T>() {
+                    @Override
+                    public Result invoke(Invocation invocation) throws RpcException {
+                        return filter.invoke(next, invocation);
+                    }
+                };
+            }
+	--... 最后一个Invoker就是DubboInvoker<T> invoker = new DubboInvoker<T>(serviceType, url, getClients(url), invokers);  并同步开启netty服务
+	
+7.invoker -- DubboInvoker在这一步返回Result
+    DubboInvoker 开始通过ExchangeClient调用provider服务。此ExchangeClient就是在初始化过程中开启Netty时拿到的
+	1. isOneway 异步不回调  new RpcResult()
+	2. isAsync  异步带回调  result = new SimpleAsyncRpcResult(futureAdapter, futureAdapter.getResultFuture(), false);
+	3. isAsyncFuture   result = new AsyncRpcResult(futureAdapter, futureAdapter.getResultFuture(), false);
+	4. get()同步阻塞等待Result  currentClient.request(inv, timeout).get() --> done.await(timeout, TimeUnit.MILLISECONDS);
+	   a.阻塞到时if (isDone() || System.currentTimeMillis() - start > timeout) { break;}
+	   b.doReceived(Response res)返回结果唤醒线程 Condition
+	
+8.client & codec
+    - ResponseFuture = ReferenceCountExchangeClient.request(Object request, int timeout)  // ReferenceCountExchangeClient这一层是共享一个connections
+	   - HeaderExchangeClient.request
+	      - HeaderExchangeChannel.request    		
+			 - Request req = new Request();				// create request.
+			 - DefaultFuture future = DefaultFuture.newFuture(channel, req, timeout);		
+				- DefaultFuture future = new DefaultFuture(channel, request, timeout);    // 异步回调 设置requestID(每个)
+				- timeoutCheck(future);													  // 开启异步timeout线程
+		     - AbstractPeer.send(Object message)		
+			    - AbstractClient.send(Object message, boolean sent)  		
+				   - Channel = getChannel();
+				   - NettyChannel.send()
+				   - ChannelFuture future = channel.writeAndFlush(message);
+  codec
+      url = url.addParameter(Constants.CODEC_KEY, DubboCodec.NAME); 在DubboProtocol中设定为了dubbo协议
+   无论是哪种方式拿到DubboInvoker.Result后next顺序一层一层返回filter
+  
+--> 解码获取到返回报文
+msg = codec.decode(channel, message)
+	-DubboCountCodec.decode()
+		-ExchangeCodec.decode()
+			- int readable = buffer.readableBytes()
+			- ExchangeCodec.decode(Channel, ChannelBuffer, int readable, byte[] header)
+				-非dubbo协议则交给父类执行
+				-if (readable < HEADER_LENGTH ||  readable < len + HEADER_LENGTH) 还有数据未到达
+				-ChannelBufferInputStream is = new ChannelBufferInputStream(buffer, len);     // 在Header拿到body的length之后 limit input stream.
+				- DubboCodec.decodeBody(Channel channel, is, byte[] header)			// request&response 数据解码 
+					- (flag & FLAG_REQUEST) == 0)  				// 因为FLAG_REQUEST = 10000000 如果与的结果为0则表示不是request类型
+					- Request 类型
+						- Request req = new Request(id); 		// 构建request
+						- inv.decode()
+							-DecodeableRpcInvocation = new DecodeableRpcInvocation(channel, req, is, proto);
+							-DecodeableRpcInvocation.decode()   	
+								-decode(Channel, InputStream)
+									- setAttachment(path; input; dubbo; interface; version)
+									
+--> 由decode解析编码 返回到 DefaultFuture 提供异步调用功能
+NettyClientHandler.channelRead(){received();}
+  -- AbstractPeer.received()
+     -- MultiMessageHandler.received(Channel, message)
+	    -- HeartbeatHandler.received()  
+		   -- AllChannelHandler.received()   // 线程池开启线程处理
+              -- ChannelEventRunnable.run(){   }
+			     -- DecodeHandler.received(Channel, Object message)
+				    -- HeaderExchangeHandler.received(Channel, Object message)			// 这里分为 Request(Provider) 和 Response(Consumer)
+					   -- DefaultFuture.received()        			                    // 这里就会开始对DubboInvoker的有返回调用下进行唤醒
+					     - done.signalAll();  -- get(){  done.await(timeout, TimeUnit.MILLISECONDS);   }唤醒
+	                     --> DubboInvoker
+								- ResponseFuture future = currentClient.request(inv, timeout);
+								- future.get()
+					   
+
+【Provider】
+0. 初始化 ServiceConfig
+    本地服务 --
+    1. invoker = JavassistProxyFactory.getInvoker(T proxy, Class<T>, URL)  new一个AbstractProxyInvoker返回其中实现底层method.invoke(proxy, arguments)的执行;
+	2. DelegateProviderMetaDataInvoker wrapperInvoker = new DelegateProviderMetaDataInvoker(invoker, this);
+       Exporter<?> exporter = protocol.export(wrapperInvoker);
+	      -- 
+	
+	接受过程同样是如此...
+	
+9. Serialization -- dubbo,hession,json
+   DubboCountCodec.decode(Channel, ChannelBuffer)
+
+   Codec -> 
+   
+10. ThreadPool
+   --> NettyServerHandler.channelRead(ChannelHandlerContext ctx,Object msg) --> AbstractPeer.received(Channel,Object)
+   --> MultiMessageHandler.received(Channel,Object) -->HeartbeatHandler.received(channel, message) 
+   --> AllChannelHandler.received(Channel channel, Object message)  线程池开始处理
+        executor.execute(new ChannelEventRunnable(channel, handler, ChannelState.RECEIVED, message));
+
+11. Server -- Transporters(Netty)
+   连接： ChannelEventRunnable --> AbstractChannelHandlerDelegate.connected(Channel) -->HeaderExchangeHandler.connected(Channel channel)
+   --> DubboProtocol.connected(Channel channel) {invoke }--> 
+
+   接受： ChannelEventRunnable RECEIVED--> DecodeHandler.received(Channel, Object) --> HeaderExchangeHandler.handleRequest(Channel, Object) 
+
+12. Exporter
+   -->  DubboProtocol.reply(ExchangeChannel,message)
+        DubboProtocol 的ExchangeHandler requestHandler = new ExchangeHandlerAdapter(){...} 是作为最开始的ExchangeHandler(Exchanges)->ChannelHandler(Transports)
+		
+		从exporterMap中拿出初始化时候得 invoker
+   -->  Result result = invoker.invoke(inv);
+
+13. Filter
+   ProtocolFilterWrapper.buildInvokerChain(){ last = new Invoker<T>() {  return filter.invoke(next, invocation); } }
+   
+  
+14. Invoker
+   --> AbstractProxyInvoker.invoker(invocation) 
+   到代理类中执行method.invoke(proxy, arguments)
+    
+		
+--------------------------------- 框架 -------------------------							
+[异步调用] & RocketMQ
+2.6.x 
+Consumer:   Future<Foo> fooFuture = RpcContext.getContext().getFuture();  fooFuture.get();
+  -- DubboInvoker: FutureAdapter<Object> futureAdapter = new FutureAdapter<>(future);  RpcContext.getContext().setFuture(futureAdapter); 
+     没有涉及到Provider端的引用还属于同一个线程
+	 
+findFoo的同步接口，不能直接返回代表异步结果的Future，通过RpcContext进一步获取。
+Future只支持阻塞式的get()接口获取结果。
+通过获取内置的ResponseFuture接口，可以设置回调。但获取ResponseFuture的API使用不便，且仅支持设置回调其他异步场景均不支持，如多个Future协同工作的场景等。
+客户端异步
+
+
+[TimeOut]
+org.apache.dubbo.remoting.TimeoutException: Sending request timeout in client-side by scan timer. start time: 2019-04-02 14:10:19.406, end time: 2019-04-02 14:10:41.639, elapsed: 22233 ms, timeout: 5000 ms, request: Request [id=0, version=2.0.2, twoway=true, event=false, broken=false, data=RpcInvocation [methodName=sayAsynHello, parameterTypes=[class java.lang.String], arguments=[world], attachments={async=true, path=org.apache.dubbo.demo.DemoService, future_returntype=true, id=0, interface=org.apache.dubbo.demo.DemoService, version=0.0.0, timeout=5000}]], channel: /10.63.102.218:62346 -> /10.63.102.218:20880
+	at org.apache.dubbo.remoting.exchange.support.DefaultFuture.invokeCallback(DefaultFuture.java:271)
+	at org.apache.dubbo.remoting.exchange.support.DefaultFuture.doReceived(DefaultFuture.java:337)
+	at org.apache.dubbo.remoting.exchange.support.DefaultFuture.received(DefaultFuture.java:149)
+	at org.apache.dubbo.remoting.exchange.support.DefaultFuture$TimeoutCheckTask.run(DefaultFuture.java:248)
+	at org.apache.dubbo.common.timer.HashedWheelTimer$HashedWheelTimeout.expire(HashedWheelTimer.java:648)
+	at org.apache.dubbo.common.timer.HashedWheelTimer$HashedWheelBucket.expireTimeouts(HashedWheelTimer.java:727)
+	at org.apache.dubbo.common.timer.HashedWheelTimer$Worker.run(HashedWheelTimer.java:449)
+	at java.lang.Thread.run(Thread.java:748)
+	
+时间轮定时器，在dubbo rpc调用时候会每次newFuture时把当前的调用任务加入到wheelTimer超时即执行
+
+[SPI]
+@Adaptive 
+在类上加注解是通过在实现上标识该类为自适应实现类。获取其List
+filters = ExtensionLoader.getExtensionLoader(Filter.class).getActivateExtension(invoker.getUrl(), key, group);
+而在方法上加注解的是通过动态代码生成自适应实现类。生成XXX@Adaptive后 实现其接口。其中可能有Wrapper的AOP 装饰
+extension = (Protocol) ExtensionLoader.getExtensionLoader(Protocol.class).getExtension("dubbo");
+				
+--------------------------------- 比较 -----------------------------
+[UAF& Dubbo配置及调用]  考虑生产者
+UAF: <bean id="xxxProviderService" class="com.alitrip.uaf.biz.BizServiceProviderBean"><property name="serviceName" value="com.XxxService"/>
+	使用场景：提供接口服务者增强，并进行路由。
+    依赖于spring的上下文得到BizServiceProviderBean(实现接口)。
+	1. 得到<method,List<BizFuncFactory>> 
+	2. 每个method构建成BizFunc 并在实现方法apply()中 路由
+	3. 把所有的增强BizFuncFactory 遍历重新封装成new BizFunc 并串成链
+	4. 代理中拿到每个method的增强BizFunc
+	
+Dubbo: <dubbo:service interface="org.apache.dubbo.demo.DemoService" ref="demoService"/>
+	使用场景：提供接口服务者增强，及负载，重试，降级等。
+	使用dubbo本身schema; netty; 
+	1. interface代理成invoker (javassist&jdk)
+	2. exporter = protocol.export(wrapperInvoker); invoker暴露出去
+		 registry -- Wrapper(Listener & Filter) -- dubbo(协议) -- buildFilterChain(构建过滤链) 
+		 -- openServer -- Exchangers.bind(url, requestHandler)
+		 registry.subscribe
+VS：
+1.invoker与bizFunc, 前者本身涉及这负载
+2.method实现中bizFunc只需路由即可，而invoker还需netty序列化，异步调用 
+		 
+责任链：
+Uaf ===>
+    BizFunc func = generateBizFunctionByMethod(method);
+	for (BizFuncFactory funcFactory : funcFactories) {
+		 func = funcFactory.create(func);
+	}	
+   AbstractFuncFactory#
+   @Override
+    public BizFunc create(final BizFunc next) {
+        return new BizFunc() {
+            @Override
+            public BaseRS apply(BizFuncName apiName, BaseRQ req, Object[] args) {
+                return AbstractBizFuncFactory.this.apply(next, apiName, req, args);
+            }
+        };
+    } 
+
+Dubbo ===>
+	 for (int i = filters.size() - 1; i >= 0; i--) {
+                final Filter filter = filters.get(i);
+                final Invoker<T> next = last;
+                last = new Invoker<T>() {
+                    @Override
+                    public Result invoke(Invocation invocation) throws RpcException {
+                        Result result = filter.invoke(next, invocation);
+                        if (result instanceof AsyncRpcResult) {
+                            AsyncRpcResult asyncResult = (AsyncRpcResult) result;
+                            asyncResult.thenApplyWithContext(r -> filter.onResponse(r, invoker, invocation));
+                            return asyncResult;
+                        } else {
+                            return filter.onResponse(result, invoker, invocation);
+                        }
+                    } 
+                };
+            }
+
+共同点：1.遍历filter对象  2.将自己赋值为next作为参数传递到下个filter
+
+		 
+RPC框架可靠性设计
+RPC分布式调用引入的故障：
+1.消息的序列化和饭序列化故障。例如不支持的数据类型
+2.路由故障。包括服务的订阅发布故障，服务实例故障之后没有及时刷新路由表导致RPC仍然路由到故障节点
+3.网络通信故障。包括网络闪断，网络单通，丢包，客户端浪涌接入等。
+
+
+---------------------------------- 调用层 -----------------------------------	
+[ProxyFactory]
+Provider: 
+    Invoker<?> invoker = proxyFactory.getInvoker(ref, interfaceClass, url);  // 1.生产者主要是new AbstractProxyInvoker()中执行method.invoke(proxy, arguments); 
+    Exporter<?> exporter = protocol.export(wrapperInvoker);					 // 2.invoker之后经历protocol.export中buildFilters在DubboProtocol封装成DubboExporter存放在exporterMap作为暴露过程
+Consumer: 
+    invoker = refprotocol.refer(interfaceClass, urls.get(0));	 // 3.请求接口封装成DubboInvoker#doInvoke实现远程调用 
+	T = (T) proxyFactory.getProxy(invoker)                       // 4.InvokerInvocationHandler(invoker)
+
+C还是P在接口的第一步都是对interface封装成invoker,C是远程的invoker而P是本地method的invoker作用
+
+	
+[zookeeper]
+Invoker<T> = RegistryProtocol.refer(Class<T> type, URL url)
+   registry = createRegistry(url)
+      Registry = new ZookeeperRegistry(url, zookeeperTransporter)
+	     ZookeeperRegistry: zkClient = zookeeperTransporter.connect(url)并addStateListener
+		 - FailbackRegistry:  重试间隔
+		 - AbstractRegistry: 保存C:\Users\wb-ffy394838/.dubbo/dubbo-registry-demo-consumer-106.14.123.227:2181.cache
+   doRefer(cluster, registry, type, url)
+      -- FailbackRegistry.register(URL)   consumer://10.63.102.218/org.apache.dubbo.demo.DemoService?application=demo-consumer&category=consumers&check=false&dubbo=2.0.2&interface=org.apache.dubbo.demo.DemoService&methods=sayHello&pid=20844&qos.port=33333&side=consumer&timestamp=1544773178159
+        -- ZookeeperRegistry.doRegister()
+	  -- RegistryDirectory.subscribe(URL)
+	     --FailbackRegistry.subscribe(URL, NotifyListener)
+		   -- ZookeeperRegistry.doSubscribe
+		     --FailbackRegistry.notify
+			   -- FailbackRegistry.doNotify(URL url, NotifyListener listener, List<URL> urls)
+			      -- AbstractRegistry.notify == listener.notify(categoryList)  dubbo://10.63.102.218:20880/org.apache.dubbo.demo.DemoService?anyhost=true&application=demo-provider&default.server=netty4&dubbo=2.0.2&generic=false&interface=org.apache.dubbo.demo.DemoService&loadbalance=consistenthash&methods=sayHello&pid=19856&side=provider&timestamp=1544773154734
+				     -- RegistryDirectory.notify(List<URL>) == refreshInvoker(invokerUrls)
+					   --  refreshInvoker(invokerUrls)
+					     -- invoker = new InvokerDelegate<T>(protocol.refer(serviceType, url), url, providerUrl);
+	  -- Invoker invoker = cluster.join(directory)
+	     -- new MockClusterInvoker<T>(directory,this.cluster.join(directory))
+				
+[protocol] - 封装RPC远程调用，及处理最后invoker 
+ -- <T> Exporter<T> = DubboProtocol.export(Invoker<T>)   Provider把invoker包装成exporter开启Socket侦听服务接受客户端的请求。
+
+[exchange] - 信息交换层 封装请求响应模式同步转异步
+-- DubboProtocol.createServer(Url) 
+   -- ExchangeServer server = Exchangers.bind(url, requestHandler); 进入exchanger层
+   -- Exchangers.bind(URL, ExchangeHandler){ ... getExchanger(url).bind(url, handler) }
+         !!! 拿到Transport的Server，并开始保持netty的长连接心跳
+      -- HeaderExchanger.bind(){ server = new HeaderExchangeServer(Transporters.bind(url, new DecodeHandler(new HeaderExchangeHandler(handler))));} 	  
+
+[transport] 网络传输 开启netty			 				 
+
+
+------------------------------ 报文 -----------------------------------
+connections 一个连接可以支持70Mbyte的网络流量
+ChannelFuture future = bootstrap.connect(getConnectAddress());
+Channel newChannel = future.channel();
+
+
+Consumer --> Producer 报文
+request:
+{
+    "broken":false,
+    "data":{
+        "arguments":[
+            "world"
+        ],
+        "attachments":{
+            "path":"org.apache.dubbo.demo.DemoService",
+            "input":"198",
+            "dubbo":"2.0.2",
+            "interface":"org.apache.dubbo.demo.DemoService",
+            "version":"0.0.0"
+        },
+        "methodName":"sayHello",
+        "parameterTypes":[
+            "java.lang.String"
+        ]
+    },
+    "event":false,
+    "heartbeat":false,
+    "id":0,
+    "twoWay":true,
+    "version":"2.0.2"
+}
+
+
+consumer://10.63.102.218/org.apache.dubbo.demo.DemoService?
+application=demo-consumer&check=false&connections=2&default.lazy=false&default.sticky=false&dubbo=2.0.2&
+interface=org.apache.dubbo.demo.DemoService&lazy=false&methods=sayHello&pid=22440&qos.port=33333&side=consumer&sticky=false&timestamp=1554105736500
+
+******* Dubbo协议 ********	
+2byte magic:类似java字节码文件里的魔数，用来判断是不是dubbo协议的数据包。魔数是常量0xdabb
+1byte 的消息标志位:16-20序列id,21 event,22 two way,23请求或响应标识
+1byte 状态，当消息类型为响应时，设置响应状态。24-31位。状态位, 设置请求响应状态，dubbo定义了一些响应的类型。具体类型见com.alibaba.dubbo.remoting.exchange.Response
+8byte 消息ID,long类型，32-95位。每一个请求的唯一识别id（由于采用异步通讯的方式，用来把请求request和返回的response对应上）
+4byte 消息长度，96-127位。消息体 body 长度, int 类型，即记录Body Content有多少个字节。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

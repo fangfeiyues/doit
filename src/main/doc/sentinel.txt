@@ -1,0 +1,106 @@
+Sentinel限流
+1.接入
+  1.1 maven只需要引入
+<dependency>
+    <groupId>com.alibaba.csp</groupId>
+    <artifactId>sentinel-dubbo-adapter</artifactId>
+    <version>x.y.z</version>
+</dependency>
+  启动：-Dcsp.sentinel.dashboard.server=consoleIp:port  附：https://github.com/alibaba/Sentinel/wiki/%E5%90%AF%E5%8A%A8%E9%85%8D%E7%BD%AE%E9%A1%B9
+  1.2 sentinel控制台
+    下载：https://github.com/alibaba/Sentinel/releases
+	fat jar: mvn clean package
+	java -Dserver.port=8080 -Dcsp.sentinel.dashboard.server=localhost:8080 -Dproject.name=sentinel-dashboard -jar sentinel-dashboard.jar &
+	
+ServiceLoader<SlotChainBuilder> LOADER = ServiceLoader.load(SlotChainBuilder.class);
+
+Entry entry = null;
+       try {
+           entry = SphU.entry(KEY);
+           // token acquired, means pass
+    
+       } catch (BlockException e1) {
+          // 限流或降级
+		  
+       } catch (Exception e2) {
+            // biz exception
+			
+       } finally { 
+		      if (entry != null) { entry.exit(); }
+       }  
+		 
+Sentinel基本功能
+1.流量控制：直接限流，均速器，排队，冷启动，削峰削谷
+2.熔断降级：timeout，exception比例升高
+3.系统负载保护：防止系统雪崩，防止cpu过高，使入口流量和系统负载达到一个平衡
+
+流量规则：
+降级规则：
+系统保护规则：
+持久化规则
+
+
+Solt
+对于需要保护的资源，系统先定义其rule，创建资源、然后创建默认的SoltChain。
+这个SoltChain，我们可以自行装配，也可以直接默认使用Sentinel提供的DefaultProcessorSlotChain。
+Sentinel提供了基于SPI的拓展口子，让我们可以自己拓展每一个ProcessorSlot。
+Sentinel中ProcessorSlot的设计思路和Netty中Handler处理链的设计非常像。
+一个请求进入某个资源，其接下来的调用链路都会由前面装配好的路劲进行，每个插槽（Solt）的作用参考上图。
+这其中，无论多少个request进入资源，其全部共享同一个上下文Context,Sentinel内部是按资源名划分的。
+每个Entry都关联一个Context和一个Chain。
+这块的设计思路，如果看过Netty的源码，你会感觉非常的熟悉。后面我会谈到Sentinel的核心组件和源码。
+
+并发线程流量控制 -- 防止应用所依赖的下游应用由于响应延迟增加导致调用者吞吐量下降更多的线程数占用，线程池隔离/信号量
+
+QPS流量控制 -- 
+1.直接拒绝  
+2.冷启动     给一直处于低水位的冷系统一个预热的时间，避免冷系统被压垮的情况
+3.匀速器     对应的是漏桶算法，这种方式主要用于处理间隔性突发的流量
+
+entry = SphU.entry(KEY)
+	- CtSph.entry(String name, EntryType type, int count, Object... args)
+	   - StringResourceWrapper resource = new StringResourceWrapper(name, type);     // MethodResourceWrapper
+		  - entryWithPriority(resourceWrapper, count, false, args)
+			-Context context = ContextUtil.getContext();
+			-ProcessorSlot<Object> chain = lookProcessChain(resourceWrapper);
+
+
+
+
+
+
+
+
+
+----------------------------------------------
+与rateLimiter的异同
+1.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
