@@ -30,10 +30,18 @@ Zset有序集合：
 3.跳表排序，
 
 
-分布式锁：1.set lock:codehole true ex 5 nx； 解决在setnx和expire之间非原子性的问题
-  SET key random_value NX PX 30000； random_value这里的随机字符串很有必要，NX主要防止覆盖之前的key导致无法上锁，
-  
-  
+分布式锁：
+  1.set lock:codehole true ex 5 nx； 解决在setnx和expire之间非原子性的问题
+      SET key random_value NX PX 30000； random_value这里的随机字符串很有必要，NX主要防止覆盖之前的key导致无法上锁
+      客户端1获取锁成功。
+      客户端1在某个操作上阻塞了很长时间。
+      过期时间到了，锁自动释放了。
+      客户端2获取到了对应同一个资源的锁。
+      客户端1从阻塞中恢复过来，释放掉了客户端2持有的锁。
+  2.可重入性
+  3.分布式下主从同步时没能把锁同步到从节点可能的导致加两把锁 Redlock算法
+
+
 延迟队列：blpop/brpop  阻塞式读数据解决lpop/rpop在队列空的情况下死循环
 
 
@@ -66,7 +74,7 @@ Redis的线程I/O模型：多路I/O复用及非阻塞I/O技术。
   1.RDB快照，全量备份
   2.AOF日志，连续的增量日志备份。AOF 日志只记录对内存进行修改的指令记录，同时它是先执行指令才将日志存盘
 	fsync：文件存放到内核为文件描述符分配的内存缓存中命令强制将脏数据回刷到磁盘
-	AOF日志瘦身： bgrewriteaof指令 开辟一个子进程对内存进行遍历转换成一系列 Redis 的操作指令序列化到一个新的 AOF 日志文件中
+	AOF日志瘦身：bgrewriteaof指令 开辟一个子进程对内存进行遍历转换成一系列 Redis 的操作指令序列化到一个新的 AOF 日志文件中
 	              (redis服务器会通过溢出AOF文件中冗余的命令来重写（rewrite）AOF)
   3.混合持久化
   redis是先指令再写aof日志 为什么和传统的数据库不一样？
@@ -96,11 +104,18 @@ Codis 是无状态的只是一个转发代理中间件
 
 Redis Cluster 
 
+过期策略
+    1.定期的处理过期key存放的字典 集中处理
+    2.惰性策略 访问key的时候进行过期检查 零散处理
 
+优胜劣汰
 
+懒惰删除
+    unlink 如果删除的是个大对象就会导致单线程卡顿
+    flushall async
 
-
-
+安全通信
+    spiped SSL代理软件
 
 
 
