@@ -246,19 +246,6 @@ createTopicInSendMessageMethod# int queueNums = clientDefaultTopicQueueNums > de
 MappedFile 完成内存和文件的映射;      
     fileSize= 1G(commitLog)  / ; OS_PAGE_SIZE = 4k 映射页大小				  
 ----------------------------------------
-mmap 将一个程序指定的文件映射进虚拟内存(Virtual Memory) 对文件的读写就变成了对内存的读写，能充分利用Page Cache.
-    Mmap内存映射和普通标准IO操作的本质区别在于它并不需要将文件中的数据先拷贝至OS的内核IO缓冲区，而是可以直接将用户进程私有地址空间中的一块区域与文件对象建立映射关系\
-    做Mmap内存映射的同时进行madvise系统调用，目的是使OS做一次内存映射后对应的文件数据尽可能多的预加载至内存中，从而达到内存预热的效果
-MMU 内存管理单元 查找页表将虚拟内存映射成物理内存 调用了mmap并且传入了一个文件的fd 是在进程地址空间（虚拟内存）分配了一段连续的地址用以映射文件，
-内核是不会分配真实的物理内存来将文件装入内存
-如果映射的文件非常大，程序访问局部映射不到物理内存的虚拟内存时，产生缺页中断，OS需要读写磁盘文件的真实数据再加载到内存。
-如同我们的应用程序没有Cache住某块数据，直接访问数据库要数据再把结果写到Cache一样，这个过程相对而言是非常慢的
-但是顺序IO时，读和写的区域都是被OS智能Cache过的热点区域，不会产生大量缺页中断，文件的IO几乎等同于内存的IO，性能当然就上去了
-
-
-// 在你要访问数据时内核会检查数据所在分页是否在内存，如果不在，则发出一次缺页中断，linux默认分页为4K，可以想象读一个1G的消息存储文件要发生多少次中断。
-// 当用户态应用使用MADV_WILLNEED命令执行madvise()系统调用时，它会通知内核，某个文件内存映射区域中的给定范围的文件页不久将要被访问
----------------------------------------				  
 				  
 ConsumeQueue搜索 --> commitLog_offset(8) + size(4) + message_tag_hashcode(8) = 20
 1.by 
@@ -590,7 +577,6 @@ CONSUME_FROM_TIMESTAMP//从某个时间点开始消费，和setConsumeTimestamp(
 
 
 ---------------------------------------------------------------------------
----------------------------------------------------------------------------
 consumequeue: 目录下是以Topic作为文件名称每个Topic下又以queue id作为文件夹分组，用于记录每个消息在commitlog目录下文件中消息的位置，consumequeue目录下文件中记录的内容格式为 queueoffset/size/tag	
 commmitlog: 000000所有的消息都会写在同一个文件大小为1G，超过1G会新创建一个文件消息持久化有效时间为3天。	
 config：主要记录一些消费者的配置信息
@@ -639,23 +625,33 @@ messagebodyLength(4)+ messagebody()+ topicLength(1)+ topic()+
 
 commitLog.getMaxOffset(): 最后一个MappedFile的fromOffset+
 
------------------------------------------------------	 
+--------------------------- 内存映射&零拷贝 --------------------------
 DirectBuffer在哪 -- 本身在java堆的 malloc()/mmap()分配出来的内存是用户态(只读，数据段，堆，文件映射段，栈)且在堆和文件映射段
 fileChannel.write(byteBuffer)到哪 -- 基于通道Channel分配在堆外通过DirectByteBuffer
 pageCache -- 直接内存
 虚拟内存，堆内存，堆外内存，用户态内存，内核态内存(关联物理内存)
 Pointer
-堆外内存 --->(commit) 内存映射Buffer --->(flush) 磁盘
+堆外内存 --->(commit) 内存映射Buffer --->flush#force() 磁盘
 
-直接内存模型出现之前，java堆上的数据如果想要与外界交换数据，必须要经过native堆，这样数据从java堆被拷贝到native堆再由native被拷贝到外界，其中多了一次无用的拷贝
-所以直接内存设计解决这个无用拷贝的问题，形成了0拷贝，使得数据直接从java堆交换到外界，效率很高！
 
-2. FileChannel 的read(ByteBuffer dst)函数,write(ByteBuffer src)函数中如果传入的参数是HeapBuffer类型,则会临时申请一块DirectBuffer,进行数据拷贝，
-   而不是直接进行数据传输，这是出于什么原因？
-		
-isTransientStorePoolEnable 如果开启则使用直接内存进行写入数据，最后从直接内存中 commit 到 FileChannel 中
-		
-mmap是一种将文件映射到虚拟内存的技术，可以将文件在磁盘位置的地址和在虚拟内存中的虚拟地址通过映射对应起来，之后就可以在内存这块区域进行读写数据，而不必调用系统级别的read,wirte这些函数，从而提升IO操作性能，另外一点就是mmap后的虚拟内存大小必须是内存页大小(通常是4K)的倍数，之所以这么做是为了匹配内存操作。		
+fileChannel.force(false)
+FileChannel.read(ByteBuffer)/write(ByteBuffer)函数中如果传入的参数是HeapBuffer类型,则会临时申请一块DirectBuffer,进行数据拷贝而不是直接进行数据传输，这是出于什么原因？
+FileChannel.transferTo(position) 这个方法，就是零拷贝的方法，guava还实现了这个
+mappedByteBuffer = this.fileChannel.map(MapMode.READ_WRITE, 0, fileSize);
+TransientStorePool 内存池化5份堆外内存管理 ByteBuffer = ByteBuffer.allocateDirect(fileSize);
+
+
+mmap是一种将文件映射到虚拟内存的技术
+可以将文件在磁盘位置的地址和在虚拟内存中的虚拟地址通过映射对应起来，之后就可以在内存这块区域进行读写数据，而不必调用系统级别的read,wirte这些函数，从而提升IO操作性能
+mmap 将一个程序指定的文件映射进虚拟内存(Virtual Memory) 对文件的读写就变成了对内存的读写，能充分利用Page Cache(这里的pageCache指的是系统缓存部分)
+但是顺序IO时，读和写的区域都是被OS智能Cache过的热点区域，不会产生大量缺页中断，文件的IO几乎等同于内存的IO，性能当然就上去了
+
+在你要访问数据时内核会检查数据所在分页是否在内存，如果不在，则发出一次缺页中断，linux默认分页为4K，可以想象读一个1G的消息存储文件要发生多少次中断。
+当用户态应用使用MADV_WILLNEED命令执行madvise()系统调用时，它会通知内核，某个文件内存映射区域中的给定范围的文件页不久将要被访问
+
+
+-----------------------------------------------------
+
 
 -n "47.100.237.162:9876" autoCreateTopicEnable=true -c D:\workspace\rocketmq\distribution\conf\broker.conf &
 java -jar rocketmq-console-ng-1.0.0.jar &
