@@ -461,7 +461,7 @@ BrokerController.messageStore.start();
 													- dispatchPullRequest(List<PullRequest> pullRequestList) 
 														- pullRequestQueue.put(pullRequest);			// 提供给阻塞的pullMessageService消费
 														
-pullRequest{consumerGroup, MessageQueue, ProcessQueue}		只有在负载时创建拿到allMQ和cid之后负载得到MQ
+pullRequest {consumerGroup, MessageQueue, ProcessQueue}		只有在负载时创建拿到allMQ和cid之后负载得到MQ
 processQueue:
 MessageQueue: TopicRouteData(queueDatas,brokerDatas) 
               --> updateTopicRouteInfoFromNameServer#topicRouteData2TopicSubscribeInfo#new MessageQueue(topic, qd.getBrokerName(), queueDatas->i) 
@@ -472,7 +472,10 @@ TopicRouteData:
 {"brokerAddrs":{0:"10.63.102.218:10911"},"brokerName":"broker-a","cluster":"DefaultCluster"}],
 "filterServerTable":{},
 "queueDatas":[{"brokerName":"broker-a","perm":7,"readQueueNums":4,"topicSynFlag":0,"writeQueueNums":4}]
-}		  
+}
+
+PullResult
+
 a.拉取的MessageQueueID; --NS的DataQueue-->MessageQueue(i)
 b.会不会切换slave; --Broker于最大的offset相差40%切换到slaveID; 
 c.长轮训机制; --C 20s负载PullRequestHoldService / ReputMessageService
