@@ -8,7 +8,6 @@ float   4字节
 double  8字节
 long    8字节
 
-
 #### 2.String类能被继承吗，为什么
 final
 
@@ -112,3 +111,38 @@ javassist（最慢）：
 
 #### 20.请结合OO设计理念，谈谈访问修饰符public、private、protected、default 在应用设计中的作用
 
+
+#### 21.深拷贝和浅拷贝区别
+
+
+#### 22.数组和链表数据结构描述，各自的时间复杂度
+
+
+#### 23.error和exception的区别，CheckedException，RuntimeException的区别
+
+
+#### 24.请列出5个运行时异常
+
+
+#### 25.在自己的代码中，如果创建一个java.lang.String类，这个类是否可以被类加载器加载？为什么
+
+
+#### 26.说一说你对java.lang.Object对象中hashCode和equals方法的理解。在什么场景下需要重新实现这两个方法
+
+
+#### 27.在jdk1.5中，引入了泛型，泛型的存在是用来解决什么问题
+
+
+#### 28.这样的a.hashcode() 有什么用，与a.equals(b)有什么关系
+
+
+#### 29，有没有可能2个不相等的对象有相同的hashcode,
+
+
+#### 30.Java中的HashSet内部是如何工作的
+
+
+#### 31.什么是序列化，怎么序列化，为什么序列化，反序列化会遇到什么问题，如何解决
+
+
+#### 32.java8的新特性。
