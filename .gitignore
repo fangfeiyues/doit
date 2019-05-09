@@ -1,15 +1,15 @@
-# Created by .ignore support plugin (hsz.mobi)
-### Example user template template
-### Example user template
-
-# IntelliJ project files
-.idea
-out
-gen
-
-.idea/inspectionProfiles/
-.idea/modules.xml
-.idea/vcs.xml
-doit.iml
-
-target
+*dependency-reduced-pom.xml
+.classpath
+.project
+.settings/
+target/
+devenv
+*.log*
+*.iml
+.idea/
+*.versionsBackup
+!NOTICE-BIN
+!LICENSE-BIN
+.DS_Store
+localbin
+nohup.out

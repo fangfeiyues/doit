@@ -35,3 +35,12 @@
 
 
 #### 13.请解释如下jvm参数的含义：
+-server 
+-Xms512m 
+-Xmx512m 
+-Xss1024K
+-XX:PermSize=256m 
+-XX:MaxPermSize=512m 
+-XX:MaxTenuringThreshold=20
+-XX:CMSInitiatingOccupancyFraction=80 
+-XX:+UseCMSInitiatingOccupancyOnly
