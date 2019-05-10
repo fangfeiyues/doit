@@ -22,7 +22,10 @@
 #### 8.简单说说你了解的类加载器，可以打破双亲委派么，怎么打破。
 
 
-#### 9.讲讲JAVA的反射机制。
+#### 9.讲讲JAVA的反射机制
+Method method = Proxy.class.getDeclaredMethod("run");
+本地实现
+委派实现
 
 
 #### 10.你们线上应用的JVM参数有哪些。

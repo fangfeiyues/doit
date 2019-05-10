@@ -513,15 +513,18 @@ PULL: 消费者无需订阅主题，由业务方（应用程序）直接根据Me
 
 ---------------------- III.顺序消费 ----------------------------
 顺序消费时对broker加锁的原因; 顺序拉取时再次从broker确认offset?;  
-   1.负载取PullRequest. topicSubscribeInfoTable 对mq broker加锁同时processQueue.setLocked(true);
+   1.负载取PullRequest. rebalanceByTopic
+      updateProcessQueueTableInRebalance()--> topicSubscribeInfoTable 对mq broker加锁同时processQueue.setLocked(true);
        a. 20s负载一次 topicSubscribeInfoTable
-   2.拉取消息pullMessage. 
+   2.拉取消息pullMessage.
+     processQueue.isLocked():
 	   a.未加锁的 processQueue->executePullRequestLater;重新放回pullRequestQueue等待拉取
 	   b.加锁的 offset=computePullFromWhere(pullRequest.getMessageQueue()) 重新计算offset
    3.消费消息 ConsumeMessageOrderlyService.
-	   a.启动lockMQPeriodically(); 把processQueueTable的在broker端lockBatchMQ
+	   a.启动lockMQPeriodically(); 把processQueueTable的在broker端lockBatchMQ。消费的时候才锁broker
 	   b.PullCallback()拉取后放到ConsumeRequest线程池；
    ===》RebalanceService在重新分配完队列后，有可能processQueue中的msgTreeMap并没有消费完成；
+
 1、一个队列同时只被一台机器消费
 RebalanceService在重新分配完队列后有可能processQueue中的msgTreeMap并没有消费完成也就是在途数据即可能同时存在两台机器消费同一个队列的消息这个在顺序消费中显然是不允许的
 所以rocketmq设置了在broker加队列锁并且锁默认60s失效（为什么失效，便于当机器宕机时，能被分配给其他在线的消费者消费），20s一次负载 isExpired()
@@ -530,8 +533,11 @@ RebalanceService在重新分配完队列后有可能processQueue中的msgTreeMap
 2、上一个队列id没有消费完成，则不能消费下一个线程
 ConsumeRequest是多线程消费的，显然这个在顺序消费中也是有问题的。
 rocketmq是怎么解决的呢？
-1、ConsumeRequest运行时加了队列的内存锁
-2、ConsumeRequest在顺序消费中，是从msgTreeMap中取offset小的消息先消费
+    1.ConsumeRequest 运行时加了队列的内存锁 mqLockTable<MessageQueue, Object>即同一个MQ拉取的时候如果上一个Pull还没消费
+    2.ConsumeRequest 在顺序消费中，是从msgTreeMap中取offset小的消息先消费
+
+3、顺序消费失败
+   SUSPEND_CURRENT_QUEUE_A_MOMENT 中断当前
 
 Broker服务端锁 RebalanceLockManager#tryLockBatch(String group, Set<MessageQueue> mqs, String clientId) LOCK_BATCH_MQ
 	-- this.isLocked(group, mq, clientId)	  											// 该mq是否被锁到 mqLockTable
