@@ -480,11 +480,74 @@ a.拉取的MessageQueueID; --NS的DataQueue-->MessageQueue(i)
 b.会不会切换slave; --Broker于最大的offset相差40%切换到slaveID; 
 c.长轮训机制; --C 20s负载PullRequestHoldService / ReputMessageService
 
---------------------------------------一些重要的点!!!--------------------------------------------
 PUSH: 消费者订阅主题，然后自动进行集群内消息队列的动态负载，自动拉取消息。准实时。 
-PULL: 消费者无需订阅主题，由业务方（应用程序）直接根据MessageQueue拉取消息。 
-	
------------------------- I.ACK进度保存 -------------------------------------------
+PULL: 消费者无需订阅主题，由业务方（应用程序）直接根据MessageQueue拉取消息。
+
+-------------------- 1.分布式事务 -------------------
+主要在Producer实现了 executeLocalTransaction 和 checkLocalTransaction 的执行和查看事务的两方面接口
+  1. Producer发送half msg开启事务
+  2. Producer执行本地事务	-- 在整个本地过程可能涉及很多表尤其资金方面建议提供一张transaction
+  3. Producer根据本地执行的成功失败决定commit/rollback  -- oneway单向发送消息的情况
+  4. 提交到Consumer
+  5. broker定时回查Producer状态  -- 防止本地执行成功commit/rollback失败
+
+Broker回查
+TransactionalMessageServiceImpl.check(long transactionTimeout, int transactionCheckMax,AbstractTransactionalMessageCheckListener listener)
+	- Set<MessageQueue> msgQueues = transactionalMessageBridge.fetchMessageQueues("RMQ_SYS_TRANS_HALF_TOPIC");
+	- long halfOffset = transactionalMessageBridge.fetchConsumeOffset(messageQueue);		      // 队列的消费进度
+    - long opOffset = transactionalMessageBridge.fetchConsumeOffset(opQueue);				      // 待操作的消费队列的消费进度
+	- PullResult = fillOpRemoveMap(removeMap, opQueue, opOffset, halfOffset, doneOpOffset);
+
+
+桥接模式：
+1、定义一个桥接口，使其与一方绑定，这一方的扩展全部使用实现桥接口的方式
+2、定义一个抽象类，来表示另一方，在这个抽象类内部要引入桥接口，而这一方的扩展全部使用继承该抽象类的方式
+
+
+--------------------- 2.定时消息和延迟消息 ------------------------
+定时消息：Producer 将消息发送到 MQ 服务端，但并不期望这条消息立马投递，而是推迟到在当前时间点之后的某一个时间投递到 Consumer 进行消费，该消息即定时消息。
+延迟消息：Producer 将消息发送到 MQ 服务端，但并不期望这条消息立马投递，而是延迟一定时间后才投递到 Consumer 进行消费，该消息即延时消息。
+消息回朔，即回去重新消费
+失败延迟策略：
+private String messageDelayLevel = "1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h";
+
+对于消费失败的消息如拉取了100条2101-2200但是在消费2101失败后面99条成功的情况下回写给broker
+defaultMQPushConsumer.getConsumeTimeout();		  //  每次开始消费之前每15min清楚一次 ConsumeMessageConcurrentlyService#cleanExpireMsg()#
+
+CONSUME_FROM_LAST_OFFSET //默认策略，从该队列最尾开始消费，即跳过历史消息
+CONSUME_FROM_FIRST_OFFSET //从队列最开始开始消费，即历史消息（还储存在broker的）全部消费一遍
+CONSUME_FROM_TIMESTAMP//从某个时间点开始消费，和setConsumeTimestamp()配合使用，默认是半个小时以前
+"sh mqadmin brokerStatus"  查看当前的消费进度
+
+
+----------------------- 3.内存映射&零拷贝 --------------------------
+DirectBuffer在哪 -- 本身在java堆的 malloc()/mmap()分配出来的内存是用户态(只读，数据段，堆，文件映射段，栈)且在堆和文件映射段
+fileChannel.write(byteBuffer)到哪 -- 基于通道Channel分配在堆外通过DirectByteBuffer
+pageCache -- 直接内存
+虚拟内存，堆内存，堆外内存，用户态内存，内核态内存(关联物理内存)
+Pointer
+堆外内存 --->(commit) 内存映射Buffer --->flush#force() 磁盘
+
+
+fileChannel.force(false)
+FileChannel.read(ByteBuffer)/write(ByteBuffer)函数中如果传入的参数是HeapBuffer类型,则会临时申请一块DirectBuffer,进行数据拷贝而不是直接进行数据传输，这是出于什么原因？
+FileChannel.transferTo(position) 这个方法，就是零拷贝的方法，guava还实现了这个
+mappedByteBuffer = this.fileChannel.map(MapMode.READ_WRITE, 0, fileSize);
+TransientStorePool 内存池化5份堆外内存管理 ByteBuffer = ByteBuffer.allocateDirect(fileSize);
+
+
+mmap是一种将文件映射到虚拟内存的技术
+可以将文件在磁盘位置的地址和在虚拟内存中的虚拟地址通过映射对应起来，之后就可以在内存这块区域进行读写数据，而不必调用系统级别的read,wirte这些函数，从而提升IO操作性能
+mmap 将一个程序指定的文件映射进虚拟内存(Virtual Memory) 对文件的读写就变成了对内存的读写，能充分利用Page Cache(这里的pageCache指的是系统缓存部分)
+但是顺序IO时，读和写的区域都是被OS智能Cache过的热点区域，不会产生大量缺页中断，文件的IO几乎等同于内存的IO，性能当然就上去了
+
+在你要访问数据时内核会检查数据所在分页是否在内存，如果不在，则发出一次缺页中断，linux默认分页为4K，可以想象读一个1G的消息存储文件要发生多少次中断。
+当用户态应用使用MADV_WILLNEED命令执行madvise()系统调用时，它会通知内核，某个文件内存映射区域中的给定范围的文件页不久将要被访问
+
+
+零拷贝：
+
+------------------------ 4.ACK进度保存 -------------------------------------------
    "offsetTable":{
                 "TopicTest@please_rename_unique_group_name_4":{0:533,1:533,2:533,3:532,4:60,5:60,6:60,7:62,8:62,9:61,10:21,11:25,12:23,13:23,14:21,15:20
                 },
@@ -500,7 +563,7 @@ PULL: 消费者无需订阅主题，由业务方（应用程序）直接根据Me
                 }
         }
 	
------------------------ II.PULL长轮询&短轮询	longPollingEnable !!!----------------
+----------------------- 5.PULL长轮询&短轮询	longPollingEnable !!!----------------
 	BrokerController.start()
 		- pullRequestHoldService.start()
 			- getBrokerConfig().isLongPollingEnable() -- this.waitForRunning(5 * 1000) ||  this.waitForRunning(1000);
@@ -511,11 +574,11 @@ PULL: 消费者无需订阅主题，由业务方（应用程序）直接根据Me
 						- RemotingCommand response = PullMessageProcessor.this.processRequest(channel, request, false)		
 			
 
----------------------- III.顺序消费 ----------------------------
+---------------------- 6.顺序消费 ----------------------------
 顺序消费时对broker加锁的原因; 顺序拉取时再次从broker确认offset?;  
    1.负载取PullRequest. rebalanceByTopic
-      updateProcessQueueTableInRebalance()--> topicSubscribeInfoTable 对mq broker加锁同时processQueue.setLocked(true);
-       a. 20s负载一次 topicSubscribeInfoTable
+       a.<mq,pq>本次未负载到但上次负载消费的MQ 在broker解锁（还未消费完怎么办？）；如果存在判断拉取消息时间间隔是否过长 也解锁
+       b.对负载到的mq broker加锁同时processQueue.setLocked(true);
    2.拉取消息pullMessage.
      processQueue.isLocked():
 	   a.未加锁的 processQueue->executePullRequestLater;重新放回pullRequestQueue等待拉取
@@ -523,7 +586,6 @@ PULL: 消费者无需订阅主题，由业务方（应用程序）直接根据Me
    3.消费消息 ConsumeMessageOrderlyService.
 	   a.启动lockMQPeriodically(); 把processQueueTable的在broker端lockBatchMQ。消费的时候才锁broker
 	   b.PullCallback()拉取后放到ConsumeRequest线程池；
-   ===》RebalanceService在重新分配完队列后，有可能processQueue中的msgTreeMap并没有消费完成；
 
 1、一个队列同时只被一台机器消费
 RebalanceService在重新分配完队列后有可能processQueue中的msgTreeMap并没有消费完成也就是在途数据即可能同时存在两台机器消费同一个队列的消息这个在顺序消费中显然是不允许的
@@ -539,6 +601,9 @@ rocketmq是怎么解决的呢？
 3、顺序消费失败
    SUSPEND_CURRENT_QUEUE_A_MOMENT 中断当前
 
+4、MQ还没消费完又被重新负载了怎么办(负载的时候20s次会解锁)
+   消费的时候判断processQueue.isDropped()且到broker解锁是判断processQueue.getLockConsume().lock();
+
 Broker服务端锁 RebalanceLockManager#tryLockBatch(String group, Set<MessageQueue> mqs, String clientId) LOCK_BATCH_MQ
 	-- this.isLocked(group, mq, clientId)	  											// 该mq是否被锁到 mqLockTable
 		- boolean locked = lockEntry.isLocked(clientId);								// 是否已经被当前请求的clientId锁到
@@ -548,41 +613,10 @@ Broker服务端锁 RebalanceLockManager#tryLockBatch(String group, Set<MessageQu
 		- 判断是 null == lockEntry ||lockEntry.isLocked(clientId) ||lockEntry.isExpired()  
 		- 否则说明该mq还在被锁 不能使用
 
--------------------- IV.分布式事务 -------------------
-主要在Producer实现了 executeLocalTransaction 和 checkLocalTransaction 的执行和查看事务的两方面接口
-  1. Producer发送half msg开启事务
-  2. Producer执行本地事务	-- 在整个本地过程可能涉及很多表尤其资金方面建议提供一张transaction
-  3. Producer根据本地执行的成功失败决定commit/rollback  -- oneway单向发送消息的情况
-  4. 提交到Consumer
-  5. broker定时回查Producer状态  -- 防止本地执行成功commit/rollback失败
 
-Broker回查
-TransactionalMessageServiceImpl.check(long transactionTimeout, int transactionCheckMax,AbstractTransactionalMessageCheckListener listener)
-	- Set<MessageQueue> msgQueues = transactionalMessageBridge.fetchMessageQueues("RMQ_SYS_TRANS_HALF_TOPIC");		
-	- long halfOffset = transactionalMessageBridge.fetchConsumeOffset(messageQueue);		      // 队列的消费进度
-    - long opOffset = transactionalMessageBridge.fetchConsumeOffset(opQueue);				      // 待操作的消费队列的消费进度
-	- PullResult = fillOpRemoveMap(removeMap, opQueue, opOffset, halfOffset, doneOpOffset);
- 
- 
-桥接模式：
-1、定义一个桥接口，使其与一方绑定，这一方的扩展全部使用实现桥接口的方式
-2、定义一个抽象类，来表示另一方，在这个抽象类内部要引入桥接口，而这一方的扩展全部使用继承该抽象类的方式
- 
- 
---------------------- V.定时消息和延迟消息 ------------------------
-定时消息：Producer 将消息发送到 MQ 服务端，但并不期望这条消息立马投递，而是推迟到在当前时间点之后的某一个时间投递到 Consumer 进行消费，该消息即定时消息。
-延迟消息：Producer 将消息发送到 MQ 服务端，但并不期望这条消息立马投递，而是延迟一定时间后才投递到 Consumer 进行消费，该消息即延时消息。
-消息回朔，即回去重新消费
-失败延迟策略：
-private String messageDelayLevel = "1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h";
 
-对于消费失败的消息如拉取了100条2101-2200但是在消费2101失败后面99条成功的情况下回写给broker
-defaultMQPushConsumer.getConsumeTimeout();		  //  每次开始消费之前每15min清楚一次 ConsumeMessageConcurrentlyService#cleanExpireMsg()#
- 
-CONSUME_FROM_LAST_OFFSET //默认策略，从该队列最尾开始消费，即跳过历史消息
-CONSUME_FROM_FIRST_OFFSET //从队列最开始开始消费，即历史消息（还储存在broker的）全部消费一遍
-CONSUME_FROM_TIMESTAMP//从某个时间点开始消费，和setConsumeTimestamp()配合使用，默认是半个小时以前
-"sh mqadmin brokerStatus"  查看当前的消费进度
+
+
 
 
 ---------------------------------------------------------------------------
@@ -634,36 +668,7 @@ messagebodyLength(4)+ messagebody()+ topicLength(1)+ topic()+
 
 commitLog.getMaxOffset(): 最后一个MappedFile的fromOffset+
 
---------------------------- 内存映射&零拷贝 --------------------------
-DirectBuffer在哪 -- 本身在java堆的 malloc()/mmap()分配出来的内存是用户态(只读，数据段，堆，文件映射段，栈)且在堆和文件映射段
-fileChannel.write(byteBuffer)到哪 -- 基于通道Channel分配在堆外通过DirectByteBuffer
-pageCache -- 直接内存
-虚拟内存，堆内存，堆外内存，用户态内存，内核态内存(关联物理内存)
-Pointer
-堆外内存 --->(commit) 内存映射Buffer --->flush#force() 磁盘
 
-
-fileChannel.force(false)
-FileChannel.read(ByteBuffer)/write(ByteBuffer)函数中如果传入的参数是HeapBuffer类型,则会临时申请一块DirectBuffer,进行数据拷贝而不是直接进行数据传输，这是出于什么原因？
-FileChannel.transferTo(position) 这个方法，就是零拷贝的方法，guava还实现了这个
-mappedByteBuffer = this.fileChannel.map(MapMode.READ_WRITE, 0, fileSize);
-TransientStorePool 内存池化5份堆外内存管理 ByteBuffer = ByteBuffer.allocateDirect(fileSize);
-
-
-mmap是一种将文件映射到虚拟内存的技术
-可以将文件在磁盘位置的地址和在虚拟内存中的虚拟地址通过映射对应起来，之后就可以在内存这块区域进行读写数据，而不必调用系统级别的read,wirte这些函数，从而提升IO操作性能
-mmap 将一个程序指定的文件映射进虚拟内存(Virtual Memory) 对文件的读写就变成了对内存的读写，能充分利用Page Cache(这里的pageCache指的是系统缓存部分)
-但是顺序IO时，读和写的区域都是被OS智能Cache过的热点区域，不会产生大量缺页中断，文件的IO几乎等同于内存的IO，性能当然就上去了
-
-在你要访问数据时内核会检查数据所在分页是否在内存，如果不在，则发出一次缺页中断，linux默认分页为4K，可以想象读一个1G的消息存储文件要发生多少次中断。
-当用户态应用使用MADV_WILLNEED命令执行madvise()系统调用时，它会通知内核，某个文件内存映射区域中的给定范围的文件页不久将要被访问
-
-
-零拷贝：
-
-
-
------------------------------------------------------
 
 
 -n "47.100.237.162:9876" autoCreateTopicEnable=true -c D:\workspace\rocketmq\distribution\conf\broker.conf &

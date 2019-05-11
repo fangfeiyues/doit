@@ -9,7 +9,7 @@ double  8字节
 long    8字节
 
 #### 2.String类能被继承吗，为什么
-final
+final 字段的写操作后插入一个写写屏障，防止某些优化将新建对象的发布重排序至 final 字段的写操作之前
 
 
 #### 3.String，Stringbuffer，StringBuilder的区别
