@@ -216,9 +216,9 @@ org.apache.dubbo.remoting.TimeoutException: Sending request timeout in client-si
 [SPI]
 @Adaptive 
 在类上加注解是通过在实现上标识该类为自适应实现类。获取其List
-filters = ExtensionLoader.getExtensionLoader(Filter.class).getActivateExtension(invoker.getUrl(), key, group);
-而在方法上加注解的是通过动态代码生成自适应实现类。生成XXX@Adaptive后 实现其接口。其中可能有Wrapper的AOP 装饰
-extension = (Protocol) ExtensionLoader.getExtensionLoader(Protocol.class).getExtension("dubbo");
+   filters = ExtensionLoader.getExtensionLoader(Filter.class).getActivateExtension(invoker.getUrl(), key, group);
+在方法上加注解的是通过动态代码生成自适应实现类。生成XXX@Adaptive后 实现其接口。其中可能有Wrapper的AOP 装饰
+   extension = (Protocol) ExtensionLoader.getExtensionLoader(Protocol.class).getExtension("dubbo");
 				
 --------------------------------- 比较 -----------------------------
 [UAF& Dubbo配置及调用]  考虑生产者
