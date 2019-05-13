@@ -103,7 +103,16 @@ CAS
 #### 28.用过读写锁吗，原理是什么，一般在什么场景下用。
 
 
-#### 29.开启多个线程，如果保证顺序执行，有哪几种实现方式，或者如何保证多个线程都执行完 再拿到结果。
+#### 29.开启多个线程，如果保证顺序执行，有哪几种实现方式，或者如何保证多个线程都执行完 再拿到结果
+
+CyclicBarrier 
 
 
-#### 30.延迟队列的实现方式，delayQueue和时间轮算法的异同。
+#### 30.延迟队列的实现方式，delayQueue和时间轮算法的异同
+定时器轮询遍历数据库记录： 线程定时扫描
+JDK的DelayQueue： 内部封装了PriorityQueue排序先触发的.得手动while循环去getDelayed()是否为零太依赖人为
+JDK ScheduledExecutorService
+时间轮（netty）HashedWheelTimer:   内部Worker不断工作但是如果存在一个延迟后面就都会因为他是根据自己的起始时间来的
+利用quartz等定时任务
+Redis的ZSet实现
+rocketmq实现延时队列：只有18种延迟等级
