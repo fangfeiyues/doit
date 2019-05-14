@@ -4,12 +4,25 @@
 ------------ HashMap ---------
 http://www.tianxiaobo.com/2018/01/18/HashMap-%E6%BA%90%E7%A0%81%E8%AF%A6%E7%BB%86%E5%88%86%E6%9E%90-JDK1-8/
 1.构造参数
+loadFactor       负载因子 = 0.75f
+initialCapacity  初始容量 = 16, 没有全局变量也不是在构造函数初始化的
+threshold        阈值 = capacity * loadFactor，当前 HashMap 所能容纳键值对数量的最大值，超过这个值，则需扩容
+   = tableSizeFor(initialCapacity) 不断的或运算 找到大于或等于 cap 的最小2的幂
+
+2.查询 get(Object key)
+    hash(key)：
+    取出桶的位置：first = tab[(n - 1) & hash] 等价于hash对length取余
+    链表查询 / 红黑树查询
+
+3.遍历
+    输出顺序一致却与插入的不同：数组桶的顺序遍历
+
+4.插入
+    插入数组桶、第一个链表节点、红黑树插入、
+    扩容：
 
 
-
-扩容：
-
-红黑树(VS 平衡二叉树)：
+4.红黑树(VS 平衡二叉树)：
 
 1.8相比1.7的优化：
 
