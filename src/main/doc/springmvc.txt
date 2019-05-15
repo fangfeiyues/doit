@@ -34,18 +34,54 @@ FrameworkServlet#processRequest(HttpServletRequest, HttpServletResponse).doServi
     doDispatch(request, response)  执行请求分发
         -processedRequest = checkMultipart(request);  是否上传请求
         -1.HandlerExecutionChain mappedHandler = getHandler(processedRequest)   返回的HandlerExecutionChain= handler&HandlerInterceptors
+           1.1 HandleMethod
         -2.HandlerAdapter ha = getHandlerAdapter(mappedHandler.getHandler())    获取HandlerAdapter
         -3.mappedHandler.applyPreHandle(processedRequest, response)             HandlerExecutionChain执行拦截器前置方法
         -4.mv = ha.handle(processedRequest, response, mappedHandler.getHandler())  处理handler()
         -5.mappedHandler.applyPostHandle(processedRequest, response, mv)        HandlerExecutionChain执行拦截器后置置方法
         -6.processDispatchResult(processedRequest, response, mappedHandler, mv, dispatchException)  处理执行结果
 
+HandlerMapping  ??HandlerMapping的时候没有拿到handler什么时候获取的
+组件1 -- AbstractHandlerMapping
+  HandlerExecutionChain getHandler(HttpServletRequest request) HandlerExecutionChain主要是添加过滤器执行过滤器方法
+    子类1 AbstractUrlHandlerMapping
+    子类2 AbstractHandlerMethodMapping  @RequestMapping
+        -- getHandlerExecutionChain()
+    <mvc:interceptors>   --> MappedInterceptor (除此还有HandlerInterceptor,WebRequestInterceptor)
+      <mvc:interceptor>
+        <mvc:mapping path="/**"/>
+        <mvc:exclude-mapping path="/login"/> 　　
+        <mvc:exclude-mapping path="/index"/>
+        <bean class="package.interceptor.XXInterceptor"/>
+      </mvc:interceptor>
+    </mvc:interceptors>
+
+
+组件2 -- HandlerInterceptor
+    1.MappedInterceptor 支持地址匹配
+    2.HandlerInterceptorAdapter springBoot匹配 不会被 AbstractHandlerMapping 的 #detectMappedInterceptors(List<HandlerInterceptor> mappedInterceptors) 方法扫描到
+
+
+组件3 AbstractHandlerMethodMapping
+    HandlerMethodMappingNamingStrategy<T> namingStrategy   Handler 的 Method 的 Mapping 的名字生成策略
+         @RequestMapping(name = "login", value = "user/login")
+        1.mapping 名字非空，则使用 mapping 的名字
+        2.如果name为空USERCONTROLLER#login
+    MappingRegistry mappingRegistry = new MappingRegistry()   Mapping注册表
+afterPropertiesSet() --> initHandlerMethods()
+    --> processCandidateBean(String beanName)
+        - isHandler(beanType)
+    afterPropertiesSet() --> initHandlerMethods()
+        --> processCandidateBean(String beanName)
+            - isHandler(beanType)    Controller||RequestMapping
+            - detectHandlerMethods(beanName)
+                - registerHandlerMethod(handler, invocableMethod, mapping);  注册hander到mapping
+                    - register(T mapping, Object handler, Method method)   mapping={ /test}  handler = demoController method = test()
 
 
 
-
-
-
+    HandlerMethod createHandlerMethod(Object handler, Method method)
+        / handler="demoController",method="public void com.fang.doit.spring.DemoController.test()"
 
 
 
