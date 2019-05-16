@@ -1,4 +1,4 @@
-package com.fang.doit.spring;
+package com.fang.doit.spring.service;
 
 import org.springframework.stereotype.Service;
 

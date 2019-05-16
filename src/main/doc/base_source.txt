@@ -1,5 +1,5 @@
 基础源码
-(HashMap, ConcurrentHashMap, TreeMap, ReentrantLock, AtmoInteger, PriorityQueue小顶堆, ConcurrentLinkedQueue, 并发工具)
+  (数组：HashMap, ConcurrentHashMap, TreeMap, ReentrantLock, AtmoInteger, PriorityQueue小顶堆, ConcurrentLinkedQueue, 并发工具)
 
 ------------ HashMap ---------
 http://www.tianxiaobo.com/2018/01/18/HashMap-%E6%BA%90%E7%A0%81%E8%AF%A6%E7%BB%86%E5%88%86%E6%9E%90-JDK1-8/

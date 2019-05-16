@@ -1,0 +1,3 @@
+AbstractAutoProxyCreator
+  implements BeanFactoryAware    来获取所有BeanFactory切面对象
+  extends SmartInstantiationAwareBeanPostProcessor   可以在 bean 初始化时做一些事情
