@@ -26,3 +26,11 @@ threshold        阈值 = capacity * loadFactor，当前 HashMap 所能容纳键
 
 1.8相比1.7的优化：
 
+
+
+------------ AbstractQueuedSynchronizer  --------
+
+
+
+
+------------ ReentrantLock --------
