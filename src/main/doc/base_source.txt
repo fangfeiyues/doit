@@ -24,6 +24,7 @@ threshold        阈值 = capacity * loadFactor，当前 HashMap 所能容纳键
 
 4.红黑树(VS 平衡二叉树)：
 
+
 1.8相比1.7的优化：
 
 

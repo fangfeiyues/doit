@@ -116,3 +116,6 @@ JDK ScheduledExecutorService
 利用quartz等定时任务
 Redis的ZSet实现
 rocketmq实现延时队列：只有18种延迟等级
+
+
+thread - jvm - cache - tcp
