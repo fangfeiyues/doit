@@ -32,18 +32,34 @@ threshold        阈值 = capacity * loadFactor，当前 HashMap 所能容纳键
 抛弃了分段锁技术的实现，直接采用CAS + synchronized保证并发更新的安全性
 
 
-
-
-
 ------------- TreeMap ----------
 
 
+------------- ConcurrentLinkedQueue & LinkedBlockingQueue ----------
+mq怎么保证队列安全的？
+DelayQueue
 
 
 
------------- AbstractQueuedSynchronizer  --------
+
+------------- AbstractQueuedSynchronizer  --------
+ReentrantLock, ReentrantReadWriteLock, ThreadPoolExecutor,CountDownLatch
+
+
+
+------------- ReentrantLock --------
+synchronized的比较
+
+
+------------- Countdownlatch & Cyclicbarrier ------
+
+ThreadPoolExecutor
+ThreadLocal
 
 
 
 
------------- ReentrantLock --------
+
+
+
+
