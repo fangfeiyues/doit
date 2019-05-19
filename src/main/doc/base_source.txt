@@ -27,6 +27,8 @@ threshold        阈值 = capacity * loadFactor，当前 HashMap 所能容纳键
 
 1.8相比1.7的优化：
 
+------------- HashSet ----------
+
 
 ------------- ConcurrentHashMap ----------
 抛弃了分段锁技术的实现，直接采用CAS + synchronized保证并发更新的安全性
@@ -41,7 +43,6 @@ DelayQueue
 
 
 
-
 ------------- AbstractQueuedSynchronizer  --------
 ReentrantLock, ReentrantReadWriteLock, ThreadPoolExecutor,CountDownLatch
 
@@ -52,7 +53,6 @@ synchronized的比较
 
 
 ------------- Countdownlatch & Cyclicbarrier ------
-
 ThreadPoolExecutor
 ThreadLocal
 

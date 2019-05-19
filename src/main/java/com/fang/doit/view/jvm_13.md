@@ -2,9 +2,10 @@
 1.递归
 
 #### 2.JVM的内存结构，Eden和Survivor比例
-8:1
+8:1:1
 
 #### 3.JVM内存为什么要分成新生代，老年代，持久代。新生代中为什么要分为Eden和Survivor。
+分代："朝生夕死"的区域进行回收
 复制算法前提下分成2个Survivor，解决了一个Survivor Minor GC后碎片化
 
 #### 4.JVM中一次完整的GC流程是怎样的，对象如何晋升到老年代，说说你知道的几种主要的JVM参数。
@@ -16,12 +17,30 @@
 
 
 #### 6.当出现了内存溢出，你怎么排错。
-
+打印dump日志
 
 #### 7.JVM内存模型的相关知识了解多少，比如重排序，内存屏障，happen-before，主内存，工作内存等。
+JVM内存结构：堆，栈，方法区，常量池
+JVM内存模型：
+   1.由于CPU为了均衡和内存速度差异进行了缓存多缓存之间存在可见性问题及必要指令优化带来的有序性问题
+   2.强内存模型：由硬件提供；弱内存模型：特殊指令（内存屏障） 刷新CPU缓存的数据到内存中，保证这个写操作能够被其它CPU可见
+Java内存模型规范了JVM如何提供按需禁用缓存和编译优化的方法，即volatile，synchronized，final及Happens-Before
+
+synchronized: 保证了线程在同步块之前或者期间写入动作，对于后续进入该代码块的线程是可见的(不考虑互斥)  
+    1.在一个线程退出同步块时，线程释放monitor对象，它的作用是把CPU缓存数据（本地缓存数据）刷新到主内存中，从而实现该线程的行为可以被其它线看到。2.在其它线程进入到该代码块时，需要获得monitor对象，它在作用是使CPU缓存失效，从而使变量从主内存中重新加载，然后就可以看到之前线程对该变量的修改（这里需要注意的是同一个monitor对象）
+final: 引用不可变即可保证了可见性
+volatile:禁用CPU缓存和synchronized类似；禁止重排序
+happen-before：前面的操作对后面的操作可见的
+    1.单线程下前面Happens-Before后面操作
+    2.volatile变量的前操作Happens-Before后面变量的读操作（可见性）
+    3.传递性
+    4.管程中锁规则：管程是一种同步原语即 synchronized.可以理解为synchronized释放锁后修改的变量对后面加锁的管程可见
+    5.线程start规则：子线程可以看见启动前的主线程操作
+    6.join()规则：B.join()那么B的所有操作对A可见
 
 
 #### 8.简单说说你了解的类加载器，可以打破双亲委派么，怎么打破。
+
 
 
 #### 9.讲讲JAVA的反射机制
@@ -39,7 +58,17 @@ Method method = Proxy.class.getDeclaredMethod("run");
 方法内联：编译器在编译一个方法时将某个方法调用的目标方法也纳入编译范围内并用其代替原方法调用的过程   
 
 #### 10.你们线上应用的JVM参数有哪些。
-
+-Xms / -Xmx
+-XX:PermSize / -XX:MaxPermSize
+-XX:+UseConcMarkSweepGC / -XX:+UseCMSCompactAtFullCollection
+-XX:CMSMaxAbortablePrecleanTime
+-XX:+CMSClassUnloadingEnabled
+-XX:+UseCMSInitiatingOccupancyOnly 
+-XX:CMSInitiatingOccupancyFraction=80
+-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=...
+-XX:MaxDirectMemorySize
+-XX:SurvivorRatio=10
+-XX:ParallelGCThreads=${CPU_COUNT}  CPU_COUNT="$(grep -c 'cpu[0-9][0-9]*' /proc/stat)"
 
 #### 11.g1和cms区别,吞吐量优先和响应优先的垃圾收集器选择。
 

@@ -11,15 +11,23 @@
 Lock前缀指令会引起处理器缓存回写到内存。
 一个处理器的缓存回写到内存会导致其他处理器的缓存无效。嗅探一个处理器来检测其他处理器
 
-内存屏障：是一组处理器指令，用于实现对内存操作的顺序限制
+为了减轻CPU加载代码压力 对没个线程缓存本地工作空间保存主存的副本
+内存屏障  1.阻止屏障两边的指令重排序  2.强制把写缓冲区/高速缓存中的脏数据等写回主内存，让缓存中相应的数据失效
+a.lfence，Load Barrier 读屏障
+b.sfence, Store Barrier 写屏障
+c.mfence, 是一种全能型的屏障具备ifence和sfence的能力
+d.Lock前缀，Lock不是一种内存屏障但是它能完成类似内存屏障的功能。Lock会对CPU总线和高速缓存加锁可以理解为CPU指令级的一种锁
 
+指令重排序  load addl $0x0, (%esp)这个命令相当于内存屏障
+内存屏障禁止重排就是利用lock把lock前面的“整体”锁住，当前面的完成了之后lock后面“整体”的才能完成，当写完成后，释放锁，把缓存刷新到主内存。
+final语义中的内存屏障
 
 #### 3.画一个线程的生命周期状态图
 初始状态  
    |
    |
-可运行状态/运行状态  --- (Synchronized/ wait(),join(),LockSupport()/ +sleep() ) ---  休眠状态包括blocked,waiting,timed_waiting
-   |
+可运行状态/运行状态  -----------------------------   休眠状态包括blocked,waiting,timed_waiting
+   |        (Synchronized/ wait(),join(),LockSupport()/ +sleep() )
    |
 终止状态
 
@@ -54,7 +62,8 @@ unsafe.getAndSetInt(this, valueOffset, newValue)
 
 
 #### 10.用过线程池吗，如果用过，请说明原理，并说说newCache和newFixed有什么区别，构造函数的各个参数的含义是什么，比如coreSize，maxsize等。 
-newCache:0,Integer.MAX_VALUE; newFixed:nThreads, nThreads
+newCache: 0,  Integer.MAX_VALUE; 
+newFixed: nThreads, nThreads
 
 + SynchronousQueue 同步队列 该队列不存储元素，每个插入操作必须等待另一个线程调用移除操作，否则插入操作会一直阻塞
 

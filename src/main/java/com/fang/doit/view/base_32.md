@@ -137,10 +137,10 @@ javassist（最慢）：
 
 
 #### 28.这样的a.hashcode() 有什么用，与a.equals(b)有什么关系
-
+会先判断a.hashCode()是否和b.hashCode()相同，不相同在判断两者的equals()方法
 
 #### 29，有没有可能2个不相等的对象有相同的hashcode,
-
+有
 
 #### 30.Java中的HashSet内部是如何工作的
 HashSet
@@ -152,14 +152,4 @@ HashSet
 #### 32.java8的新特性。
 
 
-#### 33.volatile
-为了减轻CPU加载代码压力 对没个线程缓存本地工作空间保存主存的副本
-内存屏障  1.阻止屏障两边的指令重排序  2.强制把写缓冲区/高速缓存中的脏数据等写回主内存，让缓存中相应的数据失效
-a.lfence，Load Barrier 读屏障
-b.sfence, Store Barrier 写屏障
-c.mfence, 是一种全能型的屏障具备ifence和sfence的能力
-d.Lock前缀，Lock不是一种内存屏障但是它能完成类似内存屏障的功能。Lock会对CPU总线和高速缓存加锁可以理解为CPU指令级的一种锁
 
-指令重排序  load addl $0x0, (%esp)这个命令相当于内存屏障
-内存屏障禁止重排就是利用lock把lock前面的“整体”锁住，当前面的完成了之后lock后面“整体”的才能完成，当写完成后，释放锁，把缓存刷新到主内存。
-final语义中的内存屏障
