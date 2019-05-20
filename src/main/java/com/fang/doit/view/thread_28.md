@@ -110,7 +110,7 @@ CompareAndSwitch
 和java的wait()及notify()
 
 
-#### 23.对 AbstractQueuedSynchronizer 了解多少，讲讲加锁和解锁的流程，独占锁和公平所加锁有什么不同???
+#### 23.对 AbstractQueuedSynchronizer 了解多少，讲讲加锁和解锁的流程，独占锁和公平所加锁有什么不同 ???
 acquire(int arg) 获取一个资源 if (!tryAcquire(arg) && acquireQueued(addWaiter(Node.EXCLUSIVE), arg)) 其中tryAcquire()方法由继承类自己实现???
 AQS，通过维护一个FIFO 队列来管理多线程的排队工作（独占锁为例）
 1.公平竞争的情况下，无法获取同步状态的线程将会被封装成一个节点，置于队列尾部 
