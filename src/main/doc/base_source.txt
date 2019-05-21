@@ -43,7 +43,18 @@ DelayQueue
 
 
 ------------- 7.AbstractQueuedSynchronizer  --------
-ReentrantLock, ReentrantReadWriteLock, ThreadPoolExecutor,CountDownLatch
+:ReentrantLock, ReentrantReadWriteLock, ThreadPoolExecutor,CountDownLatch
+共享锁：
+acquireShared(int arg)
+    - Node  = addWaiter(Node.SHARED)   // 向双向队列尾部添加节点
+        - Node pred = tail
+        - if (pred != null)      // 非头结点
+            - node.prev = pred   // 先设置上一个节点防止插入失败
+            - compareAndSetTail(pred, node)   // CAS插入
+                - 失败：enq(final Node node)
+                    - 自旋 + CAS 不断插入
+    - 获取成功则将自己设为头结点，如果后继节点是共享类型的则唤醒
+
 
 
 ------------- 8.ReentrantLock --------

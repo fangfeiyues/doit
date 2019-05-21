@@ -68,13 +68,32 @@ NIO理解
 
 #### 12.反射的原理，反射创建类实例的三种方式
 原理  NativeMethodAccessorImpl/(new MethodAccessorGenerator()).generateMethod 15作为一个岭
-不足
+不足  native版的反射调用则无法被有效内联，因而调用开销无法随程序的运行而降低
 三种方式
 1.class1 = Person.class;
 2.class2 = p1.getClass();
 3.class3 = Class.forName("cn.fang.Person");
 
-
+开启noInflation第一次就会使用字节码
+  public MethodAccessor newMethodAccessor(Method var1) {
+        checkInitted();
+        if (noInflation && !ReflectUtil.isVMAnonymousClass(var1.getDeclaringClass())) {
+            return (new MethodAccessorGenerator()).generateMethod(var1.getDeclaringClass(), var1.getName(), var1.getParameterTypes(), var1.getReturnType(), var1.getExceptionTypes(), var1.getModifiers());
+        } else {
+            NativeMethodAccessorImpl var2 = new NativeMethodAccessorImpl(var1);
+            DelegatingMethodAccessorImpl var3 = new DelegatingMethodAccessorImpl(var2);
+            var2.setParent(var3);
+            return var3;
+        }
+    }
+    
+否则NativeMethodAccessorImpl.java 15次本地使用之后开始字节码
+ if (++this.numInvocations > ReflectionFactory.inflationThreshold() && !ReflectUtil.isVMAnonymousClass(this.method.getDeclaringClass())) {
+            MethodAccessorImpl var3 = (MethodAccessorImpl)(new MethodAccessorGenerator()).generateMethod(this.method.getDeclaringClass(), this.method.getName(), this.method.getParameterTypes(), this.method.getReturnType(), this.method.getExceptionTypes(), this.method.getModifiers());
+            this.parent.setDelegate(var3);
+        }
+    
+    
 #### 13.反射中Class.forName和ClassLoader.loadClass()区别 
 class.forName()除了将类的.class文件加载到jvm中之外，还会对类进行解释，执行类中的static块，还会执行给静态变量赋值的静态方法
 classLoader.loadClass() 只干一件事情，就是将.class文件加载到jvm中，不会执行static中的内容,只有在newInstance才会去执行static块
@@ -82,7 +101,7 @@ classLoader.loadClass() 只干一件事情，就是将.class文件加载到jvm�
 
 #### 14.描述动态代理的几种实现方式，分别说出相应的优缺点
 cglib：ASM  Enhancer 
-jdk：反射机制(基于接口) Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), interfaces, new InvokerInvocationHandler(invoker));
+jdk：反射机制(基于接口) Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), interfaces, new       InvokerInvocationHandler(invoker));
 javassist（最慢）：
 
 

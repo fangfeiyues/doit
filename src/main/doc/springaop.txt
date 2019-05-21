@@ -1,3 +1,54 @@
 AbstractAutoProxyCreator
   implements BeanFactoryAware    来获取所有BeanFactory切面对象
-  extends SmartInstantiationAwareBeanPostProcessor   可以在 bean 初始化时做一些事情
+  extends SmartInstantiationAwareBeanPostProcessor   可以在 bean 初始化时做一些事情 创建代理对象
+
+连接点 Joinpoint
+切点   Pointcut
+通知   Advice
+切面   Aspect
+
+AnnotationAwareAspectJAutoProxyCreator
+proxy-target-class == false
+  - shouldProxyTargetClass()  确定给定bean是否应使用其目标类而不是其接口进行代理
+    - true:  proxy-target-class = true
+
+proxy-target-class == false;  JDK
+proxy-target-class == true;
+     - targetClass.isInterface() || Proxy.isProxyClass(targetClass)
+        - true:    JDK
+        - false:   Cglib
+
+入口 AbstractAutoProxyCreator
+expose-proxy = true: 目标方法调用同对象中其他方法时，其他方法的切面逻辑无法执行的问题
+JdkDynamicAopProxy
+  - if (this.advised.exposeProxy)
+    - ThreadLocal<Object> 当前代理对象放到threadLocal
+  - 获取适合当前方法的拦截器
+    - 拦截器链为空，则直接通过反射执行目标方法
+    - 否则创建方法调用 ReflectiveMethodInvocation 对象
+       - ReflectiveMethodInvocation.proceed()
+         - 最后一个chain则执行 invokeJoinpoint()
+         -
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

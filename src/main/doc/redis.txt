@@ -117,7 +117,8 @@ Redis Cluster
 安全通信
     spiped SSL代理软件
 
-
+集群：
+  CLUSTER MEET ip port 加入其它节点后建立节点集群并使用clusterNode保存集群数据结构
 
 
 

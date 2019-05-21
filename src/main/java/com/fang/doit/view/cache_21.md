@@ -3,11 +3,10 @@
   https://my.oschina.net/jiagouzhan/blog/2990423
   https://mp.weixin.qq.com/s/n-8-YtUls-fHTQ2nFyLNew
 初级数据不一致：先删除缓存，再删数据库。保证在数据库回写的时候失败导致缓存依旧是旧数据
-变更时先删缓存但同时请求过来读到原来旧数据库数据放到缓存：
+高级并发不一致：变更时先删缓存但同时请求过来读到原来旧数据库数据放到缓存：
    删除缓存后 “变更库数据”操作放到队列
    如果此时求过来读到缓存空后会“读取库数据，回写缓存”，读放入同一个队列
    队列积压
-  
   
 #### 2.什么是缓存系统，如何设计的
 
@@ -44,7 +43,12 @@
 2.乐观锁（redis 的命令 watch）
 
 #### 12.Redis的选举算法和流程是怎样的。
-集群的选举
+1.configuration epoch计数器增加1
+2.源sentinel向目标sentinel发送
+   SENTINEL is-master-down-by-addr <ip> <port> <current epoch> <runid>
+  命令返回leader_runid和leader_epoch参数记录目标sentinel的局部领头运行ID和配置纪元
+3.获取半数以上的即将成为领头
+故障转移：
 
 
 #### 13.redis的持久化的机制，aof和rdb的区别。
@@ -91,3 +95,15 @@ CPA原理：Consistent一致性， Availability 可用性， Partition tolerance
 
 
 #### 20.本地缓存在并发使用时的注意事项。
+
+#### redis锁
+  1.set lock:codehole true ex 5 nx； 解决在setnx和expire之间非原子性的问题
+      SET key random_value NX PX 30000； random_value这里的随机字符串很有必要，NX主要防止覆盖之前的key导致无法上锁
+      客户端1获取锁成功。
+      客户端1在某个操作上阻塞了很长时间。
+      过期时间到了，锁自动释放了。
+      客户端2获取到了对应同一个资源的锁。
+      客户端1从阻塞中恢复过来，释放掉了客户端2持有的锁。
+  2.可重入性
+  3.分布式下主节点挂了但同步时没能把锁同步到从节点可能的导致加两把锁 Redlock算法
+    加锁时，它会向过半节点发送 set(key, value, nx=True, ex=xxx) 指令，只要过半节点 set 成功，那就认为加锁成功。释放锁时，需要向所有节点发送 del 指令
