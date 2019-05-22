@@ -615,10 +615,6 @@ Broker服务端锁 RebalanceLockManager#tryLockBatch(String group, Set<MessageQu
 
 
 
-
-
-
-
 ---------------------------------------------------------------------------
 consumequeue: 目录下是以Topic作为文件名称每个Topic下又以queue id作为文件夹分组，用于记录每个消息在commitlog目录下文件中消息的位置，consumequeue目录下文件中记录的内容格式为 queueoffset/size/tag	
 commmitlog: 000000所有的消息都会写在同一个文件大小为1G，超过1G会新创建一个文件消息持久化有效时间为3天。	

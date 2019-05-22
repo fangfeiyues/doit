@@ -100,9 +100,24 @@ classLoader.loadClass() 只干一件事情，就是将.class文件加载到jvm�
 
 
 #### 14.描述动态代理的几种实现方式，分别说出相应的优缺点
-cglib：ASM  Enhancer 
-jdk：反射机制(基于接口) Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), interfaces, new       InvokerInvocationHandler(invoker));
-javassist（最慢）：
+1. ASM和JAVAASSIST字节码生成方式不相上下，都很快，是CGLIB的5倍。 
+2. CGLIB次之，是JDK自带的两倍。 
+3. JDK自带的再次之，因JDK1.6对动态代理做了优化，如果用低版本JDK更慢，要注意的是JDK也是通过字节码生成来实现动态代理的，而不是反射。 
+4. JAVAASSIST提供者动态代理接口最慢，比JDK自带的还慢。 
+(这也是为什么网上有人说JAVAASSIST比JDK还慢的原因，用JAVAASSIST最好别用它提供的动态代理接口，而可以考虑用它的字节码生成方式) 
+
+差异原因： 
+各方案生成的字节码不一样， 
+像JDK和CGLIB都考虑了很多因素，以及继承或包装了自己的一些类， 
+所以生成的字节码非常大，而我们很多时候用不上这些， 
+而手工生成的字节码非常小，所以速度快， 
+具体的字节码对比，后面有贴出，可自行分析。 
+
+最终选型： 
+最终决定使用JAVAASSIST的字节码生成代理方式， 
+虽然ASM稍快，但并没有快一个数量级， 
+而JAVAASSIST的字节码生成方式比ASM方便， 
+JAVAASSIST只需用字符串拼接出Java源码，便可生成相应字节码， 而ASM需要手工写字节码。 
 
 
 #### 15.动态代理与cglib实现的区别

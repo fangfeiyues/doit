@@ -26,12 +26,43 @@ SelectionKey
 -- Channel & Selector
 
 
+BIO 调用read，如果发现没数据已经到达，当前线程就会Block住
+    网络服务为了同时响应多个并发的网络请求，必须实现为多线程的.每个线程处理一个网络请求。线程数随着并发连接数线性增长
+    1.线程越多，Context Switch就越多，而Context Switch是一个比较重的操作，会无谓浪费大量的CPU。
+    2.每个线程会占用一定的内存作为线程的栈。比如有1000个线程同时运行，每个占用1MB内存，就占用了1个G的内存。
+NIO 调用read，如果发现没数据已经到达，就会立刻返回-1, 并且errno被设为EAGAIN。
+    当前线程可以先去做点其他事
+    1.如果有大量文件描述符都要等，那么就得一个一个的read。这会带来大量的Context Switch（read是系统调用，每调用一次就得在用户态和核心态切换一次）
+    2.休息一会的时间不好把握。这里是要猜多久之后数据才能到。等待时间设的太长，程序响应延迟就过大；设的太短，就会造成过于频繁的重试，干耗CPU而已。
+IO-Multiplexing 程序注册一组socket文件描述符给操作系统，表示“我要监视这些fd是否有IO事件发生，有了就告诉程序处理
+    a.IO多路复用是指多个数据流共享同一个Socket(X)。其实IO多路复用说的是多个Socket，只不过操作系统是一起监听他们的事件而已。但在HTTP2确实是多个数据流共享同一个TCP连接
+    b.IO多路复用是NIO，所以总是不Block的(X)。
+    c.IO多路复用和NIO一起减少了IO(X)。
+    操作系统级别提供了一些接口来支持IO多路复用，最常用的是select和poll
+
+    int select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout);
+        1.把需要监听的事件放到数组，select监听fds的多个block读取时间此时select会处于阻塞
+        2.有一个事件发生 遍历fds数组检查哪个事件到达
+        3.读取，处理
+    不足：
+        1.select能够支持的最大的fd数组的长度是1024。这对要处理高并发的web服务器是不可接受的
+        2.fd数组按照监听的事件分为了3个数组，为了这3个数组要分配3段内存去构造，而且每次调用select前都要重设它们（因为select会改这3个数组)；调用select后，这3数组要从用户态复制一份到内核态；事件到达后，要遍历这3数组。很不爽
+        3.select是无状态的，即每次调用select，内核都要重新检查所有被注册的fd的状态。select返回后，这些状态就被返回了，内核不会记住它们；到了下一次调用，内核依然要重新检查一遍。于是查询的效率很低
+
+     int poll(struct pollfd *fds, nfds_t nfds, int timeout);
+         大多类似于select 不足之处也在于无状态且需要轮询数组
+
+     int epfd = epoll_create(10);
+     int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);
+epoll比select&poll强的地方：
+    select和poll每次都需要把完成的fd列表传入到内核，迫使内核每次必须从头扫描到尾。而epoll完全是反过来的。epoll在内核的数据被建立好了之后，每次某个被监听的fd一旦有事件发生，内核就直接标记之。epoll_wait调用时，会尝试直接读取到当时已经标记好的fd列表，如果没有就会进入等待状态。
+
+
 【reactor线程模型】
 Reactor：负责响应事件，将事件分发给绑定了该事件的Handler处理；
 Handler：事件处理器，绑定了某类事件，负责执行对应事件的Task对事件进行处理；
 Acceptor：Handler的一种，绑定了connect事件
 当客户端发起connect请求时，Reactor会将accept事件分发给Acceptor处理
-
 
 				
 【Netty】

@@ -6,6 +6,7 @@
 
 #### 4，Spring AOP的实现原理。
 
+
 #### 5.讲讲Spring事务的传播属性。
 propagation = 
   REQUIRED       如果有事务, 那么加入事务, 没有的话新建一个(默认情况下)
@@ -74,13 +75,13 @@ propagation =
          因此如果在创建Bean过程中发现自己已经在“当前创建Bean池”里时将抛出BeanCurrentlyInCreationException异常表示循环依赖                 
     2. setter方法循环注入 
         2.1 setter方法注入 单例模式(scope=singleton) 
-            进行注入“A”时由于提前暴露了“ObjectFactory”工厂从而使用它返回提前暴露一个创建中的Bean
+            进行注入“A”时由于提前暴露了“ObjectFactory”工厂从而使用它返回提前暴露一个创建中的Bean，在 singletonFactory 三级缓存中
         2.2 setter方法注入 非单例模式
+    3.allowCircularReferences = false 不支持循环依赖
 
 aop原理：
 
-
-#### 9.Springmvc 中DispatcherServlet初始化过程。
+#### 9.Springmvc中 DispatcherServlet初始化过程。
 
 #### 10.netty的线程模型，netty如何基于reactor模型上实现的。
 
@@ -97,7 +98,6 @@ aop原理：
 #### netty的poll,select,epoll
 select：阻塞但一旦事件进入还是无差别轮询全部流
 epoll:  event poll，不同于忙轮询和无差别轮询，epoll之会把哪个流发生了怎样的I/O事件通知我们。时间复杂度降为O(1)
-
 
 #### 16.springmvc用到的注解，作用是什么，原理。
 

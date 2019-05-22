@@ -20,7 +20,7 @@ AbstractApplicationContext implements BeanFactory
     - 原型isPrototype：
     - 其他作用域getScope
 
-创建bean
+1.实例化bean createBeanInstance
 AbstractAutowireCapableBeanFactory#doCreateBean(beanName, RootBeanDefinition, Object[] args)
 - BeanWrapper = createBeanInstance(beanName, mbd, args); 实例化bean
     - Supplier<?> instanceSupplier = mbd.getInstanceSupplier();
@@ -32,13 +32,24 @@ AbstractAutowireCapableBeanFactory#doCreateBean(beanName, RootBeanDefinition, Ob
         - instantiateBean(beanName, mbd)
     - Constructor<?>[] ctors = determineConstructorsFromBeanPostProcessors(beanClass, beanName)  // 获取构造函数
 
+2.注入属性 populateBean
+3.初始化 initializeBean(beanName, Object bean, RootBeanDefinition mbd)
+Aware: BeanNameAware /BeanClassLoaderAware /BeanFactoryAware
+BeanPostProcessor: 在 Bean 完成实例化后，如果我们需要对其进行一些配置、增加一些自己的处理逻辑如AOP
+
+invokeAwareMethods()
+wrappedBean = applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);
+    - getBeanPostProcessors()
+        - #registerBeanPostProcessors(ConfigurableListableBeanFactory beanFactory)
+invokeInitMethods(beanName, wrappedBean, mbd)
+wrappedBean = applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName)
+
 
 
 
 
 @autowire，1.反射该bean依赖的beanName   2. BeanFactory.getName(beanName) 方法即可获取对应的依赖实例
 ----------------------------------------------
-
 public void refresh() throws BeansException, IllegalStateException {
 	synchronized (this.startupShutdownMonitor) {
 		// Prepare this context for refreshing.
@@ -75,61 +86,38 @@ public void refresh() throws BeansException, IllegalStateException {
 			// 扩展例如：MyBatis MapperScannerConfigurer 和 MapperScannerRegistrar，扫描Mapper register 到 BeanFactory 中
 			invokeBeanFactoryPostProcessors(beanFactory);
 
-			// Register bean processors that intercept bean creation.
-			// 注册 BeanPostProcessor 的实现类，不同于刚刚的 BeanFactoryPostProcessor
-			// BeanPostProcessor 接口两个方法 postProcessBeforeInitialization 和 postProcessAfterInitialization 会在 Bean 初始化之前和之后调用
+			// 按照PriorityOrdered、Ordered、无序的顺序 在加入所有的beanPostProcessor给在初始化调用的时候使用
 			// 这边 Bean 还没初始化，下面的 finishBeanFactoryInitialization 才是真正的初始化方法
 			registerBeanPostProcessors(beanFactory);
 
 			// Initialize message source for this context.
-			// 初始化当前 ApplicationContext 的 MessageSource，国际化这里就不展开说了，不然没完没了了
+			// 初始化当前 ApplicationContext 的 MessageSource，解析消息的策略接口，用于支持消息的国际化和参数化
+			// Spring 两个开箱即用的实现 ResourceBundleMessageSource 和 ReloadableResourceBundleMessageSource
 			initMessageSource();
 
 			// Initialize event multicaster for this context.
-			// 初始化当前 ApplicationContext 的事件广播器，这里也不展开了
+			// 初始化当前 ApplicationContext 的事件广播器
 			initApplicationEventMulticaster();
 
 			// Initialize other special beans in specific context subclasses.
-			// 从方法名就可以知道，典型的模板方法(钩子方法)，
-         // 具体的子类可以在这里初始化一些特殊的 Bean（在初始化 singleton beans 之前）
+			// 典型模板方法
+			// 子类可以在实例化 bean 之前，做一些初始化工作，SpringBoot 会在这边启动 Web 服务
 			onRefresh();
 
 			// Check for listener beans and register them.
-			// 注册事件监听器，监听器需要实现 ApplicationListener 接口。这也不是我们的重点，过
+			// 向 initApplicationEventMulticaster() 初始化的 applicationEventMulticaster 注册事件监听器，就是实现 ApplicationListener 接口类
+			// 观察者模式，例如实现了 ApplicationEvent，通过 ApplicationEventPublisher#publishEvent()，可以通知到各个 ApplicationListener#onApplicationEvent
 			registerListeners();
 
 			// Instantiate all remaining (non-lazy-init) singletons.
-			// 重点，重点，重点
-         // 初始化所有的 singleton beans
-         //（lazy-init 的除外）
+			// 初始化所有的 singletons bean（lazy-init 的除外）
+			// Spring bean 初始化核心方法
 			finishBeanFactoryInitialization(beanFactory);
 
 			// Last step: publish corresponding event.
-			// 最后，广播事件，ApplicationContext 初始化完成
+			// ApplicationEventPublisher#publishEvent() 初始化完成（ContextRefreshedEvent）事件
 			finishRefresh();
 		}
 
-		catch (BeansException ex) {
-			if (logger.isWarnEnabled()) {
-				logger.warn("Exception encountered during context initialization - " +
-						"cancelling refresh attempt: " + ex);
-			}
-
-			// Destroy already created singletons to avoid dangling resources.
-         // 销毁已经初始化的 singleton 的 Beans，以免有些 bean 会一直占用资源
-			destroyBeans();
-
-			// Reset 'active' flag.
-			cancelRefresh(ex);
-
-			// Propagate exception to caller.
-			throw ex;
-		}
-
-		finally {
-			// Reset common introspection caches in Spring's core, since we
-			// might not ever need metadata for singleton beans anymore...
-			resetCommonCaches();
-		}
 	}
 }
