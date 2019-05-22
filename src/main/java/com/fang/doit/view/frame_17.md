@@ -41,7 +41,43 @@ propagation =
   
 
 #### 8.说说你对Spring的理解，非单例注入的原理？它的生命周期？循环注入的原理，aop的实现原理，说说aop中的几个术语，它们是怎么相互工作的。
-非单例注入：
+非单例注入
+    1.放弃控制反转通过ApplicationContextAware.getBean()向容器请求一个新的bean；
+    2.Lookup方法注入??? 利用了容器的覆盖受容器管理的bean方法的能力  <bean><lookup-method name="createCommand" bean="asyncCommand"/></bean>    
+    3.
+生命周期：
+    1、实例化一个Bean－－也就是我们常说的new；
+
+    2、按照Spring上下文对实例化的Bean进行配置－－也就是IOC注入；
+
+    3、如果这个Bean已经实现了BeanNameAware接口，会调用它实现的setBeanName(String)方法，此处传递的就是Spring配置文件中Bean的id值
+
+    4、如果这个Bean已经实现了BeanFactoryAware接口，会调用它实现的setBeanFactory(setBeanFactory(BeanFactory)传递的是Spring工厂自身（可以用这个方式来获取其它Bean，只需在Spring配置文件中配置一个普通的Bean就可以）；
+
+    5、如果这个Bean已经实现了ApplicationContextAware接口，会调用setApplicationContext(ApplicationContext)方法，传入Spring上下文（同样这个方式也可以实现步骤4的内容，但比4更好，因为ApplicationContext是BeanFactory的子接口，有更多的实现方法）；
+
+    6、如果这个Bean关联了BeanPostProcessor接口，将会调用postProcessBeforeInitialization(Object obj, String s)方法，BeanPostProcessor经常被用作是Bean内容的更改，并且由于这个是在Bean初始化结束时调用那个的方法，也可以被应用于内存或缓存技术；
+
+    7、如果Bean在Spring配置文件中配置了init-method属性会自动调用其配置的初始化方法。
+
+    8、如果这个Bean关联了BeanPostProcessor接口，将会调用postProcessAfterInitialization(Object obj, String s)方法、；
+
+    注：以上工作完成以后就可以应用这个Bean了，那这个Bean是一个Singleton的，所以一般情况下我们调用同一个id的Bean会是在内容地址相同的实例，当然在Spring配置文件中也可以配置非Singleton，这里我们不做赘述。
+
+    9、当Bean不再需要时，会经过清理阶段，如果Bean实现了DisposableBean这个接口，会调用那个其实现的destroy()方法；
+
+    10、最后，如果这个Bean的Spring配置中配置了destroy-method属性，会自动调用其配置的销毁方法。
+    
+循环注入：
+    1. 构造器循环依赖   
+         Spring容器将每一个正在创建的Bean 标识符放在一个“当前创建Bean池”中，Bean标识符在创建过程中将一直保持在这个池中，
+         因此如果在创建Bean过程中发现自己已经在“当前创建Bean池”里时将抛出BeanCurrentlyInCreationException异常表示循环依赖                 
+    2. setter方法循环注入 
+        2.1 setter方法注入 单例模式(scope=singleton) 
+            进行注入“A”时由于提前暴露了“ObjectFactory”工厂从而使用它返回提前暴露一个创建中的Bean
+        2.2 setter方法注入 非单例模式
+
+aop原理：
 
 
 #### 9.Springmvc 中DispatcherServlet初始化过程。
