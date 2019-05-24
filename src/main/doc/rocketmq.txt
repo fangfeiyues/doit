@@ -129,7 +129,7 @@ RocketMQ 底层Netty发送方式
 1.broker根据autoCreateTopicEnable=true创建"TBW102"的topic
 2.将"TBW102"的topic心跳注册到NameServer
 3.producer在拉取NameSrv的TopicRouteData中为发现这个topic则会isDefault=true来拉取"TBW102"的topic队列
-4.producer把消息发送到"TBW102"的topic队列中 broker会createTopicInSendMessageMethod()加入到本地的topicConfigInfo
+4.producer把消息发送到"TBW102"的topic队列中 broker会 createTopicInSendMessageMethod() 加入到本地的 topicConfigInfo
 5.broker更新nameSrv的topic数据
 同时对列数取producer设置和
 createTopicInSendMessageMethod# int queueNums = clientDefaultTopicQueueNums > defaultTopicConfig.getWriteQueueNums() ? defaultTopicConfig.getWriteQueueNums() : clientDefaultTopicQueueNums;
@@ -485,7 +485,10 @@ PULL: 消费者无需订阅主题，由业务方（应用程序）直接根据Me
 
 -------------------- 1.分布式事务 -------------------
 主要在Producer实现了 executeLocalTransaction 和 checkLocalTransaction 的执行和查看事务的两方面接口
-  1. Producer发送half msg开启事务
+  1. Producer发送 half msg 开启事务
+     设置 msg 属性 PROPERTY_TRANSACTION_PREPARED( "TRAN_MSG" ) = true
+     发送时候 requestHeader.setSysFlag(sysFlag)
+
   2. Producer执行本地事务	-- 在整个本地过程可能涉及很多表尤其资金方面建议提供一张transaction
   3. Producer根据本地执行的成功失败决定commit/rollback  -- oneway单向发送消息的情况
   4. 提交到Consumer
@@ -600,9 +603,14 @@ rocketmq是怎么解决的呢？
 
 3、顺序消费失败
    SUSPEND_CURRENT_QUEUE_A_MOMENT 中断当前
+   开始重新消费
+       1.默认最大次数Integer.MAX_VALUE 一直重试？
+       2.consumingMsgOrderlyTreeMap.remove(msg.getQueueOffset()) msgTreeMap.put(msg.getQueueOffset(), msg)
+       3.默认1s submitConsumeRequestLater重新丢到线程池并行消费
 
 4、MQ还没消费完又被重新负载了怎么办(负载的时候20s次会解锁)
-   消费的时候判断processQueue.isDropped()且到broker解锁是判断processQueue.getLockConsume().lock();
+   解锁的过程会判断treeMap是否为空 否则延迟20s解锁
+   消费的时候判断 processQueue.isDropped() 且到broker解锁是判断 processQueue.getLockConsume().lock();
 
 Broker服务端锁 RebalanceLockManager#tryLockBatch(String group, Set<MessageQueue> mqs, String clientId) LOCK_BATCH_MQ
 	-- this.isLocked(group, mq, clientId)	  											// 该mq是否被锁到 mqLockTable

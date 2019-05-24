@@ -23,7 +23,7 @@ public class Main {
         //    "applicationContextAwareDemo");
         //applicationAware.display();
 
-        //ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application.xml");
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application.xml");
         //ApplicationContextAwareDemo applicationAware = (ApplicationContextAwareDemo)applicationContext.getBean(
         //    "applicationContextAwareDemo");
         //applicationAware.display();

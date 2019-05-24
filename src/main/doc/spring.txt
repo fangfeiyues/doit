@@ -20,6 +20,15 @@ AbstractApplicationContext implements BeanFactory
     - 原型isPrototype：
     - 其他作用域getScope
 
+
+0.创建spring容器
+ApplicationContext
+  继承 ListableBeanFactory 获取单个的bean
+  继承 HierarchicalBeanFactory 设置父子继承BeanFactory关系
+  AutowireCapableBeanFactory 在getAutowireCapableBeanFactory()方法
+  ConfigurableListableBeanFactory 继承上面三个BeanFactory
+附：
+
 1.实例化bean createBeanInstance
 AbstractAutowireCapableBeanFactory#doCreateBean(beanName, RootBeanDefinition, Object[] args)
 - BeanWrapper = createBeanInstance(beanName, mbd, args); 实例化bean
@@ -33,6 +42,7 @@ AbstractAutowireCapableBeanFactory#doCreateBean(beanName, RootBeanDefinition, Ob
     - Constructor<?>[] ctors = determineConstructorsFromBeanPostProcessors(beanClass, beanName)  // 获取构造函数
 
 2.注入属性 populateBean
+
 3.初始化 initializeBean(beanName, Object bean, RootBeanDefinition mbd)
 Aware: BeanNameAware /BeanClassLoaderAware /BeanFactoryAware
 BeanPostProcessor: 在 Bean 完成实例化后，如果我们需要对其进行一些配置、增加一些自己的处理逻辑如AOP
@@ -46,10 +56,9 @@ wrappedBean = applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName)
 
 
 
-
-
 @autowire，1.反射该bean依赖的beanName   2. BeanFactory.getName(beanName) 方法即可获取对应的依赖实例
 ----------------------------------------------
+
 public void refresh() throws BeansException, IllegalStateException {
 	synchronized (this.startupShutdownMonitor) {
 		// Prepare this context for refreshing.

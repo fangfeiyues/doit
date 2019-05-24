@@ -25,6 +25,8 @@ public class CountDownLatchDemo {
             countDownLatch.wait();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }finally {
+            //countDownLatch.
         }
         System.out.println("end");
 

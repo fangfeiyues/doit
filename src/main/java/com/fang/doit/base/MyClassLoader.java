@@ -9,4 +9,11 @@ public class MyClassLoader extends ClassLoader {
     protected Class<?> findClass(String name) throws ClassNotFoundException {
         return super.findClass(name);
     }
+
+    public static void main(String[] args) {
+
+        Integer a = 1;
+        Class<? extends Integer> cls = a.getClass();
+        System.out.println(cls.getName().equalsIgnoreCase(Integer.class.getName()));
+    }
 }

@@ -81,7 +81,7 @@ propagation =
 
 aop原理：
 
-#### 9.Springmvc中 DispatcherServlet初始化过程。
+#### 9.Springmvc中 DispatcherServlet 初始化过程。
 
 #### 10.netty的线程模型，netty如何基于reactor模型上实现的。
 
