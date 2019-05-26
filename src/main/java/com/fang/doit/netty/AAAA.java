@@ -22,18 +22,20 @@ public class AAAA {
 
     public static void main(String[] args) throws InterruptedException {
 
-        CountDownLatch countDownLatch = new CountDownLatch(10000);
-        AAAA a = new AAAA();
-        for (int i = 0; i < 10000; i++) {
-            new Thread() {
-                @Override
-                public void run() {
-                    a.add();
-                    countDownLatch.countDown();
-                }
-            }.start();
-        }
-        countDownLatch.await();
-        System.out.println(JSON.toJSONString(a.list.size()));
+        //CountDownLatch countDownLatch = new CountDownLatch(10000);
+        //AAAA a = new AAAA();
+        //for (int i = 0; i < 10000; i++) {
+        //    new Thread() {
+        //        @Override
+        //        public void run() {
+        //            a.add();
+        //            countDownLatch.countDown();
+        //        }
+        //    }.start();
+        //}
+        //countDownLatch.await();
+        //System.out.println(JSON.toJSONString(a.list.size()));
+
+        System.out.println("111222");
     }
 }

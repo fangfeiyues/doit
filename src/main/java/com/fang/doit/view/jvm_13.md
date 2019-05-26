@@ -1,7 +1,8 @@
-#### 1.什么情况下会发生栈内存溢出
-栈内存
-溢出异常 StackOverFlowError 这是环境原因造成的error异常用throwable捕获。（还有 OutOfMemoryError）
+#### 1.栈内存溢出
+- 栈内存
+- 溢出异常 StackOverFlowError 这是环境原因造成的error异常用throwable捕获。（还有 OutOfMemoryError）
 
+`java`
 
 #### 2.JVM的内存结构，Eden和Survivor比例
 8:1:1
@@ -17,7 +18,7 @@
 -XX:MaxTenuringThreshold    对象的年龄增加到一定的临界值时，就会晋升到老年代
 
 
-#### 5.你知道哪几种垃圾收集器，各自的优缺点，重点讲下cms和G1，包括原理，流程，优缺点。垃圾回收算法的实现原理。
+##### 5.你知道哪几种垃圾收集器，各自的优缺点，重点讲下cms和G1，包括原理，流程，优缺点。垃圾回收算法的实现原理。
 
 
 
