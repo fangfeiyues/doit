@@ -1,5 +1,4 @@
 #### 1.什么情况下会发生栈内存溢出
-栈内存
 溢出异常 StackOverFlowError 这是环境原因造成的error异常用throwable捕获。（还有 OutOfMemoryError）
 
 
