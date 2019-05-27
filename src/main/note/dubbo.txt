@@ -188,26 +188,6 @@ NettyClientHandler.channelRead(){received();}
    到代理类中执行method.invoke(proxy, arguments)
 
 
-------------------- registry ------------
- RegistryProtocol#refer(Class<T> type, URL url)
-    -1.判断group是否为"*"或length>1
-        -getMergeableCluster
-    -2.doRefer:386, RegistryProtocol
-      - 2.1 new RegistryDirectory()
-      - 2.2 registry.register(directory.getRegisteredConsumerUrl())    // 向zk注册 在 consumers 目录下新节点
-      - 2.3 RegistryDirectory.subscribe(URL)                // 订阅 providers、configurators、routers 等节点数据
-        - FailbackRegistry.subscribe(URL, NotifyListener RegistryDirectory)
-            - ZookeeperRegistry.doSubscribe(URL, NotifyListener)
-                - notify(url, listener, urls)
-                    - FailbackRegistry.notify(url, listener, urls)
-                        - AbstractRegistry.notify(url, listener, urls)
-                            - RegistryDirectory.notify()
-                                - RegistryDirectory.refreshOverrideAndInvoker()
-                                    -RegistryDirectory.refreshInvoker()
-                                        -RegistryDirectory.toInvokers()
-                                            - Protocol$Adaptive(Dubbo)
-
-
 --------------------------------- 框架 -------------------------							
 [异步调用] & RocketMQ
 2.6.x 
@@ -323,23 +303,24 @@ C还是P在接口的第一步都是对interface封装成invoker,C是远程的inv
 	
 [zookeeper]
 Invoker<T> = RegistryProtocol.refer(Class<T> type, URL url)
-   registry = createRegistry(url)
-      Registry = new ZookeeperRegistry(url, zookeeperTransporter)
-	     ZookeeperRegistry: zkClient = zookeeperTransporter.connect(url)并addStateListener
-		 - FailbackRegistry:  重试间隔
-		 - AbstractRegistry: 保存C:\Users\wb-ffy394838/.dubbo/dubbo-registry-demo-consumer-106.14.123.227:2181.cache
-   doRefer(cluster, registry, type, url)
-      -- FailbackRegistry.register(URL)   consumer://10.63.102.218/org.apache.dubbo.demo.DemoService?application=demo-consumer&category=consumers&check=false&dubbo=2.0.2&interface=org.apache.dubbo.demo.DemoService&methods=sayHello&pid=20844&qos.port=33333&side=consumer&timestamp=1544773178159
-        -- ZookeeperRegistry.doRegister()
-	  -- RegistryDirectory.subscribe(URL)
+   1.判断group是否为"*"或length>1
+   2.registry = registryFactory.getRegistry(url)     // 1.创建registry
+   3.doRefer(cluster, registry, type, url)
+      -- 3.1 new RegistryDirectory()
+      -- 3.2 FailbackRegistry.register(URL)          // 2.注册registry
+          -- ZookeeperRegistry.doRegister()
+	  -- 3.3 RegistryDirectory.subscribe(URL)
 	     --FailbackRegistry.subscribe(URL, NotifyListener)
 		   -- ZookeeperRegistry.doSubscribe
-		     --FailbackRegistry.notify
+		     -- zkClient.create(path, false)         // 3.创建三个属性
+		     -- FailbackRegistry.notify              // 4.变更通知
 			   -- FailbackRegistry.doNotify(URL url, NotifyListener listener, List<URL> urls)
-			      -- AbstractRegistry.notify == listener.notify(categoryList)  dubbo://10.63.102.218:20880/org.apache.dubbo.demo.DemoService?anyhost=true&application=demo-provider&default.server=netty4&dubbo=2.0.2&generic=false&interface=org.apache.dubbo.demo.DemoService&loadbalance=consistenthash&methods=sayHello&pid=19856&side=provider&timestamp=1544773154734
-				     -- RegistryDirectory.notify(List<URL>) == refreshInvoker(invokerUrls)
-					   --  refreshInvoker(invokerUrls)
-					     -- invoker = new InvokerDelegate<T>(protocol.refer(serviceType, url), url, providerUrl);
+			      -- AbstractRegistry.notify(URL, NotifyListener, List<URL>)        // 获取zk服务的变更
+				     -- RegistryDirectory.notify(List<URL>)
+					   -- refreshInvoker(invokerUrls)
+					      -- RegistryDirectory.toInvokers()
+					         -- invoker = new InvokerDelegate<T>(protocol.refer(serviceType, url), url, providerUrl);
+	                             // ------------- 开始进入DubboProtocol.refer() --------------
 	  -- Invoker invoker = cluster.join(directory)
 	     -- new MockClusterInvoker<T>(directory,this.cluster.join(directory))
 				
