@@ -1,9 +1,8 @@
 #### 1.栈内存溢出
-- 溢出异常 StackOverFlowError 这是环境原因造成的error异常用throwable捕获。（还有 OutOfMemoryError）
+ 溢出异常 StackOverFlowError 这是环境原因造成的error异常用throwable捕获。（还有 OutOfMemoryError）
 
 #### 2.JVM的内存结构，Eden和Survivor比例
 8:1:1
-
 
 #### 3.JVM内存为什么要分成新生代，老年代，持久代。新生代中为什么要分为Eden和Survivor。
 分代："朝生夕死"的区域进行回收

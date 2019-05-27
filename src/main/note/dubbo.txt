@@ -195,7 +195,7 @@ NettyClientHandler.channelRead(){received();}
     -2.doRefer:386, RegistryProtocol
       - 2.1 new RegistryDirectory()
       - 2.2 registry.register(directory.getRegisteredConsumerUrl())    // 向zk注册 在 consumers 目录下新节点
-      - 2.3 RegistryDirectory.subscribe(URL)                           // 订阅 providers、configurators、routers 等节点数据
+      - 2.3 RegistryDirectory.subscribe(URL)                // 订阅 providers、configurators、routers 等节点数据
         - FailbackRegistry.subscribe(URL, NotifyListener RegistryDirectory)
             - ZookeeperRegistry.doSubscribe(URL, NotifyListener)
                 - notify(url, listener, urls)
@@ -206,14 +206,6 @@ NettyClientHandler.channelRead(){received();}
                                     -RegistryDirectory.refreshInvoker()
                                         -RegistryDirectory.toInvokers()
                                             - Protocol$Adaptive(Dubbo)
-
-
-
-
-
-
-
-
 
 
 --------------------------------- 框架 -------------------------							
