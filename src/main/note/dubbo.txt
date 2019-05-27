@@ -1,9 +1,10 @@
 【Consumer】
-0. DubboNamespaceHandler ReferenceBean 标签解析 -->ReferenceConfig.init()	
+0. DubboNamespaceHandler ReferenceBean 标签解析 -->ReferenceConfig.init()
 	a. invoker = refprotocol.refer(interfaceClass, url);      生成invoker，并开启netty-client
 	  1.1 RegistryProtocol 注册zookeeper
 	      RegistryProtocol#refer(Class<T> type, URL url)
-			- subscribe:157, RegistryDirectory 
+	        - refer:367, RegistryProtocol
+			- subscribe:157, RegistryDirectory
 			- subscribe:290, FailbackRegistry 
 			- doSubscribe:169, ZookeeperRegistry 
 			- notify:355, FailbackRegistry 
@@ -185,8 +186,36 @@ NettyClientHandler.channelRead(){received();}
 14. Invoker
    --> AbstractProxyInvoker.invoker(invocation) 
    到代理类中执行method.invoke(proxy, arguments)
-    
-		
+
+
+------------------- registry ------------
+ RegistryProtocol#refer(Class<T> type, URL url)
+    -1.判断group是否为"*"或length>1
+        -getMergeableCluster
+    -2.doRefer:386, RegistryProtocol
+      - 2.1 new RegistryDirectory()
+      - 2.2 registry.register(directory.getRegisteredConsumerUrl())    // 向zk注册 在 consumers 目录下新节点
+      - 2.3 RegistryDirectory.subscribe(URL)                           // 订阅 providers、configurators、routers 等节点数据
+        - FailbackRegistry.subscribe(URL, NotifyListener RegistryDirectory)
+            - ZookeeperRegistry.doSubscribe(URL, NotifyListener)
+                - notify(url, listener, urls)
+                    - FailbackRegistry.notify(url, listener, urls)
+                        - AbstractRegistry.notify(url, listener, urls)
+                            - RegistryDirectory.notify()
+                                - RegistryDirectory.refreshOverrideAndInvoker()
+                                    -RegistryDirectory.refreshInvoker()
+                                        -RegistryDirectory.toInvokers()
+                                            - Protocol$Adaptive(Dubbo)
+
+
+
+
+
+
+
+
+
+
 --------------------------------- 框架 -------------------------							
 [异步调用] & RocketMQ
 2.6.x 
