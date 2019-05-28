@@ -3,18 +3,6 @@
 	a. invoker = refprotocol.refer(interfaceClass, url);      生成invoker，并开启netty-client
 	  1.1 RegistryProtocol 注册zookeeper
 	      RegistryProtocol#refer(Class<T> type, URL url)
-	        - refer:367, RegistryProtocol
-			- subscribe:157, RegistryDirectory
-			- subscribe:290, FailbackRegistry 
-			- doSubscribe:169, ZookeeperRegistry 
-			- notify:355, FailbackRegistry 
-			- doNotify:364, FailbackRegistry 
-			- notify:399, AbstractRegistry 
-			- notify:218, RegistryDirectory 
-			- refreshOverrideAndInvoker:224, RegistryDirectory 
-			- refreshInvoker:265, RegistryDirectory 
-			- toInvokers:408, RegistryDirectory 
-			- Protocol$Adaptive(Dubbo) 	
 	  1.2 ProtocolFilterWrapper 拿到DubboInvoker之后组装一链串的new Invoker(){ invoke(){ filter.invoke(next, invocation) }}
 	  1.3 ProtocolListenerWrapper
 	  1.4 DubboProtocol
@@ -187,6 +175,35 @@ NettyClientHandler.channelRead(){received();}
    --> AbstractProxyInvoker.invoker(invocation) 
    到代理类中执行method.invoke(proxy, arguments)
 
+附：
+[zookeeper]
+Invoker<T> = RegistryProtocol.refer(Class<T> type, URL url)
+   1.判断group是否为"*"或length>1
+   2.registry = registryFactory.getRegistry(url)     // 1.创建registry
+   3.doRefer(cluster, registry, type, url)
+      - 3.1 new RegistryDirectory()
+      - 3.2 FailbackRegistry.register(URL)          // 2.注册registry
+          -- ZookeeperRegistry.doRegister()
+	  - 3.3 RegistryDirectory.subscribe(URL)
+	     -FailbackRegistry.subscribe(URL, NotifyListener)
+		   - ZookeeperRegistry.doSubscribe
+		     - zkClient.create(path, false)         // 3.创建三个属性
+		     - FailbackRegistry.notify              // 4.变更通知
+			   - FailbackRegistry.doNotify(URL url, NotifyListener listener, List<URL> urls)
+			      - AbstractRegistry.notify(URL, NotifyListener, List<URL>)        // 获取zk服务的变更
+				     - RegistryDirectory.notify(List<URL>)
+					   - refreshInvoker(invokerUrls)
+					      - RegistryDirectory.toInvokers(invokerUrls) = Map<String, Invoker<T>>        //  !!!把provider url转换为<cUrl,p_invoker>
+					         - invoker = new InvokerDelegate<T>(protocol.refer(serviceType, url), url, providerUrl);    // 代理 invoker
+					          // ------------- 开始进入DubboProtocol.refer() 打开netty--------------
+					          ... ProtocolListenerWrapper, ProtocolFilterWrapper
+					            - DubboProtocol#DubboInvoker<T> = new DubboInvoker<T>(serviceType, url, getClients(url), invokers);    // rpc调用 provider
+
+					      - routerChain.setInvokers(newInvokers)       //  作为 RouterChain 的invokers属性 在请求路由route(URL, Invocation)使用
+
+
+
+dubbo://10.63.96.50:20880/org.apache.dubbo.demo.DemoService?anyhost=true&application=demo-consumer&check=false&dubbo=2.0.2&generic=false&group=pre&interface=org.apache.dubbo.demo.DemoService&lazy=false&loadbalance=consistenthash&methods=sayHello&pid=22352&qos.port=33333&register.ip=10.63.96.50&remote.application=demo-provider&side=consumer&sticky=false&timeout=5000&timestamp=1559045676023
 
 --------------------------------- 框架 -------------------------							
 [异步调用] & RocketMQ
@@ -306,23 +323,23 @@ Invoker<T> = RegistryProtocol.refer(Class<T> type, URL url)
    1.判断group是否为"*"或length>1
    2.registry = registryFactory.getRegistry(url)     // 1.创建registry
    3.doRefer(cluster, registry, type, url)
-      -- 3.1 new RegistryDirectory()
-      -- 3.2 FailbackRegistry.register(URL)          // 2.注册registry
+      - 3.1 new RegistryDirectory()
+      - 3.2 FailbackRegistry.register(URL)          // 2.注册registry
           -- ZookeeperRegistry.doRegister()
-	  -- 3.3 RegistryDirectory.subscribe(URL)
-	     --FailbackRegistry.subscribe(URL, NotifyListener)
-		   -- ZookeeperRegistry.doSubscribe
-		     -- zkClient.create(path, false)         // 3.创建三个属性
-		     -- FailbackRegistry.notify              // 4.变更通知
-			   -- FailbackRegistry.doNotify(URL url, NotifyListener listener, List<URL> urls)
-			      -- AbstractRegistry.notify(URL, NotifyListener, List<URL>)        // 获取zk服务的变更
-				     -- RegistryDirectory.notify(List<URL>)
-					   -- refreshInvoker(invokerUrls)
-					      -- RegistryDirectory.toInvokers()
-					         -- invoker = new InvokerDelegate<T>(protocol.refer(serviceType, url), url, providerUrl);
+	  - 3.3 RegistryDirectory.subscribe(URL)
+	     -FailbackRegistry.subscribe(URL, NotifyListener)
+		   - ZookeeperRegistry.doSubscribe
+		     - zkClient.create(path, false)         // 3.创建三个属性
+		     - FailbackRegistry.notify              // 4.变更通知
+			   - FailbackRegistry.doNotify(URL url, NotifyListener listener, List<URL> urls)
+			      - AbstractRegistry.notify(URL, NotifyListener, List<URL>)        // 获取zk服务的变更
+				     - RegistryDirectory.notify(List<URL>)
+					   - refreshInvoker(invokerUrls)
+					      - RegistryDirectory.toInvokers()
+					         - invoker = new InvokerDelegate<T>(protocol.refer(serviceType, url), url, providerUrl);
 	                             // ------------- 开始进入DubboProtocol.refer() --------------
-	  -- Invoker invoker = cluster.join(directory)
-	     -- new MockClusterInvoker<T>(directory,this.cluster.join(directory))
+	  - Invoker invoker = cluster.join(directory)
+	     - new MockClusterInvoker<T>(directory,this.cluster.join(directory))
 				
 [protocol] - 封装RPC远程调用，及处理最后invoker 
  -- <T> Exporter<T> = DubboProtocol.export(Invoker<T>)   Provider把invoker包装成exporter开启Socket侦听服务接受客户端的请求。
