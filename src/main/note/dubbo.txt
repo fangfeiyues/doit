@@ -187,12 +187,13 @@ Invoker<T> = RegistryProtocol.refer(Class<T> type, URL url)
 	  - 3.3 RegistryDirectory.subscribe(URL)
 	     -FailbackRegistry.subscribe(URL, NotifyListener)
 		   - ZookeeperRegistry.doSubscribe
-		     - zkClient.create(path, false)         // 3.创建三个属性
+		     - zkClient.create(path, false)         // 3.创建3个属性
+		     - urls.addAll(toUrlsWithEmpty(url, path, children))   // 对P-C之间url校验 category, enabled, group, version, classifier等，如果false则重新拼Url empty://...
 		     - FailbackRegistry.notify              // 4.变更通知
 			   - FailbackRegistry.doNotify(URL url, NotifyListener listener, List<URL> urls)
 			      - AbstractRegistry.notify(URL, NotifyListener, List<URL>)        // 获取zk服务的变更
 				     - RegistryDirectory.notify(List<URL>)
-					   - refreshInvoker(invokerUrls)
+					   - refreshInvoker(invokerUrls)           // 检验 URL是否为 empty
 					      - RegistryDirectory.toInvokers(invokerUrls) = Map<String, Invoker<T>>        //  !!!把provider url转换为<cUrl,p_invoker>
 					         - invoker = new InvokerDelegate<T>(protocol.refer(serviceType, url), url, providerUrl);    // 代理 invoker
 					          // ------------- 开始进入DubboProtocol.refer() 打开netty--------------
@@ -321,7 +322,7 @@ C还是P在接口的第一步都是对interface封装成invoker,C是远程的inv
 [zookeeper]
 Invoker<T> = RegistryProtocol.refer(Class<T> type, URL url)
    1.判断group是否为"*"或length>1
-   2.registry = registryFactory.getRegistry(url)     // 1.创建registry
+   2.registry = registryFactory.getRegistry(url)    // 1.创建registry
    3.doRefer(cluster, registry, type, url)
       - 3.1 new RegistryDirectory()
       - 3.2 FailbackRegistry.register(URL)          // 2.注册registry
