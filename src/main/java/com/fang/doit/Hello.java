@@ -1,11 +1,11 @@
 package com.fang.doit;
 
 /**
- * created by fang on 2019/3/3/003 16:53
+ * created by fang on 2019/5/29/029 23:39
  */
-public class Hello {
-
-    public static void main(String[] args) {
-        System.out.println(Runtime.getRuntime().availableProcessors());
+public class Hello implements IHello {
+    @Override
+    public void hello() {
+        System.out.printf("hello fang");
     }
 }

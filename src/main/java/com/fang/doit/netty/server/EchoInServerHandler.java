@@ -73,7 +73,7 @@ public class EchoInServerHandler extends ChannelInboundHandlerAdapter {
         String body = new String(req, "UTF-8");
         System.out.println(body + " " + Thread.currentThread().getName());
 
-        String reqString = "Hello I am Server";
+        String reqString = "IHello I am Server";
         ByteBuf resp = Unpooled.copiedBuffer(reqString.getBytes());
         ctx.writeAndFlush(resp);
     }

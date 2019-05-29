@@ -1,6 +1,8 @@
 package com.fang.doit.design.proxy.jdk;
 
 import com.alibaba.fastjson.JSON;
+import com.fang.doit.Hello;
+import com.fang.doit.IHello;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -34,17 +36,15 @@ public class LogJdkDynProxy {
 
     public static void main(String[] args) {
 
-        ClassLoader c  = LogJdkDynProxy.class.getClassLoader();
+//        ClassLoader c  = LogJdkDynProxy.class.getClassLoader();
+//        System.out.println(c);
+//        ClassLoader c1 = c.getParent();
+//        System.out.println(c1);
+//        ClassLoader c2 = c1.getParent();
+//        System.out.println(c2);
 
-        System.out.println(c);
-
-        ClassLoader c1 = c.getParent();
-
-        System.out.println(c1);
-
-        ClassLoader c2 = c1.getParent();
-
-        System.out.println(c2);
+        IHello hello = (IHello) new LogJdkDynProxy().bind(new Hello());
+        hello.hello();
     }
 
 

@@ -65,7 +65,7 @@ public class CompletableFutureDemo {
 
         //CompletableFuture<String> f0 =
         //    CompletableFuture.supplyAsync(
-        //        () -> "Hello World")              //①
+        //        () -> "IHello World")              //①
         //        .thenApply(s -> s + " QQ")        //②
         //        .thenApply(String::toUpperCase);  //③
         //System.out.println(f0.join());
