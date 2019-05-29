@@ -40,8 +40,9 @@
 #### 内存模型与线程
 
 
-#### 虚拟机类加载机制
+#### 虚拟机类加载
 
+Thread.currentThread().getContextClassLoader()
 
 ---
 

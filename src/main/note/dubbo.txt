@@ -179,7 +179,7 @@ NettyClientHandler.channelRead(){received();}
 [zookeeper]
 Invoker<T> = RegistryProtocol.refer(Class<T> type, URL url)
    1.判断group是否为"*"或length>1
-   2.registry = registryFactory.getRegistry(url)     // 1.创建registry
+   2.registry = registryFactory.getRegistry(url)    // 1.创建registry
    3.doRefer(cluster, registry, type, url)
       - 3.1 new RegistryDirectory()
       - 3.2 FailbackRegistry.register(URL)          // 2.注册registry
@@ -187,8 +187,9 @@ Invoker<T> = RegistryProtocol.refer(Class<T> type, URL url)
 	  - 3.3 RegistryDirectory.subscribe(URL)
 	     -FailbackRegistry.subscribe(URL, NotifyListener)
 		   - ZookeeperRegistry.doSubscribe
-		     - zkClient.create(path, false)         // 3.创建3个属性
-		     - urls.addAll(toUrlsWithEmpty(url, path, children))   // 对P-C之间url校验 category, enabled, group, version, classifier等，如果false则重新拼Url empty://...
+		     - zkClient.create(path, false)         // 3.创建3个属性(临时节点？)
+		       // 对P-C之间url校验 category, enabled, group, version, classifier等，如果false则重新拼Url empty://...
+		     - urls.addAll(toUrlsWithEmpty(url, path, children))
 		     - FailbackRegistry.notify              // 4.变更通知
 			   - FailbackRegistry.doNotify(URL url, NotifyListener listener, List<URL> urls)
 			      - AbstractRegistry.notify(URL, NotifyListener, List<URL>)        // 获取zk服务的变更
@@ -197,7 +198,7 @@ Invoker<T> = RegistryProtocol.refer(Class<T> type, URL url)
 					      - RegistryDirectory.toInvokers(invokerUrls) = Map<String, Invoker<T>>        //  !!!把provider url转换为<cUrl,p_invoker>
 					         - invoker = new InvokerDelegate<T>(protocol.refer(serviceType, url), url, providerUrl);    // 代理 invoker
 					          // ------------- 开始进入DubboProtocol.refer() 打开netty--------------
-					          ... ProtocolListenerWrapper, ProtocolFilterWrapper
+					            ... ProtocolListenerWrapper, ProtocolFilterWrapper
 					            - DubboProtocol#DubboInvoker<T> = new DubboInvoker<T>(serviceType, url, getClients(url), invokers);    // rpc调用 provider
 
 					      - routerChain.setInvokers(newInvokers)       //  作为 RouterChain 的invokers属性 在请求路由route(URL, Invocation)使用
