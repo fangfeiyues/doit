@@ -1,13 +1,18 @@
-#### 1.简单讲讲tomcat结构，以及其类加载器流程，线程模型等。
+#### 1. 讲讲tomcat结构，以及其类加载器流程，线程模型等。
+ > tomcat结构
+ 
+ > 类加载器
+ 
+ > 线程模型
 
-#### 2.tomcat如何调优，涉及哪些参数 。
 
-#### 3.讲讲Spring加载流程。
+#### 2. tomcat如何调优，涉及哪些参数。
 
-#### 4，Spring AOP的实现原理。
+#### 3. 讲讲Spring加载流程。
 
+#### 4. Spring AOP的实现原理。
 
-#### 5.讲讲Spring事务的传播属性。
+#### 5. 讲讲Spring事务的传播属性。
 propagation = 
   REQUIRED       如果有事务, 那么加入事务, 没有的话新建一个(默认情况下)
   REQUIRES_NEW   不管是否存在事务,都创建一个新的事务,原来的挂起,新的执行完毕,继续执行老的事务
@@ -17,12 +22,12 @@ propagation =
   NEVER          必须在一个没有的事务中执行,否则抛出异常 
 
 
-#### 6，Spring如何管理事务的。
+#### 6. Spring如何管理事务的。
 编程式事务管理：将事务管理代码嵌入到业务方法中来控制事务的提交和回滚，在编程式事务中，必须在每个业务操作中包含额外的事务管理代码。(TransactionTemplate)
 声明式事务管理：大多数情况下比编程式事务管理更好用。它将事务管理代码从业务方法中分离出来，以声明的方式来实现事务管理。事务管理作为一种横切关注点，可以通过AOP方法模块化。Spring通过Spring AOP框架支持声明式事务管理。@transaction或xml配置
 
 
-#### 7.Spring怎么配置事务（具体说出一些关键的xml 元素）。
+#### 7. Spring怎么配置事务（具体说出一些关键的xml 元素）。
 1.@EnableTransactionManagement
 2.
   <!-- 1 事务管理器 -->
@@ -41,7 +46,7 @@ propagation =
       </aop:config>
   
 
-#### 8.说说你对Spring的理解，非单例注入的原理？它的生命周期？循环注入的原理，aop的实现原理，说说aop中的几个术语，它们是怎么相互工作的。
+#### 8. 说说你对Spring的理解，非单例注入的原理？它的生命周期？循环注入的原理，aop的实现原理，说说aop中的几个术语，它们是怎么相互工作的。
 非单例注入
     1.放弃控制反转通过ApplicationContextAware.getBean()向容器请求一个新的bean；
     2.Lookup方法注入??? 利用了容器的覆盖受容器管理的bean方法的能力  <bean><lookup-method name="createCommand" bean="asyncCommand"/></bean>    
@@ -81,15 +86,17 @@ propagation =
 
 aop原理：
 
-#### 9.Springmvc中 DispatcherServlet 初始化过程。
+#### 16.springmvc用到的注解，作用是什么，原理。
 
-#### 10.netty的线程模型，netty如何基于reactor模型上实现的。
+#### 9. Springmvc中 DispatcherServlet 初始化过程。
 
-#### 11.为什么选择netty。
+#### 10. netty的线程模型，netty如何基于reactor模型上实现的。
 
-#### 12.什么是TCP粘包，拆包。解决方式是什么。
+#### 11. 为什么选择netty。
 
-#### 13，netty的fashwheeltimer的用法，实现原理，是否出现过调用不够准时，怎么解决。
+#### 12. 什么是TCP粘包，拆包。解决方式是什么。
+
+#### 13. netty的fashwheeltimer的用法，实现原理，是否出现过调用不够准时，怎么解决。
 
 #### 14.netty的心跳处理在弱网下怎么办。
 
@@ -98,7 +105,6 @@ aop原理：
 #### netty的poll,select,epoll
 select：阻塞但一旦事件进入还是无差别轮询全部流
 epoll:  event poll，不同于忙轮询和无差别轮询，epoll之会把哪个流发生了怎样的I/O事件通知我们。时间复杂度降为O(1)
-
-#### 16.springmvc用到的注解，作用是什么，原理。
+详见Netty笔记
 
 #### 17.springboot启动机制。

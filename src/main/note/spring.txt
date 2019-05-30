@@ -1,5 +1,8 @@
 从最熟悉的地方开始如注解，实现类，继承接口等
 
+1.tomcat
+
+
 IoC 容器的初始化过程分为三步骤：
 1.Resource 定位
 2.BeanDefinition 的载入和解析，将用户定义的Bean表示成IoC内部数据结构BeanDefinition且维护着<beanName,BeanDefinition>
