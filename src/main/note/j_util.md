@@ -1,6 +1,7 @@
 基础源码
   (数组：HashMap, ConcurrentHashMap, TreeMap, ReentrantLock, AtmoInteger, PriorityQueue小顶堆, ConcurrentLinkedQueue, 并发工具)
-
+  
+---
 ------------ 1.HashMap ---------
 http://www.tianxiaobo.com/2018/01/18/HashMap-%E6%BA%90%E7%A0%81%E8%AF%A6%E7%BB%86%E5%88%86%E6%9E%90-JDK1-8/
 1.构造参数
@@ -36,22 +37,15 @@ JDK 1.7 为了防止因 hash 碰撞引发的拒绝服务攻击，在计算 hash 
   拆分 红黑树转链表阈值 UNTREEIFY_THRESHOLD = 6;
       和拆分链表一样 (e.hash & bit) == 0 分成两条链因为node还保持着next
 
+---
+
+HashSet 
 
 
 
-
-
-------------- 2.HashSet ----------
-
-
-
-     
-
-
-
--
-
-------------- 4.TreeMap ----------
+    
+---
+TreeMap
 
 
 
