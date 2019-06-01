@@ -36,18 +36,48 @@ response);
 
 Tomcat多host配置
  ```xml 
- <server port=“8005” shutdown=“SHUTDOWN”>
-    <service name=“Catalina”>
-        <engine defaulthost=“localhost” name=“Catalina”>
-            <host appbase=“webapps” autodeploy=“true” name=“localhost” unpackwars=“true”></host>
-            <host appbase=“webapps1” autodeploy=“true” name=“www.domain1.com” unpackwars=“true”></host>
-            <host appbase=“webapps2” autodeploy=“true” name=“www.domain2.com” unpackwars=“true”></host>
-            <host appbase=“webapps3” autodeploy=“true” name=“www.domain3.com” unpackwars=“true”></host>
+ <server port="8005" shutdown="SHUTDOWN">
+    <service name="Catalina">
+        <engine defaulthost="localhost" name="Catalina">
+            <host appbase="webapps" autodeploy="true" name="localhost" unpackwars="true"></host>
+            <host appbase="webapps1" autodeploy="true" name="www.domain1.com" unpackwars="true"></host>
+            <host appbase="webapps2" autodeploy="true" name="www.domain2.com" unpackwars="true"></host>
+            <host appbase="webapps3" autodeploy="true" name="www.domain3.com" unpackwars="true"></host>
         </engine>
     </service>
 </server>
  ```
 
 
+#### 2.Tomcat 生命周期
+Tomcat动态的创建，启动，初始化，停止，销毁需要做到统一的管理，
+还能动态的添加或删除并不遗漏和重复。
 
-#### tomcat类加载机制
+
+#### 3.startup.sh加载流程
+热部署和热加载
+
+
+
+```xml
+contextInitialized:103, ContextLoaderListener (org.springframework.web.context)
+listenerStart:4776, StandardContext (org.apache.catalina.core)
+startInternal:5240, StandardContext (org.apache.catalina.core)
+start:150, LifecycleBase (org.apache.catalina.util)
+addChildInternal:754, ContainerBase (org.apache.catalina.core)
+addChild:730, ContainerBase (org.apache.catalina.core)
+addChild:734, StandardHost (org.apache.catalina.core)
+manageApp:1735, HostConfig (org.apache.catalina.startup)
+invoke0:-1, NativeMethodAccessorImpl (sun.reflect)
+invoke:62, NativeMethodAccessorImpl (sun.reflect)
+invoke:43, DelegatingMethodAccessorImpl (sun.reflect)
+invoke:498, Method (java.lang.reflect)
+invoke:300, BaseModelMBean (org.apache.tomcat.util.modeler)
+invoke:819, DefaultMBeanServerInterceptor (com.sun.jmx.interceptor)
+invoke:801, JmxMBeanServer (com.sun.jmx.mbeanserver)
+createStandardContext:482, MBeanFactory (org.apache.catalina.mbeans)
+createStandardContext:431, MBeanFactory (org.apache.catalina.mbeans)
+invoke0:-1, NativeMethodAccessorImpl (sun.reflect)
+invoke:62, NativeMethodAccessorImpl (sun.reflect)
+invoke:43, DelegatingMethodAccessorImpl (sun.reflect)
+```

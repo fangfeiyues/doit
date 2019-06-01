@@ -176,7 +176,7 @@ NettyClientHandler.channelRead(){received();}
    到代理类中执行method.invoke(proxy, arguments)
 
 附：
-[zookeeper]
+[zookeeper] 以消费者为例
 Invoker<T> = RegistryProtocol.refer(Class<T> type, URL url)
    1.判断group是否为"*"或length>1
    2.registry = registryFactory.getRegistry(url)    // 1.创建registry
@@ -206,6 +206,8 @@ Invoker<T> = RegistryProtocol.refer(Class<T> type, URL url)
 
 
 dubbo://10.63.96.50:20880/org.apache.dubbo.demo.DemoService?anyhost=true&application=demo-consumer&check=false&dubbo=2.0.2&generic=false&group=pre&interface=org.apache.dubbo.demo.DemoService&lazy=false&loadbalance=consistenthash&methods=sayHello&pid=22352&qos.port=33333&register.ip=10.63.96.50&remote.application=demo-provider&side=consumer&sticky=false&timeout=5000&timestamp=1559045676023
+
+
 
 --------------------------------- 框架 -------------------------							
 [异步调用] & RocketMQ
@@ -310,6 +312,7 @@ RPC分布式调用引入的故障：
 
 ---------------------------------- 调用层 -----------------------------------	
 [ProxyFactory]
+StubProxyFactoryWrapper
 Provider: 
     Invoker<?> invoker = proxyFactory.getInvoker(ref, interfaceClass, url);  // 1.生产者主要是new AbstractProxyInvoker()中执行method.invoke(proxy, arguments); 
     Exporter<?> exporter = protocol.export(wrapperInvoker);					 // 2.invoker之后经历protocol.export中buildFilters在DubboProtocol封装成DubboExporter存放在exporterMap作为暴露过程
@@ -317,7 +320,10 @@ Consumer:
     invoker = refprotocol.refer(interfaceClass, urls.get(0));	 // 3.请求接口封装成 DubboInvoker#doInvoke 实现远程调用
 	T = (T) proxyFactory.getProxy(invoker)                       // 4.InvokerInvocationHandler(invoker)
 
-C还是P在接口的第一步都是对interface封装成invoker,C是远程的invoker而P是本地method的invoker作用
+C&P第一步都是拿到Invoker！！！
+    P的 invoker 是 new AbstractProxyInvoker 执行本地方法，然后包装暴露出去
+    C的 invoker 是 new DubboInvoker 是远程调用，然后代理调用
+
 
 	
 [zookeeper]
@@ -325,23 +331,7 @@ Invoker<T> = RegistryProtocol.refer(Class<T> type, URL url)
    1.判断group是否为"*"或length>1
    2.registry = registryFactory.getRegistry(url)    // 1.创建registry
    3.doRefer(cluster, registry, type, url)
-      - 3.1 new RegistryDirectory()
-      - 3.2 FailbackRegistry.register(URL)          // 2.注册registry
-          -- ZookeeperRegistry.doRegister()
-	  - 3.3 RegistryDirectory.subscribe(URL)
-	     -FailbackRegistry.subscribe(URL, NotifyListener)
-		   - ZookeeperRegistry.doSubscribe
-		     - zkClient.create(path, false)         // 3.创建三个属性
-		     - FailbackRegistry.notify              // 4.变更通知
-			   - FailbackRegistry.doNotify(URL url, NotifyListener listener, List<URL> urls)
-			      - AbstractRegistry.notify(URL, NotifyListener, List<URL>)        // 获取zk服务的变更
-				     - RegistryDirectory.notify(List<URL>)
-					   - refreshInvoker(invokerUrls)
-					      - RegistryDirectory.toInvokers()
-					         - invoker = new InvokerDelegate<T>(protocol.refer(serviceType, url), url, providerUrl);
-	                             // ------------- 开始进入DubboProtocol.refer() --------------
-	  - Invoker invoker = cluster.join(directory)
-	     - new MockClusterInvoker<T>(directory,this.cluster.join(directory))
+
 				
 [protocol] - 封装RPC远程调用，及处理最后invoker 
  -- <T> Exporter<T> = DubboProtocol.export(Invoker<T>)   Provider把invoker包装成exporter开启Socket侦听服务接受客户端的请求。
