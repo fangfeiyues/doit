@@ -1,14 +1,13 @@
 #### 1.Tomcat总体架构
-  > 1.处理Socket连接，负责网络字节流与Request和Response对象的转化。Connector
-    2.加载和管理Servlet，以及具体处理Request请求。Container
+> 1. 处理Socket连接，负责网络字节流与Request和Response对象的转化。Connector
+> 2. 加载和管理Servlet，以及具体处理Request请求。Container
     
 因此tomcat设计两个核心组件 `连接器Connector` 和
 `容器Container`负责对外交流和内部处理。 
 
 ![tomcat](image/tomcat.png)
 
-1. 连接器Connector
-   对Servlet屏蔽了协议及I/O模型在容器中获得的始终是ServletRequest
+1. ***连接器Connector 对Servlet屏蔽了协议及I/O模型 在容器中获得的始终是ServletRequest***
 
 ![Connector](image/connector.png)
 
@@ -16,10 +15,10 @@
     Processor 定义请求的处理方式ProtocolHandler将socket字节流解析成tomcat request/response
     Adapter 使用service方法 CoyoteAdapter适配模式传入的request解析成ServletRequest
     
-2. 容器Container 解析URL根据链找到Servlet Engine -- Host -- Context
-   --Servlet
+2. ***容器Container 解析URL根据链找到 Servlet Engine -- Host -- Context
+   --Servlet***
 
-![111](image/container.png)
+![Container](image/container.png)
 
     1.根据协议和端口号选定Service和Engine, 
     2.然后域名选定Host,
@@ -35,7 +34,7 @@ response);
 ```
 
 Tomcat多host配置
- ```xml 
+ ```
  <server port="8005" shutdown="SHUTDOWN">
     <service name="Catalina">
         <engine defaulthost="localhost" name="Catalina">
@@ -50,6 +49,9 @@ Tomcat多host配置
 
 
 #### 2.Tomcat 生命周期
+
+![](image/tomcat组件.png)
+
 Tomcat动态的创建，启动，初始化，停止，销毁需要做到统一的管理，
 还能动态的添加或删除并不遗漏和重复。
 

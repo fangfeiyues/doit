@@ -1,19 +1,61 @@
 #### 1. 讲讲tomcat结构，以及其类加载器流程，线程模型等。
- > tomcat结构
+***tomcat结构***
+
+   1. tomcat主要是负责接收socket的Connector和处理Servlet的Container容器
+   2. Connector主要有Endpoint, Processor, Adaptor组件负责接收数据流放入到线程池，解析socket为tomcat需要的request和response及适配成ServletRequest
+   3. Container 通过Engine, Host, Context, Wrapper(Servlet)串联起来找到Url相应的Servlet
    
- > 类加载器
- 
- > 线程模型
+***启动流程***
 
+   1. startup.sh 启动JVM运行Tomcat启动类Bootstrap
+   2. Bootstrap 初始化Tomcat的类加载器 并创建Catalina
+   3. Catalina 解析Server.xml 创建相应的组件
+   4. Server 管理Service组件 调用Service方法
+   5. Service 管理连接器和顶层容器Engine
+   6. 怎么启动Servlet服务的???
 
-#### 2. tomcat如何调优，涉及哪些参数。
+***类加载器***
 
+   Bootstrap ClassLoader 
+            |
+            |
+   Extension ClassLoader
+            |
+            |
+   Application ClassLoader
+            |
+            |
+     Common ClassLoader
+            |
+            |
+Cataline_CL    Shared_CL
+                   |
+                   |
+                WebApp CL
+                   |
 
-#### 3. 讲讲Spring加载流程。
+***线程模型***
 
-#### 4. Spring AOP的实现原理。
+```
+    <!--<Connector port="8080" protocol="HTTP/1.1"connectionTimeout="20000"redirectPort="8443" />-->
+    <Connector port="8080" protocol="org.apache.coyote.http11.Http11NioProtocol"connectionTimeout="20000"redirectPort="8443" />
+```
+ 1. BIO模式 Tomcat7默认方式。每个请求都要创建一个线程处理 开销大
+ 2. NIO模式 基于缓存并能提供非阻塞I/O操作的API
+ 3. APR模式 异步IO
+    
+#### 2. tomcat调优参数
+并发控制参数(https://blog.csdn.net/qq_16681169/article/details/75003640)
+    acceptCount   连接在被ServerSocketChannel accept之前就暂存在这个队列中
+    acceptorThreadCount   Acceptor线程只负责从上述队列中取出已经建立连接的请求 参数acceptorThreadCount使用的Acceptor线程的个数
+    maxConnections   这里就是tomcat对于连接数的一个控制，即最大连接数限制。一旦发现当前连接数已经超过了一定的数量（NIO默认是10000），上述的Acceptor线程就被阻塞了
+    maxThreads  这个简单理解就算是上述worker的线程数。他们专门用于处理IO事件，默认是200
 
-#### 5. 讲讲Spring事务的传播属性。
+#### 3. Spring加载流程
+
+#### 4. Spring AOP的实现原理
+
+#### 5. 讲讲Spring事务的传播属性
 propagation = 
   REQUIRED       如果有事务, 那么加入事务, 没有的话新建一个(默认情况下)
   REQUIRES_NEW   不管是否存在事务,都创建一个新的事务,原来的挂起,新的执行完毕,继续执行老的事务
@@ -23,12 +65,12 @@ propagation =
   NEVER          必须在一个没有的事务中执行,否则抛出异常 
 
 
-#### 6. Spring如何管理事务的。
+#### 6. Spring如何管理事务的
 编程式事务管理：将事务管理代码嵌入到业务方法中来控制事务的提交和回滚，在编程式事务中，必须在每个业务操作中包含额外的事务管理代码。(TransactionTemplate)
 声明式事务管理：大多数情况下比编程式事务管理更好用。它将事务管理代码从业务方法中分离出来，以声明的方式来实现事务管理。事务管理作为一种横切关注点，可以通过AOP方法模块化。Spring通过Spring AOP框架支持声明式事务管理。@transaction或xml配置
 
 
-#### 7. Spring怎么配置事务（具体说出一些关键的xml 元素）。
+#### 7. Spring怎么配置事务（具体说出一些关键的xml 元素
 1.@EnableTransactionManagement
 2.
   <!-- 1 事务管理器 -->
