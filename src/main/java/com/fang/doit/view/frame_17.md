@@ -53,7 +53,11 @@ Cataline_CL    Shared_CL
 
 #### 3. Spring加载流程
 
+
+
 #### 4. Spring AOP的实现原理
+
+
 
 #### 5. 讲讲Spring事务的传播属性
 propagation = 
@@ -89,11 +93,13 @@ propagation =
       </aop:config>
   
 
-#### 8. 说说你对Spring的理解，非单例注入的原理？它的生命周期？循环注入的原理，aop的实现原理，说说aop中的几个术语，它们是怎么相互工作的。
+#### 8. 说说你对Spring的理解，非单例注入的原理；它的生命周期；循环注入的原理
 非单例注入
     1.放弃控制反转通过ApplicationContextAware.getBean()向容器请求一个新的bean；
-    2.Lookup方法注入??? 利用了容器的覆盖受容器管理的bean方法的能力  <bean><lookup-method name="createCommand" bean="asyncCommand"/></bean>    
+    2.Lookup方法注入??? 利用了容器的覆盖受容器管理的bean方法的能力  
+         <bean><lookup-method name="createCommand" bean="asyncCommand"/></bean>    
     3.
+    
 生命周期：
     1、实例化一个Bean－－也就是我们常说的new；
 
@@ -119,19 +125,19 @@ propagation =
     
 循环注入：
     1. 构造器循环依赖   
-         Spring容器将每一个正在创建的Bean 标识符放在一个“当前创建Bean池”中，Bean标识符在创建过程中将一直保持在这个池中，
-         因此如果在创建Bean过程中发现自己已经在“当前创建Bean池”里时将抛出BeanCurrentlyInCreationException异常表示循环依赖                 
+         Spring容器将每一个正在创建的Bean 标识符放在一个"当前创建Bean池" 中，Bean标识符在创建过程中将一直保持在这个池中，
+         因此如果在创建Bean过程中发现自己已经在"当前创建Bean池"里时将抛出BeanCurrentlyInCreationException异常表示循环依赖                 
     2. setter方法循环注入 
         2.1 setter方法注入 单例模式(scope=singleton) 
-            进行注入“A”时由于提前暴露了“ObjectFactory”工厂从而使用它返回提前暴露一个创建中的Bean，在 singletonFactory 三级缓存中
+            进行注入"A"时由于提前暴露了"ObjectFactory"工厂从而使用它返回提前暴露一个创建中的Bean，在 singletonFactory 三级缓存中
         2.2 setter方法注入 非单例模式
     3.allowCircularReferences = false 不支持循环依赖
 
 aop原理：
 
-#### 16.springmvc用到的注解，作用是什么，原理。
+#### 16.springmvc用到的注解，作用及原理
 
-#### 9. Springmvc中 DispatcherServlet 初始化过程。
+#### 9. Springmvc中 DispatcherServlet 初始化过程
 
 #### 10. netty的线程模型，netty如何基于reactor模型上实现的。
 

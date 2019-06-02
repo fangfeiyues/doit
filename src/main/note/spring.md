@@ -1,5 +1,7 @@
 <!--从最熟悉的地方开始如注解，实现类，继承接口等-->
-#### web.xml基本配置
+--- 
+### Spring
+#### 1.web.xml基本配置
 ```
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -10,28 +12,45 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 ```
-ContextLoaderListener会监听到tomcat容器启动过程中触发容器初始化事件，触发
+ContextLoaderListener 会监听到tomcat容器启动过程中触发容器初始化事件，触发 contextInitialized 方法
 
+#### 2.IOC容器启动
 
 IoC 容器的初始化过程分为三步骤：
 1.Resource 定位
 2.BeanDefinition 的载入和解析，将用户定义的Bean表示成IoC内部数据结构BeanDefinition且维护着<beanName,BeanDefinition>
 3.BeanDefinition 注册，这里可以通过lazyinit = false完成容器初始化状态（创建bean）
 
-AbstractApplicationContext implements BeanFactory
-获取bean
-#getBean(name) 通过applicationContext拿到beanName
+
+#### 3.Bean的加载
+AbstractApplicationContext#getBean(name)  继承于BeanFactory 通过applicationContext拿到beanName
 - AbstractBeanFactory# <T> T doGetBean()
-    - 1.返回 bean 名称，剥离工厂引用前缀
-    - 2.从缓存中或者实例工厂中获取 Bean 对象
-    - 未获取到：
-    - 3.isPrototypeCurrentlyInCreation  Spring 只解决单例模式下得循环依赖，在原型模式下如果存在循环依赖则会抛出异常
-    - 4.getParentBeanFactory() 如果容器中没有找到，则从父类容器中加载
-    - 从容器中获取 beanName 相应的 GenericBeanDefinition 对象，并将其转换为 RootBeanDefinition 对象
-    - 处理所依赖的 bean ；String[] dependsOn = mbd.getDependsOn()
-    - 单例isSingleton：无状态bean
-    - 原型isPrototype：
-    - 其他作用域getScope
+    1. beanName = transformedBeanName(name) 返回 bean 名称，剥离工厂引用前缀
+    2. sharedInstance = getSingleton(beanName) 先从缓存中或者实例工厂中获取 Bean 对象 
+        + 三级缓存实现
+          1. singletonObjects 获取为空且正在创建下 
+          2. 从 earlySingletonObjects 获取为空且允许提前创建 
+          3. 从 singletonFactories.get(beanName).getObject() 获取 不为空则放到earlySingletonObjects(二级缓存)。在createBean的填充属性之前就存放
+    3. 不为空 bean = getObjectForBeanInstance(sharedInstance, name, beanName, null)
+        + 缓存中拿取的是最原始的bean    
+        + getObjectFromFactoryBean(FactoryBean<?>, beanName, boolean shouldPostProcess)
+          1. isSingletonCurrentlyInCreation(beanName) 正在处理中不作处理
+          2. beforeSingletonCreation(beanName)
+          3. object = postProcessObjectFromFactoryBean(object, beanName) 执行processor.postProcessAfterInitialization()方法 
+          4. afterSingletonCreation(beanName);
+    3. 为空 isPrototypeCurrentlyInCreation  Spring 只解决单例模式下得循环依赖，在原型模式下如果存在循环依赖则会抛出异常
+    4. getParentBeanFactory() 如果容器中没有找到，则从父类容器中加载
+    5. 从容器中获取 beanName 相应的 GenericBeanDefinition 对象，并将其转换为 RootBeanDefinition 对象
+    6. 处理所依赖的 dependsOn bean  如果一个 Bean 有依赖 Bean 的话，那么在初始化该 Bean 时是需要先初始化它所依赖的 Bean
+    7. 单例isSingleton： 
+        1.singletonObject = singletonFactory.getObject() 核心创建    
+        2.addSingleton(beanName, singletonObject);
+    8. 原型isPrototype：
+        1. beforePrototypeCreation(beanName);
+        2. prototypeInstance = createBean(beanName, mbd, args); 直接再次创建
+        3. afterPrototypeCreation(beanName);
+    9. 其他作用域getScope 
+        核心流程和原型模式一样只不过获取 bean 实例是由 Scope#get(String name, ObjectFactory<?> objectFactory) 方法来实现
 
 
 0.创建spring容器
@@ -67,7 +86,7 @@ wrappedBean = applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName)
 invokeInitMethods(beanName, wrappedBean, mbd)
 wrappedBean = applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName)
 
-
+#### 注解
 
 @autowire，1.反射该bean依赖的beanName   2. BeanFactory.getName(beanName) 方法即可获取对应的依赖实例
 

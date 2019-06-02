@@ -8,6 +8,7 @@
 ![tomcat](image/tomcat.png)
 
 1. ***连接器Connector 对Servlet屏蔽了协议及I/O模型 在容器中获得的始终是ServletRequest***
+连接器需要完成三个高内聚功能：1.网络I/O通信  2.应用层协议解析 转换成Tomcat Request  3.统一ServletRequest
 
 ![Connector](image/connector.png)
 
