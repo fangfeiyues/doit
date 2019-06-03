@@ -166,8 +166,15 @@ propagation =
 
 
 #### 10. Springmvc中 DispatcherServlet 初始化过程
+DispatcherServlet作为一个Servlet 
+1. HttpServletBean#init()
+2. FrameworkServlet#initServletBean()
+3. FrameworkServlet#initWebApplicationContext()  创建上下文 ConfigurableWebApplicationContext
+4. DispatcherServlet#onRefresh(ApplicationContext) #initStrategies(ApplicationContext context) 初始化九大组件
 
-
+handlerMapping # Object strategy = createDefaultStrategy(context, clazz);
+  
+handlerAdapter
 
 #### 11. netty的线程模型，netty如何基于reactor模型上实现的。
 

@@ -485,26 +485,21 @@ PULL: 消费者无需订阅主题，由业务方（应用程序）直接根据Me
 
 -------------------- 1.分布式事务 -------------------
 主要在Producer实现了 executeLocalTransaction 和 checkLocalTransaction 的执行和查看事务的两方面接口
-  1. Producer发送 half msg 开启事务
-     设置 msg 属性 PROPERTY_TRANSACTION_PREPARED( "TRAN_MSG" ) = true
-     发送时候 requestHeader.setSysFlag(sysFlag)
-
-  2. Producer执行本地事务	-- 在整个本地过程可能涉及很多表尤其资金方面建议提供一张transaction
-  3. Producer根据本地执行的成功失败决定commit/rollback  -- oneway单向发送消息的情况
-  4. 提交到Consumer
-  5. broker定时回查Producer状态  -- 防止本地执行成功commit/rollback失败
-
-Broker回查
-TransactionalMessageServiceImpl.check(long transactionTimeout, int transactionCheckMax,AbstractTransactionalMessageCheckListener listener)
-	- Set<MessageQueue> msgQueues = transactionalMessageBridge.fetchMessageQueues("RMQ_SYS_TRANS_HALF_TOPIC");
-	- long halfOffset = transactionalMessageBridge.fetchConsumeOffset(messageQueue);		      // 队列的消费进度
-    - long opOffset = transactionalMessageBridge.fetchConsumeOffset(opQueue);				      // 待操作的消费队列的消费进度
-	- PullResult = fillOpRemoveMap(removeMap, opQueue, opOffset, halfOffset, doneOpOffset);
+  1. Producer事务消息 "TRAN_MSG"=true; PGROUP=getProducerGroup 前者是为了识别事务消息后者是为了回写的时候找到group的channel
+  2. Broker#SendMessageProcessor 保存事务消息到 HALF_TOPIC 队列并设置real_topic, queueid=0
+  3. Producer执行本地事务	-- 在整个本地过程可能涉及很多表尤其资金方面建议提供一张transaction
+  4. Broker#EndTransactionProcessor 建立 HALF_TOPIC 一一对应的 HALF_OP_TOPIC 并如果commit则新建原始topic队列进行消费
+  5. Broker#TransactionMessageCheckService 根据比较两个队列找不到未回差消息进行回查（难）
+  6. 根据回查结果继续 Broker#EndTransactionProcessor
 
 
 桥接模式：
 1、定义一个桥接口，使其与一方绑定，这一方的扩展全部使用实现桥接口的方式
 2、定义一个抽象类，来表示另一方，在这个抽象类内部要引入桥接口，而这一方的扩展全部使用继承该抽象类的方式
+
+
+Dubbo 分布式调用
+1.TCC( try- confirm -cancel)
 
 
 --------------------- 2.定时消息和延迟消息 ------------------------
