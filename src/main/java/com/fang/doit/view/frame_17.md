@@ -54,6 +54,18 @@ Cataline_CL    Shared_CL
 #### 3. Spring加载流程
 
 
+#### BeanFactory和ApplicationContext区别
+1. BeanFactory 是Spring最底层的接口
+2. ApplicationContext是 BeanFactory的派生具有更完整的框架。
+    继承MessageSource支持国际化；统一的资源文件访问方式；提供在监听器中注册Bean的事件；同时加载多个配置文件
+3. BeanFactroy采用的是延迟加载形式来注入Bean的，即只有在使用到某个Bean时(调用getBean())，才对该Bean进行加载实例化。这样，我们就不能发现一些存在的Spring的配置问题
+    如果Bean的某一个属性没有注入，BeanFacotry加载后，直至第一次使用调用getBean方法才会抛出异常。
+    ②ApplicationContext，它是在容器启动时，一次性创建了所有的Bean。这样，在容器启动时，我们就可以发现Spring中存在的配置错误，这样有利于检查所依赖属性是否注入。 
+    ApplicationContext启动后预载入所有的单实例Bean，通过预载入单实例bean ,确保当你需要的时候，你就不用等待，因为它们已经创建好了。
+    ③相对于基本的BeanFactory，ApplicationContext 唯一的不足是占用内存空间。当应用程序配置Bean较多时，程序启动较慢
+4. BeanFactory通常以编程的方式被创建，ApplicationContext还能以声明的方式创建，如使用ContextLoader。
+5. BeanFactory和ApplicationContext都支持BeanPostProcessor、BeanFactoryPostProcessor的使用，但两者之间的区别是：BeanFactory需要手动注册，而ApplicationContext则是自动注册。
+
 
 #### 4. Spring AOP的实现原理
 
@@ -100,28 +112,15 @@ propagation =
          <bean><lookup-method name="createCommand" bean="asyncCommand"/></bean>    
     3.
     
-生命周期：
-    1、实例化一个Bean－－也就是我们常说的new；
-
-    2、按照Spring上下文对实例化的Bean进行配置－－也就是IOC注入；
-
-    3、如果这个Bean已经实现了BeanNameAware接口，会调用它实现的setBeanName(String)方法，此处传递的就是Spring配置文件中Bean的id值
-
-    4、如果这个Bean已经实现了BeanFactoryAware接口，会调用它实现的setBeanFactory(setBeanFactory(BeanFactory)传递的是Spring工厂自身（可以用这个方式来获取其它Bean，只需在Spring配置文件中配置一个普通的Bean就可以）；
-
-    5、如果这个Bean已经实现了ApplicationContextAware接口，会调用setApplicationContext(ApplicationContext)方法，传入Spring上下文（同样这个方式也可以实现步骤4的内容，但比4更好，因为ApplicationContext是BeanFactory的子接口，有更多的实现方法）；
-
-    6、如果这个Bean关联了BeanPostProcessor接口，将会调用postProcessBeforeInitialization(Object obj, String s)方法，BeanPostProcessor经常被用作是Bean内容的更改，并且由于这个是在Bean初始化结束时调用那个的方法，也可以被应用于内存或缓存技术；
-
-    7、如果Bean在Spring配置文件中配置了init-method属性会自动调用其配置的初始化方法。
-
-    8、如果这个Bean关联了BeanPostProcessor接口，将会调用postProcessAfterInitialization(Object obj, String s)方法、；
-
-    注：以上工作完成以后就可以应用这个Bean了，那这个Bean是一个Singleton的，所以一般情况下我们调用同一个id的Bean会是在内容地址相同的实例，当然在Spring配置文件中也可以配置非Singleton，这里我们不做赘述。
-
-    9、当Bean不再需要时，会经过清理阶段，如果Bean实现了DisposableBean这个接口，会调用那个其实现的destroy()方法；
-
-    10、最后，如果这个Bean的Spring配置中配置了destroy-method属性，会自动调用其配置的销毁方法。
+生命周期 AbstractAutowireCapableBeanFactory#doCreateBean( beanName, RootBeanDefinition, args)
+    Servlet生命周期：实例化，初始init，接受请求service，销毁destroy
+    1. 实例化Bean instanceWrapper = createBeanInstance(beanName, mbd, args);
+    2. 设置对象属性依赖注入 populateBean(beanName, mbd, instanceWrapper);
+    3. 处理Aware接口 initializeBean#invokeAwareMethods(beanName, bean);
+    4. BeanPostProcessor  applyBeanPostProcessorsBeforeInitialization&applyBeanPostProcessorsAfterInitialization
+    5. 初始化Bean  ((InitializingBean) bean).afterPropertiesSet() & invokeCustomInitMethod
+    6. DisposableBean 当Bean不再需要时，会经过清理阶段，如果Bean实现了DisposableBean这个接口，会调用其实现的destroy()方法
+    7. destroy-method 如果这个Bean的Spring配置中配置了destroy-method属性，会自动调用其配置的销毁方法
     
 循环注入：
     1. 构造器循环依赖   
@@ -133,23 +132,54 @@ propagation =
         2.2 setter方法注入 非单例模式
     3.allowCircularReferences = false 不支持循环依赖
 
-aop原理：
 
-#### 16.springmvc用到的注解，作用及原理
+#### 9. springmvc用到的注解，作用及原理
 
-#### 9. Springmvc中 DispatcherServlet 初始化过程
+@Controller
 
-#### 10. netty的线程模型，netty如何基于reactor模型上实现的。
+@RequestMapping AbstractHandlerMethodMapping 
 
-#### 11. 为什么选择netty。
+@RequestParam / @RequestBody
 
-#### 12. 什么是TCP粘包，拆包。解决方式是什么。
+@ResponseBody
 
-#### 13. netty的fashwheeltimer的用法，实现原理，是否出现过调用不够准时，怎么解决。
+#### springmvc 组件
 
-#### 14.netty的心跳处理在弱网下怎么办。
+1. MultipartResolver
+2. LocaleResolver
+3. ThemeResolver
+4. HandlerMapping
+    1. AbstractHandlerMapping 
+    2. HandlerInterceptor
+    3. AbstractHandlerMethodMapping
+    4. AbstractUrlHandlerMapping
+5. HandlerAdapter
+    1. HandlerAdapter
+    2. ServletInvocableHandlerMethod
+    3. HandlerMethodArgumentResolver
+    4. HandlerMethodReturnValueHandler
+    5. HttpMessageConverter
+6. HandlerExceptionResolver
+7. RequestToViewNameTranslator
+8. ViewResolver
+9. FlashMapManager
 
-#### 15.netty的通讯协议是什么样的。
+
+#### 10. Springmvc中 DispatcherServlet 初始化过程
+
+
+
+#### 11. netty的线程模型，netty如何基于reactor模型上实现的。
+
+#### 12. 为什么选择netty。
+
+#### 13. 什么是TCP粘包，拆包。解决方式是什么。
+
+#### 14. netty的fashwheeltimer的用法，实现原理，是否出现过调用不够准时，怎么解决。
+
+#### 15.netty的心跳处理在弱网下怎么办。
+
+#### 16.netty的通讯协议是什么样的。
 
 #### netty的poll,select,epoll
 select：阻塞但一旦事件进入还是无差别轮询全部流

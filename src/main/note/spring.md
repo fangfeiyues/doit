@@ -15,10 +15,10 @@
 ContextLoaderListener 会监听到tomcat容器启动过程中触发容器初始化事件，触发 contextInitialized 方法
 
 #### 2.IOC容器启动
-
+以`ApplicationContext`的具体实现`FileSystemXmlApplicationContext` 为例
 IoC 容器的初始化过程分为三步骤：
 1.Resource 定位
-2.BeanDefinition 的载入和解析，将用户定义的Bean表示成IoC内部数据结构BeanDefinition且维护着<beanName,BeanDefinition>
+2.BeanDefinition 的载入和解析，将用户定义的Bean表示成IoC内部数据结构BeanDefinition且维护着 <beanName,BeanDefinition>
 3.BeanDefinition 注册，这里可以通过lazyinit = false完成容器初始化状态（创建bean）
 
 
@@ -27,7 +27,7 @@ AbstractApplicationContext#getBean(name)  继承于BeanFactory 通过applicationConte
 - AbstractBeanFactory# <T> T doGetBean()
     1. beanName = transformedBeanName(name) 返回 bean 名称，剥离工厂引用前缀
     2. sharedInstance = getSingleton(beanName) 先从缓存中或者实例工厂中获取 Bean 对象 
-        + 三级缓存实现
+        + 三级缓存实现解决set注入的循环依赖
           1. singletonObjects 获取为空且正在创建下 
           2. 从 earlySingletonObjects 获取为空且允许提前创建 
           3. 从 singletonFactories.get(beanName).getObject() 获取 不为空则放到earlySingletonObjects(二级缓存)。在createBean的填充属性之前就存放
@@ -52,6 +52,7 @@ AbstractApplicationContext#getBean(name)  继承于BeanFactory 通过applicationConte
     9. 其他作用域getScope 
         核心流程和原型模式一样只不过获取 bean 实例是由 Scope#get(String name, ObjectFactory<?> objectFactory) 方法来实现
 
+#### 4.创建Bean
 
 0.创建spring容器
 ApplicationContext
@@ -164,6 +165,7 @@ public void refresh() throws BeansException, IllegalStateException {
 }
 ```
 
+
 ---
 ### SpringMVC
 
@@ -213,20 +215,30 @@ FrameworkServlet#processRequest(HttpServletRequest, HttpServletResponse).doServi
         -6.processDispatchResult(processedRequest, response, mappedHandler, mv, dispatchException)  处理执行结果
 
 HandlerMapping  ??HandlerMapping的时候没有拿到handler什么时候获取的
-#### 组件1 -- AbstractHandlerMapping
-  HandlerExecutionChain getHandler(HttpServletRequest request) HandlerExecutionChain主要是添加过滤器执行过滤器方法
-    子类1 AbstractUrlHandlerMapping
-    子类2 AbstractHandlerMethodMapping  @RequestMapping
-        -- getHandlerExecutionChain()
-    <mvc:interceptors>   --> MappedInterceptor (除此还有HandlerInterceptor,WebRequestInterceptor)
+
+#### 4. 组件1 -- AbstractHandlerMapping 实现了"获取请求对应的处理器和拦截器们"的骨架逻辑
+  1. HandlerExecutionChain = DispatcherServlet #getHandler(HttpServletRequest)  其中HandlerExecutionChain作用是添加过滤器 前/后执行过滤器方法
+  2. HandlerMethod = HandlerMapping #getHandler(request) -- AbstractHandlerMapping #getHandler(HttpServletRequest) -- AbstractHandlerMethodMapping #getHandlerInternal(HttpServletRequest)  
+    handler == "public void com.fang.doit.spring.DemoController.test()"
+    1. AbstractUrlHandlerMapping
+    2. AbstractHandlerMethodMapping   @RequestMapping
+        1. 
+  3. HandlerExecutionChain = getHandlerExecutionChain(handler, request);  匹配拦截器
+  
+  
+  
+        
+```xml   
+   <!--MappedInterceptor (除此还有HandlerInterceptor,WebRequestInterceptor)-->
+   <mvc:interceptors>       
       <mvc:interceptor>
         <mvc:mapping path="/**"/>
         <mvc:exclude-mapping path="/login"/> 　　
         <mvc:exclude-mapping path="/index"/>
         <bean class="package.interceptor.XXInterceptor"/>
       </mvc:interceptor>
-    </mvc:interceptors>
-
+   </mvc:interceptors>
+```
 
 #### 组件2 -- HandlerInterceptor
     1.MappedInterceptor 支持地址匹配
