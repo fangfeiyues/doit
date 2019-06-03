@@ -221,12 +221,14 @@ HandlerMapping  ??HandlerMapping的时候没有拿到handler什么时候获取的
   2. HandlerMethod = HandlerMapping #getHandler(request) -- AbstractHandlerMapping #getHandler(HttpServletRequest) -- AbstractHandlerMethodMapping #getHandlerInternal(HttpServletRequest)  
     handler == "public void com.fang.doit.spring.DemoController.test()"
     1. AbstractUrlHandlerMapping
-    2. AbstractHandlerMethodMapping   @RequestMapping
-        1. 
+    2. AbstractHandlerMethodMapping   (@RequestMapping,@GetMapping,@PostMapping...)
+        1. 注册表 MappingRegistry
+        2. 命名策略 HandlerMethodMappingNamingStrategy<T> -- RequestMappingInfoHandlerMethodMappingNamingStrategy
   3. HandlerExecutionChain = getHandlerExecutionChain(handler, request);  匹配拦截器
   
-  
-  
+详解 AbstractHandlerMapping
+初始化：Mapping 和 handler + method, 就成功注册到 mappingRegistry
+请求：HandlerExecutionChain =  getHandler(HttpServletRequest request)
         
 ```xml   
    <!--MappedInterceptor (除此还有HandlerInterceptor,WebRequestInterceptor)-->
