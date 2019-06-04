@@ -8,10 +8,10 @@
 ***启动流程***
 
    1. startup.sh 启动JVM运行Tomcat启动类Bootstrap
-   2. Bootstrap 初始化Tomcat的类加载器 并创建Catalina
+   2. Bootstrap 初始化Tomcat的类加载器 并创建 Catalina
    3. Catalina 解析Server.xml 创建相应的组件
    4. Server 管理Service组件 调用Service方法
-   5. Service 管理连接器和顶层容器Engine
+   5. Service 管理连接器和顶层容器 Engine
    6. 怎么启动Servlet服务的???
 
 ***类加载器***
@@ -45,6 +45,7 @@ Cataline_CL    Shared_CL
  3. APR模式 异步IO
     
 #### 2. tomcat调优参数
+
 并发控制参数(https://blog.csdn.net/qq_16681169/article/details/75003640)
     acceptCount   连接在被ServerSocketChannel accept之前就暂存在这个队列中
     acceptorThreadCount   Acceptor线程只负责从上述队列中取出已经建立连接的请求 参数acceptorThreadCount使用的Acceptor线程的个数

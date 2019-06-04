@@ -1,7 +1,7 @@
 ### Java并发工具类
 
 ---
-##### 1.ConcurrentHashMap 
+#### 1.ConcurrentHashMap 
   > 抛弃了分段锁技术的实现，直接采用CAS + synchronized保证并发更新的安全性
      
 ---
@@ -17,10 +17,7 @@ offer(E e) 插入
    4. casTail(t, newNode)  更新尾节点时如果刚好又插入了一个
    5. if (p == q) 等于自身即尾节点可能被删
    6. p = (t != (t = tail)) ? t : head;
-   7. else  p = (p != t && t != (t = tail)) ? t : q;   p已经不是尾节点
-   
-mq怎么保证队列安全的？
-DelayQueue  
+   7. else  p = (p != t && t != (t = tail)) ? t : q;   p已经不是尾节点 
 
 ---
 #### 3.LinkedBlockingQueue
@@ -48,9 +45,7 @@ takeLock.unlock();
 获取元素 peek()  加锁拿到但不移除
 
 #### 4.ArrayBlockingQueue
-数组 
-一个 ReentrantLock 锁
-
+数组  + 一个 ReentrantLock 锁
 
 
 #### 5.DelayQueue
@@ -63,9 +58,13 @@ takeLock.unlock();
 
 --- 
 #### CAS
-Lock前缀 保证写操作的原子性 不会被其他CPU操作打断
+Lock前缀保证在多处理器环境下，LOCK# 信号可以确保处理器独占使用某些共享内存
+第一种方式是通过锁定总线 可能会导致其他核心短时内停止工作
+第二种方式是锁定缓存
 
-
+ABA
+1.版本 
+2.AtomicStampedReference
 
 ---
 #### 9.AbstractQueuedSynchronizer 队列同步器
@@ -95,24 +94,25 @@ addWriter(Node.EXCLUSIVE)：在没有获取到同步状态下 加入到等待队
 acquireQueued(Node , arg)：再次获取同步状态
       1.pre节点为头结点 且 tryAcquire(args)成功 则直接设为头结点
       2.否则 shouldParkAfterFailedAcquire(p, node)   如果获取同步状态失败，则根据条件判断是否应该阻塞自己  如果不阻塞，CPU 就会处于忙等状态，这样会浪费 CPU 资源
-          waitState == SIGNAL(-1) 等待唤醒 return true 中断；当线程在获取同步状态失败时，根据前驱节点的等待状态，决定后续的动作。比如前驱节点等待状态为 SIGNAL，表明当前节点线程应该被阻塞住了。不能老是尝试，避免 CPU 忙等
+          waitState == SIGNAL(-1) 等待唤醒 return true 中断；当线程在获取同步状态失败时，根据前驱节点的等待状态，决定后续的动作。 
+                                  比如前驱节点等待状态为 SIGNAL，表明当前节点线程应该被阻塞住了。不能老是尝试，避免 CPU 忙等
           waitState == CANCELLED(1) 不参与竞争 不断回查； return false
           waitState == 0 / PROPAGATE(-3) 设置 pred = SIGNAL 等待唤醒 return false
         即只有在自己的上个节点等待状态为SIGNAL 才会中断 否则不断自旋轮询 ???
       3.parkAndCheckInterrupt()  LockSupport.park(this) 阻塞自己
 
 2. 中断异常
- doAcquireInterruptibly(int arg) throws InterruptedException{ 
+ doAcquireInterruptibly(int arg) throws InterruptedException { 
        shouldParkAfterFailedAcquire(p, node)  -- pre.waitState == SIGNAL为什么要上个节点状态为等待通知 才能中断 ???
        && parkAndCheckInterrupt()   -- Thread.interrupted()
          --> throw new InterruptedException()
-        }
+       }
 
 3. 超时控制
 tryAcquireNanos(int arg, long nanos) 它除了响应中断外，还有超时控制
 
 
-4. 独占锁与共享锁的：公平下先判断头结点是否自己 是就直接获取否拿取state>0（！！！） 自旋等待
+4. 独占锁与共享锁的：公平下先判断头结点是否自己 是就直接获取否拿取 state>0（！！！） 自旋等待
 Semaphore#
 acquireShared(int arg)
     |
@@ -120,9 +120,9 @@ if (hasQueuedPredecessors())     -1公平模式下 如果当前线程非头结�
     |
 remaining = available - acquires
 remaining < 0 ||
-compareAndSetState(available, remaining)  如果大于0则更新
+compareAndSetState(available, remaining)  小于0 或者大于0就更新 返回
     |
-doAcquireSharedInterruptibly    此时将线程放入 AQS 的同步队列中进行等待
+doAcquireSharedInterruptibly    小于0 此时将请求线程放入 AQS 的同步队列中进行等待
    head == null 尝试获取
    判断pred.waitState == SIGNAL 且挂起后是否还中断  是则中断异常否则继续自旋
 
@@ -130,7 +130,30 @@ doAcquireSharedInterruptibly    此时将线程放入 AQS 的同步队列中进�
 #### 10.ReentrantLock 
 > synchronized 的比较
 
+https://blog.csdn.net/xueba8/article/details/88753443
+1. 锁抢占
+> 对象的class锁，是 monitorenter 和 monitorexit进行重入。 JVM通过字节码显式的去获取和释放monitor实现同步
+> 方法锁，是flags: ACC_SYNCHRONIZED。是检查方法的ACC_SYNCHRONIZED标志是否被设置，如果设置了则线程需要先去获取monitor， 执行完毕了线程再释放monitor
+> synchronized的语义底层是通过一个monitor的对象完成，其实wait、notiyf和notifyAll等方法也是依赖于monitor对象来完成的，
+> 这也就是为什么需要在同步方法或者同步代码块中调用的原因(需要先获取对象的锁，才能执行)，
+> 否则会抛出java.lang.IllegalMonitorStateException的异常
 
+2. 锁获取 -- Java对象头/Monitor对象
+> 那锁的状态为其它状态的时候是不是就没用上monitor对象？答案:是的。
+> 这也是JVM对synchronized的优化，我们知道重量级锁的monitor实现是基于底层操作系统的mutex互斥原语的，这个开销是很大
+> 所以JVM对synchronized做了优化，JVM先利用对象头实现锁的功能，如果线程的竞争过大则会将锁升级(膨胀)为重量级锁，也就是使用monitor对象。
+> 当然JVM对锁的优化不仅仅只有这个，还有引入适应性自旋、锁消除、锁粗化、轻量级锁、偏向锁等。
+
+3. 轻量级锁
+Mark Word: 记录了对象和锁的相关信息，存储对象自身的运行时数据
+1. 哈希吗
+2. GC分代年龄
+3. 锁状态标志
+4. 线程持有锁
+5. 偏向线程ID
+6. 偏向时间戳
+
+![](image/synchronized.png)
 
 #### 11.ReentrantReadWriteLock
 

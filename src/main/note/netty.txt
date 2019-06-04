@@ -34,7 +34,7 @@ NIO 调用read，如果发现没数据已经到达，就会立刻返回-1, 并�
     当前线程可以先去做点其他事
     1.如果有大量文件描述符都要等，那么就得一个一个的read。这会带来大量的Context Switch（read是系统调用，每调用一次就得在用户态和核心态切换一次）
     2.休息一会的时间不好把握。这里是要猜多久之后数据才能到。等待时间设的太长，程序响应延迟就过大；设的太短，就会造成过于频繁的重试，干耗CPU而已。
-IO-Multiplexing 程序注册一组socket文件描述符给操作系统，表示“我要监视这些fd是否有IO事件发生，有了就告诉程序处理
+IO-Multiplexing 程序注册一组socket文件描述符给操作系统，表示 "我要监视这些fd是否有IO事件发生，有了就告诉程序处理"
     a.IO多路复用是指多个数据流共享同一个Socket(X)。其实IO多路复用说的是多个Socket，只不过操作系统是一起监听他们的事件而已。但在HTTP2确实是多个数据流共享同一个TCP连接
     b.IO多路复用是NIO，所以总是不Block的(X)。
     c.IO多路复用和NIO一起减少了IO(X)。
@@ -54,6 +54,7 @@ IO-Multiplexing 程序注册一组socket文件描述符给操作系统，表示�
 
      int epfd = epoll_create(10);
      int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);
+
 epoll比select&poll强的地方：
     select和poll每次都需要把完成的fd列表传入到内核，迫使内核每次必须从头扫描到尾。而epoll完全是反过来的。epoll在内核的数据被建立好了之后，每次某个被监听的fd一旦有事件发生，内核就直接标记之。epoll_wait调用时，会尝试直接读取到当时已经标记好的fd列表，如果没有就会进入等待状态。
 

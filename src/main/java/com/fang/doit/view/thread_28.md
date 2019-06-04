@@ -164,7 +164,7 @@ ReentrantReadWriteLock，AQS的共享锁模式
 
 #### 30.延迟队列的实现方式，delayQueue和时间轮算法的异同
 定时器轮询遍历数据库记录： 线程定时扫描
-JDK的DelayQueue： 内部封装了PriorityQueue排序先触发的.得手动while循环去getDelayed()是否为零太依赖人为
+JDK的DelayQueue： 内部封装了PriorityQueue排序先触发的.得手动while循环去 getDelayed()是否为零太依赖人为
 JDK ScheduledExecutorService
 时间轮（netty）HashedWheelTimer:   内部Worker不断工作但是如果存在一个延迟后面就都会因为他是根据自己的起始时间来的
 利用quartz等定时任务

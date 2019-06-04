@@ -2,7 +2,7 @@
   (数组：HashMap, ConcurrentHashMap, TreeMap, ReentrantLock, AtmoInteger, PriorityQueue小顶堆, ConcurrentLinkedQueue, 并发工具)
   
 ---
------------- 1.HashMap ---------
+#### 1.HashMap 
 http://www.tianxiaobo.com/2018/01/18/HashMap-%E6%BA%90%E7%A0%81%E8%AF%A6%E7%BB%86%E5%88%86%E6%9E%90-JDK1-8/
 1.构造参数
 loadFactor       负载因子 = 0.75f
@@ -26,7 +26,7 @@ threshold        阈值 = capacity * loadFactor，当前 HashMap 所能容纳键
           3.有参情况 newCap = 16；newThr = DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY = 12
           4.嵌套分支在计算过程中导致 newThr 溢出归零 newThr == 0 重新计算 newThr = newCap * loadFactor
         迁移：遍历oldTab
-          1.如果是e.hash & (newCap - 1) 头结点则直接放入
+          1.如果是 e.hash & (newCap - 1) 头结点则直接放入
           2.如果树节点TreeNode 则split()
           3.链表 因为扩容一倍hash计算结果分为lohead-lotail和hihead-hitail两条且排序正常
 JDK 1.7 为了防止因 hash 碰撞引发的拒绝服务攻击，在计算 hash 过程中引入随机种子。以增强 hash 的随机性，使得键值对均匀分布在桶数组中。
@@ -39,13 +39,13 @@ JDK 1.7 为了防止因 hash 碰撞引发的拒绝服务攻击，在计算 hash 
 
 ---
 
-HashSet 
+#### 2.HashSet 
 
 
 
     
 ---
-TreeMap
+#### 3.TreeMap
 
 
 

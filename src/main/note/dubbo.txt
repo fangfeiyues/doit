@@ -195,7 +195,7 @@ Invoker<T> = RegistryProtocol.refer(Class<T> type, URL url)
 			      - AbstractRegistry.notify(URL, NotifyListener, List<URL>)        // 获取zk服务的变更
 				     - RegistryDirectory.notify(List<URL>)
 					   - refreshInvoker(invokerUrls)           // 检验 URL是否为 empty
-					      - RegistryDirectory.toInvokers(invokerUrls) = Map<String, Invoker<T>>        //  !!!把provider url转换为<cUrl,p_invoker>
+					      - RegistryDirectory.toInvokers(invokerUrls) = Map<String, Invoker<T>>        //  !!!把provider url转换为<cUrl, p_invoker>
 					         - invoker = new InvokerDelegate<T>(protocol.refer(serviceType, url), url, providerUrl);    // 代理 invoker
 					          // ------------- 开始进入DubboProtocol.refer() 打开netty--------------
 					            ... ProtocolListenerWrapper, ProtocolFilterWrapper
