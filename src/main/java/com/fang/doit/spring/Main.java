@@ -1,5 +1,7 @@
 package com.fang.doit.spring;
 
+import com.fang.doit.spring.mybatis.User;
+import com.fang.doit.spring.service.DemoServiceImpl;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.ApplicationContext;
@@ -24,13 +26,13 @@ public class Main {
         //applicationAware.display();
 
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application.xml");
-        //ApplicationContextAwareDemo applicationAware = (ApplicationContextAwareDemo)applicationContext.getBean(
-        //    "applicationContextAwareDemo");
-        //applicationAware.display();
-
+        DemoServiceImpl demoService = (DemoServiceImpl)applicationContext.getBean(
+            "demoServiceImpl");
+        User user = demoService.getUserByUsername("fang");
+        System.out.println(user.getName());
         //BeanPostProcessorDemo test = (BeanPostProcessorDemo) factory.getBean("beanPostProcessorDemo");
-        BeanPostProcessorDemo test = new BeanPostProcessorDemo();
-        factory.addBeanPostProcessor(test);
-        test.display();
+        //BeanPostProcessorDemo test = new BeanPostProcessorDemo();
+        //factory.addBeanPostProcessor(test);
+        //test.display();
     }
 }

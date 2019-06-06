@@ -5,7 +5,7 @@
     <!-- 1.针对Spring配置：读取配置文件 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:application.xml</param-value>
+        <param-value>classpath:*.xml</param-value>
     </context-param>
 
     <!--  -->

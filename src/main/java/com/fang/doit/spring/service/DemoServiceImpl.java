@@ -1,5 +1,8 @@
 package com.fang.doit.spring.service;
 
+import com.fang.doit.spring.mybatis.User;
+import com.fang.doit.spring.mybatis.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,8 +11,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class DemoServiceImpl implements DemoService {
 
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
     public String hello() {
         return "world";
+    }
+
+
+    @Override
+    public User getUserByUsername(String username) {
+        return userMapper.selectUser(username);
     }
 }
