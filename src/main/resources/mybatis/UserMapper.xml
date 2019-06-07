@@ -7,4 +7,11 @@
         select * from user where name =#{username}
     </select>
 
+    <!-- eviction：淘汰策略 默认LRU；
+         size：缓存的容量为 512 个对象引用；
+         flushInterval：缓存每隔60秒刷新一次
+         -->
+    <cache eviction="FIFO" flushInterval="60000" size="512" readOnly="false" type="PERPETUAL" blocking="false"/>
+
+    <!--<cache-ref namespace=""/>-->
 </mapper>
