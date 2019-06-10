@@ -19,9 +19,9 @@
     </typeAliases>
 
 
-    <!--用于定义全局的类型处理器-->
+    <!-- 用于定义全局的类型处理器 -->
     <typeHandlers>
-        <!--<typeHandler handler=""-->
+        <typeHandler handler="UserTypeHandler"></typeHandler>
     </typeHandlers>
 
     <!-- 配置数据源 -->
@@ -42,6 +42,7 @@
     <mappers>
         <mapper resource="mybatis/UserMapper.xml"/>
     </mappers>
+
 
 
 </configuration>

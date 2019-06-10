@@ -1,5 +1,7 @@
 package com.fang.doit.spring;
 
+import com.alibaba.fastjson.JSON;
+import com.fang.doit.spring.mybatis.Grade;
 import com.fang.doit.spring.mybatis.User;
 import com.fang.doit.spring.service.DemoServiceImpl;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
@@ -28,8 +30,12 @@ public class Main {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application.xml");
         DemoServiceImpl demoService = (DemoServiceImpl)applicationContext.getBean(
             "demoServiceImpl");
-        User user = demoService.getUserByUsername("fang");
-        System.out.println(user.getName());
+        //User user = demoService.getUserByUsername("fang");
+        //Grade grade = demoService.getUserGrade("fang");
+        //System.out.println(grade.getGrade());
+        User user = demoService.getUserWithGrades("fang");
+        System.out.println(JSON.toJSONString(user));
+
         //BeanPostProcessorDemo test = (BeanPostProcessorDemo) factory.getBean("beanPostProcessorDemo");
         //BeanPostProcessorDemo test = new BeanPostProcessorDemo();
         //factory.addBeanPostProcessor(test);

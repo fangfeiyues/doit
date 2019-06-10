@@ -3,9 +3,42 @@
 
 <mapper namespace="com.fang.doit.spring.mybatis.UserMapper">
 
-    <select id="selectUser" parameterType="java.lang.String"  resultType="com.fang.doit.spring.mybatis.User">
+    <resultMap id="resultMap" type="com.fang.doit.spring.mybatis.User" autoMapping="true">
+        <result property="id" column="id"/>
+        <result column="name" property="name"/>
+    </resultMap>
+
+    <!-- extends的使用 resultMap 时候必须全部包含 -->
+    <resultMap id="userWithGradeResultMap" type="com.fang.doit.spring.mybatis.Grade">
+        <result column="grade" property="grade"/>
+        <!-- association 是在一对一的情况下 -->
+        <association property="user" javaType="com.fang.doit.spring.mybatis.User" autoMapping="true">
+            <result property="id" column="id"/>
+            <result column="name" property="name"/>
+        </association>
+    </resultMap>
+
+
+    <resultMap id="userGradesResultMap" type="com.fang.doit.spring.mybatis.User" extends="resultMap" autoMapping="true">
+        <!-- 一对多映射 -->
+        <collection property="gradeList" javaType="list" ofType="com.fang.doit.spring.mybatis.Grade">
+            <result column="grade" property="grade"/>
+        </collection>
+    </resultMap>
+
+
+    <select id="selectUser" parameterType="java.lang.String" resultType="com.fang.doit.spring.mybatis.User">
         select * from user where name =#{username}
     </select>
+
+    <select id="getUserGrade" resultMap="userWithGradeResultMap">
+        select * from grade as g left join user u on g.user_id = u.id where u.name=#{username}
+    </select>
+
+    <select id="getUserWithGrades" resultMap="userGradesResultMap">
+        select * from user as u left join grade g on g.user_id = u.id where u.name=#{username}
+    </select>
+
 
     <!-- eviction：淘汰策略 默认LRU；
          size：缓存的容量为 512 个对象引用；
@@ -13,5 +46,8 @@
          -->
     <cache eviction="FIFO" flushInterval="60000" size="512" readOnly="false" type="PERPETUAL" blocking="false"/>
 
-    <!--<cache-ref namespace=""/>-->
+    <!-- UserMapper 和 UserMapper2共用一个二级缓存 -->
+    <!--<cache-ref namespace="com.fang.doit.spring.mybatis.UserMapper2"/>-->
+
+
 </mapper>

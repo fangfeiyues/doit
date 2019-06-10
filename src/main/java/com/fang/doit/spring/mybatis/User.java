@@ -1,6 +1,7 @@
 package com.fang.doit.spring.mybatis;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @Author Feiyue
@@ -12,6 +13,16 @@ public class User implements Serializable {
     private Long id;
 
     private String name;
+
+    private List<Grade> gradeList;
+
+    public List<Grade> getGradeList() {
+        return gradeList;
+    }
+
+    public void setGradeList(List<Grade> gradeList) {
+        this.gradeList = gradeList;
+    }
 
     public Long getId() {
         return id;

@@ -3,6 +3,8 @@ package com.fang.doit.spring.mybatis;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @Author Feiyue
  * @Description:
@@ -12,5 +14,9 @@ import org.springframework.stereotype.Repository;
 public interface UserMapper {
 
     User selectUser(String username);
+
+    Grade getUserGrade(String username);
+
+    User getUserWithGrades(String username);
 
 }
