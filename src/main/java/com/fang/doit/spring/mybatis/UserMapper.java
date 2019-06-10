@@ -1,9 +1,6 @@
 package com.fang.doit.spring.mybatis;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 /**
  * @Author Feiyue

@@ -37,7 +37,6 @@
 void useNewCache(Class<? extends Cache> typeClass, Class<? extends Cache> evictionClass, Long flushInterval, Integer size, boolean readWrite,
 boolean blocking,Properties props)
 ```
-
 8. 最后把namespace和mapper绑定 
 `
 <!-- type:interface UserMapper -->
@@ -46,7 +45,6 @@ knownMappers.put(type, new MapperProxyFactory<T>(type));
 
 
 #### 3.SQL执行过程
-
 
 
 

@@ -4,6 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+    <properties>
+        <property name="username" value="123456"/>
+        <property name="id" value="12345"/>
+    </properties>
+
     <settings>
         <!-- 下划线与驼峰式命名规则的映射 -->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
@@ -21,28 +26,28 @@
 
     <!-- 用于定义全局的类型处理器 -->
     <typeHandlers>
-        <typeHandler handler="UserTypeHandler"></typeHandler>
+        <!--<typeHandler handler="UserTypeHandler"></typeHandler>-->
     </typeHandlers>
 
-    <!-- 配置数据源 -->
-    <!--<environments default="development">-->
-        <!--<environment id="development">-->
-            <!--<transactionManager type="JDBC"/>-->
-            <!--<dataSource type="POOLED">-->
-                <!--<property name="driver" value="${jdbc.driver}"/>-->
-                <!--<property name="url" value="${jdbc.url}"/>-->
-                <!--<property name="username" value="${jdbc.username}"/>-->
-                <!--<property name="password" value="${jdbc.password}"/>-->
-            <!--</dataSource>-->
-        <!--</environment>-->
-    <!--</environments>-->
 
+    <!-- 不结合Spring 单独配置数据源 -->
+    <environments default="development">
+        <environment id="development">
+            <!-- 事务管理类型 -->
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://47.100.237.162:3306/test?useUnicode=true"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+    </environments>
 
     <!--用于配置 SQL 映射文件的位置信息-->
     <mappers>
         <mapper resource="mybatis/UserMapper.xml"/>
     </mappers>
-
 
 
 </configuration>
