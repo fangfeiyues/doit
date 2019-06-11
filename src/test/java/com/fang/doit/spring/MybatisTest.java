@@ -1,5 +1,7 @@
 package com.fang.doit.spring;
 
+import com.alibaba.fastjson.JSON;
+import com.fang.doit.spring.mybatis.Grade;
 import com.fang.doit.spring.mybatis.User;
 import com.fang.doit.spring.mybatis.UserMapper;
 import org.apache.ibatis.io.Resources;
@@ -19,8 +21,8 @@ import java.io.InputStream;
  * @Description:
  * @Date: Created in 2019/6/10 10:31
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class MybatisTest {
 
     UserMapper mapper;
@@ -35,8 +37,13 @@ public class MybatisTest {
 
     @Test
     public void getUser() throws Exception {
-        User user = mapper.selectUser("fang");
-        System.out.println(user.getName());
+        //for (int i = 0; i < 2; i++) {
+        //    User user = mapper.selectUser("fang");
+        //    System.out.println(user.getName());
+        //}
+
+        Grade user = mapper.getUserGrade("fang");
+        System.out.println(JSON.toJSONString(user));
     }
 
 }

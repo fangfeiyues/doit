@@ -3,6 +3,12 @@
 
 <mapper namespace="com.fang.doit.spring.mybatis.UserMapper">
 
+    <!-- eviction：淘汰策略 默认LRU；size：缓存的容量为 512 个对象引用；flushInterval：缓存每隔60秒刷新一次 -->
+    <cache eviction="FIFO" flushInterval="60000" size="512" readOnly="false" type="PERPETUAL" blocking="false"/>
+
+    <!-- UserMapper 和 UserMapper2共用一个二级缓存 -->
+    <!--<cache-ref namespace="com.fang.doit.spring.mybatis.UserMapper2"/>-->
+
     <resultMap id="resultMap" type="com.fang.doit.spring.mybatis.User" autoMapping="true">
         <result property="id" column="id"/>
         <result column="name" property="name"/>
@@ -10,7 +16,9 @@
 
     <!-- extends的使用 resultMap 时候必须全部包含 -->
     <resultMap id="userWithGradeResultMap" type="com.fang.doit.spring.mybatis.Grade">
-        <result column="grade" property="grade"/>
+        <result column="grade" property="grade" jdbcType="VARCHAR" javaType="BigDecimal"/>
+        <result column="grades" property="grades" jdbcType="VARCHAR"
+                typeHandler="com.fang.doit.spring.mybatis.UserTypeHandler"/>
         <!-- association 是在一对一的情况下 -->
         <association property="user" javaType="com.fang.doit.spring.mybatis.User" autoMapping="true">
             <result property="id" column="id"/>
@@ -38,16 +46,6 @@
     <select id="getUserWithGrades" resultMap="userGradesResultMap">
         select * from user as u left join grade g on g.user_id = u.id where u.name=#{username}
     </select>
-
-
-    <!-- eviction：淘汰策略 默认LRU；
-         size：缓存的容量为 512 个对象引用；
-         flushInterval：缓存每隔60秒刷新一次
-         -->
-    <cache eviction="FIFO" flushInterval="60000" size="512" readOnly="false" type="PERPETUAL" blocking="false"/>
-
-    <!-- UserMapper 和 UserMapper2共用一个二级缓存 -->
-    <!--<cache-ref namespace="com.fang.doit.spring.mybatis.UserMapper2"/>-->
 
 
 </mapper>

@@ -42,12 +42,48 @@ boolean blocking,Properties props)
 <!-- type:interface UserMapper -->
 knownMappers.put(type, new MapperProxyFactory<T>(type)); 
 `
+9. SQL xml解析
+在获取xml配置文件解析为SQL的过程时，` BoundSql boundSql = sqlSource.getBoundSql(parameterObject); `获取，其实现类主要有
+- DynamicSqlSource, 适用于SQL注入如${}占位符，包含 <if>、<where> 等标签时
+- RawSqlSource
+- StaticSqlSource, new BoundSql
+- ProviderSqlSource
+- VelocitySqlSource
+
 
 
 #### 3.SQL执行过程
+1. 为 Mapper 接口生成实现类来执行SQL  DefaultSqlSession.getMapper(Class<T> type)
+    1. MapperProxy 代理 UserMapper 接口执行
+    2. 如果方法是定义在 Object 类中的，则直接调用
+    3. 如果 isDefaultMethod(method)则 invokeDefaultMethod(proxy, method, args); 这对 JDK 1.8 接口的默认方法提供了支持
+    4. 否则新建 MapperMethod = new MapperMethod(mapperInterface, method, sqlSession.getConfiguration())并加入缓存
+       > ParamNameResolver 反射解析入参
+    5. 调用 execute 方法执行 SQL mapperMethod.execute(sqlSession, args)
 
-
-
+2. 查询语句执行过程
+    1. result = sqlSession.selectOne(command.getName(), param); 
+    2. CachingExecutor 二级缓存 Map<Cache, TransactionalCache> 缓存策略(LRU..)
+    3. BaseExecutor 一级缓存 PerpetualCache# Map<Object, Object> cache 如果没有再直接查库
+    4. 查询数据库queryFromDatabase()#doQuery
+    
+    ```java
+    public class SimpleExecutor extends BaseExecutor {
+      @Override
+      public <E> List<E> doQuery(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql) throws SQLException {
+        Statement stmt = null;
+        try {
+          Configuration configuration = ms.getConfiguration();
+          StatementHandler handler = configuration.newStatementHandler(wrapper, ms, parameter, rowBounds, resultHandler, boundSql);
+          stmt = prepareStatement(handler, ms.getStatementLog());
+          return handler.<E>query(stmt, resultHandler);
+        } finally {
+          closeStatement(stmt);
+        }
+      }
+    }
+    ```
+3. 更新语句执行过程
 
 
 

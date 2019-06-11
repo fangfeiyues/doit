@@ -1,5 +1,8 @@
 package com.fang.doit.spring.mybatis;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 /**
  * @Author Feiyue
  * @Description:
@@ -11,11 +14,21 @@ public class Grade {
 
     private Long userId;
 
-    private Integer grade;
+    private BigDecimal grade;
+
+    private List<String> grades;
 
     private Integer type;
 
     private User user;
+
+    public List<String> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(List<String> grades) {
+        this.grades = grades;
+    }
 
     public User getUser() {
         return user;
@@ -41,11 +54,11 @@ public class Grade {
         this.userId = userId;
     }
 
-    public Integer getGrade() {
+    public BigDecimal getGrade() {
         return grade;
     }
 
-    public void setGrade(Integer grade) {
+    public void setGrade(BigDecimal grade) {
         this.grade = grade;
     }
 
