@@ -3,6 +3,7 @@ package com.fang.doit.spring.mybatis;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedJdbcTypes;
+import org.apache.ibatis.type.MappedTypes;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -13,15 +14,17 @@ import java.util.List;
 
 /**
  * @Author Feiyue 将 List 存入数据库转化为 String
+ * 配置JdbcType和JavaType方式可用注解可用配置文件
  * @Description:
  * @Date: Created in 2019/6/10 11:53
  */
-@MappedJdbcTypes(JdbcType.VARCHAR)
+@MappedJdbcTypes(value = {JdbcType.VARCHAR})
+@MappedTypes(value = {List.class})
 public class UserTypeHandler extends BaseTypeHandler<List<String>> {
 
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, List<String> parameter, JdbcType jdbcType)
-        throws SQLException {
+            throws SQLException {
         StringBuffer sb = new StringBuffer();
         for (String s : parameter) {
             sb.append(s).append(",");

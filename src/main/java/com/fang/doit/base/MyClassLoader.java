@@ -35,7 +35,7 @@ public class MyClassLoader extends ClassLoader {
 //        };
 
         System.out.println(Thread.currentThread().getContextClassLoader());
-
+        System.out.println(MyClassLoader.class.getClassLoader());
 
     }
 }

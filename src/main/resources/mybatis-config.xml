@@ -13,10 +13,16 @@
         <!-- 下划线与驼峰式命名规则的映射 -->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
 
-        <!-- 开启CachingExecutor 默认开启-->
+        <!-- 开启 CachingExecutor 默认开启-->
         <setting name="cacheEnabled" value="true"/>
         <setting name="lazyLoadingEnabled" value="true"/>
         <setting name="autoMappingBehavior" value="PARTIAL"/>
+
+        <!-- LOG4J, STDOUT_LOGGING -->
+        <setting name="logImpl" value="LOG4J"/>
+
+        <!-- 非 RowBounds和ResultHandler 对于无@Param 注解的参数 是以 0 标识还是 agr0  -->
+        <!--<setting name="useActualParamName" value="false"/>-->
     </settings>
 
     <!--用于定义别名-->

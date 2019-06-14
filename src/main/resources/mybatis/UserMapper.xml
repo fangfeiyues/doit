@@ -3,7 +3,7 @@
 
 <mapper namespace="com.fang.doit.spring.mybatis.UserMapper">
 
-    <!-- eviction：淘汰策略 默认LRU；size：缓存的容量为 512 个对象引用；flushInterval：缓存每隔60秒刷新一次 -->
+    <!-- 为命名空间单独开启二级缓存 eviction：淘汰策略 默认LRU；size：缓存的容量为 512 个对象引用；flushInterval：缓存每隔60秒刷新一次 -->
     <cache eviction="FIFO" flushInterval="60000" size="512" readOnly="false" type="PERPETUAL" blocking="false"/>
 
     <!-- UserMapper 和 UserMapper2共用一个二级缓存 -->
