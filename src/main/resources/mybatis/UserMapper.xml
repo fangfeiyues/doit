@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-
+<!-- XMLMapperBuilder.parse() 解析 -->
 <mapper namespace="com.fang.doit.spring.mybatis.UserMapper">
 
     <!-- 为命名空间单独开启二级缓存 eviction：淘汰策略 默认LRU；size：缓存的容量为 512 个对象引用；flushInterval：缓存每隔60秒刷新一次 -->
-    <cache eviction="FIFO" flushInterval="60000" size="512" readOnly="false" type="PERPETUAL" blocking="false"/>
+    <cache eviction="FIFO" flushInterval="60000" size="512" readOnly="false" type="PERPETUAL" blocking="false">
+        <!--<property name="" value=""-->
+    </cache>
 
     <!-- UserMapper 和 UserMapper2共用一个二级缓存 -->
     <!--<cache-ref namespace="com.fang.doit.spring.mybatis.UserMapper2"/>-->

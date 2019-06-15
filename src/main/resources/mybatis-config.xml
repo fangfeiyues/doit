@@ -2,13 +2,16 @@
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- XMLConfigBuilder.parse() 主要负责解析 mybatis-config.xml 文件 -->
 <configuration>
 
+    <!-- properties 节点 -->
     <properties>
         <property name="username" value="123456"/>
         <property name="id" value="12345"/>
     </properties>
 
+    <!-- setting 节点 -->
     <settings>
         <!-- 下划线与驼峰式命名规则的映射 -->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
@@ -25,19 +28,31 @@
         <!--<setting name="useActualParamName" value="false"/>-->
     </settings>
 
-    <!--用于定义别名-->
+
+    <!--typeAliases 用于定义别名-->
     <typeAliases>
         <!--<package name="com.fang.doit.spring.mybatis"/>-->
         <typeAlias type="com.fang.doit.spring.mybatis.User" alias="user"/>
 
     </typeAliases>
 
+    <!-- plugins 提供插件机制用户可以自定义在SQL的某一点进行拦截-->
+    <!--<plugins>-->
+    <!--<plugin interceptor=""></plugin>-->
+    <!--</plugins>-->
+
+    <!-- 添加自定义 Objectory, ObjectWrapperFactory实现类, 及ReflectorFactory实现类对Mybatis扩展 -->
+    <!--<objectFactory type=""-->
+
+    <!--<objectWrapperFactory type=""-->
+
+    <!--<reflectorFactory type=""-->
+
 
     <!-- 用于定义全局的类型处理器 -->
     <typeHandlers>
         <!--<typeHandler handler="com.fang.doit.spring.mybatis.UserTypeHandler"></typeHandler>-->
     </typeHandlers>
-
 
     <!-- 不结合Spring 单独配置数据源 -->
     <environments default="development">

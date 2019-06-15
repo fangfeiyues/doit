@@ -1,5 +1,5 @@
 
-#### 1.配置文件解析 
+#### 配置文件解析 
 核心类 XMLConfigBuilder 
 <settings>, 
 <typeAliases>, 
@@ -9,7 +9,7 @@
 1. 构建 SqlSessionFactory 
 
 
-#### 2.解析映射文件
+#### 解析映射文件
 核心类 XMLMapperBuilder# configurationElement(XNode context)
 1. 获取命名空间namespace并设置到 builderAssistant 中
 2. cache-ref 标签解析
@@ -52,7 +52,7 @@ knownMappers.put(type, new MapperProxyFactory<T>(type));
 
 
 
-#### 3.SQL执行过程
+#### SQL执行过程
 
 ##### 1. 为 Mapper 接口生成实现类来执行SQL
     DefaultSqlSession.getMapper(Class<T> type)
@@ -136,28 +136,29 @@ knownMappers.put(type, new MapperProxyFactory<T>(type));
 
 
 #### 基础支持层
-1. 反射模块
-2. 类型转换模块
-3. 日志模块
+##### 1 反射模块
+##### 2 类型转换模块
+##### 3 日志模块
    > 适配器模式：主要是解决由于接口不能兼容而导致类无法使用的问题
-4. 资源模块（类加载）
-5. DataSource
+##### 4 资源模块（类加载）
+##### 5 DataSource
    > 工厂模式：怎么给扩展 DataSource?
    > 代理模式：（ PooledConnection 代理 Connection 过程中检查checkConnection连接是否中断）
-6. Transaction模块 对数据库事务进行抽象
+##### 6 Transaction模块 对数据库事务进行抽象
 > 如JDBCTransaction: connection, dataSource, transactionIsolationLevel, autoCommit
-7. binding模块
+##### 7 binding模块
 > SqlCommand, name执行方法&type方法类型
 > MethodSignature, 参数处理。 ParamNameResolver和也别标注rowBoundsIndex resultHandlerIndex
 
-8. 缓存模块
+##### 8 缓存模块
 > 装饰器模式：动态的为对象添加功能它是基于组合方式实现该功能的。以LruCache为例，在被装饰者PerpetualCache维护着缓存同时用LruCache进行装饰(他们都继承着Cache)
 > 具体装饰功能是，每次putObject如果eldestKey不能空则移除被装饰者的缓存数据，同时在getObject时候更新LruCache队列顺序 accessOrder=true
 
 
 
 #### 核心处理层
-
+##### 1.初始化
+> 建造者模式：
 
 
 
