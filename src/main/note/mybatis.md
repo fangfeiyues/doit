@@ -113,13 +113,13 @@ knownMappers.put(type, new MapperProxyFactory<T>(type));
     这个是说在当在缓存指定 key 对应元素不存在于缓存中时，BlockingCache 会根据 lock 进行加锁。
     此时，其他线程将会进入等待状态，直到与 key 对应的元素被填充到缓存中。而不是让所有线程都去访问数据库
 3. CacheKey
-4. 一级缓存PerpetualCache +缓存策略
+4. 一级缓存 PerpetualCache +缓存策略
    > 在进行数据库查询之前，MyBatis 首先会检查以及缓存中是否有相应的记录，若有的话直接返回即可。一级缓存是数据库的最后一道防护，若一级缓存未命中，查询请求将落到数据库上
 
    1. `CacheKey = createCacheKey(ms, parameter, rowBounds, boundSql);` 拿取CacheKey
    2. `BaseExecutor# list = resultHandler == null ? (List<E>) PerpetualCache.getObject(key) : null;`
 
-5. 二级缓存CachingExecutor +事务控制TransactionalCacheManager
+5. 二级缓存 CachingExecutor +事务控制TransactionalCacheManager
        > 二级缓存构建在一级缓存之上，在收到查询请求时，MyBatis 首先会查询二级缓存。若二级缓存未命中，再去查询一级缓存。
        > 与一级缓存不同，二级缓存和具体的命名空间绑定，一级缓存则是和 SqlSession 绑定。
 
@@ -145,7 +145,8 @@ knownMappers.put(type, new MapperProxyFactory<T>(type));
    > 工厂模式：怎么给扩展 DataSource?
    > 代理模式：（ PooledConnection 代理 Connection 过程中检查checkConnection连接是否中断）
 ##### 6 Transaction模块 对数据库事务进行抽象
-> 如JDBCTransaction: connection, dataSource, transactionIsolationLevel, autoCommit
+>
+# 如JDBCTransaction: connection, dataSource, transactionIsolationLevel, autoCommit
 ##### 7 binding模块
 > SqlCommand, name执行方法&type方法类型
 > MethodSignature, 参数处理。 ParamNameResolver和也别标注rowBoundsIndex resultHandlerIndex
@@ -160,7 +161,7 @@ knownMappers.put(type, new MapperProxyFactory<T>(type));
 ##### 1.初始化
 > 建造者模式：
 
-
+`mapper.xml` 和 `mybatis-config.xml` 最后解析的都是 `Configuration` 对象
 
 
 

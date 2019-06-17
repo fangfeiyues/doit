@@ -8,12 +8,21 @@
         <!--<property name="" value=""-->
     </cache>
 
-    <!-- UserMapper 和 UserMapper2共用一个二级缓存 -->
+    <!-- UserMapper 和 UserMapper2 共用一个二级缓存 -->
     <!--<cache-ref namespace="com.fang.doit.spring.mybatis.UserMapper2"/>-->
 
     <resultMap id="resultMap" type="com.fang.doit.spring.mybatis.User" autoMapping="true">
+        <constructor>
+            <idArg column="id" javaType="Long"/>
+        </constructor>
+
         <result property="id" column="id"/>
         <result column="name" property="name"/>
+
+
+        <!--<discriminator javaType="">-->
+            <!--<case value=""></case>-->
+        <!--</discriminator>-->
     </resultMap>
 
     <!-- extends的使用 resultMap 时候必须全部包含 -->
@@ -33,6 +42,7 @@
         <!-- 一对多映射 -->
         <collection property="gradeList" javaType="list" ofType="com.fang.doit.spring.mybatis.Grade">
             <result column="grade" property="grade"/>
+            <result column="type" property="type"/>
         </collection>
     </resultMap>
 

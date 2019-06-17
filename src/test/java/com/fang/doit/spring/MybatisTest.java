@@ -42,7 +42,7 @@ public class MybatisTest {
         //    System.out.println(user.getName());
         //}
 
-        Grade user = mapper.getUserGrade("fang");
+        User user = mapper.getUserWithGrades("fang");
         System.out.println(JSON.toJSONString(user));
     }
 

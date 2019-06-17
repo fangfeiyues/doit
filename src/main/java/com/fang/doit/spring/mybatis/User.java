@@ -10,6 +10,10 @@ import java.util.List;
  */
 public class User implements Serializable {
 
+    public User(Long id) {
+        this.id = id;
+    }
+
     private Long id;
 
     private String name;
