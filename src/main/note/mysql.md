@@ -1,4 +1,49 @@
-1.大体来说Mysql可以分为Server层和存储引擎两层。
+
+### MySQL存储引擎
+
+#### mysql抖动
+内存不足 / redo日志满了 --> flush刷脏，造成短暂不可用
+
+
+### MySQL索引结构
+#### 索引
+InnoDB的索引模型：B+树。每个索引在InnoDB中都对应一颗B+树
+主键索引：叶子节点存的是整行数据。也被称为聚簇索引
+非主键索引：叶子节点内容是主键的值。也被称为二级索引
+采用N叉树的原因：相比于搜索二叉树访问磁盘的次数更少了。1200的数据块树高为4的时候已经有1200的三次方17亿的数据一次访问只要三次访问磁盘
+
+二叉查找树 --> 磁盘I/O  1.每个节点存储多个元素 2.采用N叉树
+平衡二叉树 -->
+m阶B树 --> 数据都保存在节点里如果某个字段太长容纳的数据量受到限制
+1.根节点至少有两个子节点
+2.每个中间节点都包含k-1个元素和k个孩子其中 m/2<= k <=m
+3.每个叶子节点都包含k-1个元素
+4.所有叶子节点都位于同一层
+5.每个节点中的元素从小到大排序 节点当中k-1个元素正好是k个节点包含的元素的值域分划
+B+树 -->
+1.有k个子树的中间节点包含有k个元素（B树中是k-1个元素），每个元素不保存数据只用来索引所有数据都保存在叶子节点
+2.所有的叶子结点中包含了全部元素的信息，及指向含这些元素记录的指针且叶子结点本身依关键字的大小自小而大顺序链接
+3.所有的中间节点元素都同时存在于子节点，在子节点元素中是最大（或最小）元素
+
+
+#### 普通索引和唯一索引
+两者的性能差异：
+change buffer: 在更新操作时如果数据在内存中则直接更新否则将更新数据存放发到change buffer中下次读取直接能。同时也会定期写入磁盘。这样对于唯一索引来说就无法使用了
+对于写多读少的业务场景来说，不断的写入缓存change buffer同时不会立即读
+merge过程：
+	1.从磁盘读入数据到内存
+	2.从change buffer找到这个数据页的可能是多个change buffer记录，一次应用
+	3.写redo log
+
+redo log & change buffer:
+   redo log主要节省的是随机写的IO磁盘消耗(转成顺序写)，而change buffer主要节省的则是随机读的磁盘消耗。
+
+
+---
+
+### MySQL 执行流程
+
+#### 1.大体来说Mysql可以分为Server层和存储引擎两层。
 Server: 
 连接器 -- 管理连接权限验证 
 分析器 -- 词法分析语法分析,
@@ -13,6 +58,65 @@ binlog(Server归档日志): 归档；逻辑日志；每次事物的逻辑日志 都会持久化到磁盘。sta
 两者日志保存的顺序是redolog-binlog，它们在写的过程中必须保证事务性不然在日志恢复数据的时候就会造成与原库不一致
 WAL：先写日志在写磁盘(先写粉板再写账本)，具体的就是一条记录来的时候会先下redo log并更新内存，InnoDB引擎在合适的时候更新到磁盘
 
+#### 表数据删除
+delete只是把记录的位置或数据页标记为了"可复用"但是磁盘文件的大小是不会变的
+因为B+索引分裂 可能造成的page空洞
+重建表，把A的数据重建到B中较少空洞。在mysql5.6 online DDL
+alter table t where engine=InnoDB
+
+#### 读一行也慢
+1.锁等待  show processlist;
+2.等flush
+3.等行锁
+
+#### count(*)
+MyISAM引擎把表的总行数存在磁盘上了因此执行count(*)的时候效率很高
+同一时刻查询 由于多版本并发控制(MVCC)的原因 InnoDB表"应该返回多少"也是不确定的 --> 自己计数
+count(*)~~
+count(1) -- 每一行不为null 则放个数字"1" >
+count(id) -- 拿到每一行的id返回给server  >
+count(字段) --
+
+#### order by
+sort_buffer
+select id from t order by rand() limit 3;
+
+---
+
+### MySQL的事务和锁
+共享锁(S锁) select ... lock in share mode:
+排它锁(X锁) select ... for update:
+记录锁：与本身，next-key冲突
+间隙锁Gap: 开区间 只与gapII冲突
+next-key lock = 间隙锁 + 行锁: 前开后闭
+insert_intension lock(gapII): 插入意向锁，只在insert   和Gap或next-key lock冲突
+乐观锁：
+悲观锁：
+
+MVCC(Multi-Version Concurrency Control)多版本并发控制：获得高并发性能
+   “读不加锁，读写不冲突”，对立的就是锁的并发控制不区别当前读和快照读均为当前读即读加读锁写加X锁(Serializable)
+在MVCC并发控制中读操作可以分为两类：快照读与当前读
+快照读，读取的是记录的可见版本 (有可能是历史版本)，不用加锁
+    如select * where
+当前读，读取的是记录的最新版本，并且当前读返回的记录都会加上锁，保证其他事务不会再并发修改这条记录
+    如lock in share mode(S锁); for update; insert; update; delete
+
+for update 仅适用于InnoDB存储引擎，且必须在事务区块(BEGIN/COMMIT)中才能生效。
+select @@tx_isolation;
+select * from information_schema.innodb_locks;  -- 查看锁竞争
+
+-- sync_binlog(binlog): 这个参数是对于MySQL系统来说是至关重要的，他不仅影响到Binlog对MySQL所带来的性能损耗，而且还影响到MySQL中数据的完整性
+sync_binlog=0, 当事务提交之后，MySQL不做fsync之类的磁盘同步指令刷新binlog_cache中的信息到磁盘，而让Filesystem自行决定什么时候来做同步，或者cache满了之后才同步到磁盘
+sync_binlog=n, 当每进行n次事务提交之后，MySQL将进行一次fsync之类的磁盘同步指令来将binlog_cache中的数据强制写入磁盘
+当设置为1的时候是最安全但是性能损耗最大的设置因为即使系统Crash，也最多丢失binlog_cache中未完成的一个事务，对实际数据没有任何实质性影响
+
+-- innodb_flush_log_at_trx_commit(redo):
+==0, 每次事务提交都只是停留在redo log buffer
+==1, 都将redo直接持久化到磁盘
+==2, 都只是把redo log写到page cache
+InnoDB 有一个后台线程，每隔 1 秒，就会把 redo log中的日志调用write写到文件系统的page cache然后fsync持久化到磁盘
+
+"双1方案"
 #### 事务隔离性
 事务的ACID: 原子性一致性隔离性持久性
 读未提交：可以读取到其他事务未提交的内容，可能导致脏读(读到未提交的数据)
@@ -33,74 +137,6 @@ RC和RR的区别(视图)：
 对于可重复读，查询只承认在事务启动前就已经提交完成的数据；
 对于读提交，查询只承认在语句启动前就已经提交完成的数据；
 
-#### 索引
-InnoDB的索引模型：B+树。每个索引在InnoDB中都对应一颗B+树
-主键索引：叶子节点存的是整行数据。也被称为聚簇索引
-非主键索引：叶子节点内容是主键的值。也被称为二级索引
-采用N叉树的原因：相比于搜索二叉树访问磁盘的次数更少了。1200的数据块树高为4的时候已经有1200的三次方17亿的数据一次访问只要三次访问磁盘
-
-二叉查找树 --> 磁盘I/O  1.每个节点存储多个元素 2.采用N叉树
-平衡二叉树 -->
-m阶B树 --> 数据都保存在节点里如果某个字段太长容纳的数据量受到限制
-1.根节点至少有两个子节点  
-2.每个中间节点都包含k-1个元素和k个孩子其中 m/2<= k <=m  
-3.每个叶子节点都包含k-1个元素 
-4.所有叶子节点都位于同一层
-5.每个节点中的元素从小到大排序 节点当中k-1个元素正好是k个节点包含的元素的值域分划
-B+树 -->
-1.有k个子树的中间节点包含有k个元素（B树中是k-1个元素），每个元素不保存数据只用来索引所有数据都保存在叶子节点
-2.所有的叶子结点中包含了全部元素的信息，及指向含这些元素记录的指针且叶子结点本身依关键字的大小自小而大顺序链接
-3.所有的中间节点元素都同时存在于子节点，在子节点元素中是最大（或最小）元素
-
-
-#### 普通索引和唯一索引
-两者的性能差异：
-change buffer: 在更新操作时如果数据在内存中则直接更新否则将更新数据存放发到change buffer中下次读取直接能。同时也会定期写入磁盘。这样对于唯一索引来说就无法使用了
-对于写多读少的业务场景来说，不断的写入缓存change buffer同时不会立即读
-merge过程：
-	1.从磁盘读入数据到内存
-	2.从change buffer找到这个数据页的可能是多个change buffer记录，一次应用
-	3.写redo log
-
-redo log & change buffer: 
-   redo log主要节省的是随机写的IO磁盘消耗(转成顺序写)，而change buffer主要节省的则是随机读的磁盘消耗。
-
-
-#### 表锁&行锁
-
-
-
-#### mysql抖动
-内存不足 / redo日志满了 --> flush刷脏，造成短暂不可用
-
-
-#### 表数据删除
-delete只是把记录的位置或数据页标记为了"可复用"但是磁盘文件的大小是不会变的
-因为B+索引分裂 可能造成的page空洞
-重建表，把A的数据重建到B中较少空洞。在mysql5.6 online DDL
-alter table t where engine=InnoDB
-
-
-#### count(*)
-MyISAM引擎把表的总行数存在磁盘上了因此执行count(*)的时候效率很高
-同一时刻查询 由于多版本并发控制(MVCC)的原因 InnoDB表"应该返回多少"也是不确定的 --> 自己计数
-count(*)~~
-count(1) -- 每一行不为null 则放个数字"1" >
-count(id) -- 拿到每一行的id返回给server  >
-count(字段) -- 
-
-
-#### order by
-sort_buffer
-select id from t order by rand() limit 3;
-
-
-#### 读一行也慢
-1.锁等待  show processlist;
-2.等flush  
-3.等行锁  
-
-
 #### 幻读
 a.幻读指的是一个事务在前后两次当前读查询同一个范围的时候，后一次查询看到了前一次查询没有看到的行
   a1: 在可重复读的隔离级别下普通查询是快照读是不会看到别的事务插入的数据的，幻读只有在当前读(如for update读到所有已经提交的事务)下才会出现
@@ -110,12 +146,13 @@ b.当前读(补充)
 间隙锁next-key lock ~ 可重读读的情况下才会生效 同时也可能导致的死锁
 如果把隔离级别设置为读提交 同时binlog_format=row
 
+
 #### 一行语句的加锁
 加锁规则：
 1.加锁的基本单位是next-key lock
 2.查找过程中访问到对象才会加锁
 3.优化1--索引上的等值查询 给唯一索引加锁的时候 next-key lock退化为行锁 !!!!!
-4.优化2--索引上的等值查询 向右遍历时最后一个值不满足等值条件的时候 next-key lock退化为间隙锁 
+4.优化2--索引上的等值查询 向右遍历时最后一个值不满足等值条件的时候 next-key lock退化为间隙锁
    3.4翻译过来就是等值查询中next-key lock要不成行锁(唯一索引)，要么继续向后遍历且退化的间隙锁
 
 等值查询间隙锁：
@@ -123,23 +160,24 @@ update t set d=d+1 where id=7. -- 没有id=7记录 (5,10]->(5,10)
 lock in share mode 只锁覆盖索引；for update 会认为你要更新数据会顺便把主键索引上满足条件的索引加上行锁
 
 非唯一索引等值锁：
-select id from t where c=5 lock in share mode.  
+select id from t where c=5 lock in share mode.
 'lock share in mode'锁覆盖索引
 
 主键索引范围锁：
-select * from t where id>=10 and id<11 for update. --next-key lock为(5,10]->10行锁 -->10&(10,15] 
+select * from t where id>=10 and id<11 for update. --next-key lock为(5,10]->10行锁 -->10&(10,15]
 非唯一索引范围锁：
 select * from t where c>=10 and c<11 for update. -- 不会退化(5,10]和(10,15]
 唯一索引范围锁：
 
 如果sql语句加上limit n 那么在遍历到n条数据之后就不会再向后加锁
 死锁：next-key lock是分为两段锁来执行的 先加间隙锁再加行锁
-sessionA：1.begin; select id from t where c=10 lock in share mode;  3.insert into values(8,8,8) []
-sesisonB：2.update t set d=d+1 where c=10;[先锁(5,10) 再锁10行锁]
+sessionA：1.begin; select id from t where c=10 lock in share mode;  3.insert into values(8,8,8)
+sesisonB：2.update t set d=d+1 where c=10;先锁(5,10) 再锁10行锁
 
 
-#### 饮鸩止渴
+---
 
+### MySQL集群和备份
 
 #### Mysql怎么保证数据不丢失
 binlog写入机制：
@@ -199,11 +237,11 @@ MySQL数据查询
 推荐配置为READ-COMMITTED
 
 #### binlog_format参数
-|format|定义|优点|缺点|
-| --- | --- | --- | --- |
-|statement|记录的是修改SQL语句|日志文件小，节约IO，提高性能|准确性差，对一些系统函数不能准确复制或不能复制，如now()、uuid()等|
-|row(推荐)|记录的是每行实际数据的变更，记两条，更新前和更新后|准确性强，能准确复制数据的变更|日志文件大，较大的网络IO和磁盘IO|
-|mixed|statement和row模式的混合|准确性强，文件大小适中|有可能发生主从不一致问题|
+|format|定义|优点|缺点|用处|
+| --- | --- | --- | --- | --- |
+|statement|记录的是修改SQL语句|日志文件小，节约IO，提高性能|准确性差，对一些系统函数不能准确复制或不能复制，如now()、uuid()等|  |
+|row(推荐)|记录的是每行实际数据的变更，记两条，更新前和更新后|准确性强，能准确复制数据的变更|日志文件大，较大的网络IO和磁盘IO|  |
+|mixed|statement和row模式的混合|准确性强，文件大小适中|有可能发生主从不一致问题|   |
 
 #### sync_binlog参数
 0：当事务提交后，Mysql仅仅是将binlog_cache中的数据写入binlog文件，但不执行fsync之类的磁盘 同步指令通知文件系统将缓存刷新到磁盘，而让Filesystem自行决定什么时候来做同步，这个是性能最好的。  
@@ -227,40 +265,6 @@ ON 单独的文件，每个innodb表数据存储在以.ibd为后缀的文件中。
 #### tmp_table_size
 内存临时表的大小，默认是 16M。如果内存不够则使用磁盘临时表。
 
-## MySQL锁
-共享锁(S锁) select ... lock in share mode: 
-排它锁(X锁) select ... for update: 
-记录锁：与本身，next-key冲突
-间隙锁Gap: 开区间 只与gapII冲突
-next-key lock = 间隙锁 + 行锁: 前开后闭
-insert_intension lock(gapII): 插入意向锁，只在insert   和Gap或next-key lock冲突
-乐观锁：
-悲观锁：
-
-MVCC(Multi-Version Concurrency Control)多版本并发控制：获得高并发性能
-   “读不加锁，读写不冲突”，对立的就是锁的并发控制不区别当前读和快照读均为当前读即读加读锁写加X锁(Serializable)
-在MVCC并发控制中读操作可以分为两类：快照读与当前读
-快照读，读取的是记录的可见版本 (有可能是历史版本)，不用加锁
-    如select * where
-当前读，读取的是记录的最新版本，并且当前读返回的记录都会加上锁，保证其他事务不会再并发修改这条记录
-    如lock in share mode(S锁); for update; insert; update; delete
-
-for update 仅适用于InnoDB存储引擎，且必须在事务区块(BEGIN/COMMIT)中才能生效。
-select @@tx_isolation;
-select * from information_schema.innodb_locks;  -- 查看锁竞争
-
--- sync_binlog(binlog): 这个参数是对于MySQL系统来说是至关重要的，他不仅影响到Binlog对MySQL所带来的性能损耗，而且还影响到MySQL中数据的完整性
-sync_binlog=0, 当事务提交之后，MySQL不做fsync之类的磁盘同步指令刷新binlog_cache中的信息到磁盘，而让Filesystem自行决定什么时候来做同步，或者cache满了之后才同步到磁盘
-sync_binlog=n, 当每进行n次事务提交之后，MySQL将进行一次fsync之类的磁盘同步指令来将binlog_cache中的数据强制写入磁盘
-当设置为1的时候是最安全但是性能损耗最大的设置因为即使系统Crash，也最多丢失binlog_cache中未完成的一个事务，对实际数据没有任何实质性影响
-
--- innodb_flush_log_at_trx_commit(redo):
-==0, 每次事务提交都只是停留在redo log buffer
-==1, 都将redo直接持久化到磁盘
-==2, 都只是把redo log写到page cache
-InnoDB 有一个后台线程，每隔 1 秒，就会把 redo log中的日志调用write写到文件系统的page cache然后fsync持久化到磁盘
-
-"双1方案"
 
 
 
