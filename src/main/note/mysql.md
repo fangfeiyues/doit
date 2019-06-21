@@ -81,6 +81,38 @@ count(字段) --
 sort_buffer
 select id from t order by rand() limit 3;
 
+
+#### 内部临时表
+```sql
+     create temporary table temp_t like t1;
+     alter table temp_t add index(b);
+     insert into temp_t select * from t2 where b>=1 and b<=2000;
+     select * from t1 join temp_t on (t1.b=temp_t.b);
+```
+> 内存表：指的是由Memory引擎创建的表 语法结构为 create table ... engine = memory
+> 临时表：每个引擎都能创建 语法结构 create temporary table...
+
+临时表特点
+1. 只能由被他创建的session看见，对其他线程不可见
+2. 临时表可以和其他库表同名 `table_def_key`:`'库名+表名'+ session_id + thread_id`
+3. session A内既有临时表和普通表的时候，show create语句以及其他的增删改查都只是临时表
+4. show tables不显示临时表
+5. 对于"MySQL异常重启，应用程序异常断开"这样的情况临时表会自动回收，但是如果线程池保持长链接就会由问题 所以最好还是用完删除
+
+用处
+1. 分库处理
+> 1.在汇总库上创建一个临时表temp_ht, 表中包含需查询的字段
+> 2.在各个分库上执行查询
+> 3.汇总到temp_ht
+> 4.到临时表中查询
+
+主备同步时临时表处理
+1. binlog_format= row
+
+
+#### union
+
+
 ---
 
 ### MySQL的事务和锁
@@ -240,7 +272,7 @@ MySQL数据查询
 |format|定义|优点|缺点|用处|
 | --- | --- | --- | --- | --- |
 |statement|记录的是修改SQL语句|日志文件小，节约IO，提高性能|准确性差，对一些系统函数不能准确复制或不能复制，如now()、uuid()等|  |
-|row(推荐)|记录的是每行实际数据的变更，记两条，更新前和更新后|准确性强，能准确复制数据的变更|日志文件大，较大的网络IO和磁盘IO|  |
+|row(推荐)|记录的是每行实际数据的变更，记两条，更新前和更新后|准确性强，能准确复制数据的变更|日志文件大，较大的网络IO和磁盘IO| 会记录临时表操作；  |
 |mixed|statement和row模式的混合|准确性强，文件大小适中|有可能发生主从不一致问题|   |
 
 #### sync_binlog参数
