@@ -119,6 +119,23 @@ count(字段) --
 sort_buffer
 select id from t order by rand() limit 3;
 
+#### group by
+
+`select id%10 as m, count(*) as c from t1 group by m;`
+
+> 1. 创建内存临时表，表里有两个字段m和c，主键是m; Using Temporary
+> 2. 扫描表t1的索引a，依次取出叶子节点上的id值计算id%10的结果记为x;如果没有就插入否则加1
+> 3. 遍历完成在根据m做排序返回给客户端
+> 4. 附：如果不想在分组的时候排序 可以order by null
+
+**优化1--索引**
+利用索引满足输入有序的条件，可以单独起个索引列
+` select z, count(*) as c from t1 group by z; `
+
+**优化2**
+当group by数据量很大不走临时表直接走磁盘
+ ` select SQL_BIG_RESULT id%100 as m, count(*) as c from t1 group by m; `
+
 
 #### 内部临时表
 ```sql
@@ -404,6 +421,7 @@ ON 单独的文件，每个innodb表数据存储在以.ibd为后缀的文件中。
 #### tmp_table_size
 内存临时表的大小，默认是 16M。如果内存不够则使用磁盘临时表。
 
+#### sort_buffer 性能
 
 #### show variables like '%%'
 查询一些系统参数如 innodb_buffer_pool_size 缓冲区大小
