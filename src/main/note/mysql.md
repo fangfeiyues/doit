@@ -96,6 +96,16 @@ SQL简单的更新流程
 
 ***两阶段提交 主要就是防止在对数据恢复到任意一秒状态操作时不会造成数据的不一致性***
 
+
+
+#### insert...select
+`insert into t2(c,d) select c,d from t;`
+> 在RR级别下，binlog_format=statement 时执行会产生间隙锁(-,1]。
+> 主要是为了防止插过程中有其他的插入行为，导致最终写binlog备份时产生不一致
+
+
+
+
 #### 表数据删除
 delete只是把记录的位置或数据页标记为了"可复用"但是磁盘文件的大小是不会变的
 因为B+索引分裂 可能造成的page空洞
@@ -156,16 +166,42 @@ select id from t order by rand() limit 3;
 
 **用处**
 1. 分库处理
-> 1.在汇总库上创建一个临时表temp_ht, 表中包含需查询的字段
-> 2.在各个分库上执行查询
-> 3.汇总到temp_ht
-> 4.到临时表中查询
+> 1. 在汇总库上创建一个临时表temp_ht, 表中包含需查询的字段
+> 2. 在各个分库上执行查询
+> 3. 汇总到temp_ht
+> 4. 到临时表中查询
 
 主备同步时临时表处理
 1. binlog_format= row
 
 
 #### union
+
+
+#### 自增主键
+不同的引擎对于自增值保存策略不同
+> 1. MyISAM引擎保存在数据文件中
+> 2. InnoDB 5.7之前保存在内存中重启依靠max(id)+1恢复；8.0版本记录在redo log中
+
+**自增算法** 从auto_increment_offset开始以auto_increment_increment为步长持续叠加。默认值都是1
+自增主键不连续原因
+1. 在先获取当前自增值后，插入过程因为唯一索引等原因失败
+2. 回滚。为了保证数据的一致性及系统并发粒度不对主键进行回滚了
+3. 批量插入的会增大式分配但是用不完的话就会导致浪费
+
+自增锁的优化innodb_autoinc_lock_mode
+> 1. 设置0时，语句执行结束后释放
+> 2. 设置1时：普通insert语句自增锁申请之后马上释放；insert...select批量插入数据的等语句结束后释放
+> 3. 设置2时，所有申请自增主键申请后就释放
+
+**批量插入解析insert...select=1原因**
+insert...select=1 为了防止在session1执行过程中session2在binlog中间插入导致备库时不一致
+**解法**
+1. 批量插入数据语句固定生成连续id
+2. innodb_autoinc_lock_mode=2 & binlog_format=row
+
+
+
 
 
 ---
