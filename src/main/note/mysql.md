@@ -147,6 +147,58 @@ select id from t order by rand() limit 3;
  ` select SQL_BIG_RESULT id%100 as m, count(*) as c from t1 group by m; `
 
 
+#### left join
+> left join
+> straight_join
+
+**1. Index Nested-Loop Join (NLJ)**
+
+`select * from t1 straight_join t2 on (t1.a=t2.a);`
+> 1. 从表t1中读取一行数据R
+> 2. 从数据行R中取出a字段到表t2里去查找
+> 3. 取出t2中满足条件的行跟R组成一行作为结果集的一部分
+> 4. 重复以上步骤
+> 5. 时间复杂度：N + N*2*lgM (N是驱动表；M是被驱动表)。故应该小表作为驱动表
+
+
+**2. Simple Nested-Loop Join**
+
+`select * from t1 straight_join t2 on (t1.a=t2.b);`
+> 1. 取出驱动表每一行数据到被驱动表做全表匹配，匹配成功的返回
+> 2. 在没有索引的情况下共扫描100 * 1000行
+
+***与BNL比较就是没有在Buffer Pool就需要等待数据从磁盘读入内存，影响Buffer Pool的命中率；
+即使都在内存它每次查找下一个记录就是类似指针而join buffer是数组遍历成本低***
+
+
+**3. Block Nested-Loop Join(BNL)**
+
+> 1. 把表t1数据读入join_buffer
+> 2. 扫描t2 把t2中每一行取出来跟join_buffer对比，如果join_buffer大小不够则分多次进行
+> 3. 时间复杂度：
+
+*在决定哪个表作驱动表的时候应该是两个表按照各自的条件过滤之后，
+计算各个字段的总数量，数据量小的那个就是小表应该作为驱动表。*
+
+
+**4. join 中`on` 和 `where` 的使用**
+```sql
+select * from a left join b on(a.f1=b.f1) and (a.f2=b.f2); /*Q1，b无索引*/
+select * from a left join b on(a.f1=b.f1) where (a.f2=b.f2);/*Q2*/
+```
+> Q1会把 NULL 值也作为一行查出来
+> Q2则在查找 where a.f2=b.f2中就不会包含NULL。此时它的语义和join一样??? 优化器直接优化成join从而把a作为了被驱动表
+
+```sql
+select * from a join b on(a.f1=b.f1) and (a.f2=b.f2); /*Q3*/
+select * from a join b on(a.f1=b.f1) where (a.f2=b.f2);/*Q4*/
+```
+改写成
+`select * from a join b where (a.f1=b.f1) and (a.f2=b.f2);`
+
+***如果需要left join语义就不能把被驱动表放在where条件里做等值或不等判断***
+
+
 #### 内部临时表
 ```sql
      create temporary table temp_t like t1;
@@ -199,9 +251,6 @@ insert...select=1 为了防止在session1执行过程中session2在binlog中间插入导致备库时
 **解法**
 1. 批量插入数据语句固定生成连续id
 2. innodb_autoinc_lock_mode=2 & binlog_format=row
-
-
-
 
 
 ---
