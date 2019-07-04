@@ -86,6 +86,7 @@ checkpoint 是当前要擦除的位置，擦除前要把记录更新到数据文件
 
 ### 2. MySQL执行流程
 
+
 #### update
 SQL简单的更新流程
 > 1. 执行器找到引擎取ID = 2这行。查看是否在内存？否则从磁盘读入内存
@@ -97,22 +98,19 @@ SQL简单的更新流程
 ***两阶段提交 主要就是防止在对数据恢复到任意一秒状态操作时不会造成数据的不一致性***
 
 
-
 #### insert...select
 `insert into t2(c,d) select c,d from t;`
 > 在RR级别下，binlog_format=statement 时执行会产生间隙锁(-,1]。
 > 主要是为了防止插过程中有其他的插入行为，导致最终写binlog备份时产生不一致
 
 
-
-
-#### 表数据删除
+#### delete
 delete只是把记录的位置或数据页标记为了"可复用"但是磁盘文件的大小是不会变的
 因为B+索引分裂 可能造成的page空洞
 重建表，把A的数据重建到B中较少空洞。在mysql5.6 online DDL
 alter table t where engine=InnoDB
 
-#### 读一行也慢
+#### select(slow)
 1.锁等待  show processlist;
 2.等flush
 3.等行锁
@@ -199,6 +197,17 @@ select * from a join b on(a.f1=b.f1) where (a.f2=b.f2);/*Q4*/
 ***如果需要left join语义就不能把被驱动表放在where条件里做等值或不等判断***
 
 
+#### union
+
+> 负向比较（例如：!=）会引发全表扫描；
+> 如果允许空值，不等于(!=)的查询，不会将空值行(row)包含进来，此时的结果集往往是不符合预期的，此时往往要加上一个or条件，把空值(is null)结果包含进来；
+> or可能会导致全表扫描，此时可以优化为union查询；
+> 建表时加上默认(default)值，这样能避免空值的坑；
+> explain工具是一个好东西；
+
+#### in
+
+
 #### 内部临时表
 ```sql
      create temporary table temp_t like t1;
@@ -225,9 +234,6 @@ select * from a join b on(a.f1=b.f1) where (a.f2=b.f2);/*Q4*/
 
 主备同步时临时表处理
 1. binlog_format= row
-
-
-#### union
 
 
 #### 自增主键
@@ -469,9 +475,6 @@ MASTER_USER=$user_name
 MASTER_PASSWORD=$password 
 master_auto_position=1 
 
-
-   
----
 
 ## 6. 常见参数配置和命令
 #### transaction-isolation：  
