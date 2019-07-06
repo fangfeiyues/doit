@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.ListSerializer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
@@ -36,6 +38,9 @@ public class AAAA {
         //countDownLatch.await();
         //System.out.println(JSON.toJSONString(a.list.size()));
 
-        System.out.println("111222");
+        HashMap hashMap = new HashMap();
+        hashMap.put(null, 1);
+        hashMap.put(null, 2);
+        System.out.println(hashMap.get(null));
     }
 }

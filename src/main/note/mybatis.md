@@ -1,4 +1,12 @@
 
+#### JDBC
+> 1. 注册数据库驱动类，明确指定数据库URL地址、数据库用户名、密码等连接信息
+> 2. DiverManager 打开数据库连接
+> 3. 通过数据库连接从创建 Statement(PreparedStatement)
+> 4. 执行SQL,得到ResultSet
+> 5. 通过Result读取数据，并转换成JavaBean
+> 6. 关闭资源
+
 #### 配置文件解析 
 核心类 XMLConfigBuilder 
 <settings>, 
@@ -122,8 +130,6 @@ knownMappers.put(type, new MapperProxyFactory<T>(type));
 5. 二级缓存 CachingExecutor +事务控制TransactionalCacheManager
        > 二级缓存构建在一级缓存之上，在收到查询请求时，MyBatis 首先会查询二级缓存。若二级缓存未命中，再去查询一级缓存。
        > 与一级缓存不同，二级缓存和具体的命名空间绑定，一级缓存则是和 SqlSession 绑定。
-
-
        > 在按照 MyBatis 规范使用 SqlSession 的情况下，一级缓存不存在并发问题。二级缓存则不然，二级缓存可在多个命名空间间共享。
        > 这种情况下，会存在并发问题，因此需要针对性去处理。除了并发问题，二级缓存还存在事务问题
 
@@ -136,28 +142,54 @@ knownMappers.put(type, new MapperProxyFactory<T>(type));
 
 
 #### 基础支持层
-##### 1 反射模块
-##### 2 类型转换模块
-##### 3 日志模块
+
+
+##### 1. 反射模块
+
+
+##### 2. 类型转换模块
+继承 `BaseTypeHandler`，参数 `setParameter(PreparedStatement ps, int i, T parameter, JdbcType jdbcType)`
+
+**单个注册**
+`@MappedJdbcTypes` 和 `@MappedTypes` 来设置相关的handler
+维护在TYPE_HANDLER_MAP记录了Java类型想指定JavaType转换时需要使用的TypeHandler对象。如Java类型中的String可以转换成数据库的char及varchar所以存在一对多关系
+
+**扫描注册**
+
+
+**查找TypeHandler**
+
+
+
+##### 3. 日志模块
    > 适配器模式：主要是解决由于接口不能兼容而导致类无法使用的问题
-##### 4 资源模块（类加载）
-##### 5 DataSource
+   
+   
+##### 4. 资源模块（类加载）
+
+
+##### 5. DataSource
    > 工厂模式：怎么给扩展 DataSource?
    > 代理模式：（ PooledConnection 代理 Connection 过程中检查checkConnection连接是否中断）
-##### 6 Transaction模块 对数据库事务进行抽象
->
-# 如JDBCTransaction: connection, dataSource, transactionIsolationLevel, autoCommit
+ 
+ 
+##### 6. Transaction模块 对数据库事务进行抽象
+>如JDBCTransaction: connection, dataSource, transactionIsolationLevel, autoCommit
+
+
 ##### 7 binding模块
 > SqlCommand, name执行方法&type方法类型
 > MethodSignature, 参数处理。 ParamNameResolver和也别标注rowBoundsIndex resultHandlerIndex
+
 
 ##### 8 缓存模块
 > 装饰器模式：动态的为对象添加功能它是基于组合方式实现该功能的。以LruCache为例，在被装饰者PerpetualCache维护着缓存同时用LruCache进行装饰(他们都继承着Cache)
 > 具体装饰功能是，每次putObject如果eldestKey不能空则移除被装饰者的缓存数据，同时在getObject时候更新LruCache队列顺序 accessOrder=true
 
 
-
 #### 核心处理层
+
+
 ##### 1.初始化
 > 建造者模式：
 
