@@ -1,0 +1,35 @@
+
+#### PLAN
+|   title  |    s_time    |         way          |      remarks      |
+|--------  |   ---------  | -------------------- | ----------------- |
+|  Mybatis |   2019.6.9   |  书 + 源码 + 博客     |  缺一周     |
+|  MySQL   |   2019.6.17  |   极客时间 + 书       |  +1 周      |
+|  JDK并发 |   2019.7.15   |  极客时间 2 + 源码系列 20  |         |
+
+
+
+---
+#### BackUp(理论+代码)
+ES
+1. Mybatis
+2. MySQL
+3. JDK并发包（源码 + 使用）
+4. JVM（书 + 极客时间）
+5. Spring SpringMVC SpringAOP
+    > SimpleApplicationEventMulticaster
+
+6. Linux内核 + Docker容器
+7. Netty + Socket
+8. Redis分布式缓存
+9. 算法和数据结构
+10. 《 Effective Java 》
+
+
+---
+#### TIMER(1 + 1 + 1.5)
+**每天保持3.5H学习时间，秉承白天学习晚上总结**
+1. GetUp: 7:30
+2. Morning: 7:40 - 9:00
+3. GetOff: 20:00 - 21:00
+4. Night:  22:00 - 23:30
+5. Sleep: 24:00
