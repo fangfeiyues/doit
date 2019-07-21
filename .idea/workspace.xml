@@ -7,11 +7,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a85dc30-4c29-41e6-b18b-890c4a2038bb" name="Default" comment="add thread">
-      <change afterPath="$PROJECT_DIR$/src/main/note/PLAN1.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/RecordSqlPlugin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/UserResultHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/note/patterns.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doit.iml" beforeDir="false" afterPath="$PROJECT_DIR$/doit.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/note/plan.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/note/PLAN1.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/PLAN1.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/note/design_patterns.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/note/dubbo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/dubbo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/note/juc.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/juc.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/note/linux性能.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/linux.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/note/mutil_thread.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/mutil_thread.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/note/mybatis.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/mybatis.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -41,12 +50,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="mybatis.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/note/mybatis.md">
+      <file leaf-file-name="patterns.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/note/patterns.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="152">
-                <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+              <first_editor relative-caret-position="95">
+                <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
               </first_editor>
               <second_editor>
                 <markdownNavigatorState />
@@ -55,25 +64,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PLAN1.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PLAN1.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/note/PLAN1.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="128">
-                <caret line="17" column="13" lean-forward="true" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+              <first_editor relative-caret-position="76">
+                <caret line="4" column="40" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
               </first_editor>
               <second_editor>
                 <markdownNavigatorState />
               </second_editor>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="13" column="9" lean-forward="true" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -111,6 +111,7 @@
       <find>BeanCurrentlyInCreationException</find>
       <find>singletonObjects</find>
       <find>mybatis</find>
+      <find>vmstat</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -122,17 +123,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/client/ClientHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/common/CustomHeartbeatHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/client/Client.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/NETTY.md" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/server/Server.java" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/application.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/DemoController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring-mybatis.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/DemoService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/DemoServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" />
@@ -167,12 +157,23 @@
         <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/view/frame_17.md" />
         <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/view/distributed_40.md" />
         <option value="$PROJECT_DIR$/src/main/note/mysql.md" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/AAAA.java" />
-        <option value="$PROJECT_DIR$/src/main/note/mybatis.md" />
         <option value="$PROJECT_DIR$/src/main/note/plan.md" />
         <option value="$PROJECT_DIR$/src/main/note/PLAN.md" />
+        <option value="$PROJECT_DIR$/src/main/note/design_patterns.md" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/UserResultHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/QueryPlugin.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/RecordSQLPlugin.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/RecordSqlPlugin.java" />
+        <option value="$PROJECT_DIR$/src/main/note/mybatis.md" />
+        <option value="$PROJECT_DIR$/src/main/note/dubbo.txt" />
+        <option value="$PROJECT_DIR$/src/main/note/PLAN1.md" />
+        <option value="$PROJECT_DIR$/src/main/note/juc.md" />
+        <option value="$PROJECT_DIR$/src/main/note/mutil_thread.md" />
+        <option value="$PROJECT_DIR$/src/main/note/microservices_patterns.md" />
+        <option value="$PROJECT_DIR$/src/main/note/patterns.md" />
       </list>
     </option>
   </component>
@@ -216,6 +217,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -223,35 +227,14 @@
               <item name="doit" type="b2602c69:ProjectViewProjectNode" />
               <item name="doit" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="doit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="note" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="Log&#9;PSI&#9;JAVA://org.apache.ibatis.logging.Log&#10;User&#9;FILE&#9;file://D:/IDEAspace/doit/src/main/java/com/fang/doit/spring/mybatis/UserTypeHandler.java&#10;TypeHandlerR&#9;PSI&#9;JAVA://org.apache.ibatis.type.TypeHandlerRegistry&#10;UserTypeHandler&#9;FILE&#9;file://D:/IDEAspace/doit/src/main/java/com/fang/doit/spring/mybatis/UserTypeHandler.java&#10;Reflector&#9;PSI&#9;JAVA://org.apache.ibatis.reflection.Reflector&#10;SqlSessionTemplate&#9;PSI&#9;JAVA://org.mybatis.spring.SqlSessionTemplate&#10;ClassLoader&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/lang/ClassLoader.java&#10;DispatcherServlet&#9;PSI&#9;JAVA://org.springframework.web.servlet.DispatcherServlet&#10;AbstractApplicationContext&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-context/5.1.5.RELEASE/spring-context-5.1.5.RELEASE-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java&#10;ConcurrentH&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentHashMap&#10;AbstractAutoProxyCreator&#9;PSI&#9;JAVA://org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator&#10;FactoryBean&#9;PSI&#9;JAVA://org.springframework.beans.factory.FactoryBean&#10;AbstractApplication&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-context/5.1.5.RELEASE/spring-context-5.1.5.RELEASE-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java&#10;Thread&#9;PSI&#9;JAVA://java.lang.Thread&#10;ThreadPoolExecutor&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/util/concurrent/ThreadPoolExecutor.java&#10;AtomicIn&#9;PSI&#9;JAVA://java.util.concurrent.atomic.AtomicInteger&#10;Countdownlatch&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/util/concurrent/CountDownLatch.java&#10;AbstractQueuedSynchronizer&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/util/concurrent/locks/AbstractQueuedSynchronizer.java&#10;LinkedBlockingQueue&#9;PSI&#9;JAVA://java.util.concurrent.LinkedBlockingQueue&#10;ReentrantLock&#9;PSI&#9;JAVA://java.util.concurrent.locks.ReentrantLock&#10;ReadWrite&#9;PSI&#9;JAVA://java.util.concurrent.locks.ReadWriteLock&#10;Application&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-context/5.1.5.RELEASE/spring-context-5.1.5.RELEASE-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java&#10;lazyinit&#9;PSI&#9;JAVA://org.springframework.beans.factory.support.AbstractBeanDefinition#lazyInit&#10;BeanDefinitionRegistry&#9;PSI&#9;JAVA://org.springframework.beans.factory.support.BeanDefinitionRegistry&#10;BeanFactory&#9;PSI&#9;JAVA://org.springframework.beans.factory.BeanFactory&#10;Aaware&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-context/5.1.5.RELEASE/spring-context-5.1.5.RELEASE-sources.jar!/org/springframework/context/ApplicationContextAware.java&#10;TreeMap&#9;PSI&#9;JAVA://java.util.TreeMap&#10;lookupHandlerMethod&#9;PSI&#9;JAVA://org.springframework.web.servlet.handler.AbstractHandlerMethodMapping#lookupHandlerMethod&#10;AbstractHandlerMethodMapping&#9;PSI&#9;JAVA://org.springframework.web.servlet.handler.AbstractHandlerMethodMapping&#10;HashedTim&#9;PSI&#9;JAVA://com.fang.doit.netty.HashedWheelTimerDemo&#10;Delayed&#9;PSI&#9;JAVA://java.util.concurrent.Delayed&#10;DelayQueue&#9;PSI&#9;JAVA://java.util.concurrent.DelayQueue&#10;FrameworkServlet&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-webmvc/5.1.5.RELEASE/spring-webmvc-5.1.5.RELEASE-sources.jar!/org/springframework/web/servlet/FrameworkServlet.java&#10;HttpServletBean&#9;PSI&#9;JAVA://org.springframework.web.servlet.HttpServletBean&#10;i&#9;PSI&#9;JAVA://com.sun.jndi.url.iiop.iiopURLContextFactory&#10;CopyOnWriteArrayList &#9;PSI&#9;JAVA://java.util.concurrent.CopyOnWriteArrayList&#10;ClassDefiner&#9;PSI&#9;JAVA://sun.reflect.ClassDefiner&#10;Pointcut&#9;PSI&#9;JAVA://org.springframework.aop.Pointcut" />
+    <property name="SearchEverywhereHistoryKey" value="XMLC&#9;FILE&#9;jar://C:/Users/Administrator/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/builder/xml/XMLConfigBuilder.java&#10;SqlSessionFactory&#9;PSI&#9;JAVA://org.apache.ibatis.session.SqlSessionFactoryBuilder&#10;CacheKey&#9;PSI&#9;JAVA://org.apache.ibatis.cache.CacheKey&#10;WeakCache&#9;PSI&#9;JAVA://org.apache.ibatis.cache.decorators.WeakCache&#10;SoftCache&#9;PSI&#9;JAVA://org.apache.ibatis.cache.decorators.SoftCache&#10;LruCache&#9;PSI&#9;JAVA://org.apache.ibatis.cache.decorators.LruCache&#10;Cache&#9;PSI&#9;JAVA://org.apache.ibatis.cache.Cache&#10;MapperRegistry&#9;PSI&#9;JAVA://org.apache.ibatis.binding.MapperRegistry&#10;TransactionF&#9;PSI&#9;JAVA://org.apache.ibatis.transaction.TransactionFactory&#10;DataSourceF&#9;PSI&#9;JAVA://org.apache.ibatis.datasource.DataSourceFactory&#10;ClassLoaderWrapper&#9;PSI&#9;JAVA://org.apache.ibatis.io.ClassLoaderWrapper&#10;Log&#9;PSI&#9;JAVA://org.apache.ibatis.logging.Log&#10;User&#9;FILE&#9;file://D:/IDEAspace/doit/src/main/java/com/fang/doit/spring/mybatis/UserTypeHandler.java&#10;TypeHandlerR&#9;PSI&#9;JAVA://org.apache.ibatis.type.TypeHandlerRegistry&#10;UserTypeHandler&#9;FILE&#9;file://D:/IDEAspace/doit/src/main/java/com/fang/doit/spring/mybatis/UserTypeHandler.java&#10;Reflector&#9;PSI&#9;JAVA://org.apache.ibatis.reflection.Reflector&#10;SqlSessionTemplate&#9;PSI&#9;JAVA://org.mybatis.spring.SqlSessionTemplate&#10;ClassLoader&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/lang/ClassLoader.java&#10;DispatcherServlet&#9;PSI&#9;JAVA://org.springframework.web.servlet.DispatcherServlet&#10;AbstractApplicationContext&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-context/5.1.5.RELEASE/spring-context-5.1.5.RELEASE-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java&#10;ConcurrentH&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentHashMap&#10;AbstractAutoProxyCreator&#9;PSI&#9;JAVA://org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator&#10;FactoryBean&#9;PSI&#9;JAVA://org.springframework.beans.factory.FactoryBean&#10;AbstractApplication&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-context/5.1.5.RELEASE/spring-context-5.1.5.RELEASE-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java&#10;Thread&#9;PSI&#9;JAVA://java.lang.Thread&#10;ThreadPoolExecutor&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/util/concurrent/ThreadPoolExecutor.java&#10;AtomicIn&#9;PSI&#9;JAVA://java.util.concurrent.atomic.AtomicInteger&#10;Countdownlatch&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/util/concurrent/CountDownLatch.java&#10;AbstractQueuedSynchronizer&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/util/concurrent/locks/AbstractQueuedSynchronizer.java&#10;LinkedBlockingQueue&#9;PSI&#9;JAVA://java.util.concurrent.LinkedBlockingQueue&#10;ReentrantLock&#9;PSI&#9;JAVA://java.util.concurrent.locks.ReentrantLock&#10;ReadWrite&#9;PSI&#9;JAVA://java.util.concurrent.locks.ReadWriteLock&#10;Application&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-context/5.1.5.RELEASE/spring-context-5.1.5.RELEASE-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java&#10;lazyinit&#9;PSI&#9;JAVA://org.springframework.beans.factory.support.AbstractBeanDefinition#lazyInit&#10;BeanDefinitionRegistry&#9;PSI&#9;JAVA://org.springframework.beans.factory.support.BeanDefinitionRegistry&#10;BeanFactory&#9;PSI&#9;JAVA://org.springframework.beans.factory.BeanFactory&#10;Aaware&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-context/5.1.5.RELEASE/spring-context-5.1.5.RELEASE-sources.jar!/org/springframework/context/ApplicationContextAware.java&#10;TreeMap&#9;PSI&#9;JAVA://java.util.TreeMap&#10;lookupHandlerMethod&#9;PSI&#9;JAVA://org.springframework.web.servlet.handler.AbstractHandlerMethodMapping#lookupHandlerMethod&#10;AbstractHandlerMethodMapping&#9;PSI&#9;JAVA://org.springframework.web.servlet.handler.AbstractHandlerMethodMapping&#10;HashedTim&#9;PSI&#9;JAVA://com.fang.doit.netty.HashedWheelTimerDemo&#10;Delayed&#9;PSI&#9;JAVA://java.util.concurrent.Delayed&#10;DelayQueue&#9;PSI&#9;JAVA://java.util.concurrent.DelayQueue&#10;FrameworkServlet&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-webmvc/5.1.5.RELEASE/spring-webmvc-5.1.5.RELEASE-sources.jar!/org/springframework/web/servlet/FrameworkServlet.java&#10;HttpServletBean&#9;PSI&#9;JAVA://org.springframework.web.servlet.HttpServletBean&#10;i&#9;PSI&#9;JAVA://com.sun.jndi.url.iiop.iiopURLContextFactory&#10;CopyOnWriteArrayList &#9;PSI&#9;JAVA://java.util.concurrent.CopyOnWriteArrayList&#10;ClassDefiner&#9;PSI&#9;JAVA://sun.reflect.ClassDefiner&#10;Pointcut&#9;PSI&#9;JAVA://org.springframework.aop.Pointcut" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -260,7 +243,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.19114077" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="MarkdownNavigator.Settings.Application" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -560,7 +543,19 @@
       <workItem from="1561726134625" duration="16759000" />
       <workItem from="1561993760123" duration="3456000" />
       <workItem from="1562158699726" duration="3501000" />
-      <workItem from="1562430203134" duration="2611000" />
+      <workItem from="1562430203134" duration="3567000" />
+      <workItem from="1562597726011" duration="854000" />
+      <workItem from="1562680928673" duration="5019000" />
+      <workItem from="1562857202107" duration="6453000" />
+      <workItem from="1562993784284" duration="4819000" />
+      <workItem from="1562999530598" duration="51000" />
+      <workItem from="1562999642943" duration="793000" />
+      <workItem from="1563000623410" duration="18000" />
+      <workItem from="1563000672096" duration="15859000" />
+      <workItem from="1563202033177" duration="3107000" />
+      <workItem from="1563365608587" duration="4328000" />
+      <workItem from="1563457952015" duration="1202000" />
+      <workItem from="1563544503438" duration="6764000" />
     </task>
     <task id="LOCAL-00001" summary="add doc.txt">
       <created>1556890254745</created>
@@ -688,99 +683,121 @@
       <option name="project" value="LOCAL" />
       <updated>1562430432247</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="add thread">
+      <created>1562514016498</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1562514016498</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TestHistory">
     <history-entry file="MybatisTest_getUser - 2019.06.30 at 15h 04m 58s.xml">
       <configuration name="MybatisTest.getUser" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="MybatisTest_getUser - 2019.07.14 at 11h 05m 50s.xml">
+      <configuration name="MybatisTest.getUser" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MybatisTest_getUser - 2019.07.14 at 11h 06m 32s.xml">
+      <configuration name="MybatisTest.getUser" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MybatisTest_getUser - 2019.07.14 at 11h 16m 28s.xml">
+      <configuration name="MybatisTest.getUser" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MybatisTest_getUser - 2019.07.14 at 11h 23m 07s.xml">
+      <configuration name="MybatisTest.getUser" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MybatisTest_getUser - 2019.07.14 at 11h 24m 05s.xml">
+      <configuration name="MybatisTest.getUser" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="407189000" />
+    <option name="totallyTimeSpent" value="457412000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="2062" height="1126" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50160944" side_tool="true" weight="0.32918552" />
-      <window_info anchor="bottom" id="Application Servers" order="11" weight="0.32918552" />
-      <window_info anchor="right" id="Maven Projects" order="5" sideWeight="0.4979716" weight="0.17864272" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="18" sideWeight="0.50160944" side_tool="true" weight="0.32918552" />
+      <window_info anchor="bottom" id="Application Servers" order="15" weight="0.32918552" />
+      <window_info anchor="right" id="Maven Projects" order="5" sideWeight="0.4979716" weight="0.14570858" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info id="Capture Tool" order="1" />
       <window_info id="Designer" order="2" />
-      <window_info anchor="bottom" id="Statistic" order="10" />
-      <window_info anchor="right" id="Database" order="6" weight="0.3299356" />
-      <window_info anchor="right" id="Structure" order="10" sideWeight="0.5020284" side_tool="true" weight="0.13173653" />
+      <window_info anchor="bottom" id="Statistic" order="13" />
+      <window_info anchor="right" id="Database" order="6" weight="0.32984033" />
+      <window_info anchor="right" id="Structure" order="10" sideWeight="0.5010142" side_tool="true" weight="0.1751497" />
       <window_info anchor="right" id="Ant Build" order="1" show_stripe_button="false" weight="0.25" />
-      <window_info id="UI Designer" order="3" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3653846" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.36511156" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info id="Image Layers" order="4" />
-      <window_info anchor="bottom" id="Java Enterprise" order="11" />
+      <window_info id="Image Layers" order="5" />
+      <window_info anchor="bottom" id="Java Enterprise" order="17" />
       <window_info anchor="right" id="Capture Analysis" order="8" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49839056" weight="0.32918552" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.67851436" weight="0.48478702" />
-      <window_info anchor="bottom" id="Spring" order="11" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3286004" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49886876" visible="true" weight="0.1736527" />
-      <window_info id="Web" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49839056" weight="0.32918552" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.67851436" weight="0.36004058" />
+      <window_info anchor="bottom" id="Spring" order="16" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32793522" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49886876" visible="true" weight="0.14271457" />
+      <window_info id="Web" order="3" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info id="Favorites" order="5" sideWeight="0.50113124" side_tool="true" weight="0.18454936" />
+      <window_info id="Favorites" order="6" sideWeight="0.50113124" side_tool="true" weight="0.18454936" />
       <window_info anchor="right" id="Aone" order="4" show_stripe_button="false" />
-      <window_info id="ZooKeeper" order="5" weight="0.09549356" />
+      <window_info id="ZooKeeper" order="7" weight="0.09549356" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.21298283" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.4989858" weight="0.21257485" />
       <window_info anchor="bottom" id="CheckStyle" order="7" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.5056561" />
-      <window_info anchor="bottom" id="FindBugs-IDEA" order="7" weight="0.32918552" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.3298217" />
+      <window_info anchor="bottom" id="FindBugs-IDEA" order="8" weight="0.32918552" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.3298217" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="TALA" order="7" />
+      <window_info anchor="bottom" id="TALA" order="11" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="bottom" id="FindBugs-IDEA" order="7" weight="0.32918552" />
-      <window_info anchor="bottom" id="Application Servers" order="16" weight="0.32918552" />
+      <window_info anchor="bottom" id="FindBugs-IDEA" order="8" weight="0.32918552" />
+      <window_info anchor="bottom" id="Application Servers" order="15" weight="0.32918552" />
       <window_info id="Designer" order="2" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="TALA" order="8" />
-      <window_info anchor="bottom" id="Spring" order="17" />
+      <window_info anchor="bottom" id="TALA" order="11" />
+      <window_info anchor="bottom" id="Spring" order="16" />
       <window_info id="Image Layers" order="5" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.67851436" weight="0.4643436" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.67851436" weight="0.48478702" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" show_stripe_button="false" weight="0.25" />
       <window_info id="Capture Tool" order="1" />
       <window_info id="UI Designer" order="4" />
-      <window_info id="Web" order="3" side_tool="true" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.3298217" />
+      <window_info id="Favorites" order="6" sideWeight="0.50113124" side_tool="true" weight="0.18454936" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32793522" />
       <window_info id="ZooKeeper" order="7" weight="0.09549356" />
       <window_info anchor="right" id="Capture Analysis" order="8" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="CheckStyle" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.3214856" side_tool="true" weight="0.45461914" />
-      <window_info anchor="bottom" id="Statistic" order="14" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="bottom" id="Java Enterprise" order="18" />
-      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="15" />
-      <window_info anchor="right" id="Maven Projects" order="5" weight="0.17172524" />
-      <window_info anchor="right" id="Aone" order="4" show_stripe_button="false" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.15854633" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.3298217" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="CheckStyle" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="18" sideWeight="0.50160944" side_tool="true" weight="0.32918552" />
+      <window_info anchor="bottom" id="Statistic" order="13" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.4989858" weight="0.21257485" />
+      <window_info anchor="right" id="Database" order="6" weight="0.3299356" />
+      <window_info anchor="bottom" id="Java Enterprise" order="17" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49839056" weight="0.32918552" />
+      <window_info anchor="right" id="Maven Projects" order="5" sideWeight="0.4979716" weight="0.17864272" />
+      <window_info anchor="right" id="Aone" order="4" show_stripe_button="false" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49886876" visible="true" weight="0.14171657" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.3298217" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info id="Web" order="3" side_tool="true" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info anchor="right" id="Structure" order="10" weight="0.18410543" />
+      <window_info anchor="right" id="Structure" order="10" sideWeight="0.5010142" side_tool="true" weight="0.17015968" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.5340357" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.5056561" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3653846" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -797,12 +814,12 @@
     <MESSAGE value="add jvm" />
     <MESSAGE value="add mq" />
     <MESSAGE value="add springmvc" />
-    <MESSAGE value="add thread" />
     <MESSAGE value="mysql innodb引擎" />
     <MESSAGE value="add mysql insert" />
     <MESSAGE value="mysql left join" />
     <MESSAGE value="add plan" />
-    <option name="LAST_COMMIT_MESSAGE" value="add plan" />
+    <MESSAGE value="add thread" />
+    <option name="LAST_COMMIT_MESSAGE" value="add thread" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -814,7 +831,7 @@
           <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="17" />
+      <option name="time" value="18" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -822,238 +839,232 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/lang/ClassLoader.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/mq_12.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/mysql_20.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/thread_28.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/frame_17.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/doc/mybatis.txt" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/distributed_40.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/note/spring.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="SECOND">
-          <first_editor />
-          <second_editor>
-            <markdownNavigatorState />
-          </second_editor>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/image/connector.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/image/MySQL逻辑架构.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/tomcat&amp;jetty.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="133">
-            <caret line="7" selection-start-line="7" selection-end-line="7" selection-end-column="27" />
-          </first_editor>
-          <second_editor>
-            <markdownNavigatorState />
-          </second_editor>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mybatis.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="30" column="31" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/image/change_buffer_update.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/image/change_buffer_update.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis-spring/1.3.2/mybatis-spring-1.3.2.jar!/org/mybatis/spring/SqlSessionTemplate.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="29" column="38" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis-spring/1.3.2/mybatis-spring-1.3.2-sources.jar!/org/mybatis/spring/SqlSessionUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1026">
-          <caret line="83" column="31" selection-start-line="83" selection-start-column="31" selection-end-line="83" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis-spring/1.3.2/mybatis-spring-1.3.2-sources.jar!/org/mybatis/spring/SqlSessionTemplate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="808">
-          <caret line="460" selection-start-line="460" selection-end-line="460" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doit.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/dubbo.txt">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/UserResultHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
-          <caret line="173" column="11" lean-forward="true" selection-start-line="173" selection-start-column="11" selection-end-line="173" selection-end-column="11" />
+          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/mysql.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="133">
-            <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
-          </first_editor>
-          <second_editor>
-            <markdownNavigatorState />
-          </second_editor>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/type/TypeHandler.java">
+    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/reflection/ParamNameResolver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+        <state relative-caret-position="478">
+          <caret line="118" column="17" selection-start-line="118" selection-start-column="13" selection-end-line="118" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/reflection/ReflectorFactory.java">
+    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/binding/MapperMethod.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+        <state relative-caret-position="406">
+          <caret line="57" column="26" lean-forward="true" selection-start-line="57" selection-start-column="26" selection-end-line="57" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/reflection/ExceptionUtil.java">
+    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/session/defaults/DefaultSqlSession.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="30" column="34" lean-forward="true" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+        <state relative-caret-position="19">
+          <caret line="183" column="13" selection-start-line="183" selection-start-column="13" selection-end-line="183" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/reflection/factory/DefaultObjectFactory.java">
+    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/cache/decorators/FifoCache.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+        <state relative-caret-position="1102">
+          <caret line="82" column="11" selection-start-line="82" selection-start-column="4" selection-end-line="82" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/reflection/DefaultReflectorFactory.java">
+    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/cache/Cache.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
+        <state relative-caret-position="186">
+          <caret line="34" column="17" lean-forward="true" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/reflection/MetaClass.java">
+    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/cache/decorators/LruCache.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="41" column="28" lean-forward="true" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+        <state relative-caret-position="361">
+          <caret line="50" column="30" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/reflection/Reflector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="340" column="38" selection-start-line="340" selection-start-column="27" selection-end-line="340" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/mysql/mysql-connector-java/8.0.15/mysql-connector-java-8.0.15-sources.jar!/com/mysql/cj/jdbc/PreparedStatementWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="315" column="16" selection-start-line="315" selection-start-column="16" selection-end-line="315" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/type/BaseTypeHandler.java">
+    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/cache/impl/PerpetualCache.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
-          <caret line="25" column="3" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/type/BigDecimalTypeHandler.java">
+    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/cache/decorators/BlockingCache.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="23" column="3" lean-forward="true" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
+        <state relative-caret-position="307">
+          <caret line="69" column="22" lean-forward="true" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/type/MappedJdbcTypes.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_162/src.zip!/java/lang/ref/ReferenceQueue.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
-          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_162/src.zip!/java/util/HashMap.java">
+    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/cache/decorators/WeakCache.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="109" column="54" selection-start-line="109" selection-start-column="41" selection-end-line="109" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/cache/decorators/SoftCache.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="573">
+          <caret line="111" column="30" selection-start-line="111" selection-start-column="28" selection-end-line="111" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/extensions/com.intellij.database/data/extractors/CSV-Groovy.csv.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/extensions/com.intellij.database/data/extractors/HTML-Groovy.html.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="65" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar!/META-INF/maven/org.slf4j/slf4j-api/pom.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/cache/CacheKey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="49" column="37" lean-forward="true" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25-sources.jar!/org/slf4j/helpers/NOPLoggerFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25-sources.jar!/org/slf4j/ILoggerFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="35" column="31" lean-forward="true" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25-sources.jar!/org/slf4j/Logger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-516" />
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25-sources.jar!/org/slf4j/LoggerFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7448">
+          <caret line="417" column="37" selection-start-line="417" selection-start-column="19" selection-end-line="417" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25-sources.jar!/org/slf4j/Marker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="48" column="7" lean-forward="true" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25-sources.jar!/org/slf4j/IMarkerFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25-sources.jar!/org/slf4j/helpers/BasicMarkerFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="37" column="54" selection-start-line="37" selection-start-column="54" selection-end-line="37" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/session/SqlSessionFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="26" column="27" lean-forward="true" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis-spring/1.3.2/mybatis-spring-1.3.2-sources.jar!/org/mybatis/spring/SqlSessionFactoryBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="319">
-          <caret line="137" column="13" selection-start-line="137" selection-start-column="13" selection-end-line="137" selection-end-column="13" />
+          <caret line="537" column="41" selection-start-line="537" selection-start-column="41" selection-end-line="537" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/netty/AAAA.java">
+    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/builder/BaseBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="590">
-          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+        <state relative-caret-position="285">
+          <caret line="40" column="26" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_162/src.zip!/java/lang/reflect/Modifier.java">
+    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/session/SqlSessionFactoryBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="186" column="26" selection-start-line="186" selection-start-column="26" selection-end-line="186" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/UserTypeHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="21" column="12" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/UserMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="30" column="15" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="15" />
+        <state relative-caret-position="459">
+          <caret line="76" column="44" selection-start-line="76" selection-start-column="44" selection-end-line="76" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/fang/doit/spring/MybatisTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="41" column="49" lean-forward="true" selection-start-line="41" selection-start-column="49" selection-end-line="41" selection-end-column="49" />
+        <state relative-caret-position="456">
+          <caret line="38" column="19" lean-forward="true" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/type/EnumTypeHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/RecordSqlPlugin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        <state relative-caret-position="323">
+          <caret line="17" column="47" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="47" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/type/TypeHandlerRegistry.java">
+    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/builder/xml/XMLConfigBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="241" column="18" lean-forward="true" selection-start-line="241" selection-start-column="18" selection-end-line="241" selection-end-column="18" />
+        <state relative-caret-position="324">
+          <caret line="184" column="28" selection-start-line="184" selection-start-column="28" selection-end-line="184" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/jvm.md">
+    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/session/Configuration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="142" column="26" lean-forward="true" selection-start-line="142" selection-start-column="26" selection-end-line="142" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/plugin/InterceptorChain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="39" column="44" lean-forward="true" selection-start-line="39" selection-start-column="44" selection-end-line="39" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="38" column="42" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/note/dubbo2.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
           <first_editor />
@@ -1063,11 +1074,151 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/jutil.md">
+    <entry file="file://$PROJECT_DIR$/src/main/note/mybatis.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="SPLIT">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="391">
+            <caret line="31" column="23" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="23" />
+          </first_editor>
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/note/dubbo.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2090">
+          <caret line="110" column="97" selection-start-line="110" selection-start-column="97" selection-end-line="110" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/note/linux.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="160" column="13" selection-start-line="160" selection-start-column="13" selection-end-line="160" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/note/mutil_thread.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="323">
+            <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+          </first_editor>
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/aglo_14.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SECOND">
+          <first_editor />
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/base_32.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SECOND">
+          <first_editor />
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/cache_21.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SECOND">
+          <first_editor />
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/distributed_40.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SECOND">
+          <first_editor />
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/frame_17.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SECOND">
+          <first_editor />
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/jvm_13.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SECOND">
+          <first_editor />
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/mq_12.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SECOND">
+          <first_editor />
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/mysql_20.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SECOND">
+          <first_editor />
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/os_10.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SECOND">
+          <first_editor />
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/note/microservices_patterns.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="19">
+            <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+          </first_editor>
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/note/PLAN1.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="FIRST">
           <first_editor relative-caret-position="76">
-            <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            <caret line="4" column="40" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
           </first_editor>
           <second_editor>
             <markdownNavigatorState />
@@ -1077,78 +1228,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/note/juc.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor>
-            <markdownNavigatorState />
-          </second_editor>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/logging/log4j2/Log4j2Impl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="71" column="7" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/logging/slf4j/Slf4jImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="27" column="22" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/logging/Log.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="30" column="23" lean-forward="true" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/logging/LogFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="111" column="54" selection-start-line="111" selection-start-column="54" selection-end-line="111" selection-end-column="54" />
-          <folding>
-            <element signature="e#1046#1145#0" expanded="true" />
-            <element signature="e#1144#1145#0" expanded="true" />
-            <element signature="e#1170#1271#0" expanded="true" />
-            <element signature="e#1270#1271#0" expanded="true" />
-            <element signature="e#1296#1396#0" expanded="true" />
-            <element signature="e#1395#1396#0" expanded="true" />
-            <element signature="e#1421#1520#0" expanded="true" />
-            <element signature="e#1519#1520#0" expanded="true" />
-            <element signature="e#1545#1642#0" expanded="true" />
-            <element signature="e#1641#1642#0" expanded="true" />
-            <element signature="e#1667#1763#0" expanded="true" />
-            <element signature="e#1762#1763#0" expanded="true" />
-            <element signature="e#1873#1874#0" expanded="true" />
-            <element signature="e#1914#1915#0" expanded="true" />
-            <element signature="e#2236#2237#0" expanded="true" />
-            <element signature="e#2270#2271#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/logging/jdk14/Jdk14LoggingImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
-          <folding>
-            <element signature="e#947#948#0" expanded="true" />
-            <element signature="e#986#987#0" expanded="true" />
-            <element signature="e#1544#1545#0" expanded="true" />
-            <element signature="e#1579#1580#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/mybatis.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
           <first_editor relative-caret-position="152">
-            <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            <caret line="8" column="3" lean-forward="true" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
           </first_editor>
           <second_editor>
             <markdownNavigatorState />
@@ -1156,23 +1238,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="9" lean-forward="true" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/PLAN1.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="17" lean-forward="true" selection-end-line="28" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/main/note/patterns.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="128">
-            <caret line="17" column="13" lean-forward="true" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <first_editor relative-caret-position="95">
+            <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
           </first_editor>
           <second_editor>
             <markdownNavigatorState />
@@ -1223,6 +1293,17 @@
       <state key="JdkListConfigurable.UI">
         <settings>
           <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="MarkdownNavigator.LinkMap.UI">
+        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>

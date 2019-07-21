@@ -5,7 +5,7 @@
 target/
 devenv
 *.log*
-*.iml
+doit.iml
 .idea/
 .idea/ workspace.xml
 *.versionsBackup

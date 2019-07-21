@@ -37,9 +37,11 @@
     </typeAliases>
 
     <!-- plugins 提供插件机制用户可以自定义在SQL的某一点进行拦截-->
-    <!--<plugins>-->
-    <!--<plugin interceptor=""></plugin>-->
-    <!--</plugins>-->
+    <plugins>
+        <plugin interceptor="com.fang.doit.spring.mybatis.RecordSqlPlugin">
+            <property name="dialect" value="mysql"/>
+        </plugin>
+    </plugins>
 
     <!-- 添加自定义 Objectory, ObjectWrapperFactory实现类, 及ReflectorFactory实现类对Mybatis扩展 -->
     <!--<objectFactory type=""-->
@@ -50,9 +52,9 @@
 
 
     <!-- 用于定义全局的类型处理器 -->
-    <typeHandlers>
-        <!--<typeHandler handler="com.fang.doit.spring.mybatis.UserTypeHandler"></typeHandler>-->
-    </typeHandlers>
+    <!--<typeHandlers>-->
+        <!--&lt;!&ndash;<typeHandler handler="com.fang.doit.spring.mybatis.UserTypeHandler"></typeHandler>&ndash;&gt;-->
+    <!--</typeHandlers>-->
 
     <!-- 不结合Spring 单独配置数据源 -->
     <environments default="development">

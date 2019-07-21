@@ -314,7 +314,7 @@ RPC分布式调用引入的故障：
 [ProxyFactory]
 StubProxyFactoryWrapper
 Provider: 
-    Invoker<?> invoker = proxyFactory.getInvoker(ref, interfaceClass, url);  // 1.生产者主要是new AbstractProxyInvoker()中执行method.invoke(proxy, arguments); 
+    Invoker<?> invoker = proxyFactory.getInvoker(ref, interfaceClass, url);  // 1.生产者主要是new AbstractProxyInvoker()中执行 method.invoke(proxy, arguments);
     Exporter<?> exporter = protocol.export(wrapperInvoker);					 // 2.invoker之后经历protocol.export中buildFilters在DubboProtocol封装成DubboExporter存放在exporterMap作为暴露过程
 Consumer: 
     invoker = refprotocol.refer(interfaceClass, urls.get(0));	 // 3.请求接口封装成 DubboInvoker#doInvoke 实现远程调用
