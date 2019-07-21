@@ -7,7 +7,7 @@ devenv
 *.log*
 doit.iml
 .idea/
-.idea/ workspace.xml
+.idea/workspace.xml
 *.versionsBackup
 !NOTICE-BIN
 !LICENSE-BIN

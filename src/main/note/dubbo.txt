@@ -203,9 +203,10 @@ Invoker<T> = RegistryProtocol.refer(Class<T> type, URL url)
 
 					      - routerChain.setInvokers(newInvokers)       //  作为 RouterChain 的invokers属性 在请求路由route(URL, Invocation)使用
 
+几种服务注册
+1. Zookeeper
+2. Ectd
 
-
-dubbo://10.63.96.50:20880/org.apache.dubbo.demo.DemoService?anyhost=true&application=demo-consumer&check=false&dubbo=2.0.2&generic=false&group=pre&interface=org.apache.dubbo.demo.DemoService&lazy=false&loadbalance=consistenthash&methods=sayHello&pid=22352&qos.port=33333&register.ip=10.63.96.50&remote.application=demo-provider&side=consumer&sticky=false&timeout=5000&timestamp=1559045676023
 
 
 
