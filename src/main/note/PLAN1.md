@@ -19,7 +19,7 @@ ES
     > SimpleApplicationEventMulticaster
 
 6. Linux内核 + Docker容器
-7. Netty + Socket
+7. Netty + Socket网络编程
 8. Redis分布式缓存
 9. 算法和数据结构
 10. 《 Effective Java 》
