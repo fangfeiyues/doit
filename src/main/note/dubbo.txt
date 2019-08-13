@@ -27,7 +27,7 @@
   c3:fail-mock 
    mock=fail:return+null  消费方对该服务的方法调用在失败后，再返回 null 值，不抛异常。用来容忍不重要服务不稳定时对调用方的影响
    
-3.Directory 路由选择，主要是根据url.protocol-mock及invocation-invocation.need.mock后者这是对于上c1情况下的需要并过滤Provider中"mock"的invoker
+3.Directory 路由选择，主要是根据url.protocol-mock及 invocation-invocation.need.mock 后者这是对于上c1情况下的需要并过滤Provider中"mock"的invoker
      - AbstractClusterInvoker.invoke
 	     - AbstractClusterInvoker.list(invocation)
 		    - AbstractDirectory.list 
