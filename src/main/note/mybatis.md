@@ -1,5 +1,5 @@
 
-#### JDBC
+#### 0. JDBC
 > 1. 注册数据库驱动类，明确指定数据库URL地址、数据库用户名、密码等连接信息
 > 2. DiverManager 打开数据库连接
 > 3. 通过数据库连接从创建 Statement(PreparedStatement)
@@ -7,17 +7,31 @@
 > 5. 通过Result读取数据，并转换成JavaBean
 > 6. 关闭资源
 
-#### 配置文件解析 
-核心类 XMLConfigBuilder 
-<settings>, 
-<typeAliases>, 
-<typeHandlers>,
-<mappers>
 
+#### 1. 核心处理层
+
+##### 1.1 解析配置
+`mapper.xml` 和 `mybatis-config.xml` 最后解析的都是 `Configuration` 对象。核心类 XMLConfigBuilder   
+
+**properties**
+
+
+**settings**
+
+
+**typeAliases**
+
+
+**typeHandlers**
+
+
+**plugins**
+通过Configuration#InterceptorChain来管理，实现就是一个ArrayList
+
+**mappers**
 1. 构建 SqlSessionFactory 
 
-
-#### 解析映射文件
+##### 1.2 解析映射文件
 核心类 XMLMapperBuilder# configurationElement(XNode context)
 1. 获取命名空间namespace并设置到 builderAssistant 中
 2. cache-ref 标签解析
@@ -57,12 +71,85 @@ knownMappers.put(type, new MapperProxyFactory<T>(type));
 - StaticSqlSource, new BoundSql
 - ProviderSqlSource
 - VelocitySqlSource
+##### 1.3 参数映射
 
 
+##### 1.4 SQL解析
 
-#### SQL执行过程
 
-##### 1. 为 Mapper 接口生成实现类来执行SQL
+##### 1.5 SQL执行
+
+
+##### 1.6 结果集映射
+
+
+##### 1.7 插件
+
+
+#### 2. 基础支持层
+
+##### 2.1 反射模块
+
+##### 2.2 类型转换模块
+继承 `BaseTypeHandler`，参数 `setParameter(PreparedStatement ps, int i, T parameter, JdbcType jdbcType)`
+
+**单个注册**
+`@MappedJdbcTypes` 和 `@MappedTypes` 来设置相关的handler
+维护在TYPE_HANDLER_MAP记录了Java类型想指定JavaType转换时需要使用的TypeHandler对象。如Java类型中的String可以转换成数据库的char及varchar所以存在一对多关系
+
+**扫描注册**
+
+
+**查找TypeHandler**
+
+
+##### 2.3 日志模块
+   > 适配器模式：主要是解决由于接口不能兼容而导致类无法使用的问题
+   
+   
+##### 2.4 资源模块（类加载）
+
+
+##### 2.5 DataSource
+   > 工厂模式：怎么给扩展 DataSource?
+   > 代理模式：（ PooledConnection 代理 Connection 过程中检查checkConnection连接是否中断）
+ 
+ 
+##### 2.6 Transaction模块 对数据库事务进行抽象
+>如JDBCTransaction: connection, dataSource, transactionIsolationLevel, autoCommit
+
+
+##### 2.7 binding模块
+> 查询对象的时候需要使用SqlSession.queryForObject('selectObject',id),前面的参数指定了执行SQL语句的id该SQL映射在配置文件中。而binding模块可以是Mapper在初始化阶段产生关联并发现没匹配上的接口
+
+**MapperRegistry**
+
+**MapperRegistryFactory**
+
+**MapperFactory**
+
+**MapperMethod**
+`SqlCommand` name执行方法&type方法类型  
+`MethodSignature` 参数处理。 
+> ParamNameResolver处理参数并记录在sortedMap<Integer,String> 除RowBounds和ResultHandler类型注解
+
+
+##### 2.8 缓存模块
+**缓存Cache**
+在被装饰者PerpetualCache维护着缓存同时用***Cache进行装饰(他们都继承着Cache)
+> LruCache 最近最少使用。每次putObject如果eldestKey不能空则移除被装饰者的缓存数据，同时在getObject时候更新LruCache队列顺序 重写LinkedHashMap accessOrder=true
+> SoftCache 软引用 SoftReference。当虚拟机内存不足时会回收这部分适用于可以通过其他方式恢复的缓存。每次存放会回收已经被清楚的对象依据就是是否在softReference中
+> WeakCache 弱引用 WeakReference。垃圾回收时会回收。WeakHashMap
+> ScheduleCache 周期性缓存
+> LoggingCache 日志缓存。记录Cache的命中次数和访问次数
+> SynchronizedCache 
+
+**CacheKey**
+
+
+#### 3. SQL执行过程
+
+##### 3.1 为 Mapper 接口生成实现类来执行SQL
     DefaultSqlSession.getMapper(Class<T> type)
 
 1. MapperProxy 代理 UserMapper 接口执行
@@ -73,7 +160,7 @@ knownMappers.put(type, new MapperProxyFactory<T>(type));
 5. 调用 execute 方法执行 SQL mapperMethod.execute(sqlSession, args)
 
 
-##### 2. 查询语句执行过程
+##### 3.2 查询语句执行过程
 1. result = sqlSession.selectOne(command.getName(), param);
 2. CachingExecutor 二级缓存 Map<Cache, TransactionalCache> 缓存策略(LRU..)
 3. BaseExecutor 一级缓存 PerpetualCache# Map<Object, Object> cache 如果没有再直接查库 queryFromDatabase()
@@ -106,13 +193,13 @@ knownMappers.put(type, new MapperProxyFactory<T>(type));
 6. 执行 handler.<E>query(stmt, resultHandler)
 
     
-##### 3. 内置数据源和外部数据源
+##### 3.3 内置数据源和外部数据源
    > Connection = JdbcTransaction#getConnection(statementLog) 获取数据库连接开始
    > 数据源作用：
    1. UnpooledDataSource
    2. PooledDataSource 提供了线程池服务
    
-##### 4.缓存
+##### 3.4 缓存
 1. LruCache LinkedHashMap的 `accessOrder=true` 保证其维护键值的访问顺序，同时重写 `removeEldestEntry` 在大小不够的情况下每次删除最近最少使用那个即第一个
 2. BlockingCache 阻塞特性 基于 `ReentrantLock` 实现
     > It sets a lock over a cache key when the element is not found in cache.
@@ -141,59 +228,7 @@ knownMappers.put(type, new MapperProxyFactory<T>(type));
        > 使用两个缓存原因
 
 
-#### 基础支持层
 
-
-##### 1. 反射模块
-
-
-##### 2. 类型转换模块
-继承 `BaseTypeHandler`，参数 `setParameter(PreparedStatement ps, int i, T parameter, JdbcType jdbcType)`
-
-**单个注册**
-`@MappedJdbcTypes` 和 `@MappedTypes` 来设置相关的handler
-维护在TYPE_HANDLER_MAP记录了Java类型想指定JavaType转换时需要使用的TypeHandler对象。如Java类型中的String可以转换成数据库的char及varchar所以存在一对多关系
-
-**扫描注册**
-
-
-**查找TypeHandler**
-
-
-
-##### 3. 日志模块
-   > 适配器模式：主要是解决由于接口不能兼容而导致类无法使用的问题
-   
-   
-##### 4. 资源模块（类加载）
-
-
-##### 5. DataSource
-   > 工厂模式：怎么给扩展 DataSource?
-   > 代理模式：（ PooledConnection 代理 Connection 过程中检查checkConnection连接是否中断）
- 
- 
-##### 6. Transaction模块 对数据库事务进行抽象
->如JDBCTransaction: connection, dataSource, transactionIsolationLevel, autoCommit
-
-
-##### 7 binding模块
-> SqlCommand, name执行方法&type方法类型
-> MethodSignature, 参数处理。 ParamNameResolver和也别标注rowBoundsIndex resultHandlerIndex
-
-
-##### 8 缓存模块
-> 装饰器模式：动态的为对象添加功能它是基于组合方式实现该功能的。以LruCache为例，在被装饰者PerpetualCache维护着缓存同时用LruCache进行装饰(他们都继承着Cache)
-> 具体装饰功能是，每次putObject如果eldestKey不能空则移除被装饰者的缓存数据，同时在getObject时候更新LruCache队列顺序 accessOrder=true
-
-
-#### 核心处理层
-
-
-##### 1.初始化
-> 建造者模式：
-
-`mapper.xml` 和 `mybatis-config.xml` 最后解析的都是 `Configuration` 对象
 
 
 
