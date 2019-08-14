@@ -72,7 +72,6 @@ top / ps
 > 内存映射：Linux给每个进程分配了独立连续的虚拟地址空间。内存映射就是将虚拟内存映射到物理内存
 > 中断异常：brk()/mmap()之后不会立即分配内存而是通过缺页中断
    
-
 #### 1. buffer & cache
 > buffer: 内核缓冲区用到的内存。对原始磁盘块的临时存储就是用来缓存磁盘数据。这样内核就可以把分散的数据缓存起来统一进行写入
 > cache: 内核页缓存和Slab用到的内存。从磁盘读取文件页的缓存 这样下次就可以直接从内存中读取而不需要磁盘
@@ -80,7 +79,11 @@ top / ps
 #### 2. 内存泄漏
 dump文件收集的两种方式
 > 1. 设置启动的JVM参数 `-XX:+HeapDumpOnOutOfMemoryError, -XX:HeapDumpPath=/opt/jvmdump` 每次内存溢出时会自动将堆转储
-> 2. jmap:jmap -dump:live,format=b,file=/opt/jvm/dump.hprof pid
+> 2. jmap -dump:live,format=b,file=/opt/jvm/dump.hprof pid   (eclipse Memory Analyzer)
+
+jmap使用
+> jmap -heap pid   查看Java堆（heap）
+> jmap -histo pid  查看JVM堆中对象详细占用情况
 
 #### 3. Swap
 文件页,如缓存和缓冲就属于可回收内存他们在内存管理中通常被叫做文件页
@@ -91,7 +94,6 @@ dump文件收集的两种方式
 匿名页 如果这些资源很少被利用了就可以swap到磁盘上，需要的时候再从磁盘换回到内存
 NUMA(Non-Uniform Memory Access):
   
-  
 #### 4. 快准狠找到系统内存问题
 内存性能指标
 1. 已用内存，剩余内存，共享内存，可用内存，缓存和缓冲区；
@@ -99,6 +101,7 @@ NUMA(Non-Uniform Memory Access):
 3. 缺页异常：导致的频繁I/O，内存访问也会慢很多
    
    
+
 ### 磁盘和文件系统
 Linux中一切皆文件 不仅是普通的文件和目录就连块设备，套字节，管道等也都要通过统一的文件系统来管理
 虚拟文件系统(VFS)定义了一组所有文件系统都支持的数据结构和标准接口。这样用户进程和内核进程中的其他子系统就只需要跟VFS提供的统一借口而进行交互
