@@ -1,5 +1,8 @@
 <!--Rocket 归档总结-->
 
+#### 0.架构
+
+
 #### 1.分布式事务 
 主要在Producer实现了 executeLocalTransaction 和 checkLocalTransaction 的执行和查看事务的两方面接口
   1. Producer事务消息 "TRAN_MSG"=true; PGROUP=getProducerGroup 前者是为了识别事务消息后者是为了回写的时候找到group的channel
@@ -9,33 +12,14 @@
   5. Broker#TransactionMessageCheckService 根据比较两个队列找不到未回差消息进行回查（难）
   6. 根据回查结果继续 Broker#EndTransactionProcessor
 
-
 桥接模式：
 1、定义一个桥接口，使其与一方绑定，这一方的扩展全部使用实现桥接口的方式
 2、定义一个抽象类，来表示另一方，在这个抽象类内部要引入桥接口，而这一方的扩展全部使用继承该抽象类的方式
 
-
 Dubbo 分布式调用
 1.TCC( try- confirm -cancel)
 
-
-#### 2.定时消息和延迟消息 
-定时消息：Producer 将消息发送到 MQ 服务端，但并不期望这条消息立马投递，而是推迟到在当前时间点之后的某一个时间投递到 Consumer 进行消费，该消息即定时消息。
-延迟消息：Producer 将消息发送到 MQ 服务端，但并不期望这条消息立马投递，而是延迟一定时间后才投递到 Consumer 进行消费，该消息即延时消息。
-消息回朔，即回去重新消费
-失败延迟策略：
-private String messageDelayLevel = "1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h";
-
-对于消费失败的消息如拉取了100条2101-2200但是在消费2101失败后面99条成功的情况下回写给broker
-defaultMQPushConsumer.getConsumeTimeout();		  //  每次开始消费之前每15min清楚一次 ConsumeMessageConcurrentlyService#cleanExpireMsg()#
-
-CONSUME_FROM_LAST_OFFSET //默认策略，从该队列最尾开始消费，即跳过历史消息
-CONSUME_FROM_FIRST_OFFSET //从队列最开始开始消费，即历史消息（还储存在broker的）全部消费一遍
-CONSUME_FROM_TIMESTAMP//从某个时间点开始消费，和setConsumeTimestamp()配合使用，默认是半个小时以前
-"sh mqadmin brokerStatus"  查看当前的消费进度
-
-
-#### 3.内存映射&零拷贝 
+#### 2.消息存储
 **内存映射**
 1. DirectByteBuffer 
 `ByteBuffer byteBuffer = ByteBuffer.allocateDirect(fileSize)`
@@ -66,7 +50,38 @@ linux默认分页为4K，可以想象读一个1G的消息存储文件要发生多少次中断
 
 
 
-#### 4.ACK进度保存 
+#### 3.PULL长轮询 &短轮询	longPollingEnable
+	BrokerController.start()
+		- pullRequestHoldService.start()
+			- getBrokerConfig().isLongPollingEnable() -- this.waitForRunning(5 * 1000) ||  this.waitForRunning(1000);
+			- this.checkHoldRequest();
+				- notifyMessageArriving(topic, queueId, offset)
+					- ManyPullRequest mpr = this.pullRequestTable.get(key);			// 从 pullRequestTable
+					- PullMessageProcessor.executeRequestWhenWakeup(Channel, RemotingCommand request) 
+						- RemotingCommand response = PullMessageProcessor.this.processRequest(channel, request, false)		
+
+
+#### 4.PULL&PUSH 消息消费
+
+
+
+#### 5.定时消息 &延迟消息 
+定时消息：Producer 将消息发送到 MQ 服务端，但并不期望这条消息立马投递，而是推迟到在当前时间点之后的某一个时间投递到 Consumer 进行消费，该消息即定时消息。
+延迟消息：Producer 将消息发送到 MQ 服务端，但并不期望这条消息立马投递，而是延迟一定时间后才投递到 Consumer 进行消费，该消息即延时消息。
+消息回朔，即回去重新消费
+失败延迟策略：
+private String messageDelayLevel = "1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h";
+
+对于消费失败的消息如拉取了100条2101-2200但是在消费2101失败后面99条成功的情况下回写给broker
+defaultMQPushConsumer.getConsumeTimeout();		  //  每次开始消费之前每15min清楚一次 ConsumeMessageConcurrentlyService#cleanExpireMsg()#
+
+CONSUME_FROM_LAST_OFFSET //默认策略，从该队列最尾开始消费，即跳过历史消息
+CONSUME_FROM_FIRST_OFFSET //从队列最开始开始消费，即历史消息（还储存在broker的）全部消费一遍
+CONSUME_FROM_TIMESTAMP//从某个时间点开始消费，和setConsumeTimestamp()配合使用，默认是半个小时以前
+"sh mqadmin brokerStatus"  查看当前的消费进度
+
+
+#### 7.ACK进度保存 
    "offsetTable":{
                 "TopicTest@please_rename_unique_group_name_4":{0:533,1:533,2:533,3:532,4:60,5:60,6:60,7:62,8:62,9:61,10:21,11:25,12:23,13:23,14:21,15:20
                 },
@@ -82,18 +97,9 @@ linux默认分页为4K，可以想象读一个1G的消息存储文件要发生多少次中断
                 }
         }
 	
-#### 5.PULL长轮询&短轮询	longPollingEnable !!!
-	BrokerController.start()
-		- pullRequestHoldService.start()
-			- getBrokerConfig().isLongPollingEnable() -- this.waitForRunning(5 * 1000) ||  this.waitForRunning(1000);
-			- this.checkHoldRequest();
-				- notifyMessageArriving(topic, queueId, offset)
-					- ManyPullRequest mpr = this.pullRequestTable.get(key);			// 从 pullRequestTable
-					- PullMessageProcessor.executeRequestWhenWakeup(Channel, RemotingCommand request) 
-						- RemotingCommand response = PullMessageProcessor.this.processRequest(channel, request, false)		
 			
 
-#### 6.顺序消费 
+#### 8.顺序消费 
 顺序消费时对broker加锁的原因; 顺序拉取时再次从broker确认offset?;  
    1.负载取PullRequest. rebalanceByTopic
        a.<mq,pq>本次未负载到但上次负载消费的MQ 在broker解锁（还未消费完怎么办？）；如果存在判断拉取消息时间间隔是否过长 也解锁
@@ -138,5 +144,5 @@ Broker服务端锁 RebalanceLockManager#tryLockBatch(String group, Set<MessageQueue>
 		- 否则说明该mq还在被锁 不能使用
 		
 		
-#### 7.channel & tag
+#### 9.channel & tag
 
