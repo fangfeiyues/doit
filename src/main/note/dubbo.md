@@ -73,7 +73,7 @@ Dubbo上下文信息
 #### 9.HashedWheelTimer
 
 
-#### 10. Netty#IdleStateHandler
+#### 10.Netty#IdleStateHandler
 
 
 #### 11.Dubbo注册中心
@@ -84,6 +84,62 @@ Dubbo上下文信息
 > 1. 普通扩展类。
 > 2. 包装扩展类。Wrapper类，通用逻辑抽象且需要在构造方法中传入一个具体的实现
 > 3. 自适应扩展类。通过URL某些参数动态确定 @Adaptive
+
+#### 13.Dubbo线程模型
+IO模型
+> 阻塞IO
+> 非阻塞IO
+> IO复用
+
+![](image/dubbo_thread.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
