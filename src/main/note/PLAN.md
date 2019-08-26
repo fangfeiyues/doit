@@ -18,7 +18,7 @@ ES
 5. Spring SpringMVC SpringAOP
     > SimpleApplicationEventMulticaster
 
-6. Linux内核 + Docker容器
+6. Linux内核 + Docker容器(过)
 7. Netty + Socket网络编程
 8. Redis分布式缓存
 9. 算法和数据结构
@@ -26,8 +26,8 @@ ES
 
 
 ---
-#### TIMER(1 + 1 + 1.5)
-**每天保持3.5H学习时间，秉承白天学习晚上总结**
+#### TIMER(1 + 1.5)
+**每天保持2.5H学习时间，秉承白天学习晚上总结**
 1. GetUp: 7:30
 2. Morning: 7:40 - 9:00
 3. GetOff: 20:00 - 21:00

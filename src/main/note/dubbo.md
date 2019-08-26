@@ -52,7 +52,7 @@
 #### 5.全日志追踪
 Dubbo上下文信息
  > 1. 本端传递。
- > 2. 对端传递。`RpcInvocation#setAttachment`。扩展filter通过隐式传参从provider传递到consumer达到全链路共享同一个traceid
+ > 2. 对端传递。`RpcInvocation#setAttachment` 扩展filter通过隐式传参从provider传递到consumer达到全链路共享同一个traceid
 
 #### 6.异步接口实现
 
@@ -87,9 +87,9 @@ Dubbo上下文信息
 
 #### 13.Dubbo线程模型
 IO模型
-> 阻塞IO
-> 非阻塞IO
-> IO复用
+> 1. 阻塞IO
+> 2. 非阻塞IO
+> 3. IO复用
 
 ![](image/dubbo_thread.png)
 

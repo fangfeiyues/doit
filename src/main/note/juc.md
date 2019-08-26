@@ -182,7 +182,7 @@ Mark Word: 记录了对象和锁的相关信息，存储对象自身的运行时
 #### 13.Cyclicbarrier
 
 ---
-#### 14.Semaphore
+#### 14.Semaphore 信号量
 如上
 
 

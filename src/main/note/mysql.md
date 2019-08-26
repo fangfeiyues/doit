@@ -16,7 +16,7 @@
 
 4. 连接数maxActive & 等待时间maxWait
 
-##### 查询缓存
+5. 查询缓存
 > 查询缓存的失效时间非常频繁，只要对一个表有更新这个表上所有的查询缓存都会清空。8.0之后的版本已经废弃
 
 ##### 分析器
@@ -129,10 +129,10 @@ alter table t where engine=InnoDB
 #### count(*)
 MyISAM引擎把表的总行数存在磁盘上了因此执行count(*)的时候效率很高
 同一时刻查询 由于多版本并发控制(MVCC)的原因 InnoDB表"应该返回多少"也是不确定的 --> 自己计数
-count(*)~~
-count(1) -- 每一行不为null 则放个数字"1" >
-count(id) -- 拿到每一行的id返回给server  >
-count(字段) --
+1. count(*)~~
+2. count(1) -- 每一行不为null 则放个数字"1" >
+3. count(id) -- 拿到每一行的id返回给server  >
+4. count(字段) --
 
 #### order by
 sort_buffer
@@ -269,7 +269,6 @@ insert...select=1 为了防止在session1执行过程中session2在binlog中间插入导致备库时
 1. 批量插入数据语句固定生成连续id
 2. innodb_autoinc_lock_mode=2 & binlog_format=row
 
-
 ---
 
 ### 3. MySQL索引结构
@@ -296,7 +295,6 @@ insert...select=1 为了防止在session1执行过程中session2在binlog中间插入导致备库时
     3. 所有的中间节点元素都同时存在于子节点，在子节点元素中是最大（或最小）元素
 
 #### InooDB的索引模型
-
 > InnoDB的索引模型：B+树。每个索引在InnoDB中都对应一颗B+树
 > 主键索引：叶子节点存的是整行数据。也被称为聚簇索引
 > 非主键索引：叶子节点内容是主键的值。也被称为二级索引
