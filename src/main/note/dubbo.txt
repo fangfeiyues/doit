@@ -42,7 +42,7 @@
     Invoker<T> invoker = select(loadbalance, invocation, copyInvokers, invoked);
 	doSelect(invokers, url, invocation)
 	
-5.Cluster缺省 Failover    <dubbo:service cluster="failsafe" />
+5.Cluster 缺省 Failover    <dubbo:service cluster="failsafe" />
    a.  初始化 MockClusterWrapper.join()是一个aop切面类
        extension = (Cluster) ExtensionLoader.getExtensionLoader(Cluster.class).getExtension("failover");
 	   注入(T) wrapperClass.getConstructor(type).newInstance(instance)获取到构造方法为Wrapper注入FailoverClusterInvoker的instance 
