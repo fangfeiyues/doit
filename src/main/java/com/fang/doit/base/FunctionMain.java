@@ -12,7 +12,7 @@ public class FunctionMain {
 
     public static void main(String[] args) {
 
-        // Function<key,value>
+        // Function<key,value> 接受一个参数有返回值
         Function<Integer, String> function = (x) -> "result:" + x;
         System.out.println(function.apply(1));
 
@@ -24,7 +24,7 @@ public class FunctionMain {
         Consumer<String> consumer = x -> System.out.println("consumer: " + x);
         consumer.accept("Hello");
 
-        // Supplier
+        // Supplier 无参
         Supplier<String> supplier = () -> "Test supplier";
         System.out.println(supplier.get());
 
