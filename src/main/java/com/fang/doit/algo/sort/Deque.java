@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- *
  * @author created by fang on 2019/10/27/027 18:59
  */
 public class Deque<Item> implements Iterable<Item> {
@@ -23,7 +22,7 @@ public class Deque<Item> implements Iterable<Item> {
 
     // is the deque empty?
     public boolean isEmpty() {
-        return (this.size == 0);
+        return (this.size == 0) || this.first == null || this.last == null;
     }
 
     // return the number of items on the deque
@@ -67,12 +66,17 @@ public class Deque<Item> implements Iterable<Item> {
     // remove and return the item from the front
     public Item removeFirst() {
         if (isEmpty()) {
-            return null;
+            throw new IllegalArgumentException("size is empty");
         } else {
             Item item = this.first.value;
 
             Node nowFirst = this.first.pre;
-            nowFirst.next = null;
+
+            // only one
+            if (nowFirst != null) {
+                nowFirst.next = null;
+            }
+
             this.first = nowFirst;
 
             size--;
@@ -84,14 +88,16 @@ public class Deque<Item> implements Iterable<Item> {
     // remove and return the item from the back
     public Item removeLast() {
         if (isEmpty()) {
-            return null;
+            throw new IllegalArgumentException("size is empty");
         } else {
             Item item = this.last.value;
 
             Node nowLast = this.last.next;
-            nowLast.pre = null;
-            this.last = nowLast;
+            if (nowLast != null) {
+                nowLast.pre = null;
+            }
 
+            this.last = nowLast;
             size--;
             return item;
         }
@@ -122,13 +128,14 @@ public class Deque<Item> implements Iterable<Item> {
 
     public static void main(String[] args) {
         Deque<String> deque = new Deque<String>();
+        // 0.8, 0.0, 0.1, 0.0, 0.1, 0.0
         deque.addFirst("a");
         deque.addFirst("b");
         deque.addFirst("c");
         deque.addLast("d");
         deque.addLast("e");
         deque.removeFirst();
-        deque.removeLast();
+//        deque.removeLast();
         System.out.println(deque.size);
         Iterator<String> iterator = deque.iterator();
         while (iterator.hasNext()) {

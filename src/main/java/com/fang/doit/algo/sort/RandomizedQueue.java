@@ -16,7 +16,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     // current item index
     private int size;
 
-    private int capacity = 16;
+    private int capacity = 1;
 
     // construct an empty randomized queue
     public RandomizedQueue() {
@@ -52,6 +52,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             tempArray[i] = itemArray[i];
         }
         itemArray = tempArray;
+        capacity = reCap;
     }
 
     // remove and return a random item
