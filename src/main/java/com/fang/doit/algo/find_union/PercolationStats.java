@@ -1,4 +1,4 @@
-package com.fang.doit.algo;
+package com.fang.doit.algo.find_union;
 
 /**
  * @author by Feiyue on 2019/10/21 10:54 PM

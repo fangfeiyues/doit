@@ -1,4 +1,4 @@
-package com.fang.doit.algo;
+package com.fang.doit.algo.find_union;
 
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 

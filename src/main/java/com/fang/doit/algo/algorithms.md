@@ -3,9 +3,12 @@
 ### Union-Find
 #### 1.Dynamic Connectivity 动态连通性
 
+
 #### 2.Quick Find  快查&贪心算法
 
+
 #### 3.Quick Union 快速合并
+
 
 #### 4.Quick Union Improvements 
 
@@ -15,3 +18,22 @@
 
 
 #### 5.Union-Find Applications
+
+
+#### disUnion, 保存网络关系（持久化森林）
+
+
+### Sort
+#### 选择排序
+
+#### 插入排序
+
+#### 归并排序
+##### 1.原地归并
+
+
+#### 快速排序
+
+
+
+#### 优先队列
