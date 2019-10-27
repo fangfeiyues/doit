@@ -17,23 +17,37 @@ public class Percolation {
 
     private int n;
 
+    private int number;
+
     // creates n-by-n grid, with all sites initially blocked
     public Percolation(int n) {
         if (n < 0) {
             throw new IllegalArgumentException();
         }
+        this.n = n;
         // initial all=0
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+        for (int i = 1; i < n + 1; i++) {
+            for (int j = 1; j < n + 1; j++) {
                 grids[i][j] = 0;
             }
         }
 
-
+        
     }
 
-    // opens the site (row, col) if it is not open already
+    /**
+     * open 如果周边site也打开则union
+     * opens the site (row, col) if it is not open already
+     *
+     * @param row
+     * @param col
+     */
     public void open(int row, int col) {
+        checkIllegal(row, col);
+
+        if (isOpen(row, col)) {
+            return;
+        }
 
 
     }
@@ -60,6 +74,12 @@ public class Percolation {
     public boolean percolates() {
 
         return false;
+    }
+
+    private void checkIllegal(int row, int col) {
+        if ((row > n || row < 0) || (col > n || col < 0)) {
+            throw new IllegalArgumentException();
+        }
     }
 
     // test client (optional)

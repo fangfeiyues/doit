@@ -43,8 +43,16 @@ procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
 
 volatile变量不仅可以保证自己的变量可见性，还能保证书写在volatile变量写操作之前的操作Happens-Before书写在volatile变量读操作之后的那些操作
 
+内存语义
 
 #### 内存模型
+
+
+
+
+
+
+
 
 
 #### 原子性
