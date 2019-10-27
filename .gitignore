@@ -14,5 +14,4 @@ doit.iml
 .DS_Store
 localbin
 nohup.out
-doit.iml
-.idea/workspace.xml
+doit.impl
