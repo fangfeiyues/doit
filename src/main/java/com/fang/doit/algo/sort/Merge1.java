@@ -2,7 +2,7 @@ package com.fang.doit.algo.sort;
 
 /**
  * 自顶向下排序归并排序: 一开始就是作为一个完整的数组进行排序
- *
+ * 稳定的
  * @author created by fang on 2019/11/1/001 22:46
  */
 public class Merge1 {
