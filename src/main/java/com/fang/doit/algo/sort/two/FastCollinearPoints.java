@@ -24,10 +24,6 @@ public class FastCollinearPoints {
 
         Arrays.sort(points);
 
-        ArrayList<Double> slopes = new ArrayList<Double>();
-
-        Point min = points[0];
-
         for (int i = 1; i < points.length; i++) {
 
             if (points[i] == null) {
@@ -37,14 +33,57 @@ public class FastCollinearPoints {
             if (points[i - 1].compareTo(points[i]) == 0) {
                 throw new IllegalArgumentException();
             }
-
-            slopes.add(min.slopeTo(points[i]));
-
         }
 
-        // sort by n2logn (merge or quick)
+        // sort by n2logn
+        int length = points.length;
+        Point[] temps = Arrays.copyOf(points, length);
+        int current = 0;
 
+        while (current < length) {
+            Point base = temps[current++];
+            Point min = base;
+            Point max = base;
+            int count = 2;
 
+            Arrays.sort(points, base.slopeOrder());
+
+            for (int i = 0; i < length; i++) {
+                double s1 = base.slopeTo(points[i]);
+                double s2 = base.slopeTo(points[i + 1]);
+                if (s1 == s2) {
+                    count++;
+                    if (max.compareTo(points[i + 1]) < 0) {
+                        max = points[i + 1];
+                    } else if (min.compareTo(points[i + 1]) > 0) {
+                        min = points[i + 1];
+                    }
+
+                    if (i == length - 2 && count >= 4 && base.compareTo(min) == 0) {
+                        LineSegment lineSegment = new LineSegment(min, max);
+                        lineSegmentList.add(lineSegment);
+                    }
+
+                } else {
+
+                    if (count >= 4 && base.compareTo(min) == 0) {
+                        LineSegment lineSegment = new LineSegment(min, max);
+                        lineSegmentList.add(lineSegment);
+                    }
+
+                    if (base.compareTo(points[i + 1]) > 0) {
+                        min = points[i + 1];
+                        max = base;
+                    } else {
+                        min = base;
+                        max = points[i + 1];
+                    }
+                    count = 2;
+
+                }
+            }
+
+        }
 
     }
 
