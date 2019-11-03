@@ -1,4 +1,4 @@
-package com.fang.doit.algo.sort;
+package com.fang.doit.algo.sort.one;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
