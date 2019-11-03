@@ -1,5 +1,9 @@
 package com.fang.doit.algo.sort.two;
 
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.algs4.StdOut;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -24,13 +28,13 @@ public class FastCollinearPoints {
 
         Arrays.sort(points);
 
-        for (int i = 1; i < points.length; i++) {
+        for (int i = 0; i < points.length; i++) {
 
             if (points[i] == null) {
                 throw new IllegalArgumentException();
             }
 
-            if (points[i - 1].compareTo(points[i]) == 0) {
+            if (i < points.length - 1 && points[i].compareTo(points[i + 1]) == 0) {
                 throw new IllegalArgumentException();
             }
         }
@@ -48,7 +52,7 @@ public class FastCollinearPoints {
 
             Arrays.sort(points, base.slopeOrder());
 
-            for (int i = 0; i < length; i++) {
+            for (int i = 0; i < length - 1; i++) {
                 double s1 = base.slopeTo(points[i]);
                 double s2 = base.slopeTo(points[i + 1]);
                 if (s1 == s2) {
@@ -101,11 +105,45 @@ public class FastCollinearPoints {
      *
      * @return
      */
-    public LineSegment[] segment() {
+    public LineSegment[] segments() {
         LineSegment[] lineSegments = new LineSegment[numberOfSegments()];
         for (int i = 0; i < lineSegmentList.size(); i++) {
             lineSegments[i] = lineSegmentList.get(i);
         }
         return lineSegments;
+    }
+
+    //main
+    public static void main(String[] args) {
+        In in = new In("src/week3/input9.txt");
+        int n = in.readInt();
+        StdOut.println("total " + n + " points");
+        Point[] points = new Point[n];
+        for (int i = 0; i < n; i++) {
+            int x = in.readInt();
+            int y = in.readInt();
+            StdOut.println("(" + x + "," + y + ")");
+            points[i] = new Point(x, y);
+        }
+
+        //draw the points
+        StdDraw.enableDoubleBuffering();
+        StdDraw.setXscale(0, 32768);
+        StdDraw.setYscale(0, 32768);
+        StdDraw.setPenColor(StdDraw.RED);
+        StdDraw.setPenRadius(0.01);
+        for (Point p : points) {
+            p.draw();
+        }
+        StdDraw.show();
+
+        //print and draw the line segments
+        FastCollinearPoints collinear = new FastCollinearPoints(points);
+        StdOut.println(collinear.numberOfSegments());
+        for (LineSegment segment : collinear.segments()) {
+            StdOut.println(segment);
+            segment.draw();
+        }
+        StdDraw.show();
     }
 }

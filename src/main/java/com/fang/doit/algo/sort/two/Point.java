@@ -112,5 +112,25 @@ public class Point implements Comparable<Point> {
         };
     }
 
+    @Override
+    public String toString(){
+        return "(" + x + ", " + y + ")";
+    }
 
+    public static void main(String[] args) {
+        Point p1 = new Point(0,0);
+        Point p2 = new Point(1,1);
+        Point p3 = new Point(2,2);
+        Point p4 = new Point(2,1);
+        Point p5 = new Point(4,1);
+        System.out.println("p1.compareTo(p1) is "+p1.compareTo(p2));
+        System.out.println("p2.compareTo(p1) is "+p2.compareTo(p1));
+        System.out.println("p1.compareTo(p1) is "+p1.compareTo(p1)+"\n");
+
+        System.out.println("p1.slopeTo(p2) is " +p1.slopeTo(p2));
+        System.out.println("p1.slopeTo(p4) is "+p1.slopeTo(p4));
+        System.out.println("p1.slopeTo(p1) is "+p1.slopeTo(p1));
+        System.out.println("p3.slopeTo(p4) is "+p3.slopeTo(p4));
+        System.out.println("p2.slopeTo(p5) is "+p2.slopeTo(p5));
+    }
 }

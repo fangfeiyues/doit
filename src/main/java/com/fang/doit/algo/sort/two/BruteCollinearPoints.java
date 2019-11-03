@@ -1,5 +1,9 @@
 package com.fang.doit.algo.sort.two;
 
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.algs4.StdOut;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -30,7 +34,7 @@ public class BruteCollinearPoints {
                 throw new IllegalArgumentException();
             }
 
-            if (points[i].compareTo(points[i + 1]) == 0) {
+            if (i < points.length - 1 && points[i].compareTo(points[i + 1]) == 0) {
                 throw new IllegalArgumentException();
             }
 
@@ -75,11 +79,43 @@ public class BruteCollinearPoints {
      *
      * @return
      */
-    public LineSegment[] segment() {
+    public LineSegment[] segments() {
         LineSegment[] lineSegments = new LineSegment[numberOfSegments()];
         for (int i = 0; i < lineSegmentArrayList.size(); i++) {
             lineSegments[i] = lineSegmentArrayList.get(i);
         }
         return lineSegments;
+    }
+
+    //main
+    public static void main(String[] args) {
+        In in = new In("src/week3/input8.txt");
+        int n = in.readInt();
+        StdOut.println("total " + n + " points");
+        Point[] points = new Point[n];
+        for (int i = 0; i < n; i++) {
+            int x = in.readInt();
+            int y = in.readInt();
+            StdOut.println("(" + x + "," + y + ")");
+            points[i] = new Point(x, y);
+        }
+        //draw the points
+        StdDraw.enableDoubleBuffering();
+        StdDraw.setXscale(0, 32768);
+        StdDraw.setYscale(0, 32768);
+        StdDraw.setPenColor(StdDraw.RED);
+        StdDraw.setPenRadius(0.01);
+        for (Point p : points) {
+            p.draw();
+        }
+        StdDraw.show();
+        // print and draw the line segments
+        BruteCollinearPoints collinear = new BruteCollinearPoints(points);
+        StdOut.println(collinear.numberOfSegments());
+        for (LineSegment segment : collinear.segments()) {
+            StdOut.println(segment);
+            segment.draw();
+        }
+        StdDraw.show();
     }
 }
