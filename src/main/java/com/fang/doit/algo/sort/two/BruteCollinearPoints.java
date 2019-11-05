@@ -88,34 +88,34 @@ public class BruteCollinearPoints {
     }
 
     //main
-    public static void main(String[] args) {
-        In in = new In("src/week3/input8.txt");
-        int n = in.readInt();
-        StdOut.println("total " + n + " points");
-        Point[] points = new Point[n];
-        for (int i = 0; i < n; i++) {
-            int x = in.readInt();
-            int y = in.readInt();
-            StdOut.println("(" + x + "," + y + ")");
-            points[i] = new Point(x, y);
-        }
-        //draw the points
-        StdDraw.enableDoubleBuffering();
-        StdDraw.setXscale(0, 32768);
-        StdDraw.setYscale(0, 32768);
-        StdDraw.setPenColor(StdDraw.RED);
-        StdDraw.setPenRadius(0.01);
-        for (Point p : points) {
-            p.draw();
-        }
-        StdDraw.show();
-        // print and draw the line segments
-        BruteCollinearPoints collinear = new BruteCollinearPoints(points);
-        StdOut.println(collinear.numberOfSegments());
-        for (LineSegment segment : collinear.segments()) {
-            StdOut.println(segment);
-            segment.draw();
-        }
-        StdDraw.show();
-    }
+//    public static void main(String[] args) {
+//        In in = new In("src/week3/input8.txt");
+//        int n = in.readInt();
+//        StdOut.println("total " + n + " points");
+//        Point[] points = new Point[n];
+//        for (int i = 0; i < n; i++) {
+//            int x = in.readInt();
+//            int y = in.readInt();
+//            StdOut.println("(" + x + "," + y + ")");
+//            points[i] = new Point(x, y);
+//        }
+//        //draw the points
+//        StdDraw.enableDoubleBuffering();
+//        StdDraw.setXscale(0, 32768);
+//        StdDraw.setYscale(0, 32768);
+//        StdDraw.setPenColor(StdDraw.RED);
+//        StdDraw.setPenRadius(0.01);
+//        for (Point p : points) {
+//            p.draw();
+//        }
+//        StdDraw.show();
+//        // print and draw the line segments
+//        BruteCollinearPoints collinear = new BruteCollinearPoints(points);
+//        StdOut.println(collinear.numberOfSegments());
+//        for (LineSegment segment : collinear.segments()) {
+//            StdOut.println(segment);
+//            segment.draw();
+//        }
+//        StdDraw.show();
+//    }
 }

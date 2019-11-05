@@ -91,7 +91,7 @@ public class Point implements Comparable<Point> {
 
     /**
      * compare two points by slopes they make with this point
-     * if and only if the slope (y1 ? y0) / (x1 ? x0) is less than the slope (y2 ? y0) / (x2 ? x0)
+     * if and only if the slope (y1 - y0) / (x1 - x0) is less than the slope (y2 - y0) / (x2 - x0)
      *
      * @return
      */
