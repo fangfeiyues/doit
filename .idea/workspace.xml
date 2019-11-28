@@ -6,13 +6,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a85dc30-4c29-41e6-b18b-890c4a2038bb" name="Default" comment="add thread">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/Percolation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/PercolationStats.java" afterDir="false" />
+    <list default="true" id="7a85dc30-4c29-41e6-b18b-890c4a2038bb" name="Default" comment="precolation渗透算法">
       <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/netty.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/note/algorithms.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/note/jdk+.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/FunctionMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/FunctionMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/note/DDD.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/DDD.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/note/dubbo.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/dubbo.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -40,24 +39,30 @@
     <session id="-1490508506">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="23" />
-          <entry key="project.open.time.1" value="7" />
+          <entry key="project.closed" value="35" />
+          <entry key="project.open.time.1" value="8" />
+          <entry key="project.open.time.10" value="2" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="1" />
+          <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.2" value="4" />
           <entry key="project.open.time.25" value="1" />
-          <entry key="project.open.time.3" value="3" />
+          <entry key="project.open.time.28" value="1" />
+          <entry key="project.open.time.3" value="6" />
+          <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.open.time.8" value="1" />
+          <entry key="project.open.time.8" value="2" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="23" />
+          <entry key="project.opened" value="35" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="25" />
-          <entry key="md" value="23" />
+          <entry key="java" value="59" />
+          <entry key="md" value="31" />
           <entry key="png" value="1" />
           <entry key="txt" value="7" />
           <entry key="xml" value="1" />
@@ -66,24 +71,24 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="1" />
-          <entry key="JAVA" value="25" />
-          <entry key="Markdown" value="23" />
+          <entry key="JAVA" value="59" />
+          <entry key="Markdown" value="31" />
           <entry key="PLAIN_TEXT" value="7" />
           <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1060" />
-          <entry key="md" value="1336" />
-          <entry key="txt" value="31" />
+          <entry key="java" value="3047" />
+          <entry key="md" value="1877" />
+          <entry key="txt" value="99" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1060" />
-          <entry key="Markdown" value="1336" />
-          <entry key="PLAIN_TEXT" value="31" />
+          <entry key="JAVA" value="3047" />
+          <entry key="Markdown" value="1877" />
+          <entry key="PLAIN_TEXT" value="99" />
         </counts>
       </usages-collector>
     </session>
@@ -93,33 +98,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/note/jdk+.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="45">
+                <caret line="3" column="13" lean-forward="true" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/Percolation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/Downloads/algs4.jar!/edu/princeton/cs/algs4/WeightedQuickUnionUF.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
-              <caret line="81" column="33" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="33" />
-              <folding>
-                <element signature="e#4802#4803#0" expanded="true" />
-                <element signature="e#4830#4831#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/PercolationStats.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        <entry file="file://$PROJECT_DIR$/src/main/note/DDD.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="592">
+                <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -171,19 +169,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/lock/SyncThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/view/tcp_16.md" />
-        <option value="$PROJECT_DIR$/src/main/doc/dubbo.txt" />
-        <option value="$PROJECT_DIR$/src/main/doc/springaop.txt" />
-        <option value="$PROJECT_DIR$/src/main/doc/redis.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/view/thread_28.md" />
-        <option value="$PROJECT_DIR$/src/main/doc/base_source.txt" />
-        <option value="$PROJECT_DIR$/src/main/doc/rocketmq.txt" />
-        <option value="$PROJECT_DIR$/src/main/doc/netty.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/ApplicationContextAwareDemo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/BeanPostProcessorDemo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/view/base_32.md" />
-        <option value="$PROJECT_DIR$/src/main/doc/spring.txt" />
         <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/view/mysql_20.md" />
         <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/view/cache_21.md" />
         <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/view/jvm_13.md" />
@@ -209,8 +194,6 @@
         <option value="$PROJECT_DIR$/src/main/note/linux.md" />
         <option value="$PROJECT_DIR$/src/main/note/rocketmq.txt" />
         <option value="$PROJECT_DIR$/src/main/note/rocketmq.md" />
-        <option value="$PROJECT_DIR$/src/main/note/dubbo.md" />
-        <option value="$PROJECT_DIR$/src/main/note/DDD.md" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/base/OptionalMain.java" />
         <option value="$PROJECT_DIR$/src/main/note/dubbo.txt" />
@@ -219,9 +202,24 @@
         <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/update/UpdateB.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/service/DemoServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/base/FunctionMain.java" />
-        <option value="$PROJECT_DIR$/src/main/note/algorithms.md" />
         <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/PercolationStats.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/Percolation.java" />
+        <option value="$PROJECT_DIR$/src/main/note/algorithms.md" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/LineSegment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/Point.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/BruteCollinearPoints.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/two/LineSegment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/two/Point.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/QuickSort.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/two/FastCollinearPoints.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/two/BruteCollinearPoints.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/TopM.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/algorithms.md" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/three/Solver.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/three/Board.java" />
+        <option value="$PROJECT_DIR$/src/main/note/dubbo.md" />
+        <option value="$PROJECT_DIR$/src/main/note/jdk+.md" />
+        <option value="$PROJECT_DIR$/src/main/note/DDD.md" />
       </list>
     </option>
   </component>
@@ -264,6 +262,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -287,47 +288,20 @@
               <item name="doit" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="doit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="doit" type="462c0819:PsiDirectoryNode" />
-              <item name="algo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="note" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="WeightedQuickUnionUF&#9;PSI&#9;JAVA://edu.princeton.cs.algs4.WeightedQuickUnionUF&#10;XMLC&#9;FILE&#9;jar://C:/Users/Administrator/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/builder/xml/XMLConfigBuilder.java&#10;SqlSessionFactory&#9;PSI&#9;JAVA://org.apache.ibatis.session.SqlSessionFactoryBuilder&#10;CacheKey&#9;PSI&#9;JAVA://org.apache.ibatis.cache.CacheKey&#10;WeakCache&#9;PSI&#9;JAVA://org.apache.ibatis.cache.decorators.WeakCache&#10;SoftCache&#9;PSI&#9;JAVA://org.apache.ibatis.cache.decorators.SoftCache&#10;LruCache&#9;PSI&#9;JAVA://org.apache.ibatis.cache.decorators.LruCache&#10;Cache&#9;PSI&#9;JAVA://org.apache.ibatis.cache.Cache&#10;MapperRegistry&#9;PSI&#9;JAVA://org.apache.ibatis.binding.MapperRegistry&#10;TransactionF&#9;PSI&#9;JAVA://org.apache.ibatis.transaction.TransactionFactory&#10;DataSourceF&#9;PSI&#9;JAVA://org.apache.ibatis.datasource.DataSourceFactory&#10;ClassLoaderWrapper&#9;PSI&#9;JAVA://org.apache.ibatis.io.ClassLoaderWrapper&#10;Log&#9;PSI&#9;JAVA://org.apache.ibatis.logging.Log&#10;User&#9;FILE&#9;file://D:/IDEAspace/doit/src/main/java/com/fang/doit/spring/mybatis/UserTypeHandler.java&#10;TypeHandlerR&#9;PSI&#9;JAVA://org.apache.ibatis.type.TypeHandlerRegistry&#10;UserTypeHandler&#9;FILE&#9;file://D:/IDEAspace/doit/src/main/java/com/fang/doit/spring/mybatis/UserTypeHandler.java&#10;Reflector&#9;PSI&#9;JAVA://org.apache.ibatis.reflection.Reflector&#10;SqlSessionTemplate&#9;PSI&#9;JAVA://org.mybatis.spring.SqlSessionTemplate&#10;ClassLoader&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/lang/ClassLoader.java&#10;DispatcherServlet&#9;PSI&#9;JAVA://org.springframework.web.servlet.DispatcherServlet&#10;AbstractApplicationContext&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-context/5.1.5.RELEASE/spring-context-5.1.5.RELEASE-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java&#10;ConcurrentH&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentHashMap&#10;AbstractAutoProxyCreator&#9;PSI&#9;JAVA://org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator&#10;FactoryBean&#9;PSI&#9;JAVA://org.springframework.beans.factory.FactoryBean&#10;AbstractApplication&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-context/5.1.5.RELEASE/spring-context-5.1.5.RELEASE-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java&#10;Thread&#9;PSI&#9;JAVA://java.lang.Thread&#10;ThreadPoolExecutor&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/util/concurrent/ThreadPoolExecutor.java&#10;AtomicIn&#9;PSI&#9;JAVA://java.util.concurrent.atomic.AtomicInteger&#10;Countdownlatch&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/util/concurrent/CountDownLatch.java&#10;AbstractQueuedSynchronizer&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/util/concurrent/locks/AbstractQueuedSynchronizer.java&#10;LinkedBlockingQueue&#9;PSI&#9;JAVA://java.util.concurrent.LinkedBlockingQueue&#10;ReentrantLock&#9;PSI&#9;JAVA://java.util.concurrent.locks.ReentrantLock&#10;ReadWrite&#9;PSI&#9;JAVA://java.util.concurrent.locks.ReadWriteLock&#10;Application&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-context/5.1.5.RELEASE/spring-context-5.1.5.RELEASE-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java&#10;lazyinit&#9;PSI&#9;JAVA://org.springframework.beans.factory.support.AbstractBeanDefinition#lazyInit&#10;BeanDefinitionRegistry&#9;PSI&#9;JAVA://org.springframework.beans.factory.support.BeanDefinitionRegistry&#10;BeanFactory&#9;PSI&#9;JAVA://org.springframework.beans.factory.BeanFactory&#10;Aaware&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-context/5.1.5.RELEASE/spring-context-5.1.5.RELEASE-sources.jar!/org/springframework/context/ApplicationContextAware.java&#10;TreeMap&#9;PSI&#9;JAVA://java.util.TreeMap&#10;lookupHandlerMethod&#9;PSI&#9;JAVA://org.springframework.web.servlet.handler.AbstractHandlerMethodMapping#lookupHandlerMethod&#10;AbstractHandlerMethodMapping&#9;PSI&#9;JAVA://org.springframework.web.servlet.handler.AbstractHandlerMethodMapping&#10;HashedTim&#9;PSI&#9;JAVA://com.fang.doit.netty.HashedWheelTimerDemo&#10;Delayed&#9;PSI&#9;JAVA://java.util.concurrent.Delayed&#10;DelayQueue&#9;PSI&#9;JAVA://java.util.concurrent.DelayQueue&#10;FrameworkServlet&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-webmvc/5.1.5.RELEASE/spring-webmvc-5.1.5.RELEASE-sources.jar!/org/springframework/web/servlet/FrameworkServlet.java&#10;HttpServletBean&#9;PSI&#9;JAVA://org.springframework.web.servlet.HttpServletBean&#10;i&#9;PSI&#9;JAVA://com.sun.jndi.url.iiop.iiopURLContextFactory&#10;CopyOnWriteArrayList &#9;PSI&#9;JAVA://java.util.concurrent.CopyOnWriteArrayList&#10;ClassDefiner&#9;PSI&#9;JAVA://sun.reflect.ClassDefiner&#10;Pointcut&#9;PSI&#9;JAVA://org.springframework.aop.Pointcut" />
+    <property name="SearchEverywhereHistoryKey" value="LineSegment&#9;FILE&#9;file:///Users/fangfeiyue/IdeaProjects/doit/src/main/java/com/fang/doit/algo/sort/two/LineSegment.java&#10;WeightedQuickUnionUF&#9;PSI&#9;JAVA://edu.princeton.cs.algs4.WeightedQuickUnionUF&#10;XMLC&#9;FILE&#9;jar://C:/Users/Administrator/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/builder/xml/XMLConfigBuilder.java&#10;SqlSessionFactory&#9;PSI&#9;JAVA://org.apache.ibatis.session.SqlSessionFactoryBuilder&#10;CacheKey&#9;PSI&#9;JAVA://org.apache.ibatis.cache.CacheKey&#10;WeakCache&#9;PSI&#9;JAVA://org.apache.ibatis.cache.decorators.WeakCache&#10;SoftCache&#9;PSI&#9;JAVA://org.apache.ibatis.cache.decorators.SoftCache&#10;LruCache&#9;PSI&#9;JAVA://org.apache.ibatis.cache.decorators.LruCache&#10;Cache&#9;PSI&#9;JAVA://org.apache.ibatis.cache.Cache&#10;MapperRegistry&#9;PSI&#9;JAVA://org.apache.ibatis.binding.MapperRegistry&#10;TransactionF&#9;PSI&#9;JAVA://org.apache.ibatis.transaction.TransactionFactory&#10;DataSourceF&#9;PSI&#9;JAVA://org.apache.ibatis.datasource.DataSourceFactory&#10;ClassLoaderWrapper&#9;PSI&#9;JAVA://org.apache.ibatis.io.ClassLoaderWrapper&#10;Log&#9;PSI&#9;JAVA://org.apache.ibatis.logging.Log&#10;User&#9;FILE&#9;file://D:/IDEAspace/doit/src/main/java/com/fang/doit/spring/mybatis/UserTypeHandler.java&#10;TypeHandlerR&#9;PSI&#9;JAVA://org.apache.ibatis.type.TypeHandlerRegistry&#10;UserTypeHandler&#9;FILE&#9;file://D:/IDEAspace/doit/src/main/java/com/fang/doit/spring/mybatis/UserTypeHandler.java&#10;Reflector&#9;PSI&#9;JAVA://org.apache.ibatis.reflection.Reflector&#10;SqlSessionTemplate&#9;PSI&#9;JAVA://org.mybatis.spring.SqlSessionTemplate&#10;ClassLoader&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/lang/ClassLoader.java&#10;DispatcherServlet&#9;PSI&#9;JAVA://org.springframework.web.servlet.DispatcherServlet&#10;AbstractApplicationContext&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-context/5.1.5.RELEASE/spring-context-5.1.5.RELEASE-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java&#10;ConcurrentH&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentHashMap&#10;AbstractAutoProxyCreator&#9;PSI&#9;JAVA://org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator&#10;FactoryBean&#9;PSI&#9;JAVA://org.springframework.beans.factory.FactoryBean&#10;AbstractApplication&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-context/5.1.5.RELEASE/spring-context-5.1.5.RELEASE-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java&#10;Thread&#9;PSI&#9;JAVA://java.lang.Thread&#10;ThreadPoolExecutor&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/util/concurrent/ThreadPoolExecutor.java&#10;AtomicIn&#9;PSI&#9;JAVA://java.util.concurrent.atomic.AtomicInteger&#10;Countdownlatch&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/util/concurrent/CountDownLatch.java&#10;AbstractQueuedSynchronizer&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/util/concurrent/locks/AbstractQueuedSynchronizer.java&#10;LinkedBlockingQueue&#9;PSI&#9;JAVA://java.util.concurrent.LinkedBlockingQueue&#10;ReentrantLock&#9;PSI&#9;JAVA://java.util.concurrent.locks.ReentrantLock&#10;ReadWrite&#9;PSI&#9;JAVA://java.util.concurrent.locks.ReadWriteLock&#10;Application&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-context/5.1.5.RELEASE/spring-context-5.1.5.RELEASE-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java&#10;lazyinit&#9;PSI&#9;JAVA://org.springframework.beans.factory.support.AbstractBeanDefinition#lazyInit&#10;BeanDefinitionRegistry&#9;PSI&#9;JAVA://org.springframework.beans.factory.support.BeanDefinitionRegistry&#10;BeanFactory&#9;PSI&#9;JAVA://org.springframework.beans.factory.BeanFactory&#10;Aaware&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-context/5.1.5.RELEASE/spring-context-5.1.5.RELEASE-sources.jar!/org/springframework/context/ApplicationContextAware.java&#10;TreeMap&#9;PSI&#9;JAVA://java.util.TreeMap&#10;lookupHandlerMethod&#9;PSI&#9;JAVA://org.springframework.web.servlet.handler.AbstractHandlerMethodMapping#lookupHandlerMethod&#10;AbstractHandlerMethodMapping&#9;PSI&#9;JAVA://org.springframework.web.servlet.handler.AbstractHandlerMethodMapping&#10;HashedTim&#9;PSI&#9;JAVA://com.fang.doit.netty.HashedWheelTimerDemo&#10;Delayed&#9;PSI&#9;JAVA://java.util.concurrent.Delayed&#10;DelayQueue&#9;PSI&#9;JAVA://java.util.concurrent.DelayQueue&#10;FrameworkServlet&#9;FILE&#9;jar://C:/Users/wb-ffy394838/.m2/repository/org/springframework/spring-webmvc/5.1.5.RELEASE/spring-webmvc-5.1.5.RELEASE-sources.jar!/org/springframework/web/servlet/FrameworkServlet.java&#10;HttpServletBean&#9;PSI&#9;JAVA://org.springframework.web.servlet.HttpServletBean&#10;i&#9;PSI&#9;JAVA://com.sun.jndi.url.iiop.iiopURLContextFactory&#10;CopyOnWriteArrayList &#9;PSI&#9;JAVA://java.util.concurrent.CopyOnWriteArrayList&#10;ClassDefiner&#9;PSI&#9;JAVA://sun.reflect.ClassDefiner" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571760152058" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1574946196233" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../mqdemo" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -336,19 +310,19 @@
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/fang/doit/algo" />
+      <recent name="D:\IDEAspace\doit\src\main\note\image" />
+      <recent name="D:\IDEAspace\doit\src\main\webapp\WEB-INF" />
+      <recent name="D:\IDEAspace\doit\src\main\resources" />
+      <recent name="D:\IDEAspace\doit\src\main\webapp" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/note/image" />
       <recent name="D:\IDEAspace\doit\src\main\note\image" />
       <recent name="D:\workspace\doit\src\main\doc" />
       <recent name="D:\IDEAspace\doit\src\main\java\com\fang\doit\netty" />
       <recent name="D:\IDEAspace\doit\src\main\java\com\fang\doit\design" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\IDEAspace\doit\src\main\note\image" />
-      <recent name="D:\IDEAspace\doit\src\main\webapp\WEB-INF" />
-      <recent name="D:\IDEAspace\doit\src\main\resources" />
-      <recent name="D:\IDEAspace\doit\src\main\webapp" />
-      <recent name="D:\IDEAspace\doit\web\WEB-INF" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -363,7 +337,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.FunctionMain">
+  <component name="RunManager" selected="Application.Point">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -398,20 +372,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.spring.Main" />
-      <module name="doit" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.fang.doit.spring.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="OptionalMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.fang.doit.base.OptionalMain" />
       <module name="doit" />
@@ -419,6 +379,20 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.fang.doit.base.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Point" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.sort.two.Point" />
+      <module name="doit" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fang.doit.algo.sort.two.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -539,19 +513,19 @@
     </configuration>
     <list>
       <item itemvalue="Tomcat Server.doit" />
-      <item itemvalue="Application.Main" />
       <item itemvalue="Application.AAAA" />
       <item itemvalue="JUnit.MybatisTest.getUser" />
       <item itemvalue="Application.OptionalMain" />
       <item itemvalue="Application.FunctionMain" />
+      <item itemvalue="Application.Point" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Point" />
         <item itemvalue="Application.FunctionMain" />
         <item itemvalue="Application.OptionalMain" />
         <item itemvalue="JUnit.MybatisTest.getUser" />
         <item itemvalue="Application.AAAA" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -658,7 +632,19 @@
       <workItem from="1568793500981" duration="491000" />
       <workItem from="1568794228277" duration="1805000" />
       <workItem from="1568855941216" duration="303000" />
-      <workItem from="1571554928012" duration="14070000" />
+      <workItem from="1571554928012" duration="16430000" />
+      <workItem from="1572071972919" duration="142000" />
+      <workItem from="1572072387994" duration="1681000" />
+      <workItem from="1572265217378" duration="4204000" />
+      <workItem from="1572576887482" duration="507000" />
+      <workItem from="1572765191419" duration="12962000" />
+      <workItem from="1572832644553" duration="15036000" />
+      <workItem from="1573040613978" duration="384000" />
+      <workItem from="1573090712249" duration="2226000" />
+      <workItem from="1573361895605" duration="2820000" />
+      <workItem from="1574087227930" duration="113000" />
+      <workItem from="1574905553373" duration="1661000" />
+      <workItem from="1574921466749" duration="2894000" />
     </task>
     <task id="LOCAL-00001" summary="add doc.txt">
       <created>1556890254745</created>
@@ -828,7 +814,49 @@
       <option name="project" value="LOCAL" />
       <updated>1568725535969</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="precolation渗透算法">
+      <created>1571760183986</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1571760183986</updated>
+    </task>
+    <task id="LOCAL-00026" summary="排序算法">
+      <created>1572157086696</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1572157086697</updated>
+    </task>
+    <task id="LOCAL-00027" summary="共线模式识别 - sort">
+      <created>1572786935914</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1572786935914</updated>
+    </task>
+    <task id="LOCAL-00028" summary="模式识别算法">
+      <created>1572790849972</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1572790849972</updated>
+    </task>
+    <task id="LOCAL-00029" summary="11.05">
+      <created>1572934219904</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1572934219904</updated>
+    </task>
+    <task id="LOCAL-00030" summary="8格算法">
+      <created>1573379649305</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1573379649305</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -852,13 +880,54 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="523286000" />
+    <option name="totallyTimeSpent" value="570276000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49886876" weight="0.23748212" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49886876" visible="true" weight="0.21030043" />
+      <window_info id="Capture Tool" order="1" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Web" order="3" side_tool="true" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Image Layers" order="5" />
+      <window_info id="Favorites" order="6" sideWeight="0.50113124" side_tool="true" weight="0.18454936" />
+      <window_info id="ZooKeeper" order="7" weight="0.09549356" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.5056561" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.67851436" weight="0.35903615" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.36506024" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="CheckStyle" order="7" />
+      <window_info anchor="bottom" id="FindBugs-IDEA" order="8" weight="0.32918552" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.3298217" />
+      <window_info anchor="bottom" id="TALA" order="11" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32793522" />
+      <window_info anchor="bottom" id="Statistic" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49839056" weight="0.32918552" />
+      <window_info anchor="bottom" id="Application Servers" order="15" weight="0.32871288" />
+      <window_info anchor="bottom" id="Spring" order="16" />
+      <window_info anchor="bottom" id="Java Enterprise" order="17" />
+      <window_info anchor="bottom" id="Event Log" order="18" sideWeight="0.50160944" side_tool="true" weight="0.32918552" />
+      <window_info anchor="bottom" id="Sequence" order="19" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" show_stripe_button="false" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.4989858" weight="0.21257485" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Aone" order="4" show_stripe_button="false" />
+      <window_info anchor="right" id="Maven Projects" order="5" sideWeight="0.49713632" weight="0.26609442" />
+      <window_info anchor="right" id="Database" order="6" weight="0.32984033" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Capture Analysis" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info anchor="right" id="Structure" order="10" sideWeight="0.5028637" side_tool="true" weight="0.1702432" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49886876" visible="true" weight="0.20386267" />
       <window_info id="Capture Tool" order="1" />
       <window_info id="Designer" order="2" />
       <window_info id="Web" order="3" side_tool="true" />
@@ -890,52 +959,12 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.4989858" weight="0.21257485" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Aone" order="4" show_stripe_button="false" />
-      <window_info anchor="right" id="Maven Projects" order="5" sideWeight="0.49713632" weight="0.1983414" />
+      <window_info anchor="right" id="Maven Projects" order="5" sideWeight="0.49713632" visible="true" weight="0.1981402" />
       <window_info anchor="right" id="Database" order="6" weight="0.32984033" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="8" />
       <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info active="true" anchor="right" id="Structure" order="10" sideWeight="0.5028637" side_tool="true" visible="true" weight="0.1702432" />
-    </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49886876" visible="true" weight="0.14171657" />
-      <window_info id="Capture Tool" order="1" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Web" order="3" side_tool="true" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Image Layers" order="5" />
-      <window_info id="Favorites" order="6" sideWeight="0.50113124" side_tool="true" weight="0.18454936" />
-      <window_info id="ZooKeeper" order="7" weight="0.09549356" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.5056561" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.67851436" weight="0.48478702" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3653846" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="CheckStyle" order="7" />
-      <window_info anchor="bottom" id="FindBugs-IDEA" order="8" weight="0.32918552" />
-      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3298217" />
-      <window_info anchor="bottom" id="TALA" order="11" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32793522" />
-      <window_info anchor="bottom" id="Statistic" order="13" />
-      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49839056" weight="0.32918552" />
-      <window_info anchor="bottom" id="Application Servers" order="15" weight="0.32918552" />
-      <window_info anchor="bottom" id="Spring" order="16" />
-      <window_info anchor="bottom" id="Java Enterprise" order="17" />
-      <window_info anchor="bottom" id="Event Log" order="18" sideWeight="0.50160944" side_tool="true" weight="0.32918552" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" show_stripe_button="false" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.4989858" weight="0.21257485" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Aone" order="4" show_stripe_button="false" />
-      <window_info anchor="right" id="Maven Projects" order="5" sideWeight="0.4979716" weight="0.17864272" />
-      <window_info anchor="right" id="Database" order="6" weight="0.3299356" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Capture Analysis" order="8" />
-      <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info anchor="right" id="Structure" order="10" sideWeight="0.5010142" side_tool="true" weight="0.17015968" />
+      <window_info anchor="right" id="Structure" order="10" sideWeight="0.5028637" side_tool="true" weight="0.1702432" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -960,7 +989,13 @@
     <MESSAGE value="rocketmq" />
     <MESSAGE value="DDD" />
     <MESSAGE value="add jdk8" />
-    <option name="LAST_COMMIT_MESSAGE" value="add jdk8" />
+    <MESSAGE value="precolation渗透算法" />
+    <MESSAGE value="排序算法" />
+    <MESSAGE value="共线模式识别 - sort" />
+    <MESSAGE value="模式识别算法" />
+    <MESSAGE value="11.05" />
+    <MESSAGE value="8格算法" />
+    <option name="LAST_COMMIT_MESSAGE" value="8格算法" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -979,108 +1014,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/plugin/InterceptorChain.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="38" column="42" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/mybatis.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/note/linux.txt" />
-    <entry file="file://$PROJECT_DIR$/src/main/note/mutil_thread.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/frame_17.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/mysql_20.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/os_10.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/note/microservices_patterns.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/note/PLAN1.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/note/linux.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="-345">
-            <caret line="115" lean-forward="true" selection-start-line="115" selection-end-line="115" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/image/dubbo_thread.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/juc.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="558">
-            <caret line="157" column="27" lean-forward="true" selection-start-line="157" selection-start-column="27" selection-end-line="157" selection-end-column="27" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/DDD.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="300">
-            <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-12">
-          <caret line="111" column="2" selection-start-line="111" selection-start-column="2" selection-end-line="111" selection-end-column="2" />
-        </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/dubbo.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="120" column="21" selection-start-line="120" selection-start-column="21" selection-end-line="120" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/dubbo.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="705">
-            <caret line="47" column="64" selection-start-line="47" selection-start-column="64" selection-end-line="47" selection-end-column="64" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/spring/DemoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/spring/BeanPostProcessorDemo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/spring/ApplicationContextAwareDemo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/spring/service/DemoService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/spring/update.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/spring/update/UpdateB.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/spring/update/UpdateA.java" />
@@ -1212,9 +1145,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1238,9 +1168,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1248,9 +1175,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="303">
           <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1271,38 +1195,191 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/algorithms.md">
+    <entry file="jar://$USER_HOME$/Downloads/algs4.jar!/edu/princeton/cs/algs4/WeightedQuickUnionUF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1065">
+          <caret line="81" column="33" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/find_union/PercolationStats.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/find_union/Percolation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/one/Deque.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/one/Permutation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/one/RandomizedQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/lang/Double.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="68" column="48" lean-forward="true" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/util/HashMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="474" column="11" selection-start-line="474" selection-start-column="11" selection-end-line="474" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2">
+          <caret line="146" column="1" lean-forward="true" selection-start-line="146" selection-start-column="1" selection-end-line="146" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/two/Point.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="95" column="14" lean-forward="true" selection-start-line="95" selection-start-column="14" selection-end-line="95" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/two/FastCollinearPoints.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1185">
+          <caret line="84" column="21" selection-start-line="84" selection-start-column="21" selection-end-line="84" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/two/LineSegment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="70" selection-start-line="15" selection-start-column="70" selection-end-line="15" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/QuickSort.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="48" column="23" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/two/BruteCollinearPoints.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/Merge2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/Merge1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/util/Arrays.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20565">
+          <caret line="1426" column="8" selection-start-line="1426" selection-start-column="8" selection-end-line="1426" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/algorithms.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="60">
-            <caret line="4" selection-start-line="4" selection-end-line="4" />
+          <first_editor relative-caret-position="240">
+            <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/Downloads/algs4.jar!/edu/princeton/cs/algs4/WeightedQuickUnionUF.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/three/Solver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="81" column="33" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="33" />
-          <folding>
-            <element signature="e#4802#4803#0" expanded="true" />
-            <element signature="e#4830#4831#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="840">
+          <caret line="61" column="42" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/PercolationStats.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/three/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="344">
+          <caret line="49" column="7" lean-forward="true" selection-start-line="49" selection-start-column="7" selection-end-line="49" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/Percolation.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/TopM.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/note/concurrent.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/note/dubbo.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="750">
+            <caret line="71" selection-start-line="71" selection-end-line="71" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/note/jdk+.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="45">
+            <caret line="3" column="13" lean-forward="true" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/note/DDD.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="592">
+            <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
