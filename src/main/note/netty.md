@@ -374,4 +374,50 @@ writerIdleTimeSeconds, 写超时. 即当在指定的事件间隔内没有数据写入到 Channel 时, 
 allIdleTimeSeconds, 读/写超时. 即当在指定的事件间隔内没有读或写操作时, 会触发一个 ALL_IDLE 的 IdleStateEvent 事件.
 	
 netty的心跳处理在弱网下怎么办 -- 弱网下可能出现发送时长久但依旧是在活跃的情况
-netty的通讯协议是什么样的 -- 
+netty的通讯协议是什么样的
+
+
+
+
+#### Netty 20191212
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
