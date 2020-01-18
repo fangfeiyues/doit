@@ -177,6 +177,7 @@ NettyClientHandler.channelRead(){received();}
 
 附：
 [zookeeper] 以消费者为例
+
 Invoker<T> = RegistryProtocol.refer(Class<T> type, URL url)
    1.判断group是否为"*"或length>1
    2.registry = registryFactory.getRegistry(url)    // 1.创建registry
@@ -237,9 +238,11 @@ org.apache.dubbo.remoting.TimeoutException: Sending request timeout in client-si
 时间轮定时器，在dubbo rpc调用时候会每次newFuture时把当前的调用任务加入到wheelTimer超时即执行
 
 [SPI]
-@Adaptive 
+@SPI
 在类上加注解是通过在实现上标识该类为自适应实现类。获取其List
    filters = ExtensionLoader.getExtensionLoader(Filter.class).getActivateExtension(invoker.getUrl(), key, group);
+
+@Adaptive
 在方法上加注解的是通过动态代码生成自适应实现类。生成XXX@Adaptive后 实现其接口。其中可能有Wrapper的AOP 装饰
    extension = (Protocol) ExtensionLoader.getExtensionLoader(Protocol.class).getExtension("dubbo");
 				
@@ -301,7 +304,9 @@ Dubbo ===>
                 };
             }
 
-共同点：1.遍历filter对象  2.将自己赋值为next作为参数传递到下个filter
+共同点：
+1.遍历filter对象
+2.将自己赋值为next作为参数传递到下个filter
 
 		 
 RPC框架可靠性设计
