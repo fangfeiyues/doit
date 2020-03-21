@@ -83,6 +83,7 @@ public class Board {
      */
     public Iterable<Board> neighbors() {
 
+        return null;
     }
 
     /**
@@ -92,6 +93,7 @@ public class Board {
      */
     public Board twin() {
 
+        return null;
     }
 
     /**

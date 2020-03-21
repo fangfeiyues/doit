@@ -12,12 +12,12 @@
     <!--<cache-ref namespace="com.fang.doit.spring.mybatis.UserMapper2"/>-->
 
     <resultMap id="resultMap" type="com.fang.doit.spring.mybatis.User" autoMapping="true">
-        <constructor>
-            <idArg column="id" javaType="Long"/>
-        </constructor>
+        <!--<constructor>-->
+            <!--<idArg column="id" javaType="Long"/>-->
+        <!--</constructor>-->
 
         <result property="id" column="id"/>
-        <result column="name" property="name"/>
+        <!--<result column="name" property="name"/>-->
 
 
         <!--<discriminator javaType="">-->

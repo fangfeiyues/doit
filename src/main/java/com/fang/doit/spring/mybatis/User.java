@@ -14,6 +14,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
+    // TODO
+    public User(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     private Long id;
 
     private String name;

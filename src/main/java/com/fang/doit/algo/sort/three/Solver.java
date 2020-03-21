@@ -42,6 +42,7 @@ public class Solver {
      */
     public Iterable<Board> solution() {
 
+        return null;
     }
 
     // test client (see below)
