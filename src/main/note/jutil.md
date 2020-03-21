@@ -6,7 +6,7 @@
 http://www.tianxiaobo.com/2018/01/18/HashMap-%E6%BA%90%E7%A0%81%E8%AF%A6%E7%BB%86%E5%88%86%E6%9E%90-JDK1-8/
 
 #### 1.构造参数
-> 1. loadFactor       负载因子 = 0.75f
+> 1. loadFactor       负载因子 = 0.75f,用来间接设置Entry数组的内存空间。值过大导致链表太长查询效率越低过于稀疏则浪费
 > 2. initialCapacity  初始容量 = 16(始终在2的幂次方), 没有全局变量也不是在构造函数初始化的 
 > 3. threshold        阈值 = capacity * loadFactor，当前 HashMap 所能容纳键值对数量的最大值，超过这个值则需扩容
 > = tableSizeFor(initialCapacity) 不断的或运算 找到大于或等于 cap 的最小2的幂
