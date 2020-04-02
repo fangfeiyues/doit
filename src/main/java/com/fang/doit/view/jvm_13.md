@@ -97,7 +97,7 @@ Method method = Proxy.class.getDeclaredMethod("run");
 
 
 #### 12.怎么打出线程栈信息。
-
+jstat -p 
 
 #### 13.请解释如下jvm参数的含义：
 -server 

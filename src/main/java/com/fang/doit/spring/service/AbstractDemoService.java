@@ -5,12 +5,15 @@ import com.fang.doit.spring.mybatis.User;
 import com.fang.doit.spring.mybatis.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
+
 /**
  * @author by Feiyue on 2020/1/9 7:54 PM
  */
 public abstract class AbstractDemoService implements DemoService{
 
-    @Autowired
+//    @Autowired
+    @Resource
     private UserMapper userMapper;
 
     @Override

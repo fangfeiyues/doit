@@ -19,7 +19,7 @@ ContextLoaderListener 会监听到tomcat容器启动过程中触发容器初始化事件，触发 conte
 IoC 容器的初始化过程分为三步骤：
 1.Resource 定位
 2.BeanDefinition 的载入和解析，将用户定义的Bean表示成IoC内部数据结构BeanDefinition且维护着 <beanName,BeanDefinition>
-3.BeanDefinition 注册，这里可以通过lazyinit = false完成容器初始化状态（创建bean）
+3.BeanDefinition 注册，这里可以通过lazyinit = false 完成容器初始化状态（创建bean）
 
 
 #### 3.Bean的加载
@@ -90,18 +90,6 @@ wrappedBean = applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName)
 #### 注解
 
 @autowire，1.反射该bean依赖的beanName   2. BeanFactory.getName(beanName) 方法即可获取对应的依赖实例
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
