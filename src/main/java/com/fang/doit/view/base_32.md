@@ -59,12 +59,10 @@ TreeMap
 
 #### 11.IO模型有哪些，讲讲你理解的nio ，他和bio，aio的区别是啥，谈谈reactor模型
 IO模型 
- 1.blocking IO   
- 2.non-blocking IO   
- 3.IO multiplexing(事件驱动IO) select/epoll这个function会不断的轮询所负责的所有socket
- 4.async IO
-NIO理解 
-零拷贝
+> 1. blocking IO   
+> 2. non-blocking IO   
+> 3. IO multiplexing(事件驱动IO) select/epoll 这个function会不断的轮询所负责的所有socket
+> 4. async IO
 
 
 #### 12.反射的原理，反射创建类实例的三种方式
@@ -96,8 +94,8 @@ NIO理解
     
     
 #### 13.反射中Class.forName和ClassLoader.loadClass()区别 
-class.forName()除了将类的.class文件加载到jvm中之外，还会对类进行解释，执行类中的static块，还会执行给静态变量赋值的静态方法
-classLoader.loadClass() 只干一件事情，就是将.class文件加载到jvm中，不会执行static中的内容,只有在newInstance才会去执行static块
+> 1. class.forName()除了将类的.class文件加载到jvm中之外，还会对类进行解释，执行类中的static块，还会执行给静态变量赋值的静态方法
+> 2. classLoader.loadClass() 只干一件事情，就是将.class文件加载到jvm中，不会执行static中的内容,只有在newInstance才会去执行static块
 
 
 #### 14.描述动态代理的几种实现方式，分别说出相应的优缺点
