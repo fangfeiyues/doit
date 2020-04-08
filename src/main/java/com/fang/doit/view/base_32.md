@@ -16,7 +16,7 @@ final 字段的写操作后插入一个写写屏障，防止某些优化将新�
 String: 线程不安全。 String a=""（常量池）和new String("")的空间开辟。
 StringBuffer: 线程安全  s1+"c"是在堆内存创建地址？
 StringBuilder:  线程不安全
- 
+
  
 #### 4.ArrayList和LinkedList有什么区别
 ArrayList 数组 怎么变安全？
@@ -44,7 +44,7 @@ ConcurrentHashMap
 
 
 #### 8.有没有有顺序的Map实现类，如果有，他们是怎么保证有序的
-TreeMap 
+TreeMap 红黑树排序处理
 
 
 #### 9.抽象类和接口的区别，类可以继承多个类么，接口可以继承多个接口么,类可以实现多个接口么
@@ -126,17 +126,17 @@ JAVAASSIST只需用字符串拼接出Java源码，便可生成相应字节码，
 
 
 #### 17.final的用途
-1.不可变的是变量的引用而非引用指向对象的内容
-2.被final修饰的方法，JVM会尝试为之寻求内联这对于提升Java的效率是非常重要的。因此假如能确定方法不会被继承，那么尽量将方法定义为final的
-3.被final修饰的常量，在编译阶段会存入调用类的常量池中
+> 1.不可变的是变量的引用而非引用指向对象的内容
+> 2.被final修饰的方法，JVM会尝试为之寻求内联这对于提升Java的效率是非常重要的。因此假如能确定方法不会被继承，那么尽量将方法定义为final的
+> 3.被final修饰的常量，在编译阶段会存入调用类的常量池中
 
 
 #### 18.写出三种单例模式实现
-1.懒汉式  
-2.饿汉式
-3.Holder  private static class Holder {  private static final Singleton SINGLETON = new Singleton(); }
-4.Double Check
-5.枚举 《Effective Java》
+> 1.懒汉式  
+> 2.饿汉式
+> 3.Holder  private static class Holder {  private static final Singleton SINGLETON = new Singleton(); }
+> 4.Double Check (volatile防止重排序问题)
+> 5.枚举 《Effective Java》
 
 #### 19.如何在父类中为子类自动完成所有的hashcode和equals实现？这么做有何优劣
 在应用程序的执行期间，只要对象的equals方法的比较操作所用到的信息没有被修改，那么对这同一个对象调用多次，hashCode方法都必须始终如一地返回同一个整数。
@@ -150,40 +150,49 @@ JAVAASSIST只需用字符串拼接出Java源码，便可生成相应字节码，
 
 
 #### 21.深拷贝和浅拷贝区别
-
+> 深拷贝：
+> 浅拷贝：
 
 #### 22.数组和链表数据结构描述，各自的时间复杂度
-
+> 数组：不连续的内存空间 
+> 链表：
 
 #### 23.error和exception的区别，CheckedException，RuntimeException的区别
+Exception & Error 都是继承Throwable类，在Java中只有Throwable类型的实例才可以被抛出或捕获
+> Exception：java中可预先知道的异常情况，可以捕获异常并处理
+> Error: 不可捕获异常，这种异常发生经常就会直接导致JVM不可用 如OutOfMemoryError，NoClassDefFoundError
+
+NoClassDefFoundError & ClassNotFoundException 区别：
+> NoClassDefFoundError是类依赖的class或jar不存在
+> ClassNotFoundException 是在forName()查找的时候找不到
 
 
 #### 24.请列出5个运行时异常
 
 
 #### 25.在自己的代码中，如果创建一个java.lang.String类，这个类是否可以被类加载器加载？为什么
+> 不能。在双亲委派模式下java.*的类会一直到父加载器Bootstrap ClassLoader 此时发现已经有一个String的类
 
 
 #### 26.说一说你对java.lang.Object对象中hashCode和equals方法的理解。在什么场景下需要重新实现这两个方法
-
+> 对象之间通过某些属性进行比较
 
 #### 27.在jdk1.5中，引入了泛型，泛型的存在是用来解决什么问题
 
 
 #### 28.这样的a.hashcode() 有什么用，与a.equals(b)有什么关系
-会先判断a.hashCode()是否和b.hashCode()相同，不相同在判断两者的equals()方法
+> 会先判断a.hashCode()是否和b.hashCode()相同，不相同在判断两者的equals()方法
 
 #### 29，有没有可能2个不相等的对象有相同的hashcode,
 有
 
 #### 30.Java中的HashSet内部是如何工作的
-HashSet
 
 
 #### 31.什么是序列化，怎么序列化，为什么序列化，反序列化会遇到什么问题，如何解决
 
 
-#### 32.java8的新特性。
+#### 32.java8的新特性
 
 
 
