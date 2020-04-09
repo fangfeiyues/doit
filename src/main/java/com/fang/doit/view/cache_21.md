@@ -115,14 +115,14 @@ AOF 的 fsync 是一个耗时的 IO 操作，它会降低 Redis 性能，同时�
 另外还应该再增加一个从节点以降低网络分区的概率，只要有一个从节点数据同步正常，数据也就不会轻易丢失
 https://juejin.im/book/5afc2e5f6fb9a07a9b362527/section/5afc364c6fb9a07aaf3567c8
 
-#### 14.redis的集群怎么同步的数据的。
+#### 14.redis的集群怎么同步的数据的
 
 
-#### 15.知道哪些redis的优化操作 ???
+#### 15.知道哪些redis的优化操作
 
 
-#### 16.Reids的主从复制机制原理。
-CPA原理：Consistent一致性， Availability 可用性， Partition tolerance分区容忍性
+#### 16.Reids的主从复制机制原理
+CPA原理：Consistent 一致性， Availability 可用性， Partition tolerance 分区容忍性
 > 增量同步：维护一个buffer定长的环形数组,主节点将自己状态作出修改的指令记录在buffer然后异步同步到从节点，如果数组满了就会从头开始覆盖
 > 快照同步：Master快照数据到磁盘，将磁盘文件同步给Slaver。
         在整个的快照过程中增量buffer还是在继续的如果快照时间太长或buffer太小 会导致同步期间的增量指令在复制 buffer 中被覆盖
@@ -130,8 +130,8 @@ CPA原理：Consistent一致性， Availability 可用性， Partition tolerance
 
 #### 17.Redis的线程模型是什么。
 单线程模型
-> 1.redis所有数据都存在内存中所以运行速度快
-> 2.多路复用，select轮询事件API，非阻塞IO等连接大量的并发客户端
+> 1. redis所有数据都存在内存中所以运行速度快
+> 2. 多路复用，select轮询事件API，非阻塞IO等连接大量的并发客户端
 
 
 #### 18.请思考一个方案，设计一个可以控制缓存总体大小的自动适应的本地缓存。

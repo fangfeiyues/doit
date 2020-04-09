@@ -23,7 +23,10 @@
 
 
 #### 6.当出现了内存溢出，你怎么排错。
-打印dump日志
+> 1. 打印dump日志
+> 2. 
+
+
 
 #### 7.JVM内存模型的相关知识了解多少，比如重排序，内存屏障，happen-before，主内存，工作内存等。
 JVM内存结构：堆，栈，方法区，常量池
@@ -107,5 +110,5 @@ jstat -p
 -XX:PermSize=256m 
 -XX:MaxPermSize=512m 
 -XX:MaxTenuringThreshold=20
--XX:CMSInitiatingOccupancyFraction=80 
+-XX:CMSInitiatingOccupancyFraction=80 触发老年代回收垃圾的比例
 -XX:+UseCMSInitiatingOccupancyOnly
