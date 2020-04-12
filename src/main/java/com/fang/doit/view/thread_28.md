@@ -117,6 +117,7 @@ CompareAndSwitch
 #### 23.对 AbstractQueuedSynchronizer 了解多少，讲讲加锁和解锁的流程，独占锁和公平所加锁有什么不同
 > 队列同步器面向的是锁的实现者，它简化了锁的实现方式屏蔽了同步状态管理，线程排队，等待与唤醒等底层操作
 
+
 **加锁和解锁的流程**
 > 1. tryAcquire() 获取同步锁。由子类根据场景实现如ReentrantLock的fair及noFair
 > 2. 获取失败，加入队列尾部
