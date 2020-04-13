@@ -184,13 +184,15 @@ NoClassDefFoundError & ClassNotFoundException 区别：
 > 会先判断a.hashCode()是否和b.hashCode()相同，不相同在判断两者的equals()方法
 
 #### 29，有没有可能2个不相等的对象有相同的hashcode,
-有
+> hash算法下很有可能
 
 #### 30.Java中的HashSet内部是如何工作的
-
+> hashCode(): 
+> equals():
 
 #### 31.什么是序列化，怎么序列化，为什么序列化，反序列化会遇到什么问题，如何解决
-
+> 序列化是将对象的状态信息转换为可以存储或传输的形式的过程
+> 实现数据的持久化；利用序列化远程通信
 
 #### 32.java8的新特性
 

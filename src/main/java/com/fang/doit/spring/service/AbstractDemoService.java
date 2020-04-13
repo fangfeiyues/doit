@@ -12,7 +12,6 @@ import javax.annotation.Resource;
  */
 public abstract class AbstractDemoService implements DemoService{
 
-//    @Autowired
     @Resource
     private UserMapper userMapper;
 
