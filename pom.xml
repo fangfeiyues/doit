@@ -72,7 +72,6 @@
         </dependency>
 
 
-
         <!-- mybatis -->
         <dependency>
             <groupId>org.mybatis</groupId>
@@ -92,9 +91,9 @@
         </dependency>
 
         <!--<dependency>-->
-            <!--<groupId>com.mchange</groupId>-->
-            <!--<artifactId>c3p0</artifactId>-->
-            <!--<version>0.9.5.2</version>-->
+        <!--<groupId>com.mchange</groupId>-->
+        <!--<artifactId>c3p0</artifactId>-->
+        <!--<version>0.9.5.2</version>-->
         <!--</dependency>-->
 
         <!-- mybatis-spring -->
@@ -109,6 +108,13 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>1.9.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>28.2-jre</version>
         </dependency>
 
         <dependency>
@@ -129,11 +135,16 @@
             <version>RELEASE</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.0-api -->
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <version>1.0.1.Final</version>
         </dependency>
 
     </dependencies>
