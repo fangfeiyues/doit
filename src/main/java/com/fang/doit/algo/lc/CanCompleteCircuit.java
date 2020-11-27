@@ -6,18 +6,53 @@ package com.fang.doit.algo.lc;
 public class CanCompleteCircuit {
 
     /**
-     * https://leetcode-cn.com/problems/gas-station/
-     * 在一条环路上有?N?个加油站，其中第?i?个加油站有汽油?gas[i]?升。
-     * 你有一辆油箱容量无限的的汽车，从第 i 个加油站开往第 i+1?个加油站需要消耗汽油?cost[i]?升。你从其中的一个加油站出发，开始时油箱为空。
-     * 如果你可以绕环路行驶一周，则返回出发时加油站的编号，否则返回 -1
+     * 134 加油站
      *
      * @param gas
      * @param cost
      * @return
      */
-    public int canCompleteCircuit(int[] gas, int[] cost) {
+    public static int canCompleteCircuit(int[] gas, int[] cost) {
+        //
 
-
-        return 0;
+        return -1;
     }
+
+
+    private static int canCompleteCircuitByViolence(int[] gas, int[] cost) {
+        // 暴力求解: 【执行耗时:27 ms,击败了38.61% 的Java用户 内存消耗:38.4 MB,击败了97.91% 的Java用户】
+        if (getAll(gas) < getAll(cost)) {
+            return -1;
+        }
+        for (int i = 0; i < gas.length; i++) {
+            int remain = 0;
+            for (int l = i % gas.length; l < gas.length; l++) {
+                remain = remain + (gas[l] - cost[l]);
+                if (remain < 0) {
+                    break;
+                }
+            }
+            // 一轮走完还有剩余的汽油则说明够用了
+            if (remain >= 0) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private static int getAll(int[] a) {
+        int all = 0;
+        for (int i = 0; i < a.length; i++) {
+            all = all + a[i];
+        }
+        return all;
+    }
+
+    public static void main(String[] args) {
+//        解答失败: 测试用例:[5,1,2,3,4] [4,4,1,5,1] 测试结果:2 期望结果:4 stdout:
+        int[] gas = new int[]{5, 1, 2, 3, 4};
+        int[] cost = new int[]{4, 4, 1, 5, 1};
+        System.out.println(canCompleteCircuit(gas, cost));
+    }
+
 }

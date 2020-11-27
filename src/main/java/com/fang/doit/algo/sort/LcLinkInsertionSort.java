@@ -1,6 +1,6 @@
 package com.fang.doit.algo.sort;
 
-import com.fang.aads.algo.link.ListNode;
+import com.fang.doit.algo.link.ListNode;
 
 /**
  * 业务场景：链表的排序方式...

@@ -25,6 +25,6 @@ public class KitchenService {
     public void accept(Long ticketId, ZonedDateTime acceptTime) {
         Ticket ticket = ticketRepository.findById(ticketId);
         List<DomainEvent> acceptEvents = ticket.accept(acceptTime);
-        ticketDomainEventPublisher.publish(ticket, acceptEvents);
+//        ticketDomainEventPublisher.publish(ticket, acceptEvents);
     }
 }

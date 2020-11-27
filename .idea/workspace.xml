@@ -1,14 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:maven" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="7a85dc30-4c29-41e6-b18b-890c4a2038bb" name="Default" comment="plan">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/note/PLAN.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/PLAN.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/ioc/Metrics.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/ioc/MetricsAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/assignment/seam/SeamCarver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/assignment/wordnet/Outcast.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/assignment/wordnet/SAP.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/assignment/wordnet/WordNet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/BreadthFirstPaths.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/DepthFirstPaths.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/Digraph.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/DirectedCycle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/DirectedDFS.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/Edge.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/EdgeWeightedGraph.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/Graph.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/mst/DijkstraSP.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/mst/DirectedEdge.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/mst/EdgeWeightedGraph.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/mst/KruskalMST.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/mst/LazyPrimMST.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/mst/MST.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/mst/PrimMST.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/mst/SP.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/CanCompleteCircuit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/CanCompleteCircuit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/LcLinkInsertionSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/LcLinkInsertionSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/string/StringSolution.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/tree/VersionTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/tree/VersionTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/ddd/order/KitchenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/ddd/order/KitchenService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/AAAA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/AAAA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/ApplicationContextAwareDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/ApplicationContextAwareDemoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/Main.java" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
-    <ignored path="$PROJECT_DIR$/target/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,215 +75,157 @@
       <FILTER>com.fang.doit.algo.sort.*</FILTER>
     </SUITE>
   </component>
-  <component name="FavoritesManager">
-    <favorites_list name="doit" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DDD.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/note/DDD.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-            <state split_layout="FIRST">
-              <first_editor relative-caret-position="418">
-                <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-              </first_editor>
-              <second_editor>
-                <markdownNavigatorState />
-              </second_editor>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plan.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/note/plan.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="netty.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/note/netty.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-            <state split_layout="FIRST">
-              <first_editor relative-caret-position="247">
-                <caret line="85" column="54" selection-start-line="85" selection-start-column="54" selection-end-line="85" selection-end-column="54" />
-              </first_editor>
-              <second_editor>
-                <markdownNavigatorState />
-              </second_editor>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/view/mysql_20.md" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/view/cache_21.md" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/view/jvm_13.md" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/view/frame_17.md" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/view/distributed_40.md" />
-        <option value="$PROJECT_DIR$/src/main/note/mysql.md" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/AAAA.java" />
-        <option value="$PROJECT_DIR$/src/main/note/PLAN.md" />
-        <option value="$PROJECT_DIR$/src/main/note/design_patterns.md" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/UserResultHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/QueryPlugin.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/RecordSQLPlugin.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/RecordSqlPlugin.java" />
-        <option value="$PROJECT_DIR$/src/main/note/mybatis.md" />
-        <option value="$PROJECT_DIR$/src/main/note/PLAN1.md" />
-        <option value="$PROJECT_DIR$/src/main/note/juc.md" />
-        <option value="$PROJECT_DIR$/src/main/note/mutil_thread.md" />
-        <option value="$PROJECT_DIR$/src/main/note/microservices_patterns.md" />
-        <option value="$PROJECT_DIR$/src/main/note/patterns.md" />
-        <option value="$PROJECT_DIR$/src/main/note/linux.md" />
-        <option value="$PROJECT_DIR$/src/main/note/rocketmq.txt" />
-        <option value="$PROJECT_DIR$/src/main/note/rocketmq.md" />
-        <option value="$PROJECT_DIR$/src/main/note/dubbo.md" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/base/OptionalMain.java" />
-        <option value="$PROJECT_DIR$/src/main/note/dubbo.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/update/UpdateA.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/update/UpdateB.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/service/DemoServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/base/FunctionMain.java" />
-        <option value="$PROJECT_DIR$/src/main/note/algorithms.md" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/PercolationStats.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/Percolation.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/Item.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/Permutation.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/RandomizedQueue.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/Deque.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/algorithms.md" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/Merge2.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/two/Point.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/two/FastCollinearPoints.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/two/BruteCollinearPoints.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/QuickSort.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/Merge1.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/MaxPQ.java" />
-        <option value="$PROJECT_DIR$/src/main/note/make_better.md" />
-        <option value="$PROJECT_DIR$/src/main/note/DDD.md" />
-        <option value="$PROJECT_DIR$/src/main/note/plan.md" />
+        <option value="AnnotationType" />
+        <option value="Class" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths />
+  <component name="PhpServers">
+    <servers />
   </component>
+  <component name="ProjectId" id="1kDVEYZnbgaYza6lu7ezjjuadGb" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="AndroidView" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="doit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="note" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+  <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="mysql&#9;FILE&#9;file:///Users/fangfeiyue/IdeaProjects/doit/src/main/note/mysql.md&#10;inter&#9;FILE&#9;file:///Users/fangfeiyue/IdeaProjects/doit/src/main/java/com/fang/doit/base/runorder/InterruptedMain.java&#10;abstractqueues&#9;PSI&#9;JAVA://java.util.concurrent.locks.AbstractQueuedSynchronizer&#10;DataSourceFactory&#9;PSI&#9;JAVA://org.apache.ibatis.datasource.DataSourceFactory&#10;mybatis&#9;FILE&#9;file:///Users/fangfeiyue/IdeaProjects/doit/src/test/java/com/fang/doit/spring/MybatisTest.java&#10;SqlSourceBuilder&#9;FILE&#9;jar:///Users/fangfeiyue/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/builder/SqlSourceBuilder.java&#10;ParameterMapping&#9;PSI&#9;JAVA://org.apache.ibatis.mapping.ParameterMapping&#10;myba&#9;FILE&#9;file:///Users/fangfeiyue/IdeaProjects/doit/src/test/java/com/fang/doit/spring/MybatisTest.java&#10;DynamicContext&#9;FILE&#9;jar:///Users/fangfeiyue/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/scripting/xmltags/DynamicContext.java&#10;DynamicSqlSource&#9;PSI&#9;JAVA://org.apache.ibatis.scripting.xmltags.DynamicSqlSource&#10;MappedStatement&#9;FILE&#9;jar:///Users/fangfeiyue/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/mapping/MappedStatement.java&#10;BoundSql&#9;PSI&#9;JAVA://org.apache.ibatis.mapping.BoundSql&#10;SimpleExecutor&#9;PSI&#9;JAVA://org.apache.ibatis.executor.SimpleExecutor&#10;DefaultSqlSession&#9;FILE&#9;jar:///Users/fangfeiyue/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/session/defaults/DefaultSqlSession.java&#10;DriverManager&#9;PSI&#9;JAVA://java.sql.DriverManager&#10;cache&#9;PSI&#9;JAVA://org.apache.ibatis.cache.Cache&#10;ParamNameResolver&#9;PSI&#9;JAVA://org.apache.ibatis.reflection.ParamNameResolver&#10;MapperProxyFactory&#9;PSI&#9;JAVA://org.apache.ibatis.binding.MapperProxyFactory&#10;dubb&#9;FILE&#9;file:///Users/fangfeiyue/IdeaProjects/doit/src/main/note/dubbo.txt&#10;dubbo&#9;FILE&#9;file:///Users/fangfeiyue/IdeaProjects/doit/src/main/note/dubbo.txt&#10;netty&#9;FILE&#9;file:///Users/fangfeiyue/IdeaProjects/doit/src/main/note/netty.md&#10;rocket&#9;FILE&#9;file:///Users/fangfeiyue/IdeaProjects/doit/src/main/note/rocketmq.md&#10;ReentrantLock&#9;PSI&#9;JAVA://java.util.concurrent.locks.ReentrantLock&#10;BeanFactory&#9;FILE&#9;jar:///Users/fangfeiyue/.m2/repository/org/springframework/spring-beans/5.1.5.RELEASE/spring-beans-5.1.5.RELEASE-sources.jar!/org/springframework/beans/factory/BeanFactory.java&#10;com&#9;FILE&#9;file:///Users/fangfeiyue/IdeaProjects/doit/src/main/java/com/fang/doit/lock/CompletableFutureV2.java&#10;applica&#9;FILE&#9;jar:///Users/fangfeiyue/.m2/repository/org/springframework/spring-context/5.1.5.RELEASE/spring-context-5.1.5.RELEASE-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java&#10;resource&#9;PSI&#9;JAVA://org.springframework.core.io.Resource&#10;AutowiredAnnotationBeanPostProcessor&#9;PSI&#9;JAVA://org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor&#10;abstractApp&#9;FILE&#9;jar:///Users/fangfeiyue/.m2/repository/org/springframework/spring-context/5.1.5.RELEASE/spring-context-5.1.5.RELEASE-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java&#10;abstractApplicationcon&#9;PSI&#9;JAVA://org.springframework.context.support.AbstractApplicationContext&#10;applicationC&#9;FILE&#9;jar:///Users/fangfeiyue/.m2/repository/org/springframework/spring-context/5.1.5.RELEASE/spring-context-5.1.5.RELEASE.jar!/org/springframework/context/ApplicationContext.class&#10;spring&#9;FILE&#9;file:///Users/fangfeiyue/IdeaProjects/doit/src/main/note/spring.md&#10;user&#9;PSI&#9;JAVA://com.fang.doit.spring.mybatis.UserMapper" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1593347149306" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.19114077" />
+    <property name="project.structure.side.proportion" value="0.34299517" />
+    <property name="settings.editor.selected.configurable" value="leetcode.id" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.CanCompleteCircuit">
+    <configuration name="AAAA" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.netty.AAAA" />
+      <module name="doit" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fang.doit.netty.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApplicationContextAwareDemoService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.spring.ApplicationContextAwareDemoService" />
+      <module name="doit" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fang.doit.spring.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CanCompleteCircuit" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.CanCompleteCircuit" />
+      <module name="doit" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fang.doit.algo.lc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.spring.Main" />
+      <module name="doit" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fang.doit.spring.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReentrantLockTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.base.runorder.ReentrantLockTest" />
+      <module name="doit" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fang.doit.base.runorder.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
+    <configuration default="true" type="TestNG">
       <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
       <properties />
       <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.ReentrantLockTest" />
+      <item itemvalue="Application.ApplicationContextAwareDemoService" />
+      <item itemvalue="Application.AAAA" />
+      <item itemvalue="Application.CanCompleteCircuit" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.CanCompleteCircuit" />
+        <item itemvalue="Application.AAAA" />
+        <item itemvalue="Application.ApplicationContextAwareDemoService" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.ReentrantLockTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="StructureViewFactory">
-    <option name="ACTIVE_ACTIONS" value=",SHOW_PROPERTIES" />
+    <option name="ACTIVE_ACTIONS" value=",SHOW_FIELDS" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -341,6 +339,61 @@
       <workItem from="1576386880682" duration="1800000" />
       <workItem from="1576508435111" duration="1279000" />
       <workItem from="1576898411870" duration="4184000" />
+      <workItem from="1578534107831" duration="4150000" />
+      <workItem from="1578736539296" duration="687000" />
+      <workItem from="1578879891615" duration="590000" />
+      <workItem from="1579232502207" duration="3698000" />
+      <workItem from="1579398491689" duration="290000" />
+      <workItem from="1579433265876" duration="27852000" />
+      <workItem from="1580180999359" duration="698000" />
+      <workItem from="1580693260531" duration="283000" />
+      <workItem from="1583118771619" duration="493000" />
+      <workItem from="1583127874463" duration="591000" />
+      <workItem from="1583242462005" duration="475000" />
+      <workItem from="1583287456297" duration="1709000" />
+      <workItem from="1584346700902" duration="422000" />
+      <workItem from="1584408972560" duration="3636000" />
+      <workItem from="1585023701286" duration="2684000" />
+      <workItem from="1585101577937" duration="71000" />
+      <workItem from="1585193707747" duration="6892000" />
+      <workItem from="1585530224280" duration="7496000" />
+      <workItem from="1585636402228" duration="5830000" />
+      <workItem from="1585728380442" duration="2121000" />
+      <workItem from="1585795082932" duration="4522000" />
+      <workItem from="1585840659850" duration="2066000" />
+      <workItem from="1585911941026" duration="1056000" />
+      <workItem from="1586246263381" duration="5429000" />
+      <workItem from="1586310909850" duration="25081000" />
+      <workItem from="1586484871647" duration="1804000" />
+      <workItem from="1586743261837" duration="9142000" />
+      <workItem from="1587530481924" duration="594000" />
+      <workItem from="1590836653952" duration="878000" />
+      <workItem from="1591099835672" duration="275000" />
+      <workItem from="1591146704189" duration="457000" />
+      <workItem from="1591427600399" duration="566000" />
+      <workItem from="1591667794736" duration="4000" />
+      <workItem from="1593341571647" duration="1575000" />
+      <workItem from="1593396289584" duration="495000" />
+      <workItem from="1593516461205" duration="1131000" />
+      <workItem from="1597233270260" duration="204000" />
+      <workItem from="1597233544770" duration="380000" />
+      <workItem from="1597233997047" duration="263000" />
+      <workItem from="1605235042250" duration="812000" />
+      <workItem from="1605339110433" duration="340000" />
+      <workItem from="1605339831343" duration="1179000" />
+      <workItem from="1605665549204" duration="3755000" />
+      <workItem from="1605843750877" duration="216000" />
+      <workItem from="1605844030992" duration="9074000" />
+      <workItem from="1605964418206" duration="407000" />
+      <workItem from="1605966322857" duration="387000" />
+      <workItem from="1606025119889" duration="312000" />
+      <workItem from="1606025976945" duration="1171000" />
+      <workItem from="1606028677373" duration="1710000" />
+      <workItem from="1606035821701" duration="726000" />
+      <workItem from="1606098960561" duration="3284000" />
+      <workItem from="1606270427026" duration="2059000" />
+      <workItem from="1606358980760" duration="491000" />
+      <workItem from="1606442616986" duration="6729000" />
     </task>
     <task id="LOCAL-00001" summary="add doc.txt">
       <created>1556890254745</created>
@@ -545,102 +598,97 @@
       <option name="project" value="LOCAL" />
       <updated>1574956994427</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="spring abstract">
+      <created>1578573344524</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1578573344524</updated>
+    </task>
+    <task id="LOCAL-00031" summary="dubbo">
+      <created>1579315952324</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1579315952324</updated>
+    </task>
+    <task id="LOCAL-00032" summary="add cache">
+      <created>1585840714587</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1585840714587</updated>
+    </task>
+    <task id="LOCAL-00033" summary="add base">
+      <created>1586342065323</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1586342065323</updated>
+    </task>
+    <task id="LOCAL-00034" summary="add">
+      <created>1586784256667</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1586784256667</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="582868000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="2062" height="1126" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="18" sideWeight="0.50160944" side_tool="true" weight="0.32918552" />
-      <window_info anchor="bottom" id="Application Servers" order="15" weight="0.32871288" />
-      <window_info anchor="right" id="Maven Projects" order="5" sideWeight="0.49447078" weight="0.28752437" />
-      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info id="Capture Tool" order="1" />
-      <window_info id="Designer" order="2" />
-      <window_info anchor="bottom" id="Statistic" order="13" />
-      <window_info anchor="right" id="Database" order="6" weight="0.32984033" />
-      <window_info anchor="right" id="Structure" order="10" sideWeight="0.5055292" side_tool="true" visible="true" weight="0.13972056" />
-      <window_info anchor="right" id="Ant Build" order="1" show_stripe_button="false" weight="0.25" />
-      <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3336714" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info id="Image Layers" order="5" />
-      <window_info anchor="bottom" id="Java Enterprise" order="17" />
-      <window_info anchor="right" id="Capture Analysis" order="8" />
-      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49839056" weight="0.32918552" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.67851436" weight="0.352518" />
-      <window_info anchor="bottom" id="Spring" order="16" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32793522" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49886876" visible="true" weight="0.18962076" />
-      <window_info id="Web" order="3" side_tool="true" />
-      <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info id="Favorites" order="6" sideWeight="0.50113124" side_tool="true" weight="0.18454936" />
-      <window_info anchor="right" id="Aone" order="4" show_stripe_button="false" />
-      <window_info anchor="right" id="Coverage" order="11" side_tool="true" weight="0.32934132" />
-      <window_info id="ZooKeeper" order="7" weight="0.09549356" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.4989858" weight="0.21257485" />
-      <window_info anchor="bottom" id="CheckStyle" order="7" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.5056561" />
-      <window_info anchor="bottom" id="FindBugs-IDEA" order="8" weight="0.32918552" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3298217" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="TALA" order="11" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-    </layout>
-    <layout-to-restore>
-      <window_info anchor="bottom" id="FindBugs-IDEA" order="8" weight="0.32918552" />
-      <window_info anchor="bottom" id="Application Servers" order="15" weight="0.32918552" />
-      <window_info id="Designer" order="2" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="TALA" order="11" />
-      <window_info anchor="bottom" id="Spring" order="16" />
-      <window_info id="Image Layers" order="5" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.67851436" weight="0.48478702" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" show_stripe_button="false" weight="0.25" />
-      <window_info id="Capture Tool" order="1" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Web" order="3" side_tool="true" />
-      <window_info id="Favorites" order="6" sideWeight="0.50113124" side_tool="true" weight="0.18454936" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32793522" />
-      <window_info id="ZooKeeper" order="7" weight="0.09549356" />
-      <window_info anchor="right" id="Capture Analysis" order="8" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="CheckStyle" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="18" sideWeight="0.50160944" side_tool="true" weight="0.32918552" />
-      <window_info anchor="bottom" id="Statistic" order="13" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.4989858" weight="0.21257485" />
-      <window_info anchor="bottom" id="Java Enterprise" order="17" />
-      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49839056" weight="0.32918552" />
-      <window_info anchor="right" id="Maven Projects" order="5" sideWeight="0.4979716" weight="0.17864272" />
-      <window_info anchor="right" id="Aone" order="4" show_stripe_button="false" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49886876" visible="true" weight="0.14171657" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3298217" />
-      <window_info anchor="right" id="Database" order="6" weight="0.3299356" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info anchor="right" id="Structure" order="10" sideWeight="0.5010142" side_tool="true" weight="0.17015968" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.5056561" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3653846" />
-    </layout-to-restore>
+  <component name="TestHistory">
+    <history-entry file="MybatisTest_getUser - 2020.04.08 at 20h 41m 38s.xml">
+      <configuration name="MybatisTest.getUser" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MybatisTest_getUser - 2020.04.08 at 20h 42m 08s.xml">
+      <configuration name="MybatisTest.getUser" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MybatisTest_getUser - 2020.04.09 at 10h 56m 01s.xml">
+      <configuration name="MybatisTest.getUser" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MybatisTest_getUser - 2020.04.09 at 19h 13m 53s.xml">
+      <configuration name="MybatisTest.getUser" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MybatisTest_getUser - 2020.04.09 at 19h 16m 26s.xml">
+      <configuration name="MybatisTest.getUser" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MybatisTest_getUser - 2020.04.09 at 19h 29m 13s.xml">
+      <configuration name="MybatisTest.getUser" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MybatisTest_getUser - 2020.04.09 at 19h 29m 27s.xml">
+      <configuration name="MybatisTest.getUser" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MybatisTest_getUser - 2020.04.09 at 20h 00m 55s.xml">
+      <configuration name="MybatisTest.getUser" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MybatisTest_getUser - 2020.04.09 at 20h 09m 35s.xml">
+      <configuration name="MybatisTest.getUser" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add doc.txt" />
@@ -662,7 +710,58 @@
     <MESSAGE value="queue" />
     <MESSAGE value="collinear 算法" />
     <MESSAGE value="领域DDD + 修炼手册" />
-    <option name="LAST_COMMIT_MESSAGE" value="领域DDD + 修炼手册" />
+    <MESSAGE value="spring abstract" />
+    <MESSAGE value="dubbo" />
+    <MESSAGE value="add cache" />
+    <MESSAGE value="add base" />
+    <MESSAGE value="add" />
+    <option name="LAST_COMMIT_MESSAGE" value="add" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="605" y="320" width="385" height="351" key="#Notifications" timestamp="1606443487806">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="605" y="320" width="385" height="351" key="#Notifications/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606443487806" />
+    <state x="605" y="320" width="483" height="432" key="#Notifications/0.0.1440.900@0.0.1440.900" timestamp="1605845286067" />
+    <state width="1398" height="101" key="GridCell.Tab.0.bottom" timestamp="1606460249548">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="101" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606460249548" />
+    <state width="1398" height="249" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1605865076928" />
+    <state width="1398" height="249" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1606233664833" />
+    <state width="1398" height="101" key="GridCell.Tab.0.center" timestamp="1606460249546">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="101" key="GridCell.Tab.0.center/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606460249546" />
+    <state width="1398" height="249" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1605865076927" />
+    <state width="1398" height="249" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1606233664832" />
+    <state width="1398" height="101" key="GridCell.Tab.0.left" timestamp="1606460249545">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="101" key="GridCell.Tab.0.left/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606460249545" />
+    <state width="1398" height="249" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1605865076926" />
+    <state width="1398" height="249" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1606233664831" />
+    <state width="1398" height="101" key="GridCell.Tab.0.right" timestamp="1606460249547">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="101" key="GridCell.Tab.0.right/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606460249547" />
+    <state width="1398" height="249" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1605865076927" />
+    <state width="1398" height="249" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1606233664833" />
+    <state x="208" y="31" key="SettingsEditor" timestamp="1605845296688">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="208" y="31" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1605845296688" />
+    <state x="511" y="371" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605665552755">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="511" y="371" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1605665552755" />
+    <state x="511" y="371" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1605235052688" />
+    <state x="385" y="196" width="671" height="677" key="search.everywhere.popup" timestamp="1606219835231">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="196" width="671" height="677" key="search.everywhere.popup/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606219835231" />
+    <state x="1953" y="95" width="894" height="812" key="search.everywhere.popup/0.0.1440.900/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1605942287415" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1605861948967" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -670,257 +769,24 @@
         <line-breakpoint enabled="true" type="java-line">
           <url>jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.1.5.RELEASE/spring-webmvc-5.1.5.RELEASE-sources.jar!/org/springframework/web/servlet/handler/AbstractHandlerMapping.java</url>
           <line>401</line>
-          <properties />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/scripting/xmltags/DynamicSqlSource.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/mybatis/mybatis/3.4.6/mybatis-3.4.6-sources.jar!/org/apache/ibatis/binding/MapperProxy.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/util/concurrent/locks/AbstractQueuedSynchronizer.java</url>
+          <line>896</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="11" />
     </breakpoint-manager>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/aglo_14.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/base_32.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/base/ReflectCase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/design/proxy/jdk/LogJdkDynProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/distributed_40.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/jvm_13.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/mq_12.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/netty/netty.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/cache/FunnelRateLimiter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/netty/common/CustomHeartbeatHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/design/chain/ChainMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/view/cache_21.md" />
-    <entry file="file://$PROJECT_DIR$/README.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/base/OptionalMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="20" column="28" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/base/FunctionMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/patterns.md" />
-    <entry file="file://$USER_HOME$/Desktop/材料/algo/percolation/PercolationVisualizer.java" />
-    <entry file="file://$USER_HOME$/Desktop/材料/algo/percolation/InteractivePercolationVisualizer.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/note/rocketmq.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/note/rocketmq.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5127">
-          <caret line="140" column="79" selection-start-line="140" selection-start-column="79" selection-end-line="140" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/algorithms.md" />
-    <entry file="jar://$USER_HOME$/Downloads/algs4.jar!/edu/princeton/cs/algs4/WeightedQuickUnionUF.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/note/concurrent.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="399">
-            <caret line="40" column="10" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
-          </first_editor>
-          <second_editor>
-            <markdownNavigatorState />
-          </second_editor>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/PercolationStats.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/Percolation.java" />
-    <entry file="jar://$USER_HOME$/Desktop/algs4.jar!/edu/princeton/cs/algs4/WeightedQuickUnionUF.java" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/Item.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_162/src.zip!/java/lang/Iterable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="44" column="17" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_162/src.zip!/java/util/Iterator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="61" column="12" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/Deque.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/Permutation.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/Merge2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/RandomizedQueue.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/two/Point.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1086">
-          <caret line="96" column="7" selection-start-line="96" selection-start-column="7" selection-end-line="96" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/two/FastCollinearPoints.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="36" column="73" selection-start-line="36" selection-start-column="73" selection-end-line="36" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/two/BruteCollinearPoints.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6.jar!/org/apache/ibatis/ognl/OgnlOps.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="613" column="25" lean-forward="true" selection-start-line="613" selection-start-column="25" selection-end-line="613" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/Merge1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/QuickSort.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="52" column="13" lean-forward="true" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/algorithms.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="209">
-            <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-          </first_editor>
-          <second_editor>
-            <markdownNavigatorState />
-          </second_editor>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/MaxPQ.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/netty/AAAA.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/Hello.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/redis.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-437">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/dubbo.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="-1197" />
-          <second_editor>
-            <markdownNavigatorState />
-          </second_editor>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/make_better.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/note/image/domain.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/DDD.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="418">
-            <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-          </first_editor>
-          <second_editor>
-            <markdownNavigatorState />
-          </second_editor>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/netty.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="247">
-            <caret line="85" column="54" selection-start-line="85" selection-start-column="54" selection-end-line="85" selection-end-column="54" />
-          </first_editor>
-          <second_editor>
-            <markdownNavigatorState />
-          </second_editor>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/note/plan.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>

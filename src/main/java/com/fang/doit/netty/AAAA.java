@@ -22,25 +22,8 @@ public class AAAA {
         list.add("1");
     }
 
-    public static void main(String[] args) throws InterruptedException {
-
-        //CountDownLatch countDownLatch = new CountDownLatch(10000);
-        //AAAA a = new AAAA();
-        //for (int i = 0; i < 10000; i++) {
-        //    new Thread() {
-        //        @Override
-        //        public void run() {
-        //            a.add();
-        //            countDownLatch.countDown();
-        //        }
-        //    }.start();
-        //}
-        //countDownLatch.await();
-        //System.out.println(JSON.toJSONString(a.list.size()));
-
-        HashMap hashMap = new HashMap();
-        hashMap.put(null, 1);
-        hashMap.put(null, 2);
-        System.out.println(hashMap.get(null));
+    public static void main(String[] args) {
+        long kk = 28301441L % 512;
+        System.out.printf(kk + "");
     }
 }

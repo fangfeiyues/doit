@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  * @Date: Created in 2019/5/16 13:58
  */
 @Component
-public class ApplicationContextAwareDemo
+public class ApplicationContextAwareDemoService
     implements BeanNameAware, BeanFactoryAware, BeanClassLoaderAware, ApplicationContextAware {
 
     private String beanName;
@@ -53,6 +53,14 @@ public class ApplicationContextAwareDemo
     public void display() {
         System.out.println("beanName:" + beanName);
         System.out.println("是否为单例：" + beanFactory.isSingleton(beanName));
-        System.out.println("系统环境为：" + applicationContext.getEnvironment());
+//        System.out.println("系统环境为：" + applicationContext.getEnvironment());
+    }
+
+    public static Boolean checkZero(Long data) {
+        return data != null && data < 0;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(checkZero(-1L));
     }
 }
