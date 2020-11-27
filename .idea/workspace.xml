@@ -33,37 +33,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a85dc30-4c29-41e6-b18b-890c4a2038bb" name="Default" comment="plan">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/ioc/Metrics.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/ioc/MetricsAspect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/assignment/seam/SeamCarver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/assignment/wordnet/Outcast.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/assignment/wordnet/SAP.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/assignment/wordnet/WordNet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/BreadthFirstPaths.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/DepthFirstPaths.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/Digraph.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/DirectedCycle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/DirectedDFS.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/Edge.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/EdgeWeightedGraph.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/Graph.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/mst/DijkstraSP.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/mst/DirectedEdge.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/mst/EdgeWeightedGraph.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/mst/KruskalMST.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/mst/LazyPrimMST.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/mst/MST.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/mst/PrimMST.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/graph/mst/SP.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/CanCompleteCircuit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/CanCompleteCircuit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/LcLinkInsertionSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/LcLinkInsertionSort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/string/StringSolution.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/tree/VersionTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/tree/VersionTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/ddd/order/KitchenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/ddd/order/KitchenService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/AAAA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/AAAA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/ApplicationContextAwareDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/ApplicationContextAwareDemoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -393,7 +364,7 @@
       <workItem from="1606098960561" duration="3284000" />
       <workItem from="1606270427026" duration="2059000" />
       <workItem from="1606358980760" duration="491000" />
-      <workItem from="1606442616986" duration="6729000" />
+      <workItem from="1606442616986" duration="8483000" />
     </task>
     <task id="LOCAL-00001" summary="add doc.txt">
       <created>1556890254745</created>
@@ -723,28 +694,28 @@
     </state>
     <state x="605" y="320" width="385" height="351" key="#Notifications/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606443487806" />
     <state x="605" y="320" width="483" height="432" key="#Notifications/0.0.1440.900@0.0.1440.900" timestamp="1605845286067" />
-    <state width="1398" height="101" key="GridCell.Tab.0.bottom" timestamp="1606460249548">
+    <state width="1398" height="268" key="GridCell.Tab.0.bottom" timestamp="1606483817803">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="101" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606460249548" />
+    <state width="1398" height="268" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606483817803" />
     <state width="1398" height="249" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1605865076928" />
     <state width="1398" height="249" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1606233664833" />
-    <state width="1398" height="101" key="GridCell.Tab.0.center" timestamp="1606460249546">
+    <state width="1398" height="268" key="GridCell.Tab.0.center" timestamp="1606483817801">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="101" key="GridCell.Tab.0.center/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606460249546" />
+    <state width="1398" height="268" key="GridCell.Tab.0.center/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606483817801" />
     <state width="1398" height="249" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1605865076927" />
     <state width="1398" height="249" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1606233664832" />
-    <state width="1398" height="101" key="GridCell.Tab.0.left" timestamp="1606460249545">
+    <state width="1398" height="268" key="GridCell.Tab.0.left" timestamp="1606483817800">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="101" key="GridCell.Tab.0.left/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606460249545" />
+    <state width="1398" height="268" key="GridCell.Tab.0.left/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606483817800" />
     <state width="1398" height="249" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1605865076926" />
     <state width="1398" height="249" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1606233664831" />
-    <state width="1398" height="101" key="GridCell.Tab.0.right" timestamp="1606460249547">
+    <state width="1398" height="268" key="GridCell.Tab.0.right" timestamp="1606483817802">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="101" key="GridCell.Tab.0.right/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606460249547" />
+    <state width="1398" height="268" key="GridCell.Tab.0.right/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606483817802" />
     <state width="1398" height="249" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1605865076927" />
     <state width="1398" height="249" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1606233664833" />
     <state x="208" y="31" key="SettingsEditor" timestamp="1605845296688">
