@@ -33,8 +33,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a85dc30-4c29-41e6-b18b-890c4a2038bb" name="Default" comment="plan">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Stack01.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/CanCompleteCircuit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/CanCompleteCircuit.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +85,7 @@
     <property name="project.structure.side.proportion" value="0.34299517" />
     <property name="settings.editor.selected.configurable" value="leetcode.id" />
   </component>
-  <component name="RunManager" selected="Application.CanCompleteCircuit">
+  <component name="RunManager" selected="Application.Stack01">
     <configuration name="AAAA" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.fang.doit.netty.AAAA" />
       <module name="doit" />
@@ -142,13 +142,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReentrantLockTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.base.runorder.ReentrantLockTest" />
+    <configuration name="Stack01" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.Stack01" />
       <module name="doit" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.fang.doit.base.runorder.*" />
+          <option name="PATTERN" value="com.fang.doit.algo.lc.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -180,18 +180,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="Application.ReentrantLockTest" />
       <item itemvalue="Application.ApplicationContextAwareDemoService" />
       <item itemvalue="Application.AAAA" />
       <item itemvalue="Application.CanCompleteCircuit" />
+      <item itemvalue="Application.Stack01" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Stack01" />
         <item itemvalue="Application.CanCompleteCircuit" />
         <item itemvalue="Application.AAAA" />
         <item itemvalue="Application.ApplicationContextAwareDemoService" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.ReentrantLockTest" />
       </list>
     </recent_temporary>
   </component>
@@ -364,7 +364,7 @@
       <workItem from="1606098960561" duration="3284000" />
       <workItem from="1606270427026" duration="2059000" />
       <workItem from="1606358980760" duration="491000" />
-      <workItem from="1606442616986" duration="8483000" />
+      <workItem from="1606442616986" duration="16714000" />
     </task>
     <task id="LOCAL-00001" summary="add doc.txt">
       <created>1556890254745</created>
@@ -694,43 +694,63 @@
     </state>
     <state x="605" y="320" width="385" height="351" key="#Notifications/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606443487806" />
     <state x="605" y="320" width="483" height="432" key="#Notifications/0.0.1440.900@0.0.1440.900" timestamp="1605845286067" />
-    <state width="1398" height="268" key="GridCell.Tab.0.bottom" timestamp="1606483817803">
+    <state x="533" y="141" key="#com.intellij.ide.util.MemberChooser" timestamp="1606629479484">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="268" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606483817803" />
+    <state x="533" y="141" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606629479484" />
+    <state width="1398" height="210" key="GridCell.Tab.0.bottom" timestamp="1606630955747">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="210" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606630955747" />
     <state width="1398" height="249" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1605865076928" />
     <state width="1398" height="249" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1606233664833" />
-    <state width="1398" height="268" key="GridCell.Tab.0.center" timestamp="1606483817801">
+    <state width="1398" height="210" key="GridCell.Tab.0.center" timestamp="1606630955744">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="268" key="GridCell.Tab.0.center/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606483817801" />
+    <state width="1398" height="210" key="GridCell.Tab.0.center/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606630955744" />
     <state width="1398" height="249" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1605865076927" />
     <state width="1398" height="249" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1606233664832" />
-    <state width="1398" height="268" key="GridCell.Tab.0.left" timestamp="1606483817800">
+    <state width="1398" height="210" key="GridCell.Tab.0.left" timestamp="1606630955742">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="268" key="GridCell.Tab.0.left/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606483817800" />
+    <state width="1398" height="210" key="GridCell.Tab.0.left/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606630955742" />
     <state width="1398" height="249" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1605865076926" />
     <state width="1398" height="249" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1606233664831" />
-    <state width="1398" height="268" key="GridCell.Tab.0.right" timestamp="1606483817802">
+    <state width="1398" height="210" key="GridCell.Tab.0.right" timestamp="1606630955745">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="268" key="GridCell.Tab.0.right/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606483817802" />
+    <state width="1398" height="210" key="GridCell.Tab.0.right/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606630955745" />
     <state width="1398" height="249" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1605865076927" />
     <state width="1398" height="249" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1606233664833" />
-    <state x="208" y="31" key="SettingsEditor" timestamp="1605845296688">
+    <state width="1398" height="438" key="GridCell.Tab.1.bottom" timestamp="1606630554297">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="208" y="31" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1605845296688" />
+    <state width="1398" height="438" key="GridCell.Tab.1.bottom/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606630554297" />
+    <state width="1398" height="438" key="GridCell.Tab.1.center" timestamp="1606630554296">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="438" key="GridCell.Tab.1.center/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606630554296" />
+    <state width="1398" height="438" key="GridCell.Tab.1.left" timestamp="1606630554295">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="438" key="GridCell.Tab.1.left/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606630554295" />
+    <state width="1398" height="438" key="GridCell.Tab.1.right" timestamp="1606630554296">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="438" key="GridCell.Tab.1.right/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606630554296" />
+    <state x="208" y="31" key="SettingsEditor" timestamp="1606553992825">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="208" y="31" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1606553992825" />
     <state x="511" y="371" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605665552755">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="511" y="371" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1605665552755" />
     <state x="511" y="371" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1605235052688" />
-    <state x="385" y="196" width="671" height="677" key="search.everywhere.popup" timestamp="1606219835231">
+    <state x="385" y="196" width="671" height="677" key="search.everywhere.popup" timestamp="1606628534931">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="196" width="671" height="677" key="search.everywhere.popup/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606219835231" />
+    <state x="385" y="196" width="671" height="677" key="search.everywhere.popup/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1606628534931" />
     <state x="1953" y="95" width="894" height="812" key="search.everywhere.popup/0.0.1440.900/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1605942287415" />
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1605861948967" />
   </component>
@@ -756,6 +776,11 @@
           <url>jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/util/concurrent/locks/AbstractQueuedSynchronizer.java</url>
           <line>896</line>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Stack01.java</url>
+          <line>102</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
