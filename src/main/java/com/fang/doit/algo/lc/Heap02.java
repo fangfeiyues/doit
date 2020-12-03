@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * 堆 == 数组？？？
  * 无序数组
- * 1.第 k 个最大的元素
+ * 1.第k个最大的元素
  * 2.出现频率前K
  * 3.大小为k的滑动窗口，路过的窗口内最大值集合
  * 4.字符出现的频率集合
@@ -28,6 +28,7 @@ public class Heap02 {
      */
     public int findKthLargestByPriority(int[] nums, int k) {
         // 思路：1.数组排序再选择；2.快排思想用切割pivot方式(v)；3.二分切割+分治(X)；4.大顶推
+        // 大小为k的小顶推
         PriorityQueue<Integer> queue = new PriorityQueue<>(nums.length);
         for (int num : nums) {
             queue.add(num);
@@ -55,7 +56,7 @@ public class Heap02 {
             int i = low;
             for (int j = i + 1; j <= high; j++) {
                 if (nums[j] < nums[low]) {
-                    // 这里的i表示最接近pivot的值（也可是）
+                    // 这里的i表示最接近pivot的值。如果小于的就换到i+1的位置上来（因为认为i+1位置是大于pivot的,i是最接近的那个）
                     swap(nums, j, ++i);
                 }
             }
@@ -83,7 +84,7 @@ public class Heap02 {
 
 
     /**
-     * 347: 定一个非空的整数数组，返回其中出现频率前 k 高的元素。时间复杂度必须优于 O(n log n) , n 是数组的大小
+     * 347: 定一个非空的整数数组，返回其中出现频率前k高的元素。时间复杂度必须优于 O(n log n) , n 是数组的大小
      * 场景：某段时间的热度排行
      *
      * @param nums
@@ -144,7 +145,6 @@ public class Heap02 {
                 map.put(num, 1);
             }
         }
-
         //桶排序
         //将频率作为数组下标，对于出现频率不同的数字集合，存入对应的数组下标
         List<Integer>[] list = new List[nums.length + 1];
@@ -170,8 +170,9 @@ public class Heap02 {
 
     public static void main(String[] args) {
         Heap02 heap02 = new Heap02();
-        int[] nums = {1, 1, 1, 1, 2, 2, 3, 4, 4, 5, 4, 4};
-        System.out.println(heap02.topKFrequentByBucket(nums, 3));
+        int[] nums = {1, 1, 1, 1, 2, 2, 3, 4, 4, 5, 4, 4, 1};
+        System.out.println(heap02.topKFrequentByBucket(nums, 1));
+//        int[] array = {3, 2, 4, 5, 1, 7, 10};
     }
 
 
@@ -251,39 +252,6 @@ public class Heap02 {
 
         return 0;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

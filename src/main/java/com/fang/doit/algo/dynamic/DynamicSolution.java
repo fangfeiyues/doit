@@ -1,6 +1,8 @@
 package com.fang.doit.algo.dynamic;
 
 /**
+ * ¶¯Ì¬¹æ»®
+ *
  * @author by Feiyue on 2020/5/29 12:46 PM
  */
 public class DynamicSolution {
