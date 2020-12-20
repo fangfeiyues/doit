@@ -9,17 +9,15 @@ public class DynamicSolution {
 
     /**
      * 【背包问题】
-     * <p>
-     * weight:物品重量，n:物品个数，w:背包可承载重量
+     * 核心：遍历出所有(即每个节点都有放入和不放入背包两种可能)可能产生的结果，然后从结果中找到最合适的那个
      *
-     * @param weight
-     * @param n
-     * @param w
-     * @return
+     * @param weight 物品重量
+     * @param n      物品个数
+     * @param w      背包可承载重量
+     * @return 背包最大可承受重量
      */
     public int knapsack(int[] weight, int n, int w) {
-
-        // 默认值false [n]物品个数；[w+1]背包可承受的重量
+        //二维数组。n:物品数量；w+1：n个物品时背包承受的重量
         boolean[][] states = new boolean[n][w + 1];
 
         // 第一行的数据要特殊处理，可以利用哨兵优化
@@ -29,26 +27,22 @@ public class DynamicSolution {
             states[0][weight[0]] = true;
         }
 
+        // 遍历所有节点的两种情况产生的可能：放入和不放入
         for (int i = 1; i < n; ++i) {
 
-            // 不把第i个物品放入背包
-            // 这里是把上一个放入背包的步骤结果都直接保持不变
+            // 情况1：第i个物品不放入到背包。此时背包二维数组i的状态和i-1时候的状态一样，没有变化
             for (int j = 0; j <= w; ++j) {
                 if (states[i - 1][j] == true) {
                     states[i][j] = states[i - 1][j];
                 }
-
             }
 
-            // 把第i个物品放入背包
-            // 在不超过总量 w-weight[i] 的范围内如果之前的物品在背包内则此次重量+背包 weight[i]+j
-            // 这样就表示之前只要在背包有过可能达到达的重量都会加上这次放入放入重量
+            // 情况2：第i个物品放入到背包。那如果i-1个物品的重量小于w-weight[i]则表示可以放入
             for (int j = 0; j <= w - weight[i]; ++j) {
                 if (states[i - 1][j] == true) {
                     states[i][j + weight[i]] = true;
                 }
             }
-
         }
 
         // 最后一个物品 n-1 放下的时候为准
