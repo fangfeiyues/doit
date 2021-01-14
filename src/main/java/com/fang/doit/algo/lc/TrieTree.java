@@ -1,7 +1,7 @@
-package com.fang.doit.algo.leetcode;
+package com.fang.doit.algo.lc;
 
 /**
- * ×ÖµäÊ÷
+ * ï¿½Öµï¿½ï¿½ï¿½
  *
  * @author by Feiyue on 2020/7/18 3:41 PM
  */

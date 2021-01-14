@@ -67,8 +67,9 @@ public class InterruptDemo {
         @Override
         public void run() {
             /**
-             * 对于非阻塞中的线程，只是改变了中断状态，即Thread.isInterrupted() 将返回true；对于可取消的阻塞状态中的线程，比如等待在这些函数上的线程，Thread.sleep()、Object
-             * .wait()、Thread.join(), 这个线程收到中断信号后，会抛出InterruptedException，同时会把中断状态置回为true。但调用Thread.interrupted()
+             * 对于非阻塞中的线程，只是改变了中断状态，即Thread.isInterrupted() 将返回true；
+             * 对于可取消的阻塞状态中的线程，比如等待在这些函数上的线程，Thread.sleep()、Object.wait()、Thread.join(), 这个线程收到中断信号后，会抛出InterruptedException，同时会把中断状态置回为true。
+             * 但调用Thread.interrupted()
              * 会对中断状态进行复位。
              */
             while (!interrupted()) {

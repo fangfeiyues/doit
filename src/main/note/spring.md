@@ -18,9 +18,8 @@ ContextLoaderListener 会监听到tomcat容器启动过程中触发容器初始化事件，触发 conte
 以`ApplicationContext`的具体实现`FileSystemXmlApplicationContext` 为例
 IoC 容器的初始化过程分为三步骤：
 1.Resource 定位
-2.BeanDefinition 的载入和解析，将用户定义的Bean表示成IoC内部数据结构BeanDefinition且维护着 <beanName,BeanDefinition>
-3.BeanDefinition 注册，这里可以通过lazyinit = false 完成容器初始化状态（创建bean）
-
+2.BeanDefinition 的载入和解析，将用户定义的Bean表示成IoC内部数据结构BeanDefinition且维护着<beanName,BeanDefinition>
+3.BeanDefinition 注册，这里可以通过 lazyinit = false 完成容器初始化状态（创建bean）
 
 #### 3.Bean的加载
 AbstractApplicationContext#getBean(name)  继承于BeanFactory 通过applicationContext拿到beanName
@@ -53,7 +52,6 @@ AbstractBeanFactory# <T> T doGetBean()
         核心流程和原型模式一样只不过获取 bean 实例是由 Scope#get(String name, ObjectFactory<?> objectFactory) 方法来实现
 
 #### 4.创建Bean
-
 0.创建spring容器
 ApplicationContext
   继承 ListableBeanFactory 获取单个的bean

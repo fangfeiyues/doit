@@ -41,7 +41,7 @@ class UF {
         if (rootP == rootQ) {
             return;
         }
-        // 小树接到大树下面，较平衡
+        // TODO 优化1：小树接到大树下面，较平衡
         if (size[rootP] > size[rootQ]) {
             parent[rootQ] = rootP;
             size[rootP] += size[rootQ];
@@ -63,7 +63,7 @@ class UF {
     /* 返回节点 x 的根节点 */
     private int find(int x) {
         while (parent[x] != x) {
-            // 进行路径压缩
+            // TODO 优化2：路径压缩。避免不断不断向上遍历，直接全部挂在根节点下面
             parent[x] = parent[parent[x]];
             x = parent[x];
         }

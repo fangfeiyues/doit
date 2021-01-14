@@ -58,7 +58,7 @@ public class Tree06 {
         // 1.暴力破解：维护两条包含节点链路列表，并取出链表。这里可以优化下利用广度BFS发现到p q节点就没必要再继续向下遍历了
 
         // 2.递归的思想有点难。lowestCommonAncestorByRecursion(root,p,q)
-
+        lowestCommonAncestorByRecursion(root, p, q);
 
         return null;
     }

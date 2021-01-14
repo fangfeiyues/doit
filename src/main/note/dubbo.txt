@@ -149,8 +149,10 @@ NettyClientHandler.channelRead(){received();}
    Codec -> 
    
 10. ThreadPool
-   --> NettyServerHandler.channelRead(ChannelHandlerContext ctx,Object msg) --> AbstractPeer.received(Channel,Object)
-   --> MultiMessageHandler.received(Channel,Object) -->HeartbeatHandler.received(channel, message) 
+   --> NettyServerHandler.channelRead(ChannelHandlerContext ctx,Object msg)
+   --> AbstractPeer.received(Channel,Object)
+   --> MultiMessageHandler.received(Channel,Object)
+   --> HeartbeatHandler.received(channel, message)
    --> AllChannelHandler.received(Channel channel, Object message)  线程池开始处理
         executor.execute(new ChannelEventRunnable(channel, handler, ChannelState.RECEIVED, message));
 

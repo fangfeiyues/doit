@@ -7,9 +7,20 @@ package com.fang.doit.algo.lc;
 public class Design11 {
 
     /**
-     * @see LRUCache
+     * 146:最近最少使用
+     *
+     * @see DesignLRUCache
      */
-    public void design() {
+    public void designLRU() {
+    }
+
+
+    /**
+     * 641：设计双端队列
+     *
+     * @see DesignMyCircularDeque
+     */
+    public void designMyCircularDeque() {
     }
 
 }

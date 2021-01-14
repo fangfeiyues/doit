@@ -2,7 +2,7 @@
 
 ---
 #### 1.ConcurrentHashMap 
-  > 抛弃了分段锁技术的实现，直接采用CAS + synchronized保证并发更新的安全性
+  > 抛弃了分段锁技术的实现，直接采用 CAS + synchronized 保证并发更新的安全性
    
    
      
@@ -127,6 +127,12 @@ compareAndSetState(available, remaining)  小于0 或者大于0就更新 返回
 doAcquireSharedInterruptibly    小于0 此时将请求线程放入 AQS 的同步队列中进行等待
    head == null 尝试获取
    判断pred.waitState == SIGNAL 且挂起后是否还中断  是则中断异常否则继续自旋
+
+其主要逻辑是：
+1. 调用自定义同步器实现的tryAcquire(int arg)方法该方法保证线程安全的获取同步方
+2. 如果同步状态获取失败则构造同步节点（独占式Node.EXCLUSIVE）并通过addWrite(Node)方法将该节点接入到同步队列的尾部
+3. 最后acquireQueued(Node)使得该节点以死循环方式获取同步状态如果获取不到则阻塞节点（只能靠前节点唤醒或阻塞节点被中断）
+
 
 ---
 #### 10.ReentrantLock 

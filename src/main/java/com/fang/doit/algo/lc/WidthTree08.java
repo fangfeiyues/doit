@@ -7,6 +7,7 @@ import java.util.*;
 /**
  * @author fangfeiyue
  * @Date 2020/12/15 7:05 下午
+ * @see TreeSearch 树的宽度&广度实现
  */
 public class WidthTree08 {
 
@@ -21,11 +22,13 @@ public class WidthTree08 {
      * @return 最便宜的价格
      */
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
+        // 1.小顶推
+        findCheapestPriceByHeap(n, flights, src, dst, K);
 
-        // 1.广度优先
+        // 2.广度优先
+        //
 
-
-        // 2.动态规划dynamic programming = dp
+        // 3.动态规划dynamic programming = dp
         int[][] dp = new int[2][n];
         // cost最大值是10000，且n最大值是100，2者相乘就是路径总和的MAX
         int MAX_EDGE_SUM = 10001 * n;
@@ -45,8 +48,6 @@ public class WidthTree08 {
             }
         }
         return dp[K & 1][dst] > MAX_EDGE_SUM ? -1 : dp[K & 1][dst];
-
-//        return -1;
     }
 
 
@@ -105,7 +106,7 @@ public class WidthTree08 {
      * @param times 网络时间
      * @param N     节点数
      * @param K     出发节点
-     * @return
+     * @return 需要多久才能使所有节点都收到信号
      */
     public int networkDelayTime(int[][] times, int N, int K) {
 

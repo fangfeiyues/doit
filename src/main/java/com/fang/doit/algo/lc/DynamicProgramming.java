@@ -1,4 +1,4 @@
-package com.fang.doit.algo.leetcode;
+package com.fang.doit.algo.lc;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * ¶¯Ì¬¹æ»®
+ * ï¿½ï¿½Ì¬ï¿½æ»®
  *
  * @author created by fang on 2020/7/9/009 0:25
  */
@@ -14,11 +14,11 @@ public class DynamicProgramming {
 
     /**
      * https://leetcode-cn.com/problems/re-space-lcci/
-     * ÒªÇóÎ´Ê¶±ðµÄ×Ö·û×îÉÙ
+     * Òªï¿½ï¿½Î´Ê¶ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½
      *
      * @param dictionary dictionary = ["looked","just","like","her","brother"]
      * @param sentence   sentence = "jesslookedjustliketimherbrother"
-     * @return "jess looked just like tim her brother" 7¸ö×Ö·ûÎ´Ê¶±ð
+     * @return "jess looked just like tim her brother" 7ï¿½ï¿½ï¿½Ö·ï¿½Î´Ê¶ï¿½ï¿½
      */
     public int respace(String[] dictionary, String sentence) {
         Set<String> dic = new HashSet<>();
@@ -26,17 +26,17 @@ public class DynamicProgramming {
             dic.add(str);
         }
 
-        // 1.±©Á¦²ð½â£¨¶¯Ì¬¹æ»®£©
+        // 1.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â£¨ï¿½ï¿½Ì¬ï¿½æ»®ï¿½ï¿½
         int n = sentence.length();
         int[] dp = new int[n + 1];
 
-        // dp[i]±íÊ¾×Ö·û´®sentenceÇ°i²»Æ¥ÅäµÄ½á¹û
+        // dp[i]ï¿½ï¿½Ê¾ï¿½Ö·ï¿½ï¿½ï¿½sentenceÇ°iï¿½ï¿½Æ¥ï¿½ï¿½Ä½ï¿½ï¿½
         for (int i = 1; i <= n; i++) {
-            // ÏÈ¼ÙÉèµÚi¸ö²»ÔÚ×ÖµäÖÐ
+            // ï¿½È¼ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½
             dp[i] = dp[i - 1] + 1;
             for (int j = 0; j < i; j++) {
 
-                // µÚjµ½iÔÙ×ÖµäÀï ´ËÊ±dp[i] = dp[j] µ«»¹Ðè±È½Ï×îÐ¡µÄ
+                // ï¿½ï¿½jï¿½ï¿½iï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½Ê±dp[i] = dp[j] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½
                 if (dic.contains(sentence.substring(j, i))) {
                     dp[i] = Math.min(dp[i], dp[j]);
                 }
@@ -45,8 +45,8 @@ public class DynamicProgramming {
 
 //        return dp[n];
 
-        // 2. trie ×ÖµäÊ÷
-        // ¹¹½¨×ÖµäÊ÷
+        // 2. trie ï¿½Öµï¿½ï¿½ï¿½
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½
         Trie trie = new Trie();
         for (String word : dictionary) {
             trie.insert(word);
@@ -68,7 +68,7 @@ public class DynamicProgramming {
             root = new TrieNode();
         }
 
-        // ½«µ¥´Êµ¹Ðò²åÈë×ÖµäÊ÷
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½
         public void insert(String word) {
             TrieNode cur = root;
             for (int i = word.length() - 1; i >= 0; i--) {
@@ -81,7 +81,7 @@ public class DynamicProgramming {
             cur.isWord = true;
         }
 
-        // ÕÒµ½ sentence ÖÐÒÔ endPos Îª½áÎ²µÄµ¥´Ê£¬·µ»ØÕâÐ©µ¥´ÊµÄ¿ªÍ·ÏÂ±ê¡£
+        // ï¿½Òµï¿½ sentence ï¿½ï¿½ï¿½ï¿½ endPos Îªï¿½ï¿½Î²ï¿½Äµï¿½ï¿½Ê£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð©ï¿½ï¿½ï¿½ÊµÄ¿ï¿½Í·ï¿½Â±ê¡£
         public List<Integer> search(String sentence, int endPos) {
             List<Integer> indices = new ArrayList<>();
             TrieNode cur = root;
