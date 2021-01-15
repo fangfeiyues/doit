@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 回溯的处理思想有点类似枚举搜索。
- * 我们枚举所有的解找到满足期望的解。
- * 为了有规律地枚举所有可能的解避免遗漏和重复我们把问题求解的过程分为多个阶段。
- * 每个阶段我们都会面对一个岔路口我们先随意选一条路走当发现这条路走不通的时候（不符合期望的解）就回退到上一个岔路口另选一种走法继续走。
+ * 回溯的处理思想有点类似枚举搜索
  *
  * @author fangfeiyue
  * @Date 2020/12/21 8:33 下午
  */
 public class Recall12 {
 
+//      我们枚举所有的解找到满足期望的解。
+//      为了有规律地枚举所有可能的解避免遗漏和重复我们把问题求解的过程分为多个阶段。
+//      每个阶段我们都会面对一个岔路口我们先随意选一条路走当发现这条路走不通的时候（不符合期望的解）就回退到上一个岔路口另选一种走法继续走。
+
+
     // 深度优先树：for+递归回溯
 
     /**
-     * 22:括号生成：数字 n 代表生成括号的对数请你设计一个函数用于能够生成所有可能的并且有效的括号组合
+     * 22 括号生成：数字 n 代表生成括号的对数请你设计一个函数用于能够生成所有可能的并且有效的括号组合
      * 思考：罗列场景
      *
      * @param n
@@ -124,14 +126,20 @@ public class Recall12 {
         // 逐行往上考察每一行
         for (int i = row - 1; i >= 0; --i) {
             // 第i行的column列有棋子吗？
-            if (result[i] == column) return false;
+            if (result[i] == column) {
+                return false;
+            }
             // 考察左上对角线：第i行leftup列有棋子吗？
             if (leftup >= 0) {
-                if (result[i] == leftup) return false;
+                if (result[i] == leftup) {
+                    return false;
+                }
             }
             // 考察右上对角线：第i行rightup列有棋子吗？
             if (rightup < 8) {
-                if (result[i] == rightup) return false;
+                if (result[i] == rightup) {
+                    return false;
+                }
             }
             --leftup;
             ++rightup;

@@ -33,40 +33,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a85dc30-4c29-41e6-b18b-890c4a2038bb" name="Default" comment="plan">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/BinarySearch15.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DesignLRUCache.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DesignMyCircularDeque.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Divide14.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Dp13.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Linked17.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/MyCircularDeque.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Queue18.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Recall12.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/String16.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/TwoWayListNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/TwoWayPointer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/juc/BoundedQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/juc/ConditionUseCase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/juc/FairAndUnfairTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/juc/Mutex.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/juc/ParkAndCheckInterrupt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/dynamic/DynamicSolution.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DepthTree07.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DepthTree07.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Design11.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Design11.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Heap02.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Heap02.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/LRUCache.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Tree06.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Tree06.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DesignLRUCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DesignLRUCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/GenerateParenthesis.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Recall12.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Recall12.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/UF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/UF.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/UnionFind09.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/UnionFind09.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/WidthTree08.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/WidthTree08.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/leetcode/DynamicProgramming.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DynamicProgramming.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/leetcode/GenerateParenthesis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/GenerateParenthesis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/leetcode/TrieTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/TrieTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/search/BinarySearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/search/BinarySearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/lock/InterruptDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/lock/InterruptDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/note/dubbo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/dubbo.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/note/juc.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/juc.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/note/spring.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/spring.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -437,7 +412,7 @@
       <workItem from="1610072415282" duration="6020000" />
       <workItem from="1610335068971" duration="2554000" />
       <workItem from="1610381350922" duration="278000" />
-      <workItem from="1610503535035" duration="11102000" />
+      <workItem from="1610503535035" duration="21886000" />
     </task>
     <task id="LOCAL-00001" summary="add doc.txt">
       <created>1556890254745</created>
@@ -867,6 +842,10 @@
     <state width="1398" height="398" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1606751433210" />
     <state width="1396" height="275" key="GridCell.Tab.1.right/0.23.1440.877/1440.23.2560.1417@0.23.1440.877" timestamp="1610381226433" />
     <state width="1398" height="373" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1606842371665" />
+    <state x="526" y="159" key="RollbackChangesDialog" timestamp="1610692591857">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="526" y="159" key="RollbackChangesDialog/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1610692591857" />
     <state x="208" y="31" key="SettingsEditor" timestamp="1608519317946">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -885,10 +864,10 @@
     <state x="421" y="205" width="598" height="490" key="find.popup/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1609849672515" />
     <state x="421" y="205" width="598" height="518" key="find.popup/0.0.1440.900/1440.0.2560.1440@0.0.1440.900" timestamp="1609236630415" />
     <state x="421" y="205" width="598" height="490" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1608388536698" />
-    <state x="385" y="196" width="671" height="677" key="search.everywhere.popup" timestamp="1610525923054">
+    <state x="385" y="196" width="671" height="677" key="search.everywhere.popup" timestamp="1610703783580">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="196" width="671" height="677" key="search.everywhere.popup/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1610525923054" />
+    <state x="385" y="196" width="671" height="677" key="search.everywhere.popup/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1610703783580" />
     <state x="1953" y="95" width="894" height="812" key="search.everywhere.popup/0.0.1440.900/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1609158097958" />
     <state x="385" y="196" width="671" height="677" key="search.everywhere.popup/0.0.1440.900/1440.0.2560.1440@0.0.1440.900" timestamp="1610178561736" />
     <state x="2124" y="313" width="1192" height="1083" key="search.everywhere.popup/0.0.1440.900/1440.0.2560.1440@1440.0.2560.1440" timestamp="1609167196963" />

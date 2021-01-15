@@ -1,8 +1,7 @@
 package com.fang.doit.algo.lc;
 
 /**
- * 并查集 Union-Find
- * 解决两两连通性问题
+ * 并查集Union-Find，解决两两连通性问题
  *
  * @author fangfeiyue
  * @Date 2020/12/19 4:02 下午

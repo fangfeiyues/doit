@@ -9,6 +9,10 @@ package com.fang.doit.algo.lc;
 class UF {
 
     /**
+     * 核心（防止懂了又忘了）：判断两两之间是否联通可找到这两者是否归属于一个父亲节点。
+     */
+
+    /**
      * 记录连通分量个数
      */
     private int count;

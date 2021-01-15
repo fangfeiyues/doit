@@ -4,8 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 设计一个最近最少使用缓存
- * 你是否可以在O(1)时间复杂度内完成这两种操作get&put
+ * 设计一个最近最少使用缓存，是否可以在O(1)时间复杂度内完成这两种操作get&put
  *
  * @author fangfeiyue
  * @Date 2020/12/19 10:53 下午

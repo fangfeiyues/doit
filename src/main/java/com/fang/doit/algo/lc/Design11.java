@@ -7,7 +7,7 @@ package com.fang.doit.algo.lc;
 public class Design11 {
 
     /**
-     * 146:最近最少使用
+     * 146:最近最少使用 == 双端队列+Map
      *
      * @see DesignLRUCache
      */

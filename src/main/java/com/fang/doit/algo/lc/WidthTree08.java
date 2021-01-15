@@ -22,7 +22,7 @@ public class WidthTree08 {
      * @return 最便宜的价格
      */
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
-        // 1.小顶推
+        // 1.小顶推：遍历所有的路径取其中最短的
         findCheapestPriceByHeap(n, flights, src, dst, K);
 
         // 2.广度优先
@@ -130,7 +130,7 @@ public class WidthTree08 {
         Map<Integer, List<int[]>> graph = new HashMap();
         for (int[] edge : times) {
             if (!graph.containsKey(edge[0])) {
-                graph.put(edge[0], new ArrayList<int[]>());
+                graph.put(edge[0], new ArrayList<>());
             }
             graph.get(edge[0]).add(new int[]{edge[2], edge[1]});
         }
@@ -143,7 +143,6 @@ public class WidthTree08 {
         }
         dfs(graph, K, 0);
         int ans = 0;
-        //
         for (int cand : dist.values()) {
             if (cand == Integer.MAX_VALUE) {
                 return -1;
@@ -153,6 +152,13 @@ public class WidthTree08 {
         return ans;
     }
 
+    /**
+     * 深度递归的典型操作
+     *
+     * @param graph
+     * @param node
+     * @param elapsed
+     */
     public void dfs(Map<Integer, List<int[]>> graph, int node, int elapsed) {
         // 距离起点收到信号的时间，一个点存在多条路径如果后者到达的时间更长直接丢弃
         if (elapsed >= dist.get(node)) {
@@ -160,24 +166,36 @@ public class WidthTree08 {
         }
         dist.put(node, elapsed);
         if (graph.containsKey(node)) {
+            // 节点的所有子节点深度遍历 并取其中最大的路径长
             for (int[] info : graph.get(node)) {
                 dfs(graph, info[1], elapsed + info[0]);
             }
         }
     }
 
+    /**
+     * TODO 典型的广度优先算法
+     * 怎么理解Djikstra最短路径算法？
+     *
+     * @param times 邻接矩阵（原来这才是邻接表啊...）
+     * @param N
+     * @param K
+     * @return
+     */
     public int networkDelayTimeByDjikstra(int[][] times, int N, int K) {
         Map<Integer, List<int[]>> graph = new HashMap();
         for (int[] edge : times) {
             if (!graph.containsKey(edge[0])) {
-                graph.put(edge[0], new ArrayList<int[]>());
+                graph.put(edge[0], new ArrayList<>());
             }
+            // 写的有点奇怪...为什么就是edge[1],edge[2]这两个节点？
             graph.get(edge[0]).add(new int[]{edge[1], edge[2]});
         }
         dist = new HashMap();
         for (int node = 1; node <= N; ++node) {
             dist.put(node, Integer.MAX_VALUE);
         }
+        // 节点距离K的大小
         dist.put(K, 0);
         boolean[] seen = new boolean[N + 1];
 
@@ -185,6 +203,7 @@ public class WidthTree08 {
             int candNode = -1;
             int candDist = Integer.MAX_VALUE;
             for (int i = 1; i <= N; ++i) {
+                // 在没有遍历定点中找到距离vs最近的定点
                 if (!seen[i] && dist.get(i) < candDist) {
                     candDist = dist.get(i);
                     candNode = i;
@@ -199,11 +218,12 @@ public class WidthTree08 {
                     dist.put(info[0], Math.min(dist.get(info[0]), dist.get(candNode) + info[1]));
                 }
             }
-
         }
         int ans = 0;
         for (int cand : dist.values()) {
-            if (cand == Integer.MAX_VALUE) return -1;
+            if (cand == Integer.MAX_VALUE) {
+                return -1;
+            }
             ans = Math.max(ans, cand);
         }
         return ans;
