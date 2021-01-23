@@ -33,15 +33,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a85dc30-4c29-41e6-b18b-890c4a2038bb" name="Default" comment="plan">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/limiter/RateLimiter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DepthTree07.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DepthTree07.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Design11.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Design11.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DesignLRUCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DesignLRUCache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/GenerateParenthesis.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Recall12.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Recall12.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/UF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/UF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/UnionFind09.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/UnionFind09.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/WidthTree08.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/WidthTree08.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Sort04.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Sort04.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Tree06.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Tree06.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +92,7 @@
       <recent name="com.fang.doit.algo.lc" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BoundedQueue">
+  <component name="RunManager" selected="Application.Tree06">
     <configuration name="BinarySearch15" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.BinarySearch15" />
       <module name="doit" />
@@ -126,34 +121,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Divide14" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.Divide14" />
-      <module name="doit" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.fang.doit.algo.lc.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Dp13" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.Dp13" />
-      <module name="doit" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.fang.doit.algo.lc.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ParkAndCheckInterrupt" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.fang.doit.base.juc.ParkAndCheckInterrupt" />
       <module name="doit" />
@@ -161,6 +128,34 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.fang.doit.base.juc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Sort04" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.Sort04" />
+      <module name="doit" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fang.doit.algo.lc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tree06" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.Tree06" />
+      <module name="doit" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fang.doit.algo.lc.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -191,19 +186,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Dp13" />
-      <item itemvalue="Application.Divide14" />
       <item itemvalue="Application.BinarySearch15" />
       <item itemvalue="Application.ParkAndCheckInterrupt" />
       <item itemvalue="Application.BoundedQueue" />
+      <item itemvalue="Application.Tree06" />
+      <item itemvalue="Application.Sort04" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Tree06" />
+        <item itemvalue="Application.Sort04" />
         <item itemvalue="Application.BoundedQueue" />
         <item itemvalue="Application.ParkAndCheckInterrupt" />
         <item itemvalue="Application.BinarySearch15" />
-        <item itemvalue="Application.Divide14" />
-        <item itemvalue="Application.Dp13" />
       </list>
     </recent_temporary>
   </component>
@@ -412,7 +407,9 @@
       <workItem from="1610072415282" duration="6020000" />
       <workItem from="1610335068971" duration="2554000" />
       <workItem from="1610381350922" duration="278000" />
-      <workItem from="1610503535035" duration="21886000" />
+      <workItem from="1610503535035" duration="22200000" />
+      <workItem from="1610936897018" duration="3806000" />
+      <workItem from="1611024228179" duration="4370000" />
     </task>
     <task id="LOCAL-00001" summary="add doc.txt">
       <created>1556890254745</created>
@@ -770,40 +767,40 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="482" height="370" key="Git.Branch.Popup/0.0.1440.900@0.0.1440.900" timestamp="1609144022207" />
-    <state width="1396" height="275" key="GridCell.Tab.0.bottom" timestamp="1610381226430">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state width="1396" height="223" key="GridCell.Tab.0.bottom" timestamp="1611306143533">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1396" height="275" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1610350153969" />
+    <state width="1396" height="223" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1611306143533" />
     <state width="1396" height="275" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.0.2560.1440@0.0.1440.900" timestamp="1610375049736" />
     <state width="1398" height="109" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1606996329534" />
     <state width="1396" height="164" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.-117.1920.1057@0.23.1440.877" timestamp="1608962168972" />
     <state width="1396" height="223" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.0.2560.1440@1440.0.2560.1440" timestamp="1609947352868" />
     <state width="1396" height="275" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.23.2560.1417@0.23.1440.877" timestamp="1610381226430" />
     <state width="1398" height="109" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1607190913324" />
-    <state width="1396" height="275" key="GridCell.Tab.0.center" timestamp="1610381226429">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state width="1396" height="223" key="GridCell.Tab.0.center" timestamp="1611306143530">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1396" height="275" key="GridCell.Tab.0.center/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1610350153966" />
+    <state width="1396" height="223" key="GridCell.Tab.0.center/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1611306143530" />
     <state width="1396" height="275" key="GridCell.Tab.0.center/0.0.1440.900/1440.0.2560.1440@0.0.1440.900" timestamp="1610375049734" />
     <state width="1398" height="109" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1606996329532" />
     <state width="1396" height="164" key="GridCell.Tab.0.center/0.23.1440.877/1440.-117.1920.1057@0.23.1440.877" timestamp="1608962168967" />
     <state width="1396" height="223" key="GridCell.Tab.0.center/0.23.1440.877/1440.0.2560.1440@1440.0.2560.1440" timestamp="1609947352862" />
     <state width="1396" height="275" key="GridCell.Tab.0.center/0.23.1440.877/1440.23.2560.1417@0.23.1440.877" timestamp="1610381226429" />
     <state width="1398" height="109" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1607190913323" />
-    <state width="1396" height="275" key="GridCell.Tab.0.left" timestamp="1610381226428">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state width="1396" height="223" key="GridCell.Tab.0.left" timestamp="1611306143529">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1396" height="275" key="GridCell.Tab.0.left/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1610350153963" />
+    <state width="1396" height="223" key="GridCell.Tab.0.left/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1611306143529" />
     <state width="1396" height="275" key="GridCell.Tab.0.left/0.0.1440.900/1440.0.2560.1440@0.0.1440.900" timestamp="1610375049732" />
     <state width="1398" height="109" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1606996329532" />
     <state width="1396" height="164" key="GridCell.Tab.0.left/0.23.1440.877/1440.-117.1920.1057@0.23.1440.877" timestamp="1608962168963" />
     <state width="1396" height="223" key="GridCell.Tab.0.left/0.23.1440.877/1440.0.2560.1440@1440.0.2560.1440" timestamp="1609947352860" />
     <state width="1396" height="275" key="GridCell.Tab.0.left/0.23.1440.877/1440.23.2560.1417@0.23.1440.877" timestamp="1610381226428" />
     <state width="1398" height="109" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1607190913322" />
-    <state width="1396" height="275" key="GridCell.Tab.0.right" timestamp="1610381226430">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state width="1396" height="223" key="GridCell.Tab.0.right" timestamp="1611306143532">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1396" height="275" key="GridCell.Tab.0.right/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1610350153968" />
+    <state width="1396" height="223" key="GridCell.Tab.0.right/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1611306143532" />
     <state width="1396" height="275" key="GridCell.Tab.0.right/0.0.1440.900/1440.0.2560.1440@0.0.1440.900" timestamp="1610375049735" />
     <state width="1398" height="109" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1606996329533" />
     <state width="1396" height="164" key="GridCell.Tab.0.right/0.23.1440.877/1440.-117.1920.1057@0.23.1440.877" timestamp="1608962168971" />
@@ -864,10 +861,10 @@
     <state x="421" y="205" width="598" height="490" key="find.popup/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1609849672515" />
     <state x="421" y="205" width="598" height="518" key="find.popup/0.0.1440.900/1440.0.2560.1440@0.0.1440.900" timestamp="1609236630415" />
     <state x="421" y="205" width="598" height="490" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1608388536698" />
-    <state x="385" y="196" width="671" height="677" key="search.everywhere.popup" timestamp="1610703783580">
+    <state x="385" y="196" width="671" height="677" key="search.everywhere.popup" timestamp="1610954825984">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="196" width="671" height="677" key="search.everywhere.popup/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1610703783580" />
+    <state x="385" y="196" width="671" height="677" key="search.everywhere.popup/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1610954825984" />
     <state x="1953" y="95" width="894" height="812" key="search.everywhere.popup/0.0.1440.900/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1609158097958" />
     <state x="385" y="196" width="671" height="677" key="search.everywhere.popup/0.0.1440.900/1440.0.2560.1440@0.0.1440.900" timestamp="1610178561736" />
     <state x="2124" y="313" width="1192" height="1083" key="search.everywhere.popup/0.0.1440.900/1440.0.2560.1440@1440.0.2560.1440" timestamp="1609167196963" />

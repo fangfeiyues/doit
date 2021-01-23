@@ -1,5 +1,8 @@
 package com.fang.doit.algo.lc;
 
+import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Maps;
+
 import java.util.*;
 
 /**
@@ -113,11 +116,10 @@ public class Tree06 {
     }
 
     public static void main(String[] args) {
-        TreeNode left = new TreeNode(2);
-        TreeNode right = new TreeNode(3);
-        TreeNode root = new TreeNode(1, left, right);
-        Tree06 tree06 = new Tree06();
-        System.out.println(tree06.inorderTraversal(root));
+        Map<Long, Long> map = Maps.newHashMap();
+        map.put(1L, null);
+        map.put(2L, null);
+        System.out.println(JSON.toJSONString(map));
     }
 
 }
