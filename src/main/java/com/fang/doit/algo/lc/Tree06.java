@@ -68,8 +68,9 @@ public class Tree06 {
 
 
     public TreeNode lowestCommonAncestorByRecursion(TreeNode cur, TreeNode p, TreeNode q) {
-        if (cur == null || cur == p || cur == q)
+        if (cur == null || cur == p || cur == q) {
             return cur;
+        }
         TreeNode left = lowestCommonAncestor(cur.left, p, q);
         TreeNode right = lowestCommonAncestor(cur.right, p, q);
         //如果left为空，说明这两个节点在cur结点的右子树上，我们只需要返回右子树查找的结果即可

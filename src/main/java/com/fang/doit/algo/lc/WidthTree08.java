@@ -51,7 +51,7 @@ public class WidthTree08 {
     }
 
 
-    public int findCheapestPriceByHeap(int n, int[][] flights, int src, int dst, int K) {
+    private int findCheapestPriceByHeap(int n, int[][] flights, int src, int dst, int K) {
         // 3.小顶推
         Map<Integer, Map<Integer, Integer>> nextFlightMap = Maps.newHashMap();
         for (int[] flight : flights) {

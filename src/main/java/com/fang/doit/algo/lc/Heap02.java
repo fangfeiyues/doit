@@ -1,14 +1,11 @@
 package com.fang.doit.algo.lc;
 
+import com.alibaba.fastjson.JSON;
+
 import java.util.*;
 
 /**
- * 堆 == 数组？？？
- * 无序数组
- * 1.第k个最大的元素
- * 2.出现频率前K
- * 3.大小为k的滑动窗口，路过的窗口内最大值集合
- * 4.字符出现的频率集合
+ * 可以看的出来 堆的核心能力就是维护一个大小顶推的问题。滑动窗口问题还是有些巧妙的
  *
  * @author fangfeiyue
  * @Date 2020/11/29 3:33 下午
@@ -19,7 +16,7 @@ public class Heap02 {
     // 堆
 
     /**
-     * 215 在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素
+     * 215：在未排序的数组中找到第 k 个最大的元素
      * 输入: [3,2,1,5,6,4] 和 k = 2 ==》输出: 5
      *
      * @param nums
@@ -56,10 +53,11 @@ public class Heap02 {
             int i = low;
             for (int j = i + 1; j <= high; j++) {
                 if (nums[j] < nums[low]) {
-                    // 这里的i表示最接近pivot的值。如果小于的就换到i+1的位置上来（因为认为i+1位置是大于pivot的,i是最接近的那个）
+                    // 这里注意是要和++i替换下，因为i还是小于pivot的
                     swap(nums, j, ++i);
                 }
             }
+            // 交换第一个数和比较的第i个数
             swap(nums, low, i);
             if (i == k) {
                 return nums[i];
@@ -164,10 +162,13 @@ public class Heap02 {
 
 
     public static void main(String[] args) {
-        Heap02 heap02 = new Heap02();
-        int[] nums = {1, 1, 1, 1, 2, 2, 3, 4, 4, 5, 4, 4, 1};
-        System.out.println(heap02.topKFrequentByBucket(nums, 1));
+//        Heap02 heap0202 = new Heap02();
+//        int[] nums = {1, 1, 1, 1, 2, 2, 3, 4, 4, 5, 4, 4, 1};
+//        System.out.println(heap0202.topKFrequentByBucket(nums, 1));
 //        int[] array = {3, 2, 4, 5, 1, 7, 10};
+
+        int[] nums = {1, 3, -1, -3, 5, 3, 6, 7};
+        System.out.println(JSON.toJSONString(maxSlidingWindowByPriority(nums, 3)));
     }
 
 
@@ -175,76 +176,75 @@ public class Heap02 {
 
     /**
      * 动态的题目
-     * 239：给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位
-     * 返回滑动窗口中的最大值。进阶： 你能在线性时间复杂度内解决此题吗？
-     * 场景：
+     * 239：给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字滑动窗口每次只向右移动一位
+     * 返回滑动窗口中的最大值。
+     * 进阶：你能在线性时间复杂度内解决此题吗？
      * <p>
      *
      * @param nums
      * @param k
      * @return
      */
-    ArrayDeque<Integer> deq = new ArrayDeque<Integer>();
-    int[] nums;
-
-    public void clean_deque(int i, int k) {
-        // remove indexes of elements not from sliding window
-        if (!deq.isEmpty() && deq.getFirst() == i - k) {
-            deq.removeFirst();
-        }
-
-        // remove from deq indexes of all elements
-        // which are smaller than current element nums[i]
-        while (!deq.isEmpty() && nums[i] > nums[deq.getLast()]) {
-            deq.removeLast();
-        }
-    }
-
-    public int[] maxSlidingWindow(int[] nums, int k) {
+    public static int[] maxSlidingWindowByPriority(int[] nums, int k) {
+        // 利用
         int n = nums.length;
-        if (n * k == 0) {
-            return new int[0];
-        }
-        if (k == 1) {
-            return nums;
-        }
-        // init deque and output
-        this.nums = nums;
-        int max_idx = 0;
-        for (int i = 0; i < k; i++) {
-            clean_deque(i, k);
-            deq.addLast(i);
-            // compute max in nums[:k]
-            if (nums[i] > nums[max_idx]) {
-                max_idx = i;
+        PriorityQueue<int[]> pq = new PriorityQueue<int[]>(new Comparator<int[]>() {
+            @Override
+            public int compare(int[] pair1, int[] pair2) {
+                return pair1[0] != pair2[0] ? pair2[0] - pair1[0] : pair2[1] - pair1[1];
             }
+        });
+        for (int i = 0; i < k; ++i) {
+            pq.offer(new int[]{nums[i], i});
         }
-        int[] output = new int[n - k + 1];
-        output[0] = nums[max_idx];
-
-        // build output
-        for (int i = k; i < n; i++) {
-            clean_deque(i, k);
-            deq.addLast(i);
-            output[i - k + 1] = nums[deq.getFirst()];
+        int[] ans = new int[n - k + 1];
+        ans[0] = pq.peek()[0];
+        for (int i = k; i < n; ++i) {
+            pq.offer(new int[]{nums[i], i});
+            // 这里并不在乎其他元素只在乎堆顶元素是否在移除的元素之内，好思路！！！
+            while (pq.peek()[1] <= i - k) {
+                pq.poll();
+            }
+            ans[i - k + 1] = pq.peek()[0];
         }
-        return output;
+        return ans;
     }
 
 
     // ------------------
 
     /**
-     * 给定一个列表 times，表示信号经过有向边的传递时间。 times[i] = (u, v, w)，其中 u 是源节点，v 是目标节点， w 是一个信号从源节点传递到目标节点的时间
+     * 743：给定一个列表times，示信号经过有向边的传递时间。
+     * times[i] = (u, v, w)其中 u 是源节点，v 是目标节点 w 是一个信号从源节点传递到目标节点的时间
+     * 现在从某个节点 K 发出一个信号，需要多久才能使所有节点都收到信号
      *
      * @param times
      * @param N
      * @param K
      * @return
+     * @see com.fang.doit.algo.lc.WidthTree08#networkDelayTime(int[][], int, int) 见此
      */
     public int networkDelayTime(int[][] times, int N, int K) {
 
+        // 在每个下个节点的列表维护一个大顶堆 从其中找到最大的即是最长路径
 
+        return 0;
+    }
+
+    /**
+     * 787: K站中转战最便宜的航班
+     *
+     * @param n
+     * @param flights
+     * @param src
+     * @param dst
+     * @param K
+     * @return
+     * @see WidthTree08#findCheapestPrice(int, int[][], int, int, int)
+     */
+    public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
+
+        //
         return 0;
     }
 
