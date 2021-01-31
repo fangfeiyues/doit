@@ -13,8 +13,20 @@ public class Linked17 {
      * @return
      */
     public ListNode swapPairs(ListNode head) {
-
-
         return null;
     }
+
+    /**
+     * 142:环形链表
+     *
+     * @param head
+     * @return
+     */
+    public ListNode detectCycle(ListNode head) {
+        return null;
+    }
+
+
+
+
 }
