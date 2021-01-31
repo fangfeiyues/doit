@@ -33,6 +33,8 @@ public class Heap02 {
                 queue.poll();
             }
         }
+
+        // 大顶推 PriorityQueue<Integer> queue = new PriorityQueue<>(26, Collections.reverseOrder());
         return queue.peek();
     }
 

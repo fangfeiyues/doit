@@ -56,11 +56,12 @@ public class DepthTree07 {
 
 
     List<List<Integer>> ret = new LinkedList<>();
+    // 双端队列容器(两端都可进出)，主要满足这里的先进后出的效果。用Depue代替Stack!!!
     Deque<Integer> path = new LinkedList<>();
 
     /**
-     * 113 路径总和
-     * TODO 递归还是写不来... 这个递归有点精妙
+     * 113 路径总和。给定一个二叉树和一个目标和，找到所有从根节点到叶子节点路径总和等于给定目标和的路径
+     * 深度递归遍历所有的叶子节点 把满足条件的加入到列表里。
      *
      * @param root
      * @param sum
@@ -75,14 +76,18 @@ public class DepthTree07 {
         if (root == null) {
             return;
         }
-        path.offerLast(root.val);
-        sum -= root.val;
-        if (root.left == null && root.right == null && sum == 0) {
+        path.addLast(root.val);
+        sum = sum - root.val;
+        // 要到叶子节点
+        if (sum == 0 && root.left == null && root.right == null) {
             ret.add(new LinkedList<>(path));
         }
-        dfs(root.left, sum);
+
+        // 循环一直要到叶子节点才行
         dfs(root.right, sum);
-        // 这里有个回退的过程
+        dfs(root.left, sum);
+
+        // 这里到了叶子节点，需要移除
         path.pollLast();
     }
 
@@ -145,19 +150,77 @@ public class DepthTree07 {
 
 
     /**
-     * 515:在每个树行中找最大值
+     * 515:需要在二叉树的每一行中找到最大的值
+     * 一层一层的遍历即可 很简单
      *
      * @param root
      * @return
      */
     public List<Integer> largestValues(TreeNode root) {
+        // LinkedList实现队列
+        Queue<TreeNode> queue = new LinkedList<>();
 
-        // 广度优先策略
-
-
-
-        return null;
+        List<Integer> values = new ArrayList<>();
+        if (root != null) {
+            //入队
+            queue.add(root);
+        }
+        while (!queue.isEmpty()) {
+            int max = Integer.MIN_VALUE;
+            //每一层的数量
+            int levelSize = queue.size();
+            for (int i = 0; i < levelSize; i++) {
+                //出队
+                TreeNode node = queue.poll();
+                //记录每层的最大值
+                max = Math.max(max, node.val);
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+            values.add(max);
+        }
+        return values;
     }
 
+
+    /**
+     * 1026：节点与其祖先之间的最大差值
+     *
+     * @param root
+     * @return
+     */
+    private int ans = 0;
+
+    public int maxAncestorDiff(TreeNode root) {
+        int min = 10001, max = -1;
+        Dfs(root, min, max);
+        return ans;
+    }
+
+    private void Dfs(TreeNode root, int min, int max) {
+        if (root == null) {
+            return;
+        }
+        // 获取到整个树的最大值和最小值 然后进行比较
+        if (root.val < min) {
+            min = root.val;
+        }
+        if (root.val > max) {
+            max = root.val;
+        }
+        if (root.left == null && root.right == null) {
+            if (max - min > ans) {
+                ans = max - min;
+            }
+        } else {
+            // 这里的深度递归
+            Dfs(root.left, min, max);
+            Dfs(root.right, min, max);
+        }
+    }
 
 }

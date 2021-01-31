@@ -4,12 +4,12 @@ import java.util.Objects;
 import java.util.Stack;
 
 /**
+ * 栈
+ *
  * @author fangfeiyue
  * @Date 2020/11/28 4:40 下午
  */
 public class Stack01 {
-    // 了解栈的基本特性
-    // 熟悉栈的使用场景，性能如何
     /**
      * Stack基本函数
      * 1.pop(), Removes the object at the top of this stack and returns that object as the value of this function.

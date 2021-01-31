@@ -173,8 +173,7 @@ public class WidthTree08 {
     }
 
     /**
-     * TODO 典型的广度优先算法
-     * 怎么理解Djikstra最短路径算法？
+     * 典型的广度优先算法 - Djikstra最短路径算法
      *
      * @param times 邻接矩阵（原来这才是邻接表啊...）
      * @param N
@@ -239,6 +238,11 @@ public class WidthTree08 {
     public boolean canReach(int[] arr, int start) {
 
         return true;
+    }
+
+    public static Integer getCurrentMonth() {
+        Calendar c = Calendar.getInstance();
+        return c.get(Calendar.MONTH) + 1;
     }
 
 }

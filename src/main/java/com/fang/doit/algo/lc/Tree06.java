@@ -1,8 +1,5 @@
 package com.fang.doit.algo.lc;
 
-import com.alibaba.fastjson.JSON;
-import com.google.common.collect.Maps;
-
 import java.util.*;
 
 /**
@@ -86,6 +83,25 @@ public class Tree06 {
         return cur;
     }
 
+    private TreeNode ans;
+
+    private boolean dfs(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) {
+            return false;
+        }
+        boolean lson = dfs(root.left, p, q);
+        boolean rson = dfs(root.right, p, q);
+        if ((lson && rson) ||
+                ((root.val == p.val || root.val == q.val) && (lson || rson))) {
+            ans = root;
+        }
+        return lson || rson || (root.val == p.val || root.val == q.val);
+    }
+
+    public TreeNode lowestCommonAncestorV2(TreeNode root, TreeNode p, TreeNode q) {
+        this.dfs(root, p, q);
+        return this.ans;
+    }
 
     /**
      * 437：找出路径和等于给定数值的路径总数
@@ -99,6 +115,10 @@ public class Tree06 {
 
         return 0;
     }
+
+
+
+
 
 
     /**
@@ -119,10 +139,60 @@ public class Tree06 {
     }
 
     public static void main(String[] args) {
-        Map<Long, Long> map = Maps.newHashMap();
-        map.put(1L, null);
-        map.put(2L, null);
-        System.out.println(JSON.toJSONString(map));
+//        Map<Long, Long> map = Maps.newHashMap();
+//        map.put(1L, null);
+//        map.put(2L, null);
+//        System.out.println(JSON.toJSONString(map));
+
+        System.out.println(getCurrentQuarterEndTime().getTime());
+
+        System.out.println(getCurrentQuarterStartTime().getTime());
+    }
+
+
+    public static Date getCurrentQuarterStartTime() {
+        Calendar c = Calendar.getInstance();
+        int currentMonth = c.get(Calendar.MONTH) + 1;
+        try {
+            if (currentMonth <= 3) {
+                c.set(Calendar.MONTH, 0);
+            } else if (currentMonth <= 6) {
+                c.set(Calendar.MONTH, 3);
+            } else if (currentMonth <= 9) {
+                c.set(Calendar.MONTH, 6);
+            } else if (currentMonth <= 12) {
+                c.set(Calendar.MONTH, 9);
+            }
+            c.set(Calendar.DATE, 1);
+            return c.getTime();
+        } catch (Exception e) {
+//            log.error("getCurrentQuarterStartTime exception:", e);
+        }
+        return null;
+    }
+
+    public static Date getCurrentQuarterEndTime() {
+        Calendar c = Calendar.getInstance();
+        int currentMonth = c.get(Calendar.MONTH) + 1;
+        try {
+            if (currentMonth <= 3) {
+                c.set(Calendar.MONTH, 2);
+                c.set(Calendar.DATE, 31);
+            } else if (currentMonth <= 6) {
+                c.set(Calendar.MONTH, 5);
+                c.set(Calendar.DATE, 30);
+            } else if (currentMonth <= 9) {
+                c.set(Calendar.MONTH, 8);
+                c.set(Calendar.DATE, 30);
+            } else if (currentMonth <= 12) {
+                c.set(Calendar.MONTH, 11);
+                c.set(Calendar.DATE, 31);
+            }
+            return c.getTime();
+        } catch (Exception e) {
+//            log.error("getCurrentQuarterEndTime exception:", e);
+        }
+        return null;
     }
 
 }

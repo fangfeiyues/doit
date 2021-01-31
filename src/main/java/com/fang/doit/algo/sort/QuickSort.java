@@ -11,7 +11,6 @@ import static org.apache.ibatis.ognl.OgnlOps.less;
 public class QuickSort {
 
     public static void sort(Comparable[] a) {
-
         sort(a, 0, a.length - 1);
     }
 
@@ -38,24 +37,20 @@ public class QuickSort {
         int j = hi;
         Comparable partition = a[lo];
         while (true) {
-
             // lo, hi点一起移动 知道遇见大于/小于的 开始交换
             while (less(a[++i], partition)) {
                 if (i == hi) {
                     break;
                 }
             }
-
             while (less(partition, a[--j])) {
                 if (j == lo) {
                     break;
                 }
             }
-
             if (j <= i) {
                 break;
             }
-
             swap(a, i, j);
         }
 
