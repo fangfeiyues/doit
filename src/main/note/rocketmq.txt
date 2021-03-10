@@ -233,7 +233,7 @@ createTopicInSendMessageMethod# int queueNums = clientDefaultTopicQueueNums > de
 							    - int ret = LibC.INSTANCE.madvise(pointer, new NativeLong(this.fileSize), LibC.MADV_WILLNEED);
 					  - 2. mappedFile = new MappedFile(nextFilePath, this.mappedFileSize)
 					  
-				  // 把消息写入缓存Page Cache
+				  // 把消息写入缓存 Page Cache
 				  - result = MappedFile.appendMessage(msg, this.appendMessageCallback);
 					- AppendMessageResult = MappedFile.appendMessagesInner(MessageExt, AppendMessageCallback)
 					  //文件开始的下标；byteBuffer的副本；这个byteBuffer还剩多少大小可供写入

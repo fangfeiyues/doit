@@ -10,17 +10,21 @@ import java.util.*;
  */
 public class DepthTree07 {
 
-    String[] letter_map = {" ", "*", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    /**
+     * 对于深度
+     */
 
+    String[] letter_map = {" ", "*", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
     List<String> res = new ArrayList<>();
 
     /**
-     * 17:给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合
+     * 17:给定一个仅包含数字2-9 的字符串，返回所有它能表示的字母组合
      *
      * @param digits
      * @return
      */
     public List<String> letterCombinations(String digits) {
+        // 思考：利用不断的向下遍历的思想进行递归运算
         //注意边界条件
         if (digits == null || digits.length() == 0) {
             return new ArrayList<>();
@@ -29,13 +33,6 @@ public class DepthTree07 {
         return res;
     }
 
-
-    /**
-     * 递归：利用不断的向下遍历的思想进行递归运算
-     * TODO 递归的思想还要再体会下
-     *
-     * @param str
-     */
     private void iterStr(String str, StringBuilder letter, int index) {
         // index为给定字符串的深度的时候即为最底层就没了
         if (index == str.length()) {
@@ -61,7 +58,6 @@ public class DepthTree07 {
 
     /**
      * 113 路径总和。给定一个二叉树和一个目标和，找到所有从根节点到叶子节点路径总和等于给定目标和的路径
-     * 深度递归遍历所有的叶子节点 把满足条件的加入到列表里。
      *
      * @param root
      * @param sum
@@ -72,7 +68,7 @@ public class DepthTree07 {
         return ret;
     }
 
-    public void dfs(TreeNode root, int sum) {
+    private void dfs(TreeNode root, int sum) {
         if (root == null) {
             return;
         }
@@ -92,66 +88,41 @@ public class DepthTree07 {
     }
 
 
-    Map<TreeNode, TreeNode> map = new HashMap<>();
-
-    public List<List<Integer>> pathSumByWidth(TreeNode root, int sum) {
-        if (root == null) {
-            return ret;
-        }
-        Queue<TreeNode> queueNode = new LinkedList<>();
-        Queue<Integer> queueSum = new LinkedList<>();
-        queueNode.offer(root);
-        queueSum.offer(0);
-        while (!queueNode.isEmpty()) {
-            TreeNode node = queueNode.poll();
-            int rec = queueSum.poll() + node.val;
-            if (node.left == null && node.right == null) {
-                if (rec == sum) {
-                    getPath(node);
-                }
-            } else {
-                if (node.left != null) {
-                    map.put(node.left, node);
-                    queueNode.offer(node.left);
-                    queueSum.offer(rec);
-                }
-                if (node.right != null) {
-                    map.put(node.right, node);
-                    queueNode.offer(node.right);
-                    queueSum.offer(rec);
-                }
-            }
-        }
-        return ret;
-    }
-
-    public void getPath(TreeNode node) {
-        List<Integer> temp = new LinkedList<>();
-        while (node != null) {
-            temp.add(node.val);
-            // map获取上级节点
-            node = map.get(node);
-        }
-        Collections.reverse(temp);
-        ret.add(new LinkedList<>(temp));
-    }
-
-
     /**
      * 124: 二叉树中的最大路径和且不一定经过根节点
      *
      * @param root
      * @return
      */
-    public int maxPathSum(TreeNode root) {
+    int max = 0;
 
-        return 0;
+    public int maxPathSum(TreeNode root) {
+        //思路：找到每个节点下的最大路径
+        return dfsForMax(root);
+    }
+
+    private int dfsForMax(TreeNode node) {
+        if (node == null) {
+            return max;
+        }
+        if (node.left == null && node.right == null) {
+            if (node.val > max) {
+                max = node.val;
+            }
+        } else {
+            int leftValue = dfsForMax(node.left);
+            int rightValue = dfsForMax(node.right);
+            int value = leftValue + rightValue + node.val;
+            if (value > max) {
+                max = value;
+            }
+        }
+        return max;
     }
 
 
     /**
      * 515:需要在二叉树的每一行中找到最大的值
-     * 一层一层的遍历即可 很简单
      *
      * @param root
      * @return
@@ -159,7 +130,6 @@ public class DepthTree07 {
     public List<Integer> largestValues(TreeNode root) {
         // LinkedList实现队列
         Queue<TreeNode> queue = new LinkedList<>();
-
         List<Integer> values = new ArrayList<>();
         if (root != null) {
             //入队
@@ -205,7 +175,7 @@ public class DepthTree07 {
         if (root == null) {
             return;
         }
-        // 获取到整个树的最大值和最小值 然后进行比较
+        // 获取到整个树的最大值和最小值,然后进行比较
         if (root.val < min) {
             min = root.val;
         }
@@ -221,6 +191,166 @@ public class DepthTree07 {
             Dfs(root.left, min, max);
             Dfs(root.right, min, max);
         }
+    }
+
+
+    /**
+     * 837:最大人工岛。0代表海洋1代表陆地我们最多只能将一格 0海洋变成 1变成陆地。进行填海之后地图上最大的岛屿面积是多少？（上、下、左、右四个方向相连的 1 可形成岛屿）
+     *
+     * @param grid 二维数组
+     * @return
+     */
+    int maxIsland = 0;
+
+    public int largestIsland(int[][] grid) {
+        // 每个以自己为中心 向四边深度衍生。有点难..先过吧
+        return 0;
+    }
+
+
+    /**
+     * 200:给你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。
+     * 岛屿总是被水包围并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。
+     *
+     * @param grid
+     * @return
+     */
+    Map<String, Boolean> exist = new HashMap<>();
+    int num = 0;
+
+    public int numIslands(char[][] grid) {
+        // 找到'1'的子节点都是'0'即可
+        for (int j = 0; j < grid[0].length; j++) {
+            for (int i = 0; i < grid.length; i++) {
+                boolean result = islandsDfs(grid, i, j);
+                if (result) {
+                    num++;
+                }
+            }
+        }
+        return num;
+    }
+
+    private boolean islandsDfs(char[][] grid, int i, int j) {
+        char position = grid[i][j];
+        String key = i + "-" + j;
+        if (exist.containsKey(key)) {
+            return false;
+        }
+        exist.put(key, true);
+
+        if (position == '0') {
+            return false;
+        }
+        // 上
+        if (i - 1 >= 0) {
+            islandsDfs(grid, i - 1, j);
+        }
+
+        if (i + 1 < grid.length) {
+            islandsDfs(grid, i + 1, j);
+        }
+        if (j - 1 >= 0) {
+            islandsDfs(grid, i, j - 1);
+        }
+        if (j + 1 < grid[0].length) {
+            islandsDfs(grid, i, j + 1);
+        }
+        return true;
+    }
+
+
+    /**
+     * 721: 账号合并
+     *
+     * @param accounts
+     * @return
+     */
+    public List<List<String>> accountsMerge(List<List<String>> accounts) {
+
+        // 1. Map<email,List<user>> 暴力破解只要List中有任意两个相等即可合并此两个账号
+
+        // 2. 并查集Union，题目的大意就是要把两个账号进行合并通过并查级找到公共合并即可
+
+        return null;
+    }
+
+    public List<List<String>> accountsMergeByUF(List<List<String>> accounts) {
+        Map<String, Integer> emailToIndex = new HashMap<String, Integer>();
+        Map<String, String> emailToName = new HashMap<String, String>();
+        int emailsCount = 0;
+        for (List<String> account : accounts) {
+            String name = account.get(0);
+            int size = account.size();
+            for (int i = 1; i < size; i++) {
+                String email = account.get(i);
+                if (!emailToIndex.containsKey(email)) {
+                    // 两个List<String> 账号列表之间有关联，在合并的时候就能找到公共的祖先进行合并
+                    emailToIndex.put(email, emailsCount++);
+                    emailToName.put(email, name);
+                }
+            }
+        }
+        UnionFind uf = new UnionFind(emailsCount);
+        for (List<String> account : accounts) {
+            String firstEmail = account.get(1);
+            int firstIndex = emailToIndex.get(firstEmail);
+            int size = account.size();
+            for (int i = 2; i < size; i++) {
+                String nextEmail = account.get(i);
+                int nextIndex = emailToIndex.get(nextEmail);
+                // 同一个人下面的账号进行合并
+                uf.union(firstIndex, nextIndex);
+            }
+        }
+        Map<Integer, List<String>> indexToEmails = new HashMap<>();
+        for (String email : emailToIndex.keySet()) {
+            int index = uf.find(emailToIndex.get(email));
+            List<String> account = indexToEmails.getOrDefault(index, new ArrayList<String>());
+            account.add(email);
+            indexToEmails.put(index, account);
+        }
+        List<List<String>> merged = new ArrayList<List<String>>();
+        for (List<String> emails : indexToEmails.values()) {
+            Collections.sort(emails);
+            String name = emailToName.get(emails.get(0));
+            List<String> account = new ArrayList<String>();
+            account.add(name);
+            account.addAll(emails);
+            merged.add(account);
+        }
+        return merged;
+    }
+
+    class UnionFind {
+        int[] parent;
+
+        public UnionFind(int n) {
+            parent = new int[n];
+            for (int i = 0; i < n; i++) {
+                parent[i] = i;
+            }
+        }
+
+        public void union(int index1, int index2) {
+            parent[find(index2)] = find(index1);
+        }
+
+        public int find(int index) {
+            // 默认自己父亲节点就是自己
+            if (parent[index] != index) {
+                parent[index] = find(parent[index]);
+            }
+            return parent[index];
+        }
+    }
+
+
+    public static void main(String[] args) {
+        char grid[][] = {{'1', '1', '0', '0', '0'}, {'1', '1', '0', '0', '0'}, {'0', '0', '1', '0', '0'}, {'0', '0', '0', '1', '1'}};
+        DepthTree07 depthTree07 = new DepthTree07();
+        depthTree07.numIslands(grid);
+
     }
 
 }
