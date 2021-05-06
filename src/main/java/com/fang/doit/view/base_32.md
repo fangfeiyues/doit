@@ -9,19 +9,20 @@ double  8字节
 long    8字节
 
 #### 2.String类能被继承吗，为什么
-final 字段的写操作后插入一个写写屏障，防止某些优化将新建对象的发布重排序至 final 字段的写操作之前
+> String类继承final类不能被继承。
+> 'abc'字符串直接存放在方法区的常量池。常为了避免频繁的创建和销毁对象造成系统性能的浪费实现了对象的共享
 
 
-#### 3.String，Stringbuffer，StringBuilder的区别
-String: 线程不安全。 String a=""（常量池）和new String("")的空间开辟。
-StringBuffer: 线程安全  s1+"c"是在堆内存创建地址？
-StringBuilder:  线程不安全
+#### 3.String，StringBuffer，StringBuilder的区别
+1. String: 线程不安全
+2. StringBuffer: 线程安全  
+3. StringBuilder: 线程不安全
 
  
 #### 4.ArrayList和LinkedList有什么区别
-ArrayList 数组 怎么变安全？
-LinkedList 双向链表
-CopyOnWriteArrayList  用volatile Object[] array写副本的方式及时更新数据给读线程但写保证单线程。在读多写少下适合ArrayList变得安全
+1. ArrayList 数组
+2. LinkedList 双向链表
+3. CopyOnWriteArrayList。用volatile Object[] array写副本的方式及时更新数据给读线程但写保证单线程。在读多写少下适合ArrayList变得安全
 
 
 #### 5.讲讲类的实例化顺序，比如父类静态数据，构造函数，字段，子类静态数据，构造函数，字 段，当new的时候他们的执行顺序
@@ -36,10 +37,11 @@ CopyOnWriteArrayList  用volatile Object[] array写副本的方式及时更新�
 https://blog.csdn.net/mad1989/article/details/20793539
 
 #### 6.用过哪些Map类，都有什么区别，HashMap是线程安全的吗,并发下使用的Map是什么，他们内部原理分别是什么，比如存储方式，hashcode，扩容，默认容量等。
-HashMap
+1. HashMap线上出现问题
+2. HashMap扩容。达到初始容量*负载因子 -- 数组桶的长度扩大一倍 -- 数据的transfer()
 
 
-#### 7.JAVA8的 ConcurrentHashMap 为什么放弃了分段锁，有什么问题吗，如果你来设计，你如何设计
+#### 7.JAVA8的 ConcurrentHashMap 为什么放弃了分段锁，有什么问题吗，如果你来设计，你如何设计 -- 2021.04.08
 ConcurrentHashMap
 
 
@@ -57,7 +59,7 @@ TreeMap 红黑树排序处理
 聚合体现的是整体与部分、拥有的关系
 
 
-#### 11.IO模型有哪些，讲讲你理解的nio ，他和bio，aio的区别是啥，谈谈reactor模型
+#### 11.IO模型有哪些，讲讲你理解的nio ，他和bio，aio的区别是啥，谈谈reactor模型 -- 2021.04.08
 IO模型 
 > 1. blocking IO   
 > 2. non-blocking IO   
@@ -98,7 +100,7 @@ IO模型
 > 2. classLoader.loadClass() 只干一件事情，就是将.class文件加载到jvm中，不会执行static中的内容,只有在newInstance才会去执行static块
 
 
-#### 14.描述动态代理的几种实现方式，分别说出相应的优缺点
+#### 14.描述动态代理的几种实现方式，分别说出相应的优缺点 -- 2021.04.08
 > 1. ASM和JAVAASSIST字节码生成方式不相上下，都很快，是CGLIB的5倍。 
 > 2. CGLIB次之，是JDK自带的两倍。 
 > 3. JDK自带的再次之，因JDK1.6对动态代理做了优化，如果用低版本JDK更慢，要注意的是JDK也是通过字节码生成来实现动态代理的，而不是反射。 

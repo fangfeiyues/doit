@@ -1,6 +1,7 @@
 package com.fang.doit.algo.lc;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 深度优先算法
@@ -346,11 +347,71 @@ public class DepthTree07 {
     }
 
 
-    public static void main(String[] args) {
-        char grid[][] = {{'1', '1', '0', '0', '0'}, {'1', '1', '0', '0', '0'}, {'0', '0', '1', '0', '0'}, {'0', '0', '0', '1', '1'}};
-        DepthTree07 depthTree07 = new DepthTree07();
-        depthTree07.numIslands(grid);
+    /**
+     * 1631:每次可以往上下左右四个方向之一移动，你想要找到耗费体力最小的一条路径（一条路径耗费的体力值是路径上相邻格子之间高度差绝对值的最大值决定的）
+     *
+     * @param heights
+     * @return
+     */
+    public int minimumEffortPath(int[][] heights) {
 
+        return 0;
+    }
+
+
+    /**
+     * 473：输入为小女孩拥有火柴的数目每根火柴用其长度表示。输出即为是否能用所有的火柴拼成正方形
+     *
+     * @param nums
+     * @return
+     */
+    public List<Integer> nums;
+    public int[] sums;
+    public int possibleSquareSide;
+
+    public boolean makeSquare(int[] nums) {
+        // 解题思路有点不拘一格..
+        if (nums == null || nums.length == 0) {
+            return false;
+        }
+        int L = nums.length;
+        int perimeter = 0;
+        for (int i = 0; i < L; i++) {
+            perimeter += nums[i];
+        }
+        this.possibleSquareSide = perimeter / 4;
+        if (this.possibleSquareSide * 4 != perimeter) {
+            return false;
+        }
+        this.nums = Arrays.stream(nums).boxed().collect(Collectors.toList());
+        Collections.sort(this.nums, Collections.reverseOrder());
+        return this.dfs(0);
+    }
+
+    public boolean dfs(int index) {
+        if (index == this.nums.size()) {
+            return (sums[0] == sums[1]) && (sums[1] == sums[2]) && (sums[2] == sums[3]);
+        }
+        int element = this.nums.get(index);
+        // 这里相当于把每根火柴都在4个组内都深度操作了一遍（除非这个组的大小大于perimeter / 4）
+        for (int i = 0; i < 4; i++) {
+            if (this.sums[i] + element <= this.possibleSquareSide) {
+                this.sums[i] += element;
+                if (this.dfs(index + 1)) {
+                    return true;
+                }
+                // 如果不合适则重新推出
+                this.sums[i] -= element;
+            }
+        }
+        return false;
+    }
+
+
+    public static void main(String[] args) {
+        long a = 1;
+        double b = (double)a;
+        System.out.println(b);
     }
 
 }

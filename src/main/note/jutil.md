@@ -15,10 +15,8 @@ http://www.tianxiaobo.com/2018/01/18/HashMap-%E6%BA%90%E7%A0%81%E8%AF%A6%E7%BB%8
 取出桶的位置：first = tab[(n - 1) & hash] 等价于hash对length取余
 链表查询 / 红黑树查询
 
-
 #### 3.遍历
 输出顺序一致却与插入的不同：数组桶的顺序遍历
-
 
 #### 4.插入
 

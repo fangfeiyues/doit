@@ -15,6 +15,16 @@ import java.util.PriorityQueue;
  */
 public class Test01 {
 
+    private boolean as;
+
+    public Boolean getAs() {
+        return as;
+    }
+
+    public void setAs(Boolean as) {
+        this.as = as;
+    }
+
     /**
      * jvm内存受限为5M，有一个1G大小的一个文件，里面每一行是一个词，词的大小不超过16字节，内存限制大小是1M
      *
@@ -132,5 +142,10 @@ public class Test01 {
             }
         }
         return map;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(0x2 << 2);
+        System.out.println(1 << 2);
     }
 }

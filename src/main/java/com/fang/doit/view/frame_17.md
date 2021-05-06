@@ -35,7 +35,6 @@ Cataline_CL    Shared_CL
                    |
 
 ***线程模型***
-
 ```
     <!--<Connector port="8080" protocol="HTTP/1.1"connectionTimeout="20000"redirectPort="8443" />-->
     <Connector port="8080" protocol="org.apache.coyote.http11.Http11NioProtocol"connectionTimeout="20000"redirectPort="8443" />
@@ -45,7 +44,6 @@ Cataline_CL    Shared_CL
  3. APR模式 异步IO
     
 #### 2. tomcat调优参数
-
 并发控制参数(https://blog.csdn.net/qq_16681169/article/details/75003640)
     acceptCount   连接在被ServerSocketChannel accept之前就暂存在这个队列中
     acceptorThreadCount   Acceptor线程只负责从上述队列中取出已经建立连接的请求 参数acceptorThreadCount使用的Acceptor线程的个数
@@ -72,7 +70,7 @@ Cataline_CL    Shared_CL
 
 
 
-#### 5. 讲讲Spring事务的传播属性
+#### 5. 讲讲Spring事务的传播属性 -- 2021.04.12
 propagation = 
   REQUIRED       如果有事务, 那么加入事务, 没有的话新建一个(默认情况下)
   REQUIRES_NEW   不管是否存在事务,都创建一个新的事务,原来的挂起,新的执行完毕,继续执行老的事务
@@ -106,7 +104,7 @@ propagation =
       </aop:config>
   
 
-#### 8. 说说你对Spring的理解，非单例注入的原理；它的生命周期；循环注入的原理
+#### 8. 说说你对Spring的理解，非单例注入的原理；它的生命周期；循环注入的原理 -- 2021.04.12
 非单例注入
     1.放弃控制反转通过ApplicationContextAware.getBean()向容器请求一个新的bean；
     2.Lookup方法注入??? 利用了容器的覆盖受容器管理的bean方法的能力  
@@ -177,7 +175,7 @@ handlerMapping # Object strategy = createDefaultStrategy(context, clazz);
   
 handlerAdapter
 
-#### 11. netty的线程模型，netty如何基于reactor模型上实现的。
+#### 11. netty的线程模型，netty如何基于reactor模型上实现的。 -- 2021.04.12
 
 #### 12. 为什么选择netty。
 
@@ -189,7 +187,7 @@ handlerAdapter
 
 #### 16.netty的通讯协议是什么样的。
 
-#### netty的poll,select,epoll
+#### netty的poll,select,epoll -- 2021.04.12
 select：阻塞但一旦事件进入还是无差别轮询全部流
 epoll:  event poll，不同于忙轮询和无差别轮询，epoll之会把哪个流发生了怎样的I/O事件通知我们。时间复杂度降为O(1)
 详见Netty笔记

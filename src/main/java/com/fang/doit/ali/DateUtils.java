@@ -1,5 +1,6 @@
 package com.fang.doit.ali;
 
+import com.alibaba.druid.util.StringUtils;
 import com.google.common.collect.Lists;
 
 import java.math.BigDecimal;
@@ -7,9 +8,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author by Feiyue on 2020/8/19 5:34 PM
@@ -510,9 +510,43 @@ public class DateUtils {
                 .longValue();
     }
 
+    public static List<Long> getDateDuration(Integer cycleType, Long rewardCycle) {
+        Date startDate = DateUtils.parse("202104", DateUtils.YYYYMM);
+        List<Long> dateList = Lists.newArrayList(startDate.getTime());
+        if (Objects.equals(cycleType, 0)) {
+            // 该月份的最后一天 如202102就是2021.2的第一天
+            Date date = new Date(DateUtils.transferDayFromMonth(rewardCycle));
+            dateList = Lists.newArrayList(DateUtils.startOfMonth(date).getTime(), DateUtils.endOfMonth(date).getTime());
+        } else {
+            // 季度中的每个月份的第一天
+            List<Long> seasonList = DateUtils.transferDayFromSeason(rewardCycle);
+            for (Long seasonTime : seasonList) {
+                dateList.add(DateUtils.startOfMonth(new Date(seasonTime)).getTime());
+                dateList.add(DateUtils.endOfMonth(new Date(seasonTime)).getTime());
+            }
+        }
+        // 避免之前的数据影响 以上线后一个月的日期开始
+        dateList = dateList.stream()
+                .filter(date -> date >= startDate.getTime())
+                .collect(Collectors.toList());
+        return dateList;
+    }
+
+
+    public static List<Long> getDateDuration() {
+        // 该月份的最后一天 如202102就是2021.2的第一天
+        Date date = new Date(DateUtils.transferDayFromMonth(DateUtils.getMonth(System.currentTimeMillis())));
+        return Lists.newArrayList(DateUtils.startOfMonth(date).getTime(), DateUtils.endOfMonth(date).getTime());
+    }
 
     public static void main(String[] args) {
-        Date startDate = DateUtils.parse("202104", DateUtils.YYYYMM);
-        System.out.println(startDate.getTime());
+//        List<Long> dateList = getDateDuration(0, 202105L);
+//        LongSummaryStatistics summary = dateList.stream()
+//                .map(DateUtils::getDay)
+//                .mapToLong(x -> x)
+//                .summaryStatistics();
+//        System.out.println(summary.getMin() + "," + summary.getMax());
+
+//        System.out.println(StringUtils.reverse());
     }
 }

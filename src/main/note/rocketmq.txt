@@ -203,7 +203,7 @@ createTopicInSendMessageMethod# int queueNums = clientDefaultTopicQueueNums > de
 		
 		
 3.broker的消息存储
-             // 经过DefaultMessageStore逻辑层的数据校验 开始真正进行存储操作
+             // 经过 DefaultMessageStore 逻辑层的数据校验 开始真正进行存储操作
              - PutMessageResult result = CommitLog.putMessage(msg);
 			   - msg.setBodyCRC(UtilAll.crc32(msg.getBody())) 设置消息体 CRC 校验值 
 			   - tranType事务?
