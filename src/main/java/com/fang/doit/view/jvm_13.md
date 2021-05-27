@@ -96,7 +96,11 @@ Method method = Proxy.class.getDeclaredMethod("run");
 -XX:SurvivorRatio=10
 -XX:ParallelGCThreads=${CPU_COUNT}  CPU_COUNT="$(grep -c 'cpu[0-9][0-9]*' /proc/stat)"
 
-#### 11.g1和cms区别,吞吐量优先和响应优先的垃圾收集器选择。
+#### 11.g1和cms区别,吞吐量优先和响应优先的垃圾收集器选择
+
+
+
+
 
 
 #### 12.怎么打出线程栈信息。
