@@ -1,4 +1,4 @@
-package com.fang.doit.algo.lc;
+package com.fang.doit.algo.tree;
 
 import java.util.*;
 

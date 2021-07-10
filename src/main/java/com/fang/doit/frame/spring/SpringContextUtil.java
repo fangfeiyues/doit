@@ -20,8 +20,6 @@ public class SpringContextUtil implements ApplicationContextAware {
     }
 
     /**
-     * ���������� spring bean�ĳ�ʼ����ȻҪ��jvm���ʼ��֮ǰ���
-     *
      * @param beanName
      * @param <T>
      * @return

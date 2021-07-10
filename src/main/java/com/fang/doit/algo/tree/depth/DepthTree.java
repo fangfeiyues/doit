@@ -1,4 +1,6 @@
-package com.fang.doit.algo.lc;
+package com.fang.doit.algo.tree.depth;
+
+import com.fang.doit.algo.tree.TreeNode;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -9,7 +11,7 @@ import java.util.stream.Collectors;
  * @author fangfeiyue
  * @Date 2020/12/13 3:22 下午
  */
-public class DepthTree07 {
+public class DepthTree {
 
     /**
      * 对于深度
@@ -272,6 +274,7 @@ public class DepthTree07 {
         // 1. Map<email,List<user>> 暴力破解只要List中有任意两个相等即可合并此两个账号
 
         // 2. 并查集Union，题目的大意就是要把两个账号进行合并通过并查级找到公共合并即可
+
 
         return null;
     }

@@ -1,7 +1,10 @@
 package com.fang.doit.algo.ali;
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -80,7 +83,7 @@ public class Test02 {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.MONTH, -1);
-        int month = calendar.get(Calendar.MONTH)+1;
+        int month = calendar.get(Calendar.MONTH) + 1;
         StringBuilder key = new StringBuilder();
         key.append(calendar.get(Calendar.YEAR));
         if (month < 10) {
@@ -105,18 +108,10 @@ public class Test02 {
 
 
     public static void main(String[] args) {
-        Date curDate = new Date(1617259872000L);
-//        List<Long> seasonDateList = DateUtils.transferDayFromSeason(Long.parseLong(buildSeasonTimeValue(curDate.getTime())));
-//        Set<Long> monthSet = Optional.ofNullable(seasonDateList)
-//                .orElse(Lists.newArrayList())
-//                .stream()
-//                .map(date -> Long.parseLong(DateUtils.buildMonthTimeValue(date)))
-//                .filter(seasonMonth -> seasonMonth < Long.parseLong(DateUtils.buildMonthTimeValue(curDate.getTime())))
-//                .collect(Collectors.toSet());
-//        monthSet.add(getLastMonthTimeValue(curDate));
-//        System.out.println(Lists.newArrayList(monthSet));
+       
 
-        System.out.println(getLastMonthTimeValue(curDate));
+
+
     }
 
 }

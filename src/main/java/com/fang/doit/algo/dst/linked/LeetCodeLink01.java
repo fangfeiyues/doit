@@ -1,7 +1,4 @@
-package com.fang.doit.algo.link;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.fang.doit.algo.dst.linked;
 
 /**
  * @author by Feiyue on 2020/7/28 9:51 AM

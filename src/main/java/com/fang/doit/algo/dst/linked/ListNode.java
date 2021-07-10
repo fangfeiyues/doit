@@ -1,4 +1,4 @@
-package com.fang.doit.algo.link;
+package com.fang.doit.algo.dst.linked;
 
 /**
  * @author created by fang on 2020/5/17/017 20:28

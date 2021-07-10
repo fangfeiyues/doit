@@ -1,4 +1,4 @@
-package com.fang.doit.algo.link;
+package com.fang.doit.algo.dst.linked;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

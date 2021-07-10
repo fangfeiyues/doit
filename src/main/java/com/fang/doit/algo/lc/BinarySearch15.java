@@ -1,5 +1,7 @@
 package com.fang.doit.algo.lc;
 
+import com.fang.doit.algo.tree.TreeNode;
+
 /**
  * 二分查找法
  *

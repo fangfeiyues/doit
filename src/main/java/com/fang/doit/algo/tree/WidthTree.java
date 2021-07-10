@@ -1,4 +1,4 @@
-package com.fang.doit.algo.lc;
+package com.fang.doit.algo.tree;
 
 import com.google.common.collect.Maps;
 
@@ -9,7 +9,7 @@ import java.util.*;
  * @Date 2020/12/15 7:05 下午
  * @see TreeSearch 树的宽度&广度实现
  */
-public class WidthTree08 {
+public class WidthTree {
 
     /**
      * 787: 站中转内最便宜的航班

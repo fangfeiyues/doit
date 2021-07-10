@@ -13,14 +13,13 @@ public class BeanPostProcessorDemo implements BeanPostProcessor {
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) {
-        System.out.println("Bean [" + beanName + "] ��ʼ��ʼ��");
-        // ����һ��Ҫ���� bean�����ܷ��� null
+        System.out.println("Bean [" + beanName + "] ????????");
         return bean;
     }
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) {
-        System.out.println("Bean [" + beanName + "] ��ɳ�ʼ��");
+        System.out.println("Bean [" + beanName + "] ???????");
         return bean;
     }
 

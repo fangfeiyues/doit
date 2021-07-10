@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class DemoController {
 
-    @Autowired
-    public DemoService demoService;
-
-    @RequestMapping("/test")
-    public void test() {
-        String resp = demoService.hello();
-        System.out.println(resp);
-    }
+//    @Autowired
+//    public DemoService demoService;
+//
+//    @RequestMapping("/test")
+//    public void test() {
+//        String resp = demoService.hello();
+//        System.out.println(resp);
+//    }
 }

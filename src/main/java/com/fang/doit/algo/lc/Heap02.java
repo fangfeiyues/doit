@@ -1,6 +1,7 @@
 package com.fang.doit.algo.lc;
 
 import com.alibaba.fastjson.JSON;
+import com.fang.doit.algo.tree.WidthTree;
 
 import java.util.*;
 
@@ -224,7 +225,7 @@ public class Heap02 {
      * @param N
      * @param K
      * @return
-     * @see com.fang.doit.algo.lc.WidthTree08#networkDelayTime(int[][], int, int) 见此
+     * @see WidthTree#networkDelayTime(int[][], int, int) 见此
      */
     public int networkDelayTime(int[][] times, int N, int K) {
 
@@ -242,7 +243,7 @@ public class Heap02 {
      * @param dst
      * @param K
      * @return
-     * @see WidthTree08#findCheapestPrice(int, int[][], int, int, int)
+     * @see WidthTree#findCheapestPrice(int, int[][], int, int, int)
      */
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
 

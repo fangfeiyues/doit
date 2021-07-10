@@ -1,4 +1,4 @@
-package com.fang.doit.algo.dst.tree;
+package com.fang.doit.algo.tree;
 
 import com.alibaba.fastjson.JSON;
 
@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * created by fang on 2019/4/7/007 19:32 遍历二叉树
+ * 遍历二叉树
+ * created by fang on 2019/4/7/007 19:32
  */
 public class BinaryTreeForeach {
 
@@ -172,7 +173,9 @@ public class BinaryTreeForeach {
      */
     public List<Integer> inorderTraversal2(TreeNode root) {
         List<Integer> ret = new ArrayList<>();
-        if (root == null) { return ret; }
+        if (root == null) {
+            return ret;
+        }
         Stack<TreeNode> stack = new Stack<>();
         TreeNode cur = root;
         while (cur != null || !stack.isEmpty()) {

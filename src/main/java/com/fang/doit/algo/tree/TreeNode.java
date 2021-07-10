@@ -1,13 +1,15 @@
-package com.fang.doit.algo.lc;
+package com.fang.doit.algo.tree;
 
 /**
+ * 树基础节点
+ *
  * @author fangfeiyue
  * @Date 2020/12/7 7:26 下午
  */
 public class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
 
     TreeNode() {
     }

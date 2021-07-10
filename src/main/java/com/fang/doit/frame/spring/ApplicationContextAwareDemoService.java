@@ -28,31 +28,31 @@ public class ApplicationContextAwareDemoService
 
     @Override
     public void setBeanClassLoader(ClassLoader classLoader) {
-        System.out.println("调用了 BeanClassLoaderAware 的 setBeanClassLoader 方法");
+        System.out.println("invoke BeanClassLoaderAware # setBeanClassLoader");
         this.classLoader = classLoader;
     }
 
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        System.out.println("调用了 BeanFactoryAware 的 setBeanFactory 方法");
+        System.out.println("invoke BeanFactoryAware # setBeanFactory");
         this.beanFactory = beanFactory;
     }
 
     @Override
     public void setBeanName(String name) {
-        System.out.println("调用了 BeanNameAware 的 setBeanName 方法");
+        System.out.println("invoke BeanNameAware # setBeanName");
         this.beanName = name;
     }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
-        System.out.println("调用了 ApplicationContextAware 的 setApplicationContext 方法");
+        System.out.println("invoke ApplicationContextAware # setApplicationContext");
         this.applicationContext = applicationContext;
     }
 
     public void display() {
         System.out.println("beanName:" + beanName);
-        System.out.println("是否为单例：" + beanFactory.isSingleton(beanName));
+        System.out.println("is Singletion：" + beanFactory.isSingleton(beanName));
 //        System.out.println("系统环境为：" + applicationContext.getEnvironment());
     }
 

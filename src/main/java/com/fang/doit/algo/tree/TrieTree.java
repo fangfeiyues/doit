@@ -1,7 +1,7 @@
-package com.fang.doit.algo.lc;
+package com.fang.doit.algo.tree;
 
 /**
- * �ֵ���
+ * trie树
  *
  * @author by Feiyue on 2020/7/18 3:41 PM
  */
