@@ -228,21 +228,4 @@ public class WidthTree {
     }
 
 
-    /**
-     * 1306: 跳跃游戏
-     *
-     * @param arr
-     * @param start
-     * @return
-     */
-    public boolean canReach(int[] arr, int start) {
-
-        return true;
-    }
-
-    public static Integer getCurrentMonth() {
-        Calendar c = Calendar.getInstance();
-        return c.get(Calendar.MONTH) + 1;
-    }
-
 }

@@ -1,7 +1,7 @@
 package com.fang.doit.algo.tree;
 
 /**
- * 树基础节点
+ * 树节点
  *
  * @author fangfeiyue
  * @Date 2020/12/7 7:26 下午

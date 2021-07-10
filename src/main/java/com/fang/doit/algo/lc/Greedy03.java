@@ -19,49 +19,49 @@ public class Greedy03 {
      * @param n     冷冻时间的单位长度
      * @return
      */
-    public int leastInterval(char[] tasks, int n) {
-        // 问题的核心是在于找到贪心算法里面的局部最优解 -- 即每次以n+1为一个任务的轮回并将其从大到小排序避免大的重复轮训到。
-        int[] map = new int[26];
-        for (char c : tasks) {
-            map[c - 'A']++;
-        }
-        // 维护一个大顶推，由大到小
-        PriorityQueue<Integer> queue = new PriorityQueue<>(26, Collections.reverseOrder());
-        for (int i = 0; i < map.length; i++) {
-            if (map[i] > 0) {
-                queue.add(map[i]);
-            }
-        }
-        int times = 0;
-        while (!queue.isEmpty()) {
-            int i = 0;
-            List<Integer> temp = new ArrayList<>(n);
-            // 这里每个任务的次数是n+1
-            while (i <= n) {
-                if (!queue.isEmpty()) {
-                    if (queue.peek() > 1) {
-                        temp.add(queue.poll() - 1);
-                    } else {
-                        queue.poll();
-                    }
-                }
-                times++;
-                // 一次queue已经没了则直接跳出
-                if (queue.isEmpty() && temp.size() == 0) {
-                    break;
-                }
-                i++;
-            }
-            for (Integer t : temp) {
-                queue.add(t);
-            }
-        }
-        return times;
-
-        /**
-         * 解答成功: 执行耗时:37 ms,击败了12.02% 的Java用户 内存消耗:39.4 MB,击败了93.68% 的Java用户
-         */
-    }
+//    public int leastInterval(char[] tasks, int n) {
+//        // 问题的核心是在于找到贪心算法里面的局部最优解 -- 即每次以n+1为一个任务的轮回并将其从大到小排序避免大的重复轮训到。
+//        int[] map = new int[26];
+//        for (char c : tasks) {
+//            map[c - 'A']++;
+//        }
+//        // 维护一个大顶推，由大到小
+//        PriorityQueue<Integer> queue = new PriorityQueue<>(26, Collections.reverseOrder());
+//        for (int i = 0; i < map.length; i++) {
+//            if (map[i] > 0) {
+//                queue.add(map[i]);
+//            }
+//        }
+//        int times = 0;
+//        while (!queue.isEmpty()) {
+//            int i = 0;
+//            List<Integer> temp = new ArrayList<>(n);
+//            // 这里每个任务的次数是n+1
+//            while (i <= n) {
+//                if (!queue.isEmpty()) {
+//                    if (queue.peek() > 1) {
+//                        temp.add(queue.poll() - 1);
+//                    } else {
+//                        queue.poll();
+//                    }
+//                }
+//                times++;
+//                // 一次queue已经没了则直接跳出
+//                if (queue.isEmpty() && temp.size() == 0) {
+//                    break;
+//                }
+//                i++;
+//            }
+//            for (Integer t : temp) {
+//                queue.add(t);
+//            }
+//        }
+//        return times;
+//
+//        /**
+//         * 解答成功: 执行耗时:37 ms,击败了12.02% 的Java用户 内存消耗:39.4 MB,击败了93.68% 的Java用户
+//         */
+//    }
 
 
     // ------------------------

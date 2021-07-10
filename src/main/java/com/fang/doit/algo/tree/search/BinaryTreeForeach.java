@@ -1,4 +1,4 @@
-package com.fang.doit.algo.tree;
+package com.fang.doit.algo.tree.search;
 
 import com.alibaba.fastjson.JSON;
 
