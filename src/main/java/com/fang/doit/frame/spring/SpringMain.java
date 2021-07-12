@@ -15,7 +15,7 @@ import org.springframework.core.io.ClassPathResource;
  * @Description:
  * @Date: Created in 2019/5/22 14:01
  */
-public class Main {
+public class SpringMain {
 
     public static void main(String[] args) {
         invokeBean();
