@@ -69,6 +69,7 @@ public class DepthTreeV2 {
      * @return
      */
     List<List<Integer>> ret = new LinkedList<>();
+    // FIXME Deque双向链表相对于List或Stack能力更多但也更复杂
     Deque<Integer> path = new LinkedList<>();
 
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
@@ -76,13 +77,14 @@ public class DepthTreeV2 {
         return ret;
     }
 
-    public void dfs(TreeNode root, int targetSum) {
+
+    private void dfs(TreeNode root, int targetSum) {
         if (root == null) {
             return;
         }
+        // FIXME targetSum的值怎么回溯.. 自动回溯??? -- val下层方法改变不会带回到上层
+        targetSum = targetSum - root.val;
         path.offerLast(root.val);
-        // TODO targetSum的值怎么回溯.. 自动回溯???
-        targetSum -= root.val;
         if (root.left == null && root.right == null && targetSum == 0) {
             ret.add(new LinkedList<>(path));
         }

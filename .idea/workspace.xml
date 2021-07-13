@@ -33,77 +33,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a85dc30-4c29-41e6-b18b-890c4a2038bb" name="Default" comment="plan">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/LambalTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/FrameTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/ThoughtTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/DoItDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/tree/depth/Kkth.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/ali/DateUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/ali/DateUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/cache/FunnelRateLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/cache/FunnelRateLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/adapter/Adapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/adapter/Adapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/adapter/Clienter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/adapter/Clienter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/adapter/Ps2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/adapter/Ps2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/adapter/Usb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/adapter/Usb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/adapter/Usber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/adapter/Usber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/chain/ChainMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/chain/ChainMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/chain/Leader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/chain/Leader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/chain/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/chain/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/chain/QingjiaRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/chain/QingjiaRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/chain/Zhuren.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/chain/Zhuren.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/decorator/Decorator1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/decorator/Decorator1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/decorator/Decorator2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/decorator/Decorator2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/decorator/Decorator3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/decorator/Decorator3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/decorator/DecoratorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/decorator/DecoratorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/decorator/Sourcable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/decorator/Sourcable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/decorator/Source.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/decorator/Source.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/limiter/RateLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/limiter/RateLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/observer/AsyncEventBus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/observer/AsyncEventBus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/observer/EventBus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/observer/EventBus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/observer/ObserverAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/observer/ObserverAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/observer/ObserverRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/observer/ObserverRegistry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/observer/Subscribe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/observer/Subscribe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/observer/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/observer/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/proxy/jdk/LogJdkDynProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/proxy/jdk/LogJdkDynProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/lock/CompletableFutureDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/lock/CompletableFutureDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/lock/CompletableFutureV2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/lock/CompletableFutureV2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/lock/CountDownLatchDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/lock/CountDownLatchDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/lock/InterruptDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/lock/InterruptDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/lock/SyncThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/lock/SyncThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/lock/SynchronizedDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/lock/SynchronizedDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/AAAA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/AAAA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/HashedWheelTimerDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/HashedWheelTimerDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/NETTY.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/client/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/client/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/client/EchoOutClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/client/EchoOutClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/common/CustomHeartbeatHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/common/CustomHeartbeatHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/netty.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/netty.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/nio/FileChannelMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/nio/FileChannelMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/server/EchoInServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/server/EchoInServerHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/server/ServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/server/ServerHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/ApplicationContextAwareDemoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/ApplicationContextAwareDemoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/BeanPostProcessorDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/BeanPostProcessorDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/DemoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/DemoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/SpringContextUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/SpringContextUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/ioc/Metrics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/ioc/Metrics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/ioc/MetricsAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/ioc/MetricsAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/Grade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/mybatis/Grade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/RecordSqlPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/mybatis/RecordSqlPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/mybatis/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/mybatis/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/UserResultHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/mybatis/UserResultHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/UserTypeHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/mybatis/UserTypeHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/service/AbstractDemoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/service/AbstractDemoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/service/DemoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/service/DemoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/service/DemoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/service/DemoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/service/DemoServiceImpl2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/service/DemoServiceImpl2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/jvm_13.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/jvm_13.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/note/springmvc.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/springmvc.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/spring-mybatis.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring-mybatis.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/fang/doit/spring/MybatisTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/fang/doit/frame/spring/MybatisTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/tree/TreeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/tree/TreeNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/tree/depth/DepthTreeV2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/tree/depth/DepthTreeV2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +88,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.19114077" />
     <property name="project.structure.side.proportion" value="0.34299517" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -165,14 +99,14 @@
       <recent name="com.fang.doit.algo.lc" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DateUtils">
+  <component name="RunManager" selected="Application.DepthTreeV2">
     <configuration name="DateUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.ali.DateUtils" />
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.ali.DateUtils" />
       <module name="doit" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.fang.doit.ali.*" />
+          <option name="PATTERN" value="com.fang.doit.algo.ali.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -180,13 +114,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DepthTree07" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.DepthTree07" />
+    <configuration name="DepthTreeV2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.tree.depth.DepthTreeV2" />
       <module name="doit" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.fang.doit.algo.lc.*" />
+          <option name="PATTERN" value="com.fang.doit.algo.tree.depth.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -208,13 +142,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test01" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.ali.Test01" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.frame.spring.Main" />
       <module name="doit" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.fang.doit.ali.*" />
+          <option name="PATTERN" value="com.fang.doit.frame.spring.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -223,12 +157,12 @@
       </method>
     </configuration>
     <configuration name="Test02" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.ali.Test02" />
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.ali.Test02" />
       <module name="doit" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.fang.doit.ali.*" />
+          <option name="PATTERN" value="com.fang.doit.algo.ali.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -260,18 +194,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.Test02" />
-      <item itemvalue="Application.DepthTree07" />
       <item itemvalue="Application.DateUtils" />
-      <item itemvalue="Application.Test01" />
       <item itemvalue="Application.LambalTest" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.DepthTreeV2" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.DepthTreeV2" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Test02" />
         <item itemvalue="Application.DateUtils" />
         <item itemvalue="Application.LambalTest" />
-        <item itemvalue="Application.Test01" />
-        <item itemvalue="Application.DepthTree07" />
-        <item itemvalue="Application.Test02" />
       </list>
     </recent_temporary>
   </component>
@@ -554,7 +488,27 @@
       <workItem from="1621516706046" duration="925000" />
       <workItem from="1621527106314" duration="192000" />
       <workItem from="1621931794083" duration="547000" />
-      <workItem from="1622099151947" duration="1631000" />
+      <workItem from="1622099151947" duration="3829000" />
+      <workItem from="1622121556268" duration="1062000" />
+      <workItem from="1622561989292" duration="1152000" />
+      <workItem from="1622599750266" duration="649000" />
+      <workItem from="1623759831563" duration="470000" />
+      <workItem from="1624323195606" duration="1690000" />
+      <workItem from="1624441859967" duration="1076000" />
+      <workItem from="1624500866886" duration="65000" />
+      <workItem from="1624800902419" duration="50000" />
+      <workItem from="1624881624156" duration="388000" />
+      <workItem from="1625382617334" duration="3617000" />
+      <workItem from="1625451227215" duration="382000" />
+      <workItem from="1625491455093" duration="1265000" />
+      <workItem from="1625537414845" duration="198000" />
+      <workItem from="1625660764743" duration="655000" />
+      <workItem from="1625898023781" duration="7499000" />
+      <workItem from="1626056115824" duration="170000" />
+      <workItem from="1626064101075" duration="1312000" />
+      <workItem from="1626100727651" duration="1835000" />
+      <workItem from="1626142505333" duration="15000" />
+      <workItem from="1626179650824" duration="2264000" />
     </task>
     <task id="LOCAL-00001" summary="add doc.txt">
       <created>1556890254745</created>
@@ -808,7 +762,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612158845688</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="commit 0711">
+      <created>1625936353960</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1625936353960</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -837,7 +798,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add doc" />
     <MESSAGE value="add base1" />
     <MESSAGE value="add base2" />
     <MESSAGE value="add jvm" />
@@ -862,131 +822,127 @@
     <MESSAGE value="add" />
     <MESSAGE value="2021.1.31 view ready" />
     <MESSAGE value="ali" />
-    <option name="LAST_COMMIT_MESSAGE" value="ali" />
+    <MESSAGE value="commit 0711" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 0711" />
   </component>
   <component name="WindowStateProjectService">
     <state x="533" y="141" key="#com.intellij.ide.util.MemberChooser" timestamp="1620356389172">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="533" y="141" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1620356389172" />
-    <state x="533" y="141" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1615742491874" />
-    <state x="348" y="381" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1622101237450">
+    <state x="348" y="381" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1622101524412">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="348" y="381" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1622101237450" />
+    <state x="348" y="381" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1622101524412" />
     <state x="495" y="338" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1622100807994">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="495" y="338" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1622100807994" />
-    <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1614080756411">
+    <state x="59" y="28" key="CommitChangelistDialog2" timestamp="1625936353611">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1614080756411" />
-    <state width="482" height="370" key="Git.Branch.Popup" timestamp="1615895095485">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state x="59" y="28" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1625936353611" />
+    <state width="1396" height="275" key="GridCell.Tab.0.bottom" timestamp="1626111262724">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="482" height="370" key="Git.Branch.Popup/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1615895095485" />
-    <state width="1876" height="259" key="GridCell.Tab.0.bottom" timestamp="1621104329259">
-      <screen x="1440" y="23" width="2560" height="1417" />
-    </state>
-    <state width="1396" height="182" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.-117.1920.1057@0.0.1440.900" timestamp="1613991650166" />
-    <state width="1396" height="208" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1620356605246" />
-    <state width="1876" height="259" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1621071454629" />
+    <state width="1396" height="221" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1626069695963" />
+    <state width="1876" height="275" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1626102114243" />
     <state width="1396" height="174" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.0.2560.1440@0.0.1440.900" timestamp="1618155031039" />
+    <state width="2516" height="361" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.0.2560.1440@1440.0.2560.1440" timestamp="1624324399619" />
     <state width="1396" height="208" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.23.2560.1417@0.0.1440.900" timestamp="1620404090172" />
-    <state width="1396" height="206" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1615742541703" />
+    <state width="1396" height="291" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1624442117865" />
     <state width="1396" height="174" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.-117.1920.1057@0.23.1440.877" timestamp="1618297785995" />
+    <state width="1876" height="361" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1624328173638" />
     <state width="1396" height="163" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.0.2560.1440@0.23.1440.877" timestamp="1619255212564" />
     <state width="1396" height="174" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.23.2560.1417@0.23.1440.877" timestamp="1618155433178" />
     <state width="1876" height="259" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1621104329259" />
-    <state width="1396" height="206" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1615744096598" />
-    <state width="1876" height="259" key="GridCell.Tab.0.center" timestamp="1621104329257">
-      <screen x="1440" y="23" width="2560" height="1417" />
+    <state width="1396" height="275" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1626111262724" />
+    <state width="1396" height="275" key="GridCell.Tab.0.center" timestamp="1626111262722">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1396" height="182" key="GridCell.Tab.0.center/0.0.1440.900/1440.-117.1920.1057@0.0.1440.900" timestamp="1613991650164" />
-    <state width="1396" height="208" key="GridCell.Tab.0.center/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1620356605243" />
-    <state width="1876" height="259" key="GridCell.Tab.0.center/0.0.1440.900/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1621071454626" />
+    <state width="1396" height="221" key="GridCell.Tab.0.center/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1626069695960" />
+    <state width="1876" height="275" key="GridCell.Tab.0.center/0.0.1440.900/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1626102114241" />
     <state width="1396" height="174" key="GridCell.Tab.0.center/0.0.1440.900/1440.0.2560.1440@0.0.1440.900" timestamp="1618155031035" />
+    <state width="2516" height="361" key="GridCell.Tab.0.center/0.0.1440.900/1440.0.2560.1440@1440.0.2560.1440" timestamp="1624324399617" />
     <state width="1396" height="208" key="GridCell.Tab.0.center/0.0.1440.900/1440.23.2560.1417@0.0.1440.900" timestamp="1620404090170" />
-    <state width="1396" height="206" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1615742541701" />
+    <state width="1396" height="291" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1624442117862" />
     <state width="1396" height="174" key="GridCell.Tab.0.center/0.23.1440.877/1440.-117.1920.1057@0.23.1440.877" timestamp="1618297785992" />
+    <state width="1876" height="361" key="GridCell.Tab.0.center/0.23.1440.877/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1624328173637" />
     <state width="1396" height="163" key="GridCell.Tab.0.center/0.23.1440.877/1440.0.2560.1440@0.23.1440.877" timestamp="1619255212560" />
     <state width="1396" height="174" key="GridCell.Tab.0.center/0.23.1440.877/1440.23.2560.1417@0.23.1440.877" timestamp="1618155433171" />
     <state width="1876" height="259" key="GridCell.Tab.0.center/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1621104329257" />
-    <state width="1396" height="206" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1615744096597" />
-    <state width="1876" height="259" key="GridCell.Tab.0.left" timestamp="1621104329256">
-      <screen x="1440" y="23" width="2560" height="1417" />
+    <state width="1396" height="275" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1626111262722" />
+    <state width="1396" height="275" key="GridCell.Tab.0.left" timestamp="1626111262721">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1396" height="182" key="GridCell.Tab.0.left/0.0.1440.900/1440.-117.1920.1057@0.0.1440.900" timestamp="1613991650163" />
-    <state width="1396" height="208" key="GridCell.Tab.0.left/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1620356605240" />
-    <state width="1876" height="259" key="GridCell.Tab.0.left/0.0.1440.900/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1621071454624" />
+    <state width="1396" height="221" key="GridCell.Tab.0.left/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1626069695957" />
+    <state width="1876" height="275" key="GridCell.Tab.0.left/0.0.1440.900/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1626102114231" />
     <state width="1396" height="174" key="GridCell.Tab.0.left/0.0.1440.900/1440.0.2560.1440@0.0.1440.900" timestamp="1618155031028" />
+    <state width="2516" height="361" key="GridCell.Tab.0.left/0.0.1440.900/1440.0.2560.1440@1440.0.2560.1440" timestamp="1624324399615" />
     <state width="1396" height="208" key="GridCell.Tab.0.left/0.0.1440.900/1440.23.2560.1417@0.0.1440.900" timestamp="1620404090168" />
-    <state width="1396" height="206" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1615742541699" />
+    <state width="1396" height="291" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1624442117861" />
     <state width="1396" height="174" key="GridCell.Tab.0.left/0.23.1440.877/1440.-117.1920.1057@0.23.1440.877" timestamp="1618297785990" />
+    <state width="1876" height="361" key="GridCell.Tab.0.left/0.23.1440.877/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1624328173636" />
     <state width="1396" height="163" key="GridCell.Tab.0.left/0.23.1440.877/1440.0.2560.1440@0.23.1440.877" timestamp="1619255212557" />
     <state width="1396" height="174" key="GridCell.Tab.0.left/0.23.1440.877/1440.23.2560.1417@0.23.1440.877" timestamp="1618155433169" />
     <state width="1876" height="259" key="GridCell.Tab.0.left/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1621104329256" />
-    <state width="1396" height="206" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1615744096596" />
-    <state width="1876" height="259" key="GridCell.Tab.0.right" timestamp="1621104329258">
-      <screen x="1440" y="23" width="2560" height="1417" />
+    <state width="1396" height="275" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1626111262721" />
+    <state width="1396" height="275" key="GridCell.Tab.0.right" timestamp="1626111262723">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1396" height="182" key="GridCell.Tab.0.right/0.0.1440.900/1440.-117.1920.1057@0.0.1440.900" timestamp="1613991650165" />
-    <state width="1396" height="208" key="GridCell.Tab.0.right/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1620356605244" />
-    <state width="1876" height="259" key="GridCell.Tab.0.right/0.0.1440.900/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1621071454627" />
+    <state width="1396" height="221" key="GridCell.Tab.0.right/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1626069695962" />
+    <state width="1876" height="275" key="GridCell.Tab.0.right/0.0.1440.900/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1626102114242" />
     <state width="1396" height="174" key="GridCell.Tab.0.right/0.0.1440.900/1440.0.2560.1440@0.0.1440.900" timestamp="1618155031037" />
+    <state width="2516" height="361" key="GridCell.Tab.0.right/0.0.1440.900/1440.0.2560.1440@1440.0.2560.1440" timestamp="1624324399618" />
     <state width="1396" height="208" key="GridCell.Tab.0.right/0.0.1440.900/1440.23.2560.1417@0.0.1440.900" timestamp="1620404090171" />
-    <state width="1396" height="206" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1615742541702" />
+    <state width="1396" height="291" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1624442117864" />
     <state width="1396" height="174" key="GridCell.Tab.0.right/0.23.1440.877/1440.-117.1920.1057@0.23.1440.877" timestamp="1618297785994" />
+    <state width="1876" height="361" key="GridCell.Tab.0.right/0.23.1440.877/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1624328173637" />
     <state width="1396" height="163" key="GridCell.Tab.0.right/0.23.1440.877/1440.0.2560.1440@0.23.1440.877" timestamp="1619255212562" />
     <state width="1396" height="174" key="GridCell.Tab.0.right/0.23.1440.877/1440.23.2560.1417@0.23.1440.877" timestamp="1618155433173" />
     <state width="1876" height="259" key="GridCell.Tab.0.right/0.23.1440.877/1440.23.2560.1417@1440.23.2560.1417" timestamp="1621104329258" />
-    <state width="1396" height="206" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1615744096597" />
-    <state width="1396" height="241" key="GridCell.Tab.1.bottom" timestamp="1619429391707">
+    <state width="1396" height="275" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1626111262723" />
+    <state width="1396" height="309" key="GridCell.Tab.1.bottom" timestamp="1626069695942">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1396" height="241" key="GridCell.Tab.1.bottom/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1619429391707" />
-    <state width="1396" height="300" key="GridCell.Tab.1.bottom/0.0.1440.900/1440.0.2560.1440@0.0.1440.900" timestamp="1615217832103" />
-    <state width="1396" height="262" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1614702904558" />
-    <state width="1396" height="262" key="GridCell.Tab.1.bottom/0.23.1440.877/1440.-117.1920.1057@0.23.1440.877" timestamp="1614163504177" />
-    <state width="1396" height="244" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1614784009241" />
-    <state width="1396" height="241" key="GridCell.Tab.1.center" timestamp="1619429391704">
+    <state width="1396" height="309" key="GridCell.Tab.1.bottom/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1626069695942" />
+    <state width="1396" height="309" key="GridCell.Tab.1.center" timestamp="1626069695939">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1396" height="241" key="GridCell.Tab.1.center/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1619429391704" />
-    <state width="1396" height="300" key="GridCell.Tab.1.center/0.0.1440.900/1440.0.2560.1440@0.0.1440.900" timestamp="1615217832102" />
-    <state width="1396" height="262" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1614702904555" />
-    <state width="1396" height="262" key="GridCell.Tab.1.center/0.23.1440.877/1440.-117.1920.1057@0.23.1440.877" timestamp="1614163504176" />
-    <state width="1396" height="244" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1614784009240" />
-    <state width="1396" height="241" key="GridCell.Tab.1.left" timestamp="1619429391702">
+    <state width="1396" height="309" key="GridCell.Tab.1.center/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1626069695939" />
+    <state width="1396" height="309" key="GridCell.Tab.1.left" timestamp="1626069695938">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1396" height="241" key="GridCell.Tab.1.left/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1619429391702" />
-    <state width="1396" height="300" key="GridCell.Tab.1.left/0.0.1440.900/1440.0.2560.1440@0.0.1440.900" timestamp="1615217832101" />
-    <state width="1396" height="262" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1614702904554" />
-    <state width="1396" height="262" key="GridCell.Tab.1.left/0.23.1440.877/1440.-117.1920.1057@0.23.1440.877" timestamp="1614163504175" />
-    <state width="1396" height="244" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1614784009239" />
-    <state width="1396" height="241" key="GridCell.Tab.1.right" timestamp="1619429391705">
+    <state width="1396" height="309" key="GridCell.Tab.1.left/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1626069695938" />
+    <state width="1396" height="309" key="GridCell.Tab.1.right" timestamp="1626069695941">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1396" height="241" key="GridCell.Tab.1.right/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1619429391705" />
-    <state width="1396" height="300" key="GridCell.Tab.1.right/0.0.1440.900/1440.0.2560.1440@0.0.1440.900" timestamp="1615217832103" />
-    <state width="1396" height="262" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1614702904557" />
-    <state width="1396" height="262" key="GridCell.Tab.1.right/0.23.1440.877/1440.-117.1920.1057@0.23.1440.877" timestamp="1614163504177" />
-    <state width="1396" height="244" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1614784009241" />
-    <state x="2001" y="106" width="798" height="588" key="find.popup" timestamp="1620648259484">
+    <state width="1396" height="309" key="GridCell.Tab.1.right/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1626069695941" />
+    <state x="1909" y="39" key="SettingsEditor" timestamp="1626064235177">
       <screen x="1440" y="-140" width="1920" height="1080" />
     </state>
-    <state x="2001" y="106" width="798" height="588" key="find.popup/0.0.1440.900/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1620648259484" />
+    <state x="1909" y="39" key="SettingsEditor/0.0.1440.900/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1626064235177" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1625936528652">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1625936528652" />
+    <state x="2121" y="305" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1626057865175">
+      <screen x="1440" y="-140" width="1920" height="1080" />
+    </state>
+    <state x="2121" y="305" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1626057865175" />
+    <state x="511" y="371" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1625936379052" />
+    <state x="2001" y="106" width="798" height="588" key="find.popup" timestamp="1625911843939">
+      <screen x="1440" y="-140" width="1920" height="1080" />
+    </state>
+    <state x="2001" y="106" width="798" height="588" key="find.popup/0.0.1440.900/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1625911843939" />
     <state x="2188" y="328" width="1064" height="784" key="find.popup/0.0.1440.900/1440.0.2560.1440@1440.0.2560.1440" timestamp="1620550137074" />
-    <state x="1953" y="95" width="894" height="813" key="search.everywhere.popup" timestamp="1620993849267">
+    <state x="1953" y="95" width="894" height="813" key="search.everywhere.popup" timestamp="1625911704328">
       <screen x="1440" y="-140" width="1920" height="1080" />
     </state>
     <state x="385" y="196" width="671" height="677" key="search.everywhere.popup/0.0.1440.900/1440.-140.1920.1080@0.0.1440.900" timestamp="1618233005251" />
-    <state x="1953" y="95" width="894" height="813" key="search.everywhere.popup/0.0.1440.900/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1620993849267" />
+    <state x="1953" y="95" width="894" height="813" key="search.everywhere.popup/0.0.1440.900/1440.-140.1920.1080@1440.-140.1920.1080" timestamp="1625911704328" />
     <state x="385" y="196" width="671" height="677" key="search.everywhere.popup/0.0.1440.900/1440.0.2560.1440@0.0.1440.900" timestamp="1618154974933" />
-    <state x="2124" y="313" width="1192" height="1083" key="search.everywhere.popup/0.0.1440.900/1440.0.2560.1440@1440.0.2560.1440" timestamp="1620550055294" />
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1615742467234" />
+    <state x="2124" y="313" width="1192" height="1083" key="search.everywhere.popup/0.0.1440.900/1440.0.2560.1440@1440.0.2560.1440" timestamp="1622564857970" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1007,12 +963,12 @@
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/fang/doit/ali/DateUtils.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/ali/DateUtils.java</url>
           <line>474</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/fang/doit/ali/DateUtils.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/ali/DateUtils.java</url>
           <line>500</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
