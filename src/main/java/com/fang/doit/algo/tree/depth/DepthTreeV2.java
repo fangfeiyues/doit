@@ -1,5 +1,6 @@
 package com.fang.doit.algo.tree.depth;
 
+import com.alibaba.fastjson.JSON;
 import com.fang.doit.algo.dst.linked.Solution;
 import com.fang.doit.algo.tree.TreeNode;
 import com.fang.doit.algo.tree.search.BinaryTreeForeach;
@@ -94,17 +95,94 @@ public class DepthTreeV2 {
     }
 
 
+    /**
+     * 129:求根结点到叶子节点数字之和
+     * 解答成功: 执行耗时:8 ms,击败了5.22% 的Java用户 内存消耗:37 MB,击败了5.05% 的Java用户
+     *
+     * @param root
+     * @return
+     */
+    private int all = 0;
+
+    public int sumNumbers(TreeNode root) {
+        dfs(root, "");
+        return all;
+    }
+
+    private void dfs(TreeNode root, String split) {
+        if (root == null) {
+            return;
+        }
+        split = split + "" + root.val;
+        if (root.left == null && root.right == null) {
+            System.out.println(JSON.toJSONString(root) + ":" + split);
+            all = all + Integer.parseInt(split);
+        }
+        dfs(root.left, split);
+        dfs(root.right, split);
+    }
+
+
+    /**
+     * 236:二叉树的最近公共祖先
+     * 解答成功: 执行耗时:50 ms,击败了5.54% 的Java用户 内存消耗:43.3 MB,击败了5.00% 的Java用户
+     *
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     */
+    Deque<TreeNode> deque = new LinkedList<>();
+
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+
+        // 暴力破解法：遍历两个节点的上层节点
+
+        dfs(root, p, q);
+        return deque.pollFirst();
+    }
+
+
+    private int dfs(TreeNode root, TreeNode p, TreeNode q) {
+        int num = 0;
+        if (root == null) {
+            return 0;
+        }
+        // 包装类型间的相等判断应该用equals，而不是'=='
+        if (root.val.equals(p.val) || root.val.equals(q.val)) {
+            num = num + 1;
+        }
+        int leftNums = dfs(root.left, p, q);
+        int rightNums = dfs(root.right, p, q);
+        int alls = num + leftNums + rightNums;
+        if (alls >= 2) {
+            System.out.println(root.val + ":" + alls);
+            deque.addLast(root);
+        }
+        return alls;
+    }
+
+
     public static void main(String[] args) {
-//运行失败: Line 35: error: reached end of file while parsing } ^ 测试用例:null stdout: null
-        TreeNode treeNode1 = new TreeNode(1);
-        TreeNode treeNode2 = new TreeNode(2, treeNode1, null);
-        TreeNode treeNode4 = new TreeNode(4);
-        TreeNode treeNode3 = new TreeNode(3, treeNode2, treeNode4);
+//        TreeNode treeNode1 = new TreeNode(1);
+//        TreeNode treeNode2 = new TreeNode(2, treeNode1, null);
+//        TreeNode treeNode4 = new TreeNode(4);
+//        TreeNode treeNode3 = new TreeNode(3, treeNode2, treeNode4);
+//        TreeNode treeNode6 = new TreeNode(6);
+//        TreeNode treeNode5 = new TreeNode(5, treeNode3, treeNode6);
+
         TreeNode treeNode6 = new TreeNode(6);
-        TreeNode treeNode5 = new TreeNode(5, treeNode3, treeNode6);
-//        System.out.println(kthSmallestByMiddle(treeNode5, 3));
+        TreeNode treeNode7 = new TreeNode(7);
+        TreeNode treeNode4 = new TreeNode(4);
+        TreeNode treeNode0 = new TreeNode(0);
+        TreeNode treeNode8 = new TreeNode(8);
+        TreeNode treeNode2 = new TreeNode(2, treeNode7, treeNode4);
+        TreeNode treeNode5 = new TreeNode(5, treeNode6, treeNode2);
+        TreeNode treeNode1 = new TreeNode(1, treeNode0, treeNode8);
+        TreeNode treeNode3 = new TreeNode(3, treeNode1, treeNode5);
+
         DepthTreeV2 depthTreeV2 = new DepthTreeV2();
-        System.out.println(depthTreeV2.pathSum(treeNode5, 12));
+        System.out.println(JSON.toJSONString(depthTreeV2.lowestCommonAncestor(treeNode3, treeNode7, treeNode4).val));
     }
 
 
