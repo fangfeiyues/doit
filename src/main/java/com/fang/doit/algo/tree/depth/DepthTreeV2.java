@@ -135,9 +135,8 @@ public class DepthTreeV2 {
     Deque<TreeNode> deque = new LinkedList<>();
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-
-        // 暴力破解法：遍历两个节点的上层节点
-
+        // 1. 暴力破解法：遍历两个节点的上层节点
+        //
         dfs(root, p, q);
         return deque.pollFirst();
     }
@@ -148,20 +147,51 @@ public class DepthTreeV2 {
         if (root == null) {
             return 0;
         }
-        // 包装类型间的相等判断应该用equals，而不是'=='
-        if (root.val.equals(p.val) || root.val.equals(q.val)) {
+        if (root.val == p.val || root.val == q.val) {
             num = num + 1;
         }
         int leftNums = dfs(root.left, p, q);
         int rightNums = dfs(root.right, p, q);
+        // 某个节点下面有几个所属节点统计 FIXME 除了递归运算还有没其他方式
         int alls = num + leftNums + rightNums;
         if (alls >= 2) {
-            System.out.println(root.val + ":" + alls);
             deque.addLast(root);
         }
         return alls;
     }
 
+
+    /**
+     * 743：网络延迟时间。从某个节点 K 发出一个信号。需要多久才能使所有节点都收到信号？如果不能使所有节点收到信号，返回 -1
+     *
+     * @param times
+     * @param n
+     * @param k
+     * @return
+     */
+    List<Integer> visited = new ArrayList<>();
+
+    int allTimes = 0;
+
+    public int networkDelayTime(int[][] times, int n, int k) {
+        visited.add(k);
+
+        return 0;
+    }
+
+
+    private void netDfs(int[][] times, int k) {
+        if (visited.contains(k)) {
+            return;
+        }
+        int[] next = times[k];
+        for (int i = 0; i < next.length; i++) {
+            int time = next[i];
+            allTimes = allTimes + time;
+            visited.add(k);
+            netDfs(times,ti);
+        }
+    }
 
     public static void main(String[] args) {
 //        TreeNode treeNode1 = new TreeNode(1);

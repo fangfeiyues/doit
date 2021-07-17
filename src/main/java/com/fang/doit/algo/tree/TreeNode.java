@@ -1,7 +1,5 @@
 package com.fang.doit.algo.tree;
 
-import java.util.LinkedList;
-
 /**
  * 树节点
  *
@@ -9,7 +7,7 @@ import java.util.LinkedList;
  * @Date 2020/12/7 7:26 下午
  */
 public class TreeNode {
-    public Integer val;
+    public int val;
     public TreeNode left;
     public TreeNode right;
 
