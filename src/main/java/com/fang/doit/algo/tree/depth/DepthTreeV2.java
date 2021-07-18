@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.fang.doit.algo.dst.linked.Solution;
 import com.fang.doit.algo.tree.TreeNode;
 import com.fang.doit.algo.tree.search.BinaryTreeForeach;
+import com.google.common.collect.Lists;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.*;
 
 /**
@@ -169,31 +171,56 @@ public class DepthTreeV2 {
      * @param k
      * @return
      */
-    List<Integer> visited = new ArrayList<>();
 
-    int allTimes = 0;
+    int maxTimes = Integer.MIN_VALUE;
+    List<Integer> has = new ArrayList<>();
 
     public int networkDelayTime(int[][] times, int n, int k) {
-        visited.add(k);
+        if (times.length == 0) {
+            return 0;
+        }
+        // 要进行转换Map<> FIXME int[][] 这里的edge = int[0]那么edge[0]就是第一个一维数组的第一位
+        Map<Integer, List<int[]>> map = new HashMap<>();
+        for (int i = 0; i < times.length; i++) {
+            int start = times[i][0];
+            int end = times[i][1];
+            int value = times[i][2];
+            if (!map.containsKey(start)) {
+                map.put(start, new ArrayList<int[]>());
+            }
+            map.get(start).add(new int[]{end, value});
+        }
 
-        return 0;
+        netDfs(map, k, 0);
+        if (has.size() < n) {
+            return -1;
+        }
+        return maxTimes;
     }
 
 
-    private void netDfs(int[][] times, int k) {
-        if (visited.contains(k)) {
+    private void netDfs(Map<Integer, List<int[]>> map, int k, int allTime) {
+        List<int[]> nexts = map.get(k);
+        if (has.contains(k)) {
             return;
         }
-        int[] next = times[k];
-        for (int i = 0; i < next.length; i++) {
-            int time = next[i];
-            allTimes = allTimes + time;
-            visited.add(k);
-            netDfs(times,ti);
+        has.add(k);
+        if (allTime > maxTimes) {
+            maxTimes = allTime;
+        }
+        if (nexts == null) {
+            return;
+        }
+        for (int[] point : nexts) {
+            int next = point[0];
+            int value = point[1];
+            netDfs(map, next, allTime + value);
         }
     }
 
     public static void main(String[] args) {
+        DepthTreeV2 depthTreeV2 = new DepthTreeV2();
+
 //        TreeNode treeNode1 = new TreeNode(1);
 //        TreeNode treeNode2 = new TreeNode(2, treeNode1, null);
 //        TreeNode treeNode4 = new TreeNode(4);
@@ -201,18 +228,26 @@ public class DepthTreeV2 {
 //        TreeNode treeNode6 = new TreeNode(6);
 //        TreeNode treeNode5 = new TreeNode(5, treeNode3, treeNode6);
 
-        TreeNode treeNode6 = new TreeNode(6);
-        TreeNode treeNode7 = new TreeNode(7);
-        TreeNode treeNode4 = new TreeNode(4);
-        TreeNode treeNode0 = new TreeNode(0);
-        TreeNode treeNode8 = new TreeNode(8);
-        TreeNode treeNode2 = new TreeNode(2, treeNode7, treeNode4);
-        TreeNode treeNode5 = new TreeNode(5, treeNode6, treeNode2);
-        TreeNode treeNode1 = new TreeNode(1, treeNode0, treeNode8);
-        TreeNode treeNode3 = new TreeNode(3, treeNode1, treeNode5);
+//        TreeNode treeNode6 = new TreeNode(6);
+//        TreeNode treeNode7 = new TreeNode(7);
+//        TreeNode treeNode4 = new TreeNode(4);
+//        TreeNode treeNode0 = new TreeNode(0);
+//        TreeNode treeNode8 = new TreeNode(8);
+//        TreeNode treeNode2 = new TreeNode(2, treeNode7, treeNode4);
+//        TreeNode treeNode5 = new TreeNode(5, treeNode6, treeNode2);
+//        TreeNode treeNode1 = new TreeNode(1, treeNode0, treeNode8);
+//        TreeNode treeNode3 = new TreeNode(3, treeNode1, treeNode5);
 
-        DepthTreeV2 depthTreeV2 = new DepthTreeV2();
-        System.out.println(JSON.toJSONString(depthTreeV2.lowestCommonAncestor(treeNode3, treeNode7, treeNode4).val));
+//        System.out.println(JSON.toJSONString(depthTreeV2.lowestCommonAncestor(treeNode3, treeNode7, treeNode4).val));
+
+//        运行失败: Time Limit Exceeded 测试用例:[[1,2,1],[2,1,3]] 2 2 stdout:
+//        [2,1,1],[2,3,1],[3,4,1]] 4 2 stdout:
+
+//        解答失败: 测试用例:[[1,2,1],[2,3,2],[1,3,2]] 3 1 测试结果:3 期望结果:2 stdout:
+        int[][] times = {{1, 2, 1}, {2, 3, 2}, {1, 3, 2}};
+        System.out.println(depthTreeV2.networkDelayTime(times, 3, 1));
+
+
     }
 
 
