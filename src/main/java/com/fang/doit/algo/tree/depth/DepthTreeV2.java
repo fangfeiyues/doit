@@ -218,6 +218,20 @@ public class DepthTreeV2 {
         }
     }
 
+    /**
+     * 886. 可能的二分法给定一组 N 人（编号为 1, 2, ..., N）， 我们想把每个人分进任意大小的两组。
+     * 每个人都可能不喜欢其他人，那么他们不应该属于同一组。
+     *
+     * @param n
+     * @param dislikes
+     * @return
+     */
+    public boolean possibleBipartition(int n, int[][] dislikes) {
+
+        return false;
+    }
+
+
     public static void main(String[] args) {
         DepthTreeV2 depthTreeV2 = new DepthTreeV2();
 
