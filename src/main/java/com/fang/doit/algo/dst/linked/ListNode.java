@@ -5,12 +5,17 @@ package com.fang.doit.algo.dst.linked;
  */
 public class ListNode {
 
-    int val;
+    public  int val;
 
-    ListNode next;
+    public ListNode next;
 
-    ListNode(int x) {
+    public ListNode(int x) {
         val = x;
+    }
+
+    public ListNode(int x,ListNode next) {
+        val = x;
+        next = next;
     }
 
     public int getVal() {

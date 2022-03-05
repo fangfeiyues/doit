@@ -50,7 +50,7 @@ HandlerMapping  ??HandlerMapping的时候没有拿到handler什么时候获取的
 #### 4. 组件1 -- AbstractHandlerMapping 实现了"获取请求对应的处理器和拦截器们"的骨架逻辑
   1. HandlerExecutionChain = DispatcherServlet #getHandler(HttpServletRequest)  其中HandlerExecutionChain作用是添加过滤器 前/后执行过滤器方法
   2. HandlerMethod = HandlerMapping #getHandler(request) -- AbstractHandlerMapping #getHandler(HttpServletRequest) -- AbstractHandlerMethodMapping #getHandlerInternal(HttpServletRequest)  
-    handler == "public void com.fang.doit.frame.spring.DemoController.test()"
+    handler == "public void com.fang.doit.frame.spring.service.DemoController.test()"
     1. AbstractUrlHandlerMapping
     2. AbstractHandlerMethodMapping   (@RequestMapping,@GetMapping,@PostMapping...)
         1. 注册表 MappingRegistry
@@ -97,4 +97,4 @@ afterPropertiesSet() --> initHandlerMethods()
 
 
     HandlerMethod createHandlerMethod(Object handler, Method method)
-        / handler="demoController",method="public void com.fang.doit.frame.spring.DemoController.test()"
+        / handler="demoController",method="public void com.fang.doit.frame.spring.service.DemoController.test()"

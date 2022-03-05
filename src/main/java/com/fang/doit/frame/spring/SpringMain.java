@@ -1,13 +1,8 @@
 package com.fang.doit.frame.spring;
 
-import com.alibaba.fastjson.JSON;
-import com.fang.doit.frame.spring.mybatis.Grade;
-import com.fang.doit.frame.spring.mybatis.User;
-import com.fang.doit.frame.spring.service.DemoServiceImpl;
+import com.fang.doit.frame.spring.aop.TransactionTest;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
 /**
@@ -28,19 +23,18 @@ public class SpringMain {
         DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
         reader.loadBeanDefinitions(resource);
-        ApplicationContextAwareDemoService applicationAware = (ApplicationContextAwareDemoService) factory.getBean(
-                "applicationContextAwareDemoService");
-        applicationAware.display();
+        TransactionTest applicationAware = (TransactionTest) factory.getBean("transactionTest");
+        applicationAware.addUser();
 
 
         //  Spring StartUp 2
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application.xml");
-        DemoServiceImpl demoService = (DemoServiceImpl) applicationContext.getBean(
-                "demoServiceImpl");
-        Grade grade = demoService.getUserGrade("fang");
-        System.out.println(grade.getGrade());
-        User user = demoService.getUserWithGrades("fang");
-        System.out.println(JSON.toJSONString(user));
+//        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application.xml");
+//        DemoServiceImpl demoService = (DemoServiceImpl) applicationContext.getBean(
+//                "demoServiceImpl");
+//        Grade grade = demoService.getUserGrade("fang");
+//        System.out.println(grade.getGrade());
+//        User user = demoService.getUserWithGrades("fang");
+//        System.out.println(JSON.toJSONString(user));
 
     }
 }

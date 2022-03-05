@@ -12,12 +12,6 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * @Author Feiyue �� List �������ݿ�ת��Ϊ String
- * ����JdbcType��JavaType��ʽ����ע����������ļ�
- * @Description:
- * @Date: Created in 2019/6/10 11:53
- */
 @MappedJdbcTypes(value = {JdbcType.VARCHAR})
 @MappedTypes(value = {List.class})
 public class UserTypeHandler extends BaseTypeHandler<List<String>> {

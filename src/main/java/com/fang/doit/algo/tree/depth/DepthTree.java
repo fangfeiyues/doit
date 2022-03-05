@@ -1,420 +1,282 @@
 package com.fang.doit.algo.tree.depth;
 
+import com.alibaba.fastjson.JSON;
 import com.fang.doit.algo.tree.TreeNode;
+import com.fang.doit.algo.tree.search.BinaryTreeForeach;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
- * æ·±åº¦ä¼˜å…ˆç®—æ³•
+ * V2°æ±¾Îñ±ØÊÖĞ´£¡£¡£¡
  *
- * @author fangfeiyue
- * @Date 2020/12/13 3:22 ä¸‹åˆ
+ * @author created by fang on 2021/7/11/011 1:29
  */
 public class DepthTree {
 
-//    /**
-//     * å¯¹äºæ·±åº¦
-//     */
-//
-//    String[] letter_map = {" ", "*", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-//    List<String> res = new ArrayList<>();
-//
-//    /**
-//     * 17:ç»™å®šä¸€ä¸ªä»…åŒ…å«æ•°å­—2-9 çš„å­—ç¬¦ä¸²ï¼Œè¿”å›æ‰€æœ‰å®ƒèƒ½è¡¨ç¤ºçš„å­—æ¯ç»„åˆ
-//     *
-//     * @param digits
-//     * @return
-//     */
-//    public List<String> letterCombinations(String digits) {
-//        // æ€è€ƒï¼šåˆ©ç”¨ä¸æ–­çš„å‘ä¸‹éå†çš„æ€æƒ³è¿›è¡Œé€’å½’è¿ç®—
-//        //æ³¨æ„è¾¹ç•Œæ¡ä»¶
-//        if (digits == null || digits.length() == 0) {
-//            return new ArrayList<>();
-//        }
-//        iterStr(digits, new StringBuilder(), 0);
-//        return res;
-//    }
-//
-//    private void iterStr(String str, StringBuilder letter, int index) {
-//        // indexä¸ºç»™å®šå­—ç¬¦ä¸²çš„æ·±åº¦çš„æ—¶å€™å³ä¸ºæœ€åº•å±‚å°±æ²¡äº†
-//        if (index == str.length()) {
-//            res.add(letter.toString());
-//            return;
-//        }
-//        char c = str.charAt(index);
-//        int pos = c - '0';
-//        String map_string = letter_map[pos];
-//        for (int i = 0; i < map_string.length(); i++) {
-//            letter.append(map_string.charAt(i));
-//            // å‘æ·±å¤„éå†
-//            iterStr(str, letter, index++);
-//            // è¿™é‡Œæ˜¯å•¥ï¼Ÿï¼Ÿï¼Ÿ
-//            letter.deleteCharAt(letter.length() - 1);
-//        }
-//    }
-//
-//
-//    List<List<Integer>> ret = new LinkedList<>();
-//    // åŒç«¯é˜Ÿåˆ—å®¹å™¨(ä¸¤ç«¯éƒ½å¯è¿›å‡º)ï¼Œä¸»è¦æ»¡è¶³è¿™é‡Œçš„å…ˆè¿›åå‡ºçš„æ•ˆæœã€‚ç”¨Depueä»£æ›¿Stack!!!
-//    Deque<Integer> path = new LinkedList<>();
-//
-//    /**
-//     * 113 è·¯å¾„æ€»å’Œã€‚ç»™å®šä¸€ä¸ªäºŒå‰æ ‘å’Œä¸€ä¸ªç›®æ ‡å’Œï¼Œæ‰¾åˆ°æ‰€æœ‰ä»æ ¹èŠ‚ç‚¹åˆ°å¶å­èŠ‚ç‚¹è·¯å¾„æ€»å’Œç­‰äºç»™å®šç›®æ ‡å’Œçš„è·¯å¾„
-//     *
-//     * @param root
-//     * @param sum
-//     * @return
-//     */
-//    public List<List<Integer>> pathSum(TreeNode root, int sum) {
-//        dfs(root, sum);
-//        return ret;
-//    }
-//
-//    private void dfs(TreeNode root, int sum) {
-//        if (root == null) {
-//            return;
-//        }
-//        path.addLast(root.val);
-//        sum = sum - root.val;
-//        // è¦åˆ°å¶å­èŠ‚ç‚¹
-//        if (sum == 0 && root.left == null && root.right == null) {
-//            ret.add(new LinkedList<>(path));
-//        }
-//
-//        // å¾ªç¯ä¸€ç›´è¦åˆ°å¶å­èŠ‚ç‚¹æ‰è¡Œ
-//        dfs(root.right, sum);
-//        dfs(root.left, sum);
-//
-//        // è¿™é‡Œåˆ°äº†å¶å­èŠ‚ç‚¹ï¼Œéœ€è¦ç§»é™¤
-//        path.pollLast();
-//    }
-//
-//
-//    /**
-//     * 124: äºŒå‰æ ‘ä¸­çš„æœ€å¤§è·¯å¾„å’Œä¸”ä¸ä¸€å®šç»è¿‡æ ¹èŠ‚ç‚¹
-//     *
-//     * @param root
-//     * @return
-//     */
-//    int max = 0;
-//
-//    public int maxPathSum(TreeNode root) {
-//        //æ€è·¯ï¼šæ‰¾åˆ°æ¯ä¸ªèŠ‚ç‚¹ä¸‹çš„æœ€å¤§è·¯å¾„
-//        return dfsForMax(root);
-//    }
-//
-//    private int dfsForMax(TreeNode node) {
-//        if (node == null) {
-//            return max;
-//        }
-//        if (node.left == null && node.right == null) {
-//            if (node.val > max) {
-//                max = node.val;
-//            }
-//        } else {
-//            int leftValue = dfsForMax(node.left);
-//            int rightValue = dfsForMax(node.right);
-//            int value = leftValue + rightValue + node.val;
-//            if (value > max) {
-//                max = value;
-//            }
-//        }
-//        return max;
-//    }
-//
-//
-//    /**
-//     * 515:éœ€è¦åœ¨äºŒå‰æ ‘çš„æ¯ä¸€è¡Œä¸­æ‰¾åˆ°æœ€å¤§çš„å€¼
-//     *
-//     * @param root
-//     * @return
-//     */
-//    public List<Integer> largestValues(TreeNode root) {
-//        // LinkedListå®ç°é˜Ÿåˆ—
-//        Queue<TreeNode> queue = new LinkedList<>();
-//        List<Integer> values = new ArrayList<>();
-//        if (root != null) {
-//            //å…¥é˜Ÿ
-//            queue.add(root);
-//        }
-//        while (!queue.isEmpty()) {
-//            int max = Integer.MIN_VALUE;
-//            //æ¯ä¸€å±‚çš„æ•°é‡
-//            int levelSize = queue.size();
-//            for (int i = 0; i < levelSize; i++) {
-//                //å‡ºé˜Ÿ
-//                TreeNode node = queue.poll();
-//                //è®°å½•æ¯å±‚çš„æœ€å¤§å€¼
-//                max = Math.max(max, node.val);
-//                if (node.left != null) {
-//                    queue.add(node.left);
-//                }
-//                if (node.right != null) {
-//                    queue.add(node.right);
-//                }
-//            }
-//            values.add(max);
-//        }
-//        return values;
-//    }
-//
-//
-//    /**
-//     * 1026ï¼šèŠ‚ç‚¹ä¸å…¶ç¥–å…ˆä¹‹é—´çš„æœ€å¤§å·®å€¼
-//     *
-//     * @param root
-//     * @return
-//     */
-//    private int ans = 0;
-//
-//    public int maxAncestorDiff(TreeNode root) {
-//        int min = 10001, max = -1;
-//        Dfs(root, min, max);
-//        return ans;
-//    }
-//
-//    private void Dfs(TreeNode root, int min, int max) {
-//        if (root == null) {
-//            return;
-//        }
-//        // è·å–åˆ°æ•´ä¸ªæ ‘çš„æœ€å¤§å€¼å’Œæœ€å°å€¼,ç„¶åè¿›è¡Œæ¯”è¾ƒ
-//        if (root.val < min) {
-//            min = root.val;
-//        }
-//        if (root.val > max) {
-//            max = root.val;
-//        }
-//        if (root.left == null && root.right == null) {
-//            if (max - min > ans) {
-//                ans = max - min;
-//            }
-//        } else {
-//            // è¿™é‡Œçš„æ·±åº¦é€’å½’
-//            Dfs(root.left, min, max);
-//            Dfs(root.right, min, max);
-//        }
-//    }
-//
-//
-//    /**
-//     * 837:æœ€å¤§äººå·¥å²›ã€‚0ä»£è¡¨æµ·æ´‹1ä»£è¡¨é™†åœ°æˆ‘ä»¬æœ€å¤šåªèƒ½å°†ä¸€æ ¼ 0æµ·æ´‹å˜æˆ 1å˜æˆé™†åœ°ã€‚è¿›è¡Œå¡«æµ·ä¹‹ååœ°å›¾ä¸Šæœ€å¤§çš„å²›å±¿é¢ç§¯æ˜¯å¤šå°‘ï¼Ÿï¼ˆä¸Šã€ä¸‹ã€å·¦ã€å³å››ä¸ªæ–¹å‘ç›¸è¿çš„ 1 å¯å½¢æˆå²›å±¿ï¼‰
-//     *
-//     * @param grid äºŒç»´æ•°ç»„
-//     * @return
-//     */
-//    int maxIsland = 0;
-//
-//    public int largestIsland(int[][] grid) {
-//        // æ¯ä¸ªä»¥è‡ªå·±ä¸ºä¸­å¿ƒ å‘å››è¾¹æ·±åº¦è¡ç”Ÿã€‚æœ‰ç‚¹éš¾..å…ˆè¿‡å§
-//        return 0;
-//    }
-//
-//
-//    /**
-//     * 200:ç»™ä½ ä¸€ä¸ªç”± '1'ï¼ˆé™†åœ°ï¼‰å’Œ '0'ï¼ˆæ°´ï¼‰ç»„æˆçš„çš„äºŒç»´ç½‘æ ¼ï¼Œè¯·ä½ è®¡ç®—ç½‘æ ¼ä¸­å²›å±¿çš„æ•°é‡ã€‚
-//     * å²›å±¿æ€»æ˜¯è¢«æ°´åŒ…å›´å¹¶ä¸”æ¯åº§å²›å±¿åªèƒ½ç”±æ°´å¹³æ–¹å‘å’Œ/æˆ–ç«–ç›´æ–¹å‘ä¸Šç›¸é‚»çš„é™†åœ°è¿æ¥å½¢æˆã€‚
-//     *
-//     * @param grid
-//     * @return
-//     */
-//    Map<String, Boolean> exist = new HashMap<>();
-//    int num = 0;
-//
-//    public int numIslands(char[][] grid) {
-//        // æ‰¾åˆ°'1'çš„å­èŠ‚ç‚¹éƒ½æ˜¯'0'å³å¯
-//        for (int j = 0; j < grid[0].length; j++) {
-//            for (int i = 0; i < grid.length; i++) {
-//                boolean result = islandsDfs(grid, i, j);
-//                if (result) {
-//                    num++;
-//                }
-//            }
-//        }
-//        return num;
-//    }
-//
-//    private boolean islandsDfs(char[][] grid, int i, int j) {
-//        char position = grid[i][j];
-//        String key = i + "-" + j;
-//        if (exist.containsKey(key)) {
-//            return false;
-//        }
-//        exist.put(key, true);
-//
-//        if (position == '0') {
-//            return false;
-//        }
-//        // ä¸Š
-//        if (i - 1 >= 0) {
-//            islandsDfs(grid, i - 1, j);
-//        }
-//
-//        if (i + 1 < grid.length) {
-//            islandsDfs(grid, i + 1, j);
-//        }
-//        if (j - 1 >= 0) {
-//            islandsDfs(grid, i, j - 1);
-//        }
-//        if (j + 1 < grid[0].length) {
-//            islandsDfs(grid, i, j + 1);
-//        }
-//        return true;
-//    }
-//
-//
-//    /**
-//     * 721: è´¦å·åˆå¹¶
-//     *
-//     * @param accounts
-//     * @return
-//     */
-//    public List<List<String>> accountsMerge(List<List<String>> accounts) {
-//
-//        // 1. Map<email,List<user>> æš´åŠ›ç ´è§£åªè¦Listä¸­æœ‰ä»»æ„ä¸¤ä¸ªç›¸ç­‰å³å¯åˆå¹¶æ­¤ä¸¤ä¸ªè´¦å·
-//
-//        // 2. å¹¶æŸ¥é›†Unionï¼Œé¢˜ç›®çš„å¤§æ„å°±æ˜¯è¦æŠŠä¸¤ä¸ªè´¦å·è¿›è¡Œåˆå¹¶é€šè¿‡å¹¶æŸ¥çº§æ‰¾åˆ°å…¬å…±åˆå¹¶å³å¯
-//
-//
-//        return null;
-//    }
-//
-//    public List<List<String>> accountsMergeByUF(List<List<String>> accounts) {
-//        Map<String, Integer> emailToIndex = new HashMap<String, Integer>();
-//        Map<String, String> emailToName = new HashMap<String, String>();
-//        int emailsCount = 0;
-//        for (List<String> account : accounts) {
-//            String name = account.get(0);
-//            int size = account.size();
-//            for (int i = 1; i < size; i++) {
-//                String email = account.get(i);
-//                if (!emailToIndex.containsKey(email)) {
-//                    // ä¸¤ä¸ªList<String> è´¦å·åˆ—è¡¨ä¹‹é—´æœ‰å…³è”ï¼Œåœ¨åˆå¹¶çš„æ—¶å€™å°±èƒ½æ‰¾åˆ°å…¬å…±çš„ç¥–å…ˆè¿›è¡Œåˆå¹¶
-//                    emailToIndex.put(email, emailsCount++);
-//                    emailToName.put(email, name);
-//                }
-//            }
-//        }
-//        UnionFind uf = new UnionFind(emailsCount);
-//        for (List<String> account : accounts) {
-//            String firstEmail = account.get(1);
-//            int firstIndex = emailToIndex.get(firstEmail);
-//            int size = account.size();
-//            for (int i = 2; i < size; i++) {
-//                String nextEmail = account.get(i);
-//                int nextIndex = emailToIndex.get(nextEmail);
-//                // åŒä¸€ä¸ªäººä¸‹é¢çš„è´¦å·è¿›è¡Œåˆå¹¶
-//                uf.union(firstIndex, nextIndex);
-//            }
-//        }
-//        Map<Integer, List<String>> indexToEmails = new HashMap<>();
-//        for (String email : emailToIndex.keySet()) {
-//            int index = uf.find(emailToIndex.get(email));
-//            List<String> account = indexToEmails.getOrDefault(index, new ArrayList<String>());
-//            account.add(email);
-//            indexToEmails.put(index, account);
-//        }
-//        List<List<String>> merged = new ArrayList<List<String>>();
-//        for (List<String> emails : indexToEmails.values()) {
-//            Collections.sort(emails);
-//            String name = emailToName.get(emails.get(0));
-//            List<String> account = new ArrayList<String>();
-//            account.add(name);
-//            account.addAll(emails);
-//            merged.add(account);
-//        }
-//        return merged;
-//    }
-//
-//    class UnionFind {
-//        int[] parent;
-//
-//        public UnionFind(int n) {
-//            parent = new int[n];
-//            for (int i = 0; i < n; i++) {
-//                parent[i] = i;
-//            }
-//        }
-//
-//        public void union(int index1, int index2) {
-//            parent[find(index2)] = find(index1);
-//        }
-//
-//        public int find(int index) {
-//            // é»˜è®¤è‡ªå·±çˆ¶äº²èŠ‚ç‚¹å°±æ˜¯è‡ªå·±
-//            if (parent[index] != index) {
-//                parent[index] = find(parent[index]);
-//            }
-//            return parent[index];
-//        }
-//    }
-//
-//
-//    /**
-//     * 1631:æ¯æ¬¡å¯ä»¥å¾€ä¸Šä¸‹å·¦å³å››ä¸ªæ–¹å‘ä¹‹ä¸€ç§»åŠ¨ï¼Œä½ æƒ³è¦æ‰¾åˆ°è€—è´¹ä½“åŠ›æœ€å°çš„ä¸€æ¡è·¯å¾„ï¼ˆä¸€æ¡è·¯å¾„è€—è´¹çš„ä½“åŠ›å€¼æ˜¯è·¯å¾„ä¸Šç›¸é‚»æ ¼å­ä¹‹é—´é«˜åº¦å·®ç»å¯¹å€¼çš„æœ€å¤§å€¼å†³å®šçš„ï¼‰
-//     *
-//     * @param heights
-//     * @return
-//     */
-//    public int minimumEffortPath(int[][] heights) {
-//
-//        return 0;
-//    }
-//
-//
-//    /**
-//     * 473ï¼šè¾“å…¥ä¸ºå°å¥³å­©æ‹¥æœ‰ç«æŸ´çš„æ•°ç›®æ¯æ ¹ç«æŸ´ç”¨å…¶é•¿åº¦è¡¨ç¤ºã€‚è¾“å‡ºå³ä¸ºæ˜¯å¦èƒ½ç”¨æ‰€æœ‰çš„ç«æŸ´æ‹¼æˆæ­£æ–¹å½¢
-//     *
-//     * @param nums
-//     * @return
-//     */
-//    public List<Integer> nums;
-//    public int[] sums;
-//    public int possibleSquareSide;
-//
-//    public boolean makeSquare(int[] nums) {
-//        // è§£é¢˜æ€è·¯æœ‰ç‚¹ä¸æ‹˜ä¸€æ ¼..
-//        if (nums == null || nums.length == 0) {
-//            return false;
-//        }
-//        int L = nums.length;
-//        int perimeter = 0;
-//        for (int i = 0; i < L; i++) {
-//            perimeter += nums[i];
-//        }
-//        this.possibleSquareSide = perimeter / 4;
-//        if (this.possibleSquareSide * 4 != perimeter) {
-//            return false;
-//        }
-//        this.nums = Arrays.stream(nums).boxed().collect(Collectors.toList());
-//        Collections.sort(this.nums, Collections.reverseOrder());
-//        return this.dfs(0);
-//    }
-//
-//    public boolean dfs(int index) {
-//        if (index == this.nums.size()) {
-//            return (sums[0] == sums[1]) && (sums[1] == sums[2]) && (sums[2] == sums[3]);
-//        }
-//        int element = this.nums.get(index);
-//        // è¿™é‡Œç›¸å½“äºæŠŠæ¯æ ¹ç«æŸ´éƒ½åœ¨4ä¸ªç»„å†…éƒ½æ·±åº¦æ“ä½œäº†ä¸€éï¼ˆé™¤éè¿™ä¸ªç»„çš„å¤§å°å¤§äºperimeter / 4ï¼‰
-//        for (int i = 0; i < 4; i++) {
-//            if (this.sums[i] + element <= this.possibleSquareSide) {
-//                this.sums[i] += element;
-//                if (this.dfs(index + 1)) {
-//                    return true;
-//                }
-//                // å¦‚æœä¸åˆé€‚åˆ™é‡æ–°æ¨å‡º
-//                this.sums[i] -= element;
-//            }
-//        }
-//        return false;
-//    }
-//
-//
-//    public static void main(String[] args) {
-//        long a = 1;
-//        double b = (double)a;
-//        System.out.println(b);
-//    }
+    /**
+     * 230£º¸ø¶¨Ò»¸ö¶ş²æËÑË÷Ê÷µÄ¸ù½Úµã root£¬ºÍÒ»¸öÕûÊı k ÇëÄãÉè¼ÆÒ»¸öËã·¨²éÕÒÆäÖĞµÚ k ¸ö×îĞ¡ÔªËØ£¨´Ó 1 ¿ªÊ¼¼ÆÊı£©
+     * ½ø½×£ºÈç¹û¶ş²æËÑË÷Ê÷¾­³£±»ĞŞ¸Ä£¨²åÈë/É¾³ı²Ù×÷£©²¢ÇÒÄãĞèÒªÆµ·±µØ²éÕÒµÚ k Ğ¡µÄÖµ£¬Äã½«ÈçºÎÓÅ»¯Ëã·¨£¿
+     *
+     * @param root
+     * @param k
+     * @return
+     */
+    public int kthSmallest(TreeNode root, int k) {
+
+        kthSmallestByMiddle(root, k);
+
+        // TODO 2.±È½Ï×óÓÒ½ÚµãÁ½±ßµÄ½ÚµãÊıÊÇ·ñ´óÓÚk
+        return 0;
+    }
+
+
+    /**
+     * ÖĞĞòÅÅÁĞÖ®ºóÈ¡³ökĞ¡¼´¿É¡£Ê±¼ä¸´ÔÓ¶ÈO(N)£¬¿Õ¼ä¸´ÔÓ¶ÈO(N) ÆäÖĞ¸´ÔÓ¶È¿ÉÊ¹ÓÃStackÓÅ»¯
+     * ½â´ğ³É¹¦: Ö´ĞĞºÄÊ±:0 ms,»÷°ÜÁË100.00% µÄJavaÓÃ»§ ÄÚ´æÏûºÄ:38.3 MB,»÷°ÜÁË51.01% µÄJavaÓÃ»§
+     *
+     * @param root
+     * @param k
+     * @return
+     * @see BinaryTreeForeach#inorderTraversal(com.fang.doit.algo.tree.search.BinaryTreeForeach.TreeNode)
+     */
+    private int kthSmallestByMiddle(TreeNode root, int k) {
+        // Ê¹ÓÃStackÓÅ»¯Ö®ºó²»ÓÃÔÙ±éÀúÕû¿ÃÊ÷O(N)£¬Ö»ĞèÒªO(k)
+        Stack<TreeNode> stack = new Stack<>();
+        // FIXME ÕâÀïÊÇwhile(true)ÎŞÏŞÑ­»·Òª¿¼ÂÇÀïÃæ²»´æÔÚÕ¦°ì
+        while (true) {
+            while (root != null) {
+                stack.add(root);
+                root = root.left;
+            }
+            if (stack.empty()) {
+                return 0;
+            }
+            TreeNode node = stack.pop();
+            if (--k == 0) {
+                return node.val;
+            }
+            // ×ó±ßÃ»ÓĞÔÙÕÒÓÒ±ß
+            root = node.right;
+        }
+    }
+
+
+    /**
+     * 113£º¸øÄã¶ş²æÊ÷µÄ¸ù½Úµã root ºÍÒ»¸öÕûÊıÄ¿±êºÍ targetSum £¬ÕÒ³öËùÓĞ ´Ó¸ù½Úµãµ½Ò¶×Ó½Úµã Â·¾¶×ÜºÍµÈÓÚ¸ø¶¨Ä¿±êºÍµÄÂ·¾¶
+     *
+     * @param root
+     * @param targetSum
+     * @return
+     */
+    List<List<Integer>> ret = new LinkedList<>();
+    // FIXME DequeË«ÏòÁ´±íÏà¶ÔÓÚList»òStackÄÜÁ¦¸ü¶àµ«Ò²¸ü¸´ÔÓ
+    Deque<Integer> path = new LinkedList<>();
+
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        dfs(root, targetSum);
+        return ret;
+    }
+
+
+    private void dfs(TreeNode root, int targetSum) {
+        if (root == null) {
+            return;
+        }
+        // FIXME targetSumµÄÖµÔõÃ´»ØËİ.. ×Ô¶¯»ØËİ??? -- valÏÂ²ã·½·¨¸Ä±ä²»»á´ø»Øµ½ÉÏ²ã
+        targetSum = targetSum - root.val;
+        path.offerLast(root.val);
+        if (root.left == null && root.right == null && targetSum == 0) {
+            ret.add(new LinkedList<>(path));
+        }
+        dfs(root.left, targetSum);
+        dfs(root.right, targetSum);
+        path.pollLast();
+    }
+
+
+    /**
+     * 129:Çó¸ù½áµãµ½Ò¶×Ó½ÚµãÊı×ÖÖ®ºÍ
+     * ½â´ğ³É¹¦: Ö´ĞĞºÄÊ±:8 ms,»÷°ÜÁË5.22% µÄJavaÓÃ»§ ÄÚ´æÏûºÄ:37 MB,»÷°ÜÁË5.05% µÄJavaÓÃ»§
+     *
+     * @param root
+     * @return
+     */
+    private int all = 0;
+
+    public int sumNumbers(TreeNode root) {
+        dfs(root, "");
+        return all;
+    }
+
+    private void dfs(TreeNode root, String split) {
+        if (root == null) {
+            return;
+        }
+        split = split + "" + root.val;
+        if (root.left == null && root.right == null) {
+            System.out.println(JSON.toJSONString(root) + ":" + split);
+            all = all + Integer.parseInt(split);
+        }
+        dfs(root.left, split);
+        dfs(root.right, split);
+    }
+
+
+    /**
+     * 236:¶ş²æÊ÷µÄ×î½ü¹«¹²×æÏÈ
+     * ½â´ğ³É¹¦: Ö´ĞĞºÄÊ±:50 ms,»÷°ÜÁË5.54% µÄJavaÓÃ»§ ÄÚ´æÏûºÄ:43.3 MB,»÷°ÜÁË5.00% µÄJavaÓÃ»§
+     *
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     */
+    Deque<TreeNode> deque = new LinkedList<>();
+
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        // 1. ±©Á¦ÆÆ½â·¨£º±éÀúÁ½¸ö½ÚµãµÄÉÏ²ã½Úµã
+        //
+        dfs(root, p, q);
+        return deque.pollFirst();
+    }
+
+
+    private int dfs(TreeNode root, TreeNode p, TreeNode q) {
+        int num = 0;
+        if (root == null) {
+            return 0;
+        }
+        if (root.val == p.val || root.val == q.val) {
+            num = num + 1;
+        }
+        int leftNums = dfs(root.left, p, q);
+        int rightNums = dfs(root.right, p, q);
+        // Ä³¸ö½ÚµãÏÂÃæÓĞ¼¸¸öËùÊô½ÚµãÍ³¼Æ FIXME ³ıÁËµİ¹éÔËËã»¹ÓĞÃ»ÆäËû·½Ê½
+        int alls = num + leftNums + rightNums;
+        if (alls >= 2) {
+            deque.addLast(root);
+        }
+        return alls;
+    }
+
+
+    /**
+     * 743£ºÍøÂçÑÓ³ÙÊ±¼ä¡£´ÓÄ³¸ö½Úµã K ·¢³öÒ»¸öĞÅºÅ¡£ĞèÒª¶à¾Ã²ÅÄÜÊ¹ËùÓĞ½Úµã¶¼ÊÕµ½ĞÅºÅ£¿Èç¹û²»ÄÜÊ¹ËùÓĞ½ÚµãÊÕµ½ĞÅºÅ£¬·µ»Ø -1
+     *
+     * @param times
+     * @param n
+     * @param k
+     * @return
+     */
+
+    int maxTimes = Integer.MIN_VALUE;
+    List<Integer> has = new ArrayList<>();
+
+    public int networkDelayTime(int[][] times, int n, int k) {
+        if (times.length == 0) {
+            return 0;
+        }
+        // Òª½øĞĞ×ª»»Map<> FIXME int[][] ÕâÀïµÄedge = int[0]ÄÇÃ´edge[0]¾ÍÊÇµÚÒ»¸öÒ»Î¬Êı×éµÄµÚÒ»Î»
+        Map<Integer, List<int[]>> map = new HashMap<>();
+        for (int i = 0; i < times.length; i++) {
+            int start = times[i][0];
+            int end = times[i][1];
+            int value = times[i][2];
+            if (!map.containsKey(start)) {
+                map.put(start, new ArrayList<int[]>());
+            }
+            map.get(start).add(new int[]{end, value});
+        }
+        netDfs(map, k, 0);
+        if (has.size() < n) {
+            return -1;
+        }
+        return maxTimes;
+    }
+
+
+    private void netDfs(Map<Integer, List<int[]>> map, int k, int allTime) {
+        List<int[]> nexts = map.get(k);
+        if (has.contains(k)) {
+            return;
+        }
+        has.add(k);
+        if (allTime > maxTimes) {
+            maxTimes = allTime;
+        }
+        if (nexts == null) {
+            return;
+        }
+        for (int[] point : nexts) {
+            int next = point[0];
+            int value = point[1];
+            netDfs(map, next, allTime + value);
+        }
+    }
+
+
+    /**
+     * 98.ÑéÖ¤¶ş²æËÑË÷Ê÷
+     *
+     * @param root
+     * @return
+     */
+    public boolean isValidBST(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        return dfsForValid(root);
+    }
+
+    private boolean dfsForValid(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        TreeNode left = root.left;
+        TreeNode right = root.right;
+        // FIXME ×ó×ÓÊ÷ËùÓĞµÄ½Úµã£¿£¿£¿
+        if (left != null && left.val >= root.val) {
+            return false;
+        }
+        if (right != null && right.val <= root.val) {
+            return false;
+        }
+        if (!dfsForValid(left)) {
+            return false;
+        }
+        return dfsForValid(right);
+    }
+
+
+    public static void main(String[] args) {
+        DepthTree depthTree = new DepthTree();
+//        TreeNode treeNode1 = new TreeNode(1);
+//        TreeNode treeNode2 = new TreeNode(2, treeNode1, null);
+//        TreeNode treeNode4 = new TreeNode(4);
+//        TreeNode treeNode3 = new TreeNode(3, treeNode2, treeNode4);
+//        TreeNode treeNode6 = new TreeNode(6);
+//        TreeNode treeNode5 = new TreeNode(5, treeNode3, treeNode6);
+//        TreeNode treeNode6 = new TreeNode(6);
+//        TreeNode treeNode7 = new TreeNode(7);
+//        TreeNode treeNode4 = new TreeNode(4);
+//        TreeNode treeNode0 = new TreeNode(0);
+//        TreeNode treeNode8 = new TreeNode(8);
+//        TreeNode treeNode2 = new TreeNode(2, treeNode7, treeNode4);
+//        TreeNode treeNode5 = new TreeNode(5, treeNode6, treeNode2);
+//        TreeNode treeNode1 = new TreeNode(1, treeNode0, treeNode8);
+//        TreeNode treeNode3 = new TreeNode(3, treeNode1, treeNode5);
+
+//        System.out.println(JSON.toJSONString(depthTreeV2.lowestCommonAncestor(treeNode3, treeNode7, treeNode4).val));
+
+//        ÔËĞĞÊ§°Ü: Time Limit Exceeded ²âÊÔÓÃÀı:[[1,2,1],[2,1,3]] 2 2 stdout:
+//        [2,1,1],[2,3,1],[3,4,1]] 4 2 stdout:
+
+//        ½â´ğÊ§°Ü: ²âÊÔÓÃÀı:[[1,2,1],[2,3,2],[1,3,2]] 3 1 ²âÊÔ½á¹û:3 ÆÚÍû½á¹û:2 stdout:
+        int[][] times = {{1, 2, 1}, {2, 3, 2}, {1, 3, 2}};
+        System.out.println(depthTree.networkDelayTime(times, 3, 1));
+
+
+    }
+
 
 }
