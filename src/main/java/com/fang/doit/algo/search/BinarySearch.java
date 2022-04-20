@@ -15,7 +15,7 @@ public class BinarySearch implements Search {
     public int bsearch(int[] a, int n, int value) {
         int low = 0;
         int high = n - 1;
-        // low<=high 这里用的<=而不是<是因为可能因为low==high而跳出
+        // low <= high 这里用的 <= 而不是 < 是因为可能因为 low==high 而跳出
         while (low <= high) {
             // 可能存在最大值的溢出问题  int mid = (low + high) / 2;
             int mid = low + (high - low) / 2;
