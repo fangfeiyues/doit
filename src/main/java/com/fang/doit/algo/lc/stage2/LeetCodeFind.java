@@ -41,32 +41,15 @@ public class LeetCodeFind {
      * https://leetcode-cn.com/problems/koko-eating-bananas/
      *
      * @param piles N 堆香蕉，每小时最多吃其中的一堆
-     * @param H     在H小时内吃完
+     * @param h     在H小时内吃完
      * @return 返回她可以在 H 小时内吃掉所有香蕉的最小速度 K（K 为整数）。
      */
-    public int minEatingSpeed(int[] piles, int H) {
-        int lo = 1;
-        int hi = 1_000_000_000;
-        while (lo < hi) {
-            int mi = (lo + hi) / 2;
-            if (!possible(piles, H, mi)) {
-                lo = mi + 1;
-            } else {
-                hi = mi;
-            }
+    public int minEatingSpeed(int[] piles, int h) {
 
-        }
+        // 1.暴力求解法 从最小的恶堆开始累加计算得最小需要h小时的即可
 
-        return lo;
-    }
-
-    // Can Koko eat all bananas in H hours with eating speed K?
-    public boolean possible(int[] piles, int H, int K) {
-        int time = 0;
-        for (int p : piles) {
-            time += (p - 1) / K + 1;
-        }
-        return time <= H;
+        //
+        return 0;
     }
 
 }

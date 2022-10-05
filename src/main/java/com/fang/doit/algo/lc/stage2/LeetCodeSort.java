@@ -1,9 +1,8 @@
 package com.fang.doit.algo.lc.stage2;
 
-import com.google.common.collect.Lists;
+import com.sun.org.apache.regexp.internal.RE;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @author : fangfeiyue
@@ -183,22 +182,6 @@ public class LeetCodeSort {
         return ans;
     }
 
-
-    /**
-     * 合并区间
-     * https://leetcode-cn.com/problems/merge-intervals/
-     *
-     * @param intervals 表示若干个区间集合
-     * @return
-     */
-    public int[][] merge(int[][] intervals) {
-
-        // 区间前后排序
-
-
-        return new int[][]{};
-    }
-
     /**
      * 数组中的第k大的数字
      * https://leetcode-cn.com/problems/kth-largest-element-in-an-array/
@@ -270,9 +253,39 @@ public class LeetCodeSort {
     }
 
     public static void main(String[] args) {
-        double a  =1.1;
+        double a = 1.1;
         long b = (long) (a * 100L);
         System.out.println(b);
+    }
+
+    /**
+     * 56.合并区间：https://leetcode-cn.com/problems/merge-intervals/
+     *
+     * @param intervals 表示若干个区间集合
+     * @return
+     */
+    public int[][] mergeRegion(int[][] intervals) {
+        if (intervals.length == 0) {
+            return new int[0][2];
+        }
+        // 按照数组区间的前一个排序后，循环遍历
+        return mergeRegionByFirstSort(intervals);
+    }
+
+
+    public int[][] mergeRegionByFirstSort(int[][] intervals) {
+        Arrays.sort(intervals, Comparator.comparingInt(o -> o[0]));
+        List<int[]> merged = new ArrayList<int[]>();
+        for (int i = 0; i < intervals.length; ++i) {
+            int L = intervals[i][0], R = intervals[i][1];
+            // 不断比较前一个区间的右侧数据和新区间的左侧数据大小，小则作为一个新的区间大则后者加入到前一个区间
+            if (merged.size() == 0 || merged.get(merged.size() - 1)[1] < L) {
+                merged.add(new int[]{L, R});
+            } else {
+                merged.get(merged.size() - 1)[1] = Math.max(merged.get(merged.size() - 1)[1], R);
+            }
+        }
+        return merged.toArray(new int[merged.size()][]);
     }
 
 

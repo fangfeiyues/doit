@@ -5,47 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f63dfa9-bcae-4a6d-866f-88d725a0b767" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeFind.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeSort.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/BinarySearch15.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/BinarySearch15.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/Bit05.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Bit05.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/CanCompleteCircuit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/CanCompleteCircuit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/Design11.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Design11.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/DesignLRUCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DesignLRUCache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/DesignMyCircularDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DesignMyCircularDeque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/Divide14.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Divide14.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/Dp13.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Dp13.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/DynamicProgramming.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DynamicProgramming.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/Graph10.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Graph10.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/Greedy03.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Greedy03.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/Heap02.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Heap02.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/Linked17.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Linked17.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/MyCircularQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/MyCircularQueue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/Queue18.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Queue18.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/Recall12.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Recall12.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/Sort04.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Sort04.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/Stack01.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Stack01.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/String16.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/String16.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/TwoWayListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/TwoWayListNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/TwoWayPointer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/TwoWayPointer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/UF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/UF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page1/UnionFind09.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/UnionFind09.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page2/LeetCodeArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page2/LeetCodeDesignLruCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeDesignLruCache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page2/LeetCodeLinked.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeLinked.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page2/LeetCodeSlideSolution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeSlideSolution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page2/LeetCodeSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page2/LeetCodeStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeStack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/page2/LeetCodeTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/search/BinarySearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/search/BinarySearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/tree/depth/DepthTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DepthTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/tree/depth/Kkth.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/tree/width/WidthTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/WidthTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/cache_21.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/cache_21.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/distributed_40.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/distributed_40.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/jvm_13.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/jvm.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/mysql_20.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/mysql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeFind.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeFind.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeSort.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +70,7 @@
   <component name="ReaderModeSettings">
     <option name="showRenderedDocs" value="false" />
   </component>
-  <component name="RunManager" selected="Application.LeetCodeSort">
+  <component name="RunManager" selected="Application.LeetCodeFind">
     <configuration name="ArrayMain2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.dst.array.ArrayMain2" />
       <module name="doit" />
@@ -203,8 +165,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.LeetCodeSort" />
         <item itemvalue="Application.LeetCodeFind" />
+        <item itemvalue="Application.LeetCodeSort" />
         <item itemvalue="Application.LeetCodeLinked" />
         <item itemvalue="Application.LeetCodeSlideSolution" />
         <item itemvalue="Application.ArrayMain2" />
@@ -281,7 +243,24 @@
       <workItem from="1649000355053" duration="4000" />
       <workItem from="1649691978094" duration="34000" />
       <workItem from="1650215472244" duration="734000" />
-      <workItem from="1650471762808" duration="700000" />
+      <workItem from="1650471762808" duration="2272000" />
+      <workItem from="1650994113364" duration="593000" />
+      <workItem from="1651024885547" duration="1098000" />
+      <workItem from="1651112324083" duration="713000" />
+      <workItem from="1651299391162" duration="789000" />
+      <workItem from="1651391362141" duration="2232000" />
+      <workItem from="1651549737483" duration="2763000" />
+      <workItem from="1651767212887" duration="2127000" />
+      <workItem from="1651858905024" duration="3350000" />
+      <workItem from="1652112689090" duration="2435000" />
+      <workItem from="1652288709464" duration="2241000" />
+      <workItem from="1652699064967" duration="573000" />
+      <workItem from="1654617666848" duration="976000" />
+      <workItem from="1655543550290" duration="574000" />
+      <workItem from="1655688964485" duration="542000" />
+      <workItem from="1656768242199" duration="602000" />
+      <workItem from="1656899135233" duration="657000" />
+      <workItem from="1656899813193" duration="9000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1646476425173</created>
@@ -290,7 +269,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646476425173</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="commit 2022/04/20">
+      <created>1650474280685</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1650474280685</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -298,7 +284,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit" />
+    <MESSAGE value="commit 2022/04/20" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 2022/04/20" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
