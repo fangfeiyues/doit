@@ -1,4 +1,4 @@
-package com.fang.doit.algo.lc.stage1;
+package com.fang.doit.algo.design;
 
 /**
  * @author fangfeiyue

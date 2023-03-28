@@ -6,8 +6,7 @@ package com.fang.doit;
 public interface IHello {
 
 
-    public void hello();
-//    public static void main(String[] args) {
-//        System.out.println(Runtime.getRuntime().availableProcessors());
-//    }
+     void hello();
+
+    void helloV2();
 }

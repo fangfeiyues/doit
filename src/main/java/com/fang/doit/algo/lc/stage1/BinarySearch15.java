@@ -3,7 +3,7 @@ package com.fang.doit.algo.lc.stage1;
 import com.fang.doit.algo.tree.TreeNode;
 
 /**
- * 二分查找法
+ * 二分查找
  *
  * @author fangfeiyue
  * @Date 2020/12/28 11:36 上午
@@ -12,18 +12,25 @@ public class BinarySearch15 {
 
 
     /**
-     * 34 给定一个按照升序排列的整数数组nums和一个目标值target。找出给定目标值在数组中的开始位置和结束位置.
+     *  ------------------- 二分的解题技巧！！！ -----------------
+     *
+     *  ------------------------------------------------------
+     */
+
+
+
+    /**
+     * 34 给定一个按照升序排列的整数数组nums和一个目标值target 找出给定目标值在数组中的开始位置和结束位置
      * O(log n) 解决
+     * eg. 输入：nums = [5,7,7,8,8,10], target = 8
+     * 输出：[3,4]
      *
      * @param nums
      * @param target
      * @return
      */
     public int[] searchRange(int[] nums, int target) {
-        // 遍历的话O(n)能解决
-
-        // 二分法O(log n)可以 相当于找到二分节点前最开始的和二分节点后最末的变种算法
-        int[] result = new int[nums.length];
+        int[] result = new int[2];
         int low = 0;
         int high = nums.length - 1;
         int k = 0;
@@ -58,6 +65,7 @@ public class BinarySearch15 {
         return result;
     }
 
+
     /**
      * 162 寻找峰值：峰值元素是指其值大于左右相邻值的元素。可以O(logN)解决吗
      *
@@ -73,11 +81,11 @@ public class BinarySearch15 {
         return 0;
     }
 
-    public int findPeakElementByBinary(int[] nums) {
+    private int findPeakElementByBinary(int[] nums) {
         return search(nums, 0, nums.length - 1);
     }
 
-    public int search(int[] nums, int l, int r) {
+    private int search(int[] nums, int l, int r) {
         if (l == r) {
             return l;
         }
@@ -89,15 +97,6 @@ public class BinarySearch15 {
         return search(nums, mid + 1, r);
     }
 
-    public static void main(String[] args) {
-        BinarySearch15 binarySearch15 = new BinarySearch15();
-        int[] nums = new int[]{5, 7, 7, 8, 8, 10};
-        int[] result = binarySearch15.searchRange(nums, 8);
-        for (int i = 0; i < result.length; i++) {
-            System.out.println(result[i]);
-        }
-
-    }
 
     /**
      * 230 查找二叉搜索树第k个最小的元素
@@ -119,13 +118,13 @@ public class BinarySearch15 {
     int k = 0;
     int res = 0;
 
-    public int kthSmallestByK(TreeNode root, int k) {
+    private int kthSmallestByK(TreeNode root, int k) {
         this.k = k;
         helper(root);
         return res;
     }
 
-    public void helper(TreeNode root) {
+    private void helper(TreeNode root) {
         //越过叶子节点，返回
         if (root == null) {
             return;
@@ -143,4 +142,13 @@ public class BinarySearch15 {
         helper(root.right);
     }
 
+
+    public static void main(String[] args) {
+        BinarySearch15 binarySearch15 = new BinarySearch15();
+        int[] nums = new int[]{5, 7, 7, 8, 8,8,8, 10};
+        int[] result = binarySearch15.searchRange(nums, 8);
+        for (int i = 0; i < result.length; i++) {
+            System.out.println(result[i]);
+        }
+    }
 }

@@ -3,9 +3,7 @@
 ---
 #### 1.ConcurrentHashMap 
   > 抛弃了分段锁技术的实现，直接采用 CAS + synchronized 保证并发更新的安全性
-   
-   
-     
+
 ---
 #### 2.ConcurrentLinkedQueue 
   > 要实现一个线程安全的队列有两种方式：阻塞和非阻塞。阻塞队列无非就是锁的应用，而非阻塞则是CAS算法的应用

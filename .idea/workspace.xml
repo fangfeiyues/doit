@@ -5,9 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f63dfa9-bcae-4a6d-866f-88d725a0b767" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/SlidingWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/readme.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeFind.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeFind.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/Hello.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/Hello.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/IHello.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/IHello.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/algorithms.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/ali/DateUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/ali/Test01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/ali/Test02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/encode/AES.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/encode/AES2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/encode/DES.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/encode/EncoderBase64.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/BinarySearch15.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/BinarySearch15.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DepthTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DepthTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Design11.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Design11.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DesignLRUCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/DesignLRUCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DesignMyCircularDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/DesignMyCircularDeque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/TwoWayListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/TwoWayListNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/WidthTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/WidthTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/number/NumberSolution.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/tree/trie/TrieTree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/proxy/jdk/LogJdkDynProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/proxy/jdk/LogJdkDynProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/jvm.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/jvm.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/note/dubbo.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/dubbo.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/note/juc.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/juc.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +61,8 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/BinarySearch15.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/WidthTree.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeTree.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -65,19 +90,19 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="leetcode.id" />
   </component>
   <component name="ReaderModeSettings">
     <option name="showRenderedDocs" value="false" />
   </component>
-  <component name="RunManager" selected="Application.LeetCodeFind">
-    <configuration name="ArrayMain2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.dst.array.ArrayMain2" />
+  <component name="RunManager" selected="Application.BinarySearch15">
+    <configuration name="BinarySearch15" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.stage1.BinarySearch15" />
       <module name="doit" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.fang.doit.algo.lc.stage2.*" />
+          <option name="PATTERN" value="com.fang.doit.algo.lc.stage1.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -85,13 +110,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LeetCodeFind" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.stage2.LeetCodeFind" />
+    <configuration name="DepthTree" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.stage1.DepthTree" />
       <module name="doit" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.fang.doit.algo.lc.stage2.*" />
+          <option name="PATTERN" value="com.fang.doit.algo.lc.stage1.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -99,13 +124,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LeetCodeLinked" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.stage2.LeetCodeLinked" />
+    <configuration name="LogJdkDynProxy" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.thought.design.proxy.jdk.LogJdkDynProxy" />
       <module name="doit" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.fang.doit.algo.lc.stage2.*" />
+          <option name="PATTERN" value="com.fang.doit.thought.design.proxy.jdk.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -113,13 +138,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LeetCodeSlideSolution" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.stage2.LeetCodeSlideSolution" />
+    <configuration name="Part1Day1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.realdo.part1.Part1Day1" />
       <module name="doit" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.fang.doit.algo.lc.stage2.*" />
+          <option name="PATTERN" value="com.fang.doit.algo.realdo.part1.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -127,13 +152,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LeetCodeSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.stage2.LeetCodeSort" />
+    <configuration name="SlidingWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.stage1.SlidingWindow" />
       <module name="doit" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.fang.doit.algo.lc.stage2.*" />
+          <option name="PATTERN" value="com.fang.doit.algo.lc.stage1.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -165,11 +190,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.LeetCodeFind" />
-        <item itemvalue="Application.LeetCodeSort" />
-        <item itemvalue="Application.LeetCodeLinked" />
-        <item itemvalue="Application.LeetCodeSlideSolution" />
-        <item itemvalue="Application.ArrayMain2" />
+        <item itemvalue="Application.BinarySearch15" />
+        <item itemvalue="Application.DepthTree" />
+        <item itemvalue="Application.SlidingWindow" />
+        <item itemvalue="Application.LogJdkDynProxy" />
+        <item itemvalue="Application.Part1Day1" />
       </list>
     </recent_temporary>
   </component>
@@ -261,6 +286,21 @@
       <workItem from="1656768242199" duration="602000" />
       <workItem from="1656899135233" duration="657000" />
       <workItem from="1656899813193" duration="9000" />
+      <workItem from="1664975668896" duration="2047000" />
+      <workItem from="1665155934643" duration="641000" />
+      <workItem from="1665196013287" duration="56000" />
+      <workItem from="1669218012815" duration="3001000" />
+      <workItem from="1669541093050" duration="1210000" />
+      <workItem from="1675431530322" duration="620000" />
+      <workItem from="1676285086437" duration="4714000" />
+      <workItem from="1676375516513" duration="1391000" />
+      <workItem from="1676458943982" duration="2712000" />
+      <workItem from="1676862303025" duration="14171000" />
+      <workItem from="1677421088224" duration="65205000" />
+      <workItem from="1678262044846" duration="28895000" />
+      <workItem from="1678700144550" duration="1151000" />
+      <workItem from="1679040412140" duration="9000" />
+      <workItem from="1679040722088" duration="527000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1646476425173</created>
@@ -276,7 +316,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650474280685</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="commit 2022/10/05">
+      <created>1664975695388</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1664975695388</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,7 +332,15 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit" />
     <MESSAGE value="commit 2022/04/20" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 2022/04/20" />
+    <MESSAGE value="commit 2022/10/05" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 2022/10/05" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.fang.doit.algo.tree.TreeNode" memberName="right" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -8,4 +8,9 @@ public class Hello implements IHello {
     public void hello() {
         System.out.printf("hello fang");
     }
+
+    @Override
+    public void helloV2() {
+        System.out.printf("hello feiyue");
+    }
 }

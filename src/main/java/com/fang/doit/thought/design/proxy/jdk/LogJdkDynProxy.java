@@ -20,17 +20,14 @@ public class LogJdkDynProxy {
         this.target = object;
 
         // 这里第一个参数使用的是代理类的classLoader
-        return Proxy.newProxyInstance(this.target.getClass().getClassLoader(), this.target.getClass().getInterfaces(), new InvocationHandler() {
-            @Override
-            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                String name = method.getName();
-                System.out.println("动态代理方法:" + name + " 真实对象:" + JSON.toJSONString(proxy));
+        return Proxy.newProxyInstance(this.target.getClass().getClassLoader(), this.target.getClass().getInterfaces(), (proxy, method, args) -> {
+            String name = method.getName();
+            System.out.println("动态代理方法:" + name + " 真实对象:" + JSON.toJSONString(proxy));
 
-                // springaop jdk源码中如果没有拦截器链的情况直接 执行要处理对象的原本方法
-                Object invoke = method.invoke(proxy, args);
-                System.out.println("方法执行结束返回值:" + invoke);
-                return invoke;
-            }
+            // springaop jdk源码中如果没有拦截器链的情况直接 执行要处理对象的原本方法
+            Object invoke = method.invoke(proxy, args);
+            System.out.println("方法执行结束返回值:" + invoke);
+            return invoke;
         });
     }
 
@@ -45,6 +42,7 @@ public class LogJdkDynProxy {
 
         IHello hello = (IHello) new LogJdkDynProxy().bind(new Hello());
         hello.hello();
+        hello.helloV2();
     }
 
 

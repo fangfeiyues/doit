@@ -1,16 +1,30 @@
 package com.fang.doit.algo.lc.stage1;
 
+import com.fang.doit.algo.tree.TreeNode;
 import com.fang.doit.algo.tree.search.TreeSearch;
 import com.google.common.collect.Maps;
+import com.sun.jmx.remote.internal.ArrayQueue;
 
 import java.util.*;
 
 /**
+ * 树的宽度&广度实现
+ *
  * @author fangfeiyue
  * @Date 2020/12/15 7:05 下午
- * @see TreeSearch 树的宽度&广度实现
+ * @see TreeSearch
  */
 public class WidthTree {
+
+    // DFS在时间复杂度和空间复杂度上都会比BFS好些，但有些场景是只有BFS能满足的比如：层级遍历、最短路径
+
+    /**
+     *  ------------------- 宽度优先搜索的解题技巧！！！ -----------------
+     *  1、BFS和DFS遍历的区别：层级遍历是Queue先进先出，深度遍历是Stack先进后出
+     *  2、距离某些节点的最短距离：
+     *  ------------------------------------------------------
+     */
+
 
     /**
      * 787: 站中转内最便宜的航班
@@ -22,7 +36,7 @@ public class WidthTree {
      * @param K       最多经过k站
      * @return 最便宜的价格
      */
-    public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
+    public int findCheapestPrice_01(int n, int[][] flights, int src, int dst, int K) {
         // 1.小顶推：遍历所有的路径取其中最短的
         findCheapestPriceByHeap(n, flights, src, dst, K);
 
@@ -108,7 +122,7 @@ public class WidthTree {
      * @param K     出发节点
      * @return 需要多久才能使所有节点都收到信号
      */
-    public int networkDelayTime(int[][] times, int N, int K) {
+    public int networkDelayTime_02(int[][] times, int N, int K) {
 
         // 1. 维护一个大Map，每条路线整个大顶推
 
@@ -126,7 +140,7 @@ public class WidthTree {
 
     Map<Integer, Integer> dist;
 
-    public int networkDelayTimeByDfs(int[][] times, int N, int K) {
+    private int networkDelayTimeByDfs(int[][] times, int N, int K) {
         Map<Integer, List<int[]>> graph = new HashMap();
         for (int[] edge : times) {
             if (!graph.containsKey(edge[0])) {
@@ -159,7 +173,7 @@ public class WidthTree {
      * @param node
      * @param elapsed
      */
-    public void dfs(Map<Integer, List<int[]>> graph, int node, int elapsed) {
+    private void dfs(Map<Integer, List<int[]>> graph, int node, int elapsed) {
         // 距离起点收到信号的时间，一个点存在多条路径如果后者到达的时间更长直接丢弃
         if (elapsed >= dist.get(node)) {
             return;
@@ -181,13 +195,12 @@ public class WidthTree {
      * @param K
      * @return
      */
-    public int networkDelayTimeByDjikstra(int[][] times, int N, int K) {
+    private int networkDelayTimeByDjikstra(int[][] times, int N, int K) {
         Map<Integer, List<int[]>> graph = new HashMap();
         for (int[] edge : times) {
             if (!graph.containsKey(edge[0])) {
                 graph.put(edge[0], new ArrayList<>());
             }
-            // 写的有点奇怪...为什么就是edge[1],edge[2]这两个节点？
             graph.get(edge[0]).add(new int[]{edge[1], edge[2]});
         }
         dist = new HashMap();
@@ -228,5 +241,160 @@ public class WidthTree {
         return ans;
     }
 
+
+    /**
+     * 102.给你二叉树的根节点 root ，返回其节点值的 层序遍历 。 （即逐层地，从左到右访问所有节点）。
+     *
+     * @param root
+     * @return
+     */
+    public List<List<Integer>> levelOrder_03_d(TreeNode root) {
+        List<List<Integer>> levelList = new ArrayList<>();
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        if (root != null) {
+            queue.add(root);
+        }
+        while (!queue.isEmpty()) {
+            List<Integer> list = new ArrayList<>();
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                if (node == null) {
+                    break;
+                }
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+                list.add(node.val);
+            }
+            levelList.add(list);
+        }
+
+        return levelList;
+    }
+
+
+    /**
+     * 你现在手里有一份大小为 n x n 的 网格 grid，上面的每个 单元格 都用 0 和 1 标记好了。其中 0 代表海洋，1 代表陆地
+     * <p>
+     * 请你找出一个海洋单元格，这个海洋单元格到离它最近的陆地单元格的距离是最大的，并返回该距离。如果网格上只有陆地或者海洋，请返回 -1
+     *
+     * @param grid
+     * @return 这道题要找的是距离陆地最远的海洋格子。假设网格中只有一个陆地格子，我们可以从这个陆地格子出发做层序遍历，直到所有格子都遍历完。最终遍历了几层，海洋格子的最远距离就是几。
+     */
+    public int maxDistance_04_ddd(int[][] grid) {
+        int N = grid.length;
+        // ++ 把固定的点用作一个一维数组放到队列
+        Queue<int[]> queue = new ArrayDeque<>();
+        // 将所有的陆地格子加入队列
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (grid[i][j] == 1) {
+                    queue.add(new int[]{i, j});
+                }
+            }
+        }
+
+        if (queue.isEmpty() || queue.size() == N * N) {
+            return -1;
+        }
+
+        int[][] moves = {
+                {-1, 0}, {1, 0}, {0, -1}, {0, 1},
+        };
+
+        int distance = -1;
+        while (!queue.isEmpty()) {
+            distance++;
+            int n = queue.size();
+            for (int i = 0; i < n; i++) {
+                int[] node = queue.poll();
+                int r = node[0];
+                int c = node[1];
+                for (int[] move : moves) {
+                    int r2 = r + move[0];
+                    int c2 = c + move[1];
+                    if (inArea(grid, r2, c2) && grid[r2][c2] == 0) {
+                        grid[r2][c2] = 2;
+                        queue.add(new int[]{r2, c2});
+                    }
+                }
+            }
+        }
+
+        return distance;
+    }
+
+    // 判断坐标 (r, c) 是否在网格中
+    boolean inArea(int[][] grid, int r, int c) {
+        return 0 <= r && r < grid.length
+                && 0 <= c && c < grid[0].length;
+    }
+
+
+    /**
+     * 103.给你二叉树的根节点 root ，返回其节点值的 锯齿形层序遍历 （即先从左往右，再从右往左进行下一层遍历，以此类推，层与层之间交替进行）
+     *
+     * @param root
+     * @return
+     */
+    public List<List<Integer>> zigzagLevelOrder_05_d(TreeNode root) {
+        List<List<Integer>> result = new LinkedList<>();
+        if (root == null) {
+            return result;
+        }
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.offer(root);
+        boolean isOrderLeft = true;
+        while (!queue.isEmpty()) {
+            Deque<Integer> levelList = new LinkedList<>();
+            // ++ 遍历queue队列的每一层的时候 依次把节点放到双向队列的头部或尾部
+            for (int i = 0; i < queue.size(); i++) {
+                TreeNode node = queue.poll();
+                if (isOrderLeft) {
+                    levelList.offerLast(node.val);
+                } else {
+                    levelList.offerFirst(node.val);
+                }
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+            result.add(new LinkedList<>(levelList));
+            isOrderLeft = !isOrderLeft;
+        }
+        return result;
+    }
+
+
+    /**
+     * 322. 零钱兑换
+     * 给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额 计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1
+     * 你可以认为每种硬币的数量是无限的
+     *
+     * @param coins
+     * @param amount
+     * @return
+     */
+    public int coinChange_06_dd(int[] coins, int amount) {
+        // 大顶推 从大到小依次处理即可
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(o -> o));
+        for (int i = 0; i < coins.length; i++) {
+            priorityQueue.offer(coins[i]);
+        }
+        int min = 0;
+        while (!priorityQueue.isEmpty()) {
+            Integer coin = priorityQueue.poll();
+
+        }
+        return 0;
+    }
+    
 
 }

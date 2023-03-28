@@ -1,4 +1,6 @@
-package com.fang.doit.algo.lc.stage1;
+package com.fang.doit.algo.design;
+
+import com.fang.doit.algo.lc.stage1.TwoWayListNode;
 
 import java.util.HashMap;
 import java.util.Map;

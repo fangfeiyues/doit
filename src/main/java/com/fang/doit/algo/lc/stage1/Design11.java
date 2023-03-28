@@ -1,5 +1,8 @@
 package com.fang.doit.algo.lc.stage1;
 
+import com.fang.doit.algo.design.DesignLRUCache;
+import com.fang.doit.algo.design.DesignMyCircularDeque;
+
 /**
  * @author fangfeiyue
  * @Date 2020/12/19 10:53 下午

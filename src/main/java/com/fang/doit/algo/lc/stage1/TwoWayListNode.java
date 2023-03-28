@@ -15,7 +15,7 @@ public class TwoWayListNode {
     public TwoWayListNode() {
     }
 
-    TwoWayListNode(int key, int val) {
+    public TwoWayListNode(int key, int val) {
         this.TwoWayListNode(key, val, null, null);
     }
 

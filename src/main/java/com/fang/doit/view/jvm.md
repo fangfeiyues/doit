@@ -23,9 +23,7 @@
 
 
 #### 6.当出现了内存溢出，你怎么排错。 -- 2021.04.12
-> 1. 打印dump日志
-> 2. 
-
+> 1. 打印dump日志 
 
 
 #### 7.JVM内存模型的相关知识了解多少，比如重排序，内存屏障，happen-before，主内存，工作内存等。
@@ -97,10 +95,6 @@ Method method = Proxy.class.getDeclaredMethod("run");
 -XX:ParallelGCThreads=${CPU_COUNT}  CPU_COUNT="$(grep -c 'cpu[0-9][0-9]*' /proc/stat)"
 
 #### 11.g1和cms区别,吞吐量优先和响应优先的垃圾收集器选择
-
-
-
-
 
 
 #### 12.怎么打出线程栈信息。
