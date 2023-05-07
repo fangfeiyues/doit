@@ -5,32 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f63dfa9-bcae-4a6d-866f-88d725a0b767" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/SlidingWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DoublePointer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Greedy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/MidSearch_Lack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/Hello.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/Hello.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/IHello.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/IHello.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/algorithms.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/ali/DateUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/ali/Test01.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/ali/Test02.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/encode/AES.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/encode/AES2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/encode/DES.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/encode/EncoderBase64.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/BinarySearch15.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/BinarySearch15.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DepthTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DepthTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Design11.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Design11.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DesignLRUCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/DesignLRUCache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DesignMyCircularDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/DesignMyCircularDeque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/TwoWayListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/TwoWayListNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/WidthTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/WidthTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/number/NumberSolution.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/tree/trie/TrieTree.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/proxy/jdk/LogJdkDynProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/proxy/jdk/LogJdkDynProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/jvm.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/jvm.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/note/dubbo.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/dubbo.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/note/juc.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/juc.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/BinarySearch15.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Greedy03.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +41,7 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/BinarySearch15.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/MidSearch_Lack.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/WidthTree.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeTree.java" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -95,21 +75,7 @@
   <component name="ReaderModeSettings">
     <option name="showRenderedDocs" value="false" />
   </component>
-  <component name="RunManager" selected="Application.BinarySearch15">
-    <configuration name="BinarySearch15" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.stage1.BinarySearch15" />
-      <module name="doit" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.fang.doit.algo.lc.stage1.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.DepthTree">
     <configuration name="DepthTree" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.stage1.DepthTree" />
       <module name="doit" />
@@ -131,6 +97,20 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.fang.doit.thought.design.proxy.jdk.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MidSearch_Lack" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.stage1.MidSearch_Lack" />
+      <module name="doit" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fang.doit.algo.lc.stage1.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -190,7 +170,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BinarySearch15" />
+        <item itemvalue="Application.MidSearch_Lack" />
         <item itemvalue="Application.DepthTree" />
         <item itemvalue="Application.SlidingWindow" />
         <item itemvalue="Application.LogJdkDynProxy" />
@@ -301,6 +281,18 @@
       <workItem from="1678700144550" duration="1151000" />
       <workItem from="1679040412140" duration="9000" />
       <workItem from="1679040722088" duration="527000" />
+      <workItem from="1680021271376" duration="1474000" />
+      <workItem from="1680056390318" duration="2585000" />
+      <workItem from="1680190819390" duration="1197000" />
+      <workItem from="1680277394984" duration="1229000" />
+      <workItem from="1680535894702" duration="15390000" />
+      <workItem from="1680948419449" duration="5095000" />
+      <workItem from="1681106999963" duration="8137000" />
+      <workItem from="1681486950336" duration="1210000" />
+      <workItem from="1682265812029" duration="4793000" />
+      <workItem from="1682600242179" duration="3161000" />
+      <workItem from="1682915528634" duration="9740000" />
+      <workItem from="1683438877123" duration="629000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1646476425173</created>
@@ -323,17 +315,62 @@
       <option name="project" value="LOCAL" />
       <updated>1664975695388</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="commit 2023/03/29">
+      <created>1680021330092</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1680021330092</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="577b2907-5fae-47dc-a582-9065474b547c">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="577b2907-5fae-47dc-a582-9065474b547c" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit" />
     <MESSAGE value="commit 2022/04/20" />
     <MESSAGE value="commit 2022/10/05" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 2022/10/05" />
+    <MESSAGE value="commit 2023/03/29" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 2023/03/29" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
