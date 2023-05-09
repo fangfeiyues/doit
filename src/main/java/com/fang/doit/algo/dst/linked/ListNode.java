@@ -15,7 +15,7 @@ public class ListNode {
 
     public ListNode(int x,ListNode next) {
         val = x;
-        next = next;
+        this.next = next;
     }
 
     public int getVal() {
@@ -32,5 +32,13 @@ public class ListNode {
 
     public void setNext(ListNode next) {
         this.next = next;
+    }
+
+    public void print() {
+        ListNode node = this;
+        while (node != null) {
+            System.out.println(node.val);
+            node = node.next;
+        }
     }
 }
