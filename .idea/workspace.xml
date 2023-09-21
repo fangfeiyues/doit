@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f63dfa9-bcae-4a6d-866f-88d725a0b767" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/test/LcTop202305.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/dp/dp.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/dst/linked/ListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/dst/linked/ListNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DoublePointer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DoublePointer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Dp13.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Dp13.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/test/LcTop202305.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/test/LcTop202305.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,8 +43,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/MidSearch_Lack.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/WidthTree.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeTree.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/WidthTree.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -289,7 +293,19 @@
       <workItem from="1682265812029" duration="4793000" />
       <workItem from="1682600242179" duration="3161000" />
       <workItem from="1682915528634" duration="9740000" />
-      <workItem from="1683438877123" duration="12285000" />
+      <workItem from="1683438877123" duration="14340000" />
+      <workItem from="1683951396001" duration="25566000" />
+      <workItem from="1684208610999" duration="4722000" />
+      <workItem from="1684375944240" duration="8000" />
+      <workItem from="1684426781408" duration="33098000" />
+      <workItem from="1685412357708" duration="1830000" />
+      <workItem from="1685954452401" duration="450000" />
+      <workItem from="1688317060207" duration="2472000" />
+      <workItem from="1690459004966" duration="741000" />
+      <workItem from="1690532635961" duration="2094000" />
+      <workItem from="1691121526819" duration="1116000" />
+      <workItem from="1691553148099" duration="598000" />
+      <workItem from="1695126030636" duration="1212000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1646476425173</created>
@@ -326,7 +342,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683445899943</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="commit 2023/05/07">
+      <created>1683600348421</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1683600348421</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -70,21 +70,6 @@ public class DoublePointer {
 
 
     /**
-     * 给你一个长度为 n 的整数数组 nums 和 一个目标值 target。请你从 nums 中选出三个整数，使它们的和与 target 最接近 返回这三个数的和。
-     * <p>
-     * 假定每组输入只存在恰好一个解。
-     *
-     * @param nums
-     * @param target
-     * @return
-     */
-    public int threeSumClosest(int[] nums, int target) {
-
-        return 0;
-    }
-
-
-    /**
      * 19. 给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点
      *
      * @param head

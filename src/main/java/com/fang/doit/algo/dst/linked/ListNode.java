@@ -34,8 +34,7 @@ public class ListNode {
         this.next = next;
     }
 
-    public void print() {
-        ListNode node = this;
+    public static void print(ListNode node) {
         while (node != null) {
             System.out.println(node.val);
             node = node.next;
