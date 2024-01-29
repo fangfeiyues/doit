@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f63dfa9-bcae-4a6d-866f-88d725a0b767" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/202310.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/img.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/dp/dp.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/dst/linked/ListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/dst/linked/ListNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DoublePointer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DoublePointer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Dp13.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Dp13.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/DoItDTO.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/test/LcTop202305.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/test/LcTop202305.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +69,7 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.toDoOptions" />
+    <property name="settings.editor.selected.configurable" value="http.proxy" />
   </component>
   <component name="ReaderModeSettings">
     <option name="showRenderedDocs" value="false" />
@@ -305,7 +303,35 @@
       <workItem from="1690532635961" duration="2094000" />
       <workItem from="1691121526819" duration="1116000" />
       <workItem from="1691553148099" duration="598000" />
-      <workItem from="1695126030636" duration="1212000" />
+      <workItem from="1695126030636" duration="7530000" />
+      <workItem from="1695610692644" duration="8000" />
+      <workItem from="1696645324223" duration="1763000" />
+      <workItem from="1696734380817" duration="12026000" />
+      <workItem from="1696864146032" duration="15000" />
+      <workItem from="1696904380812" duration="12229000" />
+      <workItem from="1697293872385" duration="613000" />
+      <workItem from="1697295514753" duration="552000" />
+      <workItem from="1697510581028" duration="1479000" />
+      <workItem from="1697597390351" duration="613000" />
+      <workItem from="1698301607646" duration="3574000" />
+      <workItem from="1698737359610" duration="1867000" />
+      <workItem from="1698825109570" duration="7122000" />
+      <workItem from="1699152463445" duration="1000" />
+      <workItem from="1699192155597" duration="13966000" />
+      <workItem from="1699583695066" duration="11601000" />
+      <workItem from="1699928088812" duration="6405000" />
+      <workItem from="1700115074511" duration="3575000" />
+      <workItem from="1700449732695" duration="12247000" />
+      <workItem from="1700644919409" duration="611000" />
+      <workItem from="1700648545058" duration="1678000" />
+      <workItem from="1702400945264" duration="1473000" />
+      <workItem from="1702545132978" duration="3144000" />
+      <workItem from="1703061073098" duration="2995000" />
+      <workItem from="1703523662468" duration="1855000" />
+      <workItem from="1704633444185" duration="3014000" />
+      <workItem from="1705305467732" duration="40622000" />
+      <workItem from="1706081322574" duration="3048000" />
+      <workItem from="1706276045509" duration="632000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1646476425173</created>
@@ -349,7 +375,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683600348421</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="commit 2023/09/21 comeback">
+      <created>1695298525461</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1695298525461</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -398,7 +431,8 @@
     <MESSAGE value="commit 2022/10/05" />
     <MESSAGE value="commit 2023/03/29" />
     <MESSAGE value="commit 2023/05/07" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 2023/05/07" />
+    <MESSAGE value="commit 2023/09/21 comeback" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 2023/09/21 comeback" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
