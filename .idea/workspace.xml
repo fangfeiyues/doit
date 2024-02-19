@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f63dfa9-bcae-4a6d-866f-88d725a0b767" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/202310.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/img.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/DoItDTO.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/test/LcTop202305.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/test/LcTop202305.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,6 +70,11 @@
   </component>
   <component name="ReaderModeSettings">
     <option name="showRenderedDocs" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.fang.doit.algo.lc.test" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.LcTop202305">
     <configuration name="DepthTree" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -331,7 +333,9 @@
       <workItem from="1704633444185" duration="3014000" />
       <workItem from="1705305467732" duration="40622000" />
       <workItem from="1706081322574" duration="3048000" />
-      <workItem from="1706276045509" duration="632000" />
+      <workItem from="1706276045509" duration="3738000" />
+      <workItem from="1707203910021" duration="4165000" />
+      <workItem from="1708222676197" duration="21098000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1646476425173</created>
@@ -382,7 +386,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695298525461</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="commit 2024/01/29">
+      <created>1706516931721</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1706516931721</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -432,7 +443,8 @@
     <MESSAGE value="commit 2023/03/29" />
     <MESSAGE value="commit 2023/05/07" />
     <MESSAGE value="commit 2023/09/21 comeback" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 2023/09/21 comeback" />
+    <MESSAGE value="commit 2024/01/29" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 2024/01/29" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -1,6 +1,9 @@
 package com.fang.doit.algo.lc.test;
 
+import com.alibaba.fastjson.JSON;
 import com.fang.doit.algo.dst.linked.ListNode;
+import com.fang.doit.algo.tree.TreeNode;
+import com.google.common.collect.Lists;
 
 import java.util.*;
 
@@ -15,7 +18,7 @@ import java.util.*;
 public class LcTop202305 {
 
     /**
-     *  ------------------- 每天写几道是保持代码手感最好的方式！！！ -----------------
+     *  ------------------- 每天写3道是保持代码手感最好的方式！！！ -----------------
      *  1、**** 每天2道保持手感
      *  2、**** 每行代码都要手写，理解思路&读懂代码
      *  3、**** 每天review T-1的代码
@@ -23,6 +26,142 @@ public class LcTop202305 {
      *  ------------------------------------------------------
      */
 
+
+    /**
+     * 122.整数数组 prices ，其中 prices[i] 表示某支股票第 i 天的价格
+     * <p>
+     * [7,1,5,3,6,4] ==> 7（1-5，3-6）
+     * [1,2,3,4,5] ==> 4（1买5卖）
+     * [7,6,4,3,1] ==> 0
+     *
+     * @param prices
+     * @return 最大利润
+     */
+    public int maxProfit(int[] prices) {
+        // 在每一天，你可以决定是否购买和/或出售股票。你在任何时候最多只能持有一股股票
+        // 动态规划：dp[i] = dp[i-1] + prices[i]
+        int[] dp = new int[prices.length];
+        dp[0] = 0;
+        for (int i = 1; i < prices.length; i++) {
+            dp[i] = dp[i - 1] + Math.max(0, prices[i] - prices[i - 1]);
+        }
+        return dp[prices.length - 1];
+    }
+
+    public static void main(String[] args) {
+        LcTop202305 lcTop202305 = new LcTop202305();
+        int[] prices = {7,6,4,3,1};
+        System.out.println(lcTop202305.maxProfit(prices));
+    }
+
+
+    /**
+     * 120.三角形 triangle ，找出自顶向下的最小路径和，每一步只能移动到下一行中相邻的结点上
+     * 如：triangle = [[2],[3,4],[6,5,7],[4,1,8,3]] ==> 11（2-3-5-1）
+     *
+     * @param triangle
+     * @return
+     */
+    public int minimumTotal_120(List<List<Integer>> triangle) {
+        // 相邻结点即如果正位于当前行的下标 i 那么下一步可以移动到下一行的下标 i 或 i + 1
+        if (triangle == null || triangle.size() == 0) {
+            return 0;
+        }
+        // 最优解法：1、动态规划
+        int columns = triangle.size();
+        int row = triangle.get(columns - 1).size();
+        int[][] dp = new int[row][columns];
+
+        for (int i = 0; i < columns; i++) {
+            List<Integer> c_list = triangle.get(i);
+            for (int j = 0; j < triangle.get(i).size(); j++) {
+                if (i == 0 && j == 0) {
+                    dp[i][j] = c_list.get(j);
+                } else if (j == 0) {
+                    // 即最左边数字来源只能是正上
+                    dp[i][j] = dp[i - 1][j] + c_list.get(j);
+                } else if (j + 1 > triangle.get(i - 1).size()) {
+                    // 即正上没值，只能走斜上
+                    dp[i][j] = dp[i - 1][j - 1] + c_list.get(j);
+                } else {
+                    // 即(i,j)点只能是 正上(i-1,j) 或 斜上(i-1,j-1) 来的
+                    dp[i][j] = Math.min(dp[i - 1][j], dp[i - 1][j - 1]) + c_list.get(j);
+                }
+                System.out.println("i=" + i + " j=" + j + " dp=" + dp[i][j]);
+            }
+        }
+        int result = Integer.MAX_VALUE;
+        for (int k = 0; k < row; k++) {
+            result = Math.min(dp[columns - 1][k], result);
+        }
+        return result;
+    }
+
+//    public static void main(String[] args) {
+//        List<Integer> l1 = Lists.newArrayList(2);
+//        List<Integer> l2 = Lists.newArrayList(3,4);
+//        List<Integer> l3 = Lists.newArrayList(6,5,7);
+//        List<Integer> l4 = Lists.newArrayList(4,1,8,3);
+//        List<List<Integer>> triangle = Lists.newArrayList(l1,l2,l3,l4);
+//        LcTop202305 lcTop202305 = new LcTop202305();
+//        System.out.println(lcTop202305.minimumTotal(triangle));
+//    }
+
+    /**
+     * 103. root返回其节点值的锯齿形层序遍历
+     * root = [3,9,20,null,null,15,7] ==》[[3],[20,9],[15,7]]
+     *
+     * @param root
+     * @return
+     */
+    public static List<List<Integer>> zigzagLevelOrder_103(TreeNode root) {
+        boolean left = false;
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.add(root);
+        int size = 1;
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> nodeList = new ArrayList<>();
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            nodeList.add(node.val);
+            TreeNode rightNode = node.right;
+            TreeNode leftNode = node.left;
+            if (left) {
+                if (leftNode != null) {
+                    queue.add(leftNode);
+                }
+                if (rightNode != null) {
+                    queue.add(rightNode);
+                }
+            } else {
+                if (rightNode != null) {
+                    queue.add(rightNode);
+                }
+                if (leftNode != null) {
+                    queue.add(leftNode);
+                }
+            }
+            size--;
+            if (size == 0) {
+                // 上一层结束开始新的一层
+                size = queue.size();
+                left = !left;
+                result.add(nodeList);
+                nodeList = new ArrayList<>();
+            }
+        }
+        return result;
+    }
+
+//    public static void main(String[] args) {
+//        TreeNode root3 = new TreeNode(15);
+//        TreeNode root4 = new TreeNode(7);
+//        TreeNode root1 = new TreeNode(9);
+//        TreeNode root2 = new TreeNode(20,root3,root4);
+//        TreeNode root = new TreeNode(3, root1, root2);
+//        List<List<Integer>> result = zigzagLevelOrder_103(root);
+//        System.out.println(JSON.toJSONString(result));
+//    }
 
     /**
      * 92. 单链表的头指针head和两个整数left和right ，其中 left <= right 。反转从位置left到位置right的链表节点
@@ -138,37 +277,26 @@ public class LcTop202305 {
                     continue;
                 }
                 if (i == 0) {
-                    // row == 0的必定是最顶上横着移动的情况
+                    // row == 0的必定是最顶上横着移动
                     dp[i][j] = dp[i][j - 1] + grid[i][j];
-                }
-                if (j == 0) {
+                } else if (j == 0) {
+                    // columns == 0的必定是最左上横着移动
                     dp[i][j] = dp[i - 1][j] + grid[i][j];
                 } else {
                     // 每次过来要么是从上要么是从左，其实和背包问题有异曲同工之妙
-                    dp[i][j] = Math.min(grid[i - 1][j], grid[i][j - 1]) + grid[i][j];
+                    dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
                 }
+                System.out.println("i=" + i + " j=" + j + " dp=" + dp[i][j]);
             }
         }
-        return grid[grid.length - 1][grid[0].length - 1];
+        return dp[grid.length - 1][grid[0].length - 1];
     }
 
-    int[][] pairs = new int[][]{{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
-    int max = 0;
-
-    private int minPathSum_fail(int[][] grid) {
-        boolean[][] used = new boolean[grid.length][grid.length];
-        // int[][] 转 map
-        Map<Integer, List<Integer>> gridMap = new HashMap<>(grid.length);
-        return 0;
-    }
-
-    private void minPathSumDFS(int[][] grid, boolean[][] used, int r, int c, int path) {
-        path = path + grid[r][c];
-        used[r][c] = true;
-        for (int i = 0; i < pairs.length; i++) {
-
-        }
-    }
+//    public static void main(String[] args) {
+//        LcTop202305 lcTop202305 = new LcTop202305();
+//        int[][] grid = {{1, 3, 1}, {1, 5, 1}, {4, 2, 1}};
+//        System.out.println(lcTop202305.minPathSum_64_ww(grid));
+//    }
 
     /**
      * 56. 合并区间
