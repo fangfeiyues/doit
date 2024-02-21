@@ -1,6 +1,5 @@
 package com.fang.doit.algo.lc.test;
 
-import com.alibaba.fastjson.JSON;
 import com.fang.doit.algo.dst.linked.ListNode;
 import com.fang.doit.algo.tree.TreeNode;
 import com.google.common.collect.Lists;
@@ -15,7 +14,7 @@ import java.util.*;
  * @Description: 2023.05月刷题记录
  * @date Date : 2023-05-07 4:21 下午
  */
-public class LcTop202305 {
+public class Top {
 
     /**
      *  ------------------- 每天写3道是保持代码手感最好的方式！！！ -----------------
@@ -28,6 +27,234 @@ public class LcTop202305 {
 
 
     /**
+     * 139.给你一个字符串 s 和一个字符串列表 wordDict 作为字典。如果可以利用字典中出现的一个或多个单词拼接出 s 则返回 true
+     * <p>
+     * s = "leetcode", wordDict = ["leet", "code"] ==》 true
+     *
+     * @param s
+     * @param wordDict
+     * @return
+     */
+    public static boolean wordBreak(String s, List<String> wordDict) {
+        // 不要求字典中出现的单词全部都使用，并且字典中的单词可以重复使用
+        if (s == null || "".equals(s)) {
+            return true;
+        }
+        if (wordDict == null || wordDict.size() == 0) {
+            return false;
+        }
+        // 树型递归:只有要一条链路都包含在字典内即可
+        return dfs(s, 0, wordDict);
+    }
+
+    private static boolean dfs(String s, Integer start, List<String> wordDict) {
+        if (start == s.length()) {
+            return true;
+        }
+        for (int i = start; i < s.length(); i++) {
+            String word = s.substring(start, i + 1);
+            if (!wordDict.contains(word)) {
+                continue;
+            }
+            return dfs(s, i + 1, wordDict);
+        }
+        return false;
+    }
+
+
+
+    /**
+     * 143.重排链表 L0 → L1 → … → Ln - 1 → Ln  ===》 L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 →
+     *
+     * @param head
+     */
+    public static void reorderList_143(ListNode head) {
+        // 涉及到链表3个知识：先通过快慢指针找到中间点、再反转后半部分链表、最后做前后插入
+        ListNode dummy = new ListNode(0, head);
+        // 1、找到中间节点
+        ListNode fast = dummy;
+        ListNode slow = dummy;
+        while (fast.next != null) {
+            if (fast.next.next != null) {
+                fast = fast.next.next;
+            } else {
+                fast = fast.next;
+            }
+            slow = slow.next;
+        }
+        // 2、反转slow后到到尾部链表
+        ListNode last = reversal(slow);
+        // 3、插入
+        insertLast(head, last);
+    }
+    private static ListNode reversal(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode cur = head;
+        ListNode pre = null;
+        while (cur != null) {
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
+    }
+    private static void insertLast(ListNode head, ListNode last) {
+        ListNode node = head;
+        while (node != null) {
+            ListNode cur = node.next;
+            node.next = last;
+            ListNode temp = last;
+            last = last.next;
+            temp.next = cur;
+            node = cur;
+        }
+    }
+
+//    public static void main(String[] args) {
+//        ListNode head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
+//        reorderList(head);
+//        while (head != null) {
+//            System.out.println(head.val);
+//            head = head.next;
+//        }
+//    }
+
+    /**
+     * 142. 给定一个链表的头节点 head ，返回链表开始入环的第一个节点。 如果链表无环，则返回 null
+     * @param head
+     * @return
+     */
+    public ListNode detectCycle(ListNode head) {
+        // 1、哈希表
+        HashMap<Integer, ListNode> hashMap = new HashMap<>();
+        while (head.next != null) {
+            ListNode node = head.next;
+            if (hashMap.containsKey(node.val)) {
+                return node;
+            }
+            hashMap.put(node.val, node);
+        }
+
+        // 2、快慢指针
+        return null;
+    }
+
+    /**
+     * 137.给你一个整数数组 nums ，除某个元素仅出现 一次 外，其余每个元素都恰出现 三次
+     *
+     * @param nums
+     * @return 返回那个只出现了一次的元素
+     */
+    public int singleNumber_137(int[] nums) {
+        // 实现线性时间复杂度的算法且使用常数级空间来解决此问题
+        Map<Integer, Integer> freq = new HashMap<>();
+        for (int num : nums) {
+            freq.put(num, freq.getOrDefault(num, 0) + 1);
+        }
+        int ans = 0;
+        for (Map.Entry<Integer, Integer> entry : freq.entrySet()) {
+            int num = entry.getKey(), occ = entry.getValue();
+            if (occ == 1) {
+                ans = num;
+                break;
+            }
+        }
+        return ans;
+    }
+
+    /**
+     * 131.给你一个字符串 s，请你将 s 分割成一些子串，使每个子串都是回文串
+     * <p>
+     * s = "aab" ==》[["a","a","b"],["aa","b"]]
+     *
+     * @param s
+     * @return s 所有可能的分割方案
+     */
+
+    boolean[][] f;
+    List<List<String>> ret = new ArrayList<>();
+    List<String> ans = new ArrayList<>();
+    int n;
+
+    public List<List<String>> partition_131(String s) {
+        n = s.length();
+        f = new boolean[n][n];
+        for (int i = 0; i < n; ++i) {
+            Arrays.fill(f[i], true);
+        }
+        // 两层循环遍历所有[i,j]节点，同时满足i+1和j-1依次从大到小和从小到大
+        for (int i = n - 1; i >= 0; --i) {
+            for (int j = i + 1; j < n; ++j) {
+                f[i][j] = (s.charAt(i) == s.charAt(j)) && f[i + 1][j - 1];
+            }
+        }
+        dfs(s, 0);
+        return ret;
+    }
+
+    public void dfs(String s, int i) {
+        if (i == n) {
+            ret.add(new ArrayList<>(ans));
+            return;
+        }
+        // for循环下一个树节点是从上一个的尾开始
+        for (int j = i; j < n; ++j) {
+            if (f[i][j]) {
+                ans.add(s.substring(i, j + 1));
+                dfs(s, j + 1);
+                // ans作为唯一一个list存储，下一层节点结束的时候要移除再返回上一层
+                ans.remove(ans.size() - 1);
+            }
+        }
+    }
+
+//    public static void main(String[] args) {
+//        String s = "aab";
+//        partition_131(s);
+//    }
+
+    /**
+     * 128.给定一个未排序的整数数组 nums ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度
+     * [100,4,200,1,3,2] ==》 4 [1, 2, 3, 4]
+     *
+     * @param nums
+     * @return O(n) 的算法解决此问题
+     */
+    public int longestConsecutive_128(int[] nums) {
+        // 连续数字..（遇到一下子没思路的题的时候可以尝试从暴力解法入手）
+        Map<Integer, Boolean> map = new HashMap<>();
+        for (int j : nums) {
+            map.put(j, true);
+        }
+        // 都看后面数字是否存在
+        int max = 0;
+
+        for(Map.Entry<Integer,Boolean> entry:map.entrySet()){
+            Integer num = entry.getKey();
+            int length = 1;
+            int stack = num;
+            if (!map.containsKey(num - 1)) {
+                while (map.containsKey(stack + 1)) {
+                    length = length + 1;
+                    stack = stack + 1;
+                }
+            }
+            max = Math.max(max, length);
+        }
+        return max;
+    }
+
+//    public static void main(String[] args) {
+//        int[] nums = {100,4,200,1,3,3,2};
+//        LcTop202305 lcTop202305 = new LcTop202305();
+//        System.out.println(lcTop202305.longestConsecutive(nums));
+//    }
+
+
+    /**
      * 122.整数数组 prices ，其中 prices[i] 表示某支股票第 i 天的价格
      * <p>
      * [7,1,5,3,6,4] ==> 7（1-5，3-6）
@@ -37,7 +264,7 @@ public class LcTop202305 {
      * @param prices
      * @return 最大利润
      */
-    public int maxProfit(int[] prices) {
+    public int maxProfit_122(int[] prices) {
         // 在每一天，你可以决定是否购买和/或出售股票。你在任何时候最多只能持有一股股票
         // 动态规划：dp[i] = dp[i-1] + prices[i]
         int[] dp = new int[prices.length];
@@ -48,11 +275,11 @@ public class LcTop202305 {
         return dp[prices.length - 1];
     }
 
-    public static void main(String[] args) {
-        LcTop202305 lcTop202305 = new LcTop202305();
-        int[] prices = {7,6,4,3,1};
-        System.out.println(lcTop202305.maxProfit(prices));
-    }
+//    public static void main(String[] args) {
+//        LcTop202305 lcTop202305 = new LcTop202305();
+//        int[] prices = {7,6,4,3,1};
+//        System.out.println(lcTop202305.maxProfit(prices));
+//    }
 
 
     /**
@@ -67,11 +294,10 @@ public class LcTop202305 {
         if (triangle == null || triangle.size() == 0) {
             return 0;
         }
-        // 最优解法：1、动态规划
+        // 最优解法：1、动态规划时间复杂度高；2、
         int columns = triangle.size();
         int row = triangle.get(columns - 1).size();
         int[][] dp = new int[row][columns];
-
         for (int i = 0; i < columns; i++) {
             List<Integer> c_list = triangle.get(i);
             for (int j = 0; j < triangle.get(i).size(); j++) {
@@ -87,11 +313,10 @@ public class LcTop202305 {
                     // 即(i,j)点只能是 正上(i-1,j) 或 斜上(i-1,j-1) 来的
                     dp[i][j] = Math.min(dp[i - 1][j], dp[i - 1][j - 1]) + c_list.get(j);
                 }
-                System.out.println("i=" + i + " j=" + j + " dp=" + dp[i][j]);
             }
         }
-        int result = Integer.MAX_VALUE;
-        for (int k = 0; k < row; k++) {
+        int result = dp[columns - 1][0];
+        for (int k = 1; k < row; k++) {
             result = Math.min(dp[columns - 1][k], result);
         }
         return result;
@@ -115,50 +340,82 @@ public class LcTop202305 {
      * @return
      */
     public static List<List<Integer>> zigzagLevelOrder_103(TreeNode root) {
-        boolean left = false;
-        Queue<TreeNode> queue = new ArrayDeque<>();
-        queue.add(root);
-        int size = 1;
-        List<List<Integer>> result = new ArrayList<>();
-        List<Integer> nodeList = new ArrayList<>();
-        while (!queue.isEmpty()) {
-            TreeNode node = queue.poll();
-            nodeList.add(node.val);
-            TreeNode rightNode = node.right;
-            TreeNode leftNode = node.left;
-            if (left) {
-                if (leftNode != null) {
-                    queue.add(leftNode);
-                }
-                if (rightNode != null) {
-                    queue.add(rightNode);
-                }
-            } else {
-                if (rightNode != null) {
-                    queue.add(rightNode);
-                }
-                if (leftNode != null) {
-                    queue.add(leftNode);
-                }
-            }
-            size--;
-            if (size == 0) {
-                // 上一层结束开始新的一层
-                size = queue.size();
-                left = !left;
-                result.add(nodeList);
-                nodeList = new ArrayList<>();
-            }
+        List<List<Integer>> ans = new LinkedList<>();
+        if (root == null) {
+            return ans;
         }
-        return result;
+        // 用了一个双向队列Deque存储结果：都是从左到右遍历然后利用双端队列选择插左还是插右
+        Queue<TreeNode> nodeQueue = new ArrayDeque<>();
+        nodeQueue.offer(root);
+        boolean isOrderLeft = true;
+        while (!nodeQueue.isEmpty()) {
+            Deque<Integer> levelList = new LinkedList<>();
+            int size = nodeQueue.size();
+            for (int i = 0; i < size; ++i) {
+                TreeNode curNode = nodeQueue.poll();
+                if (isOrderLeft) {
+                    levelList.offerLast(curNode.val);
+                } else {
+                    levelList.offerFirst(curNode.val);
+                }
+                if (curNode.left != null) {
+                    nodeQueue.offer(curNode.left);
+                }
+                if (curNode.right != null) {
+                    nodeQueue.offer(curNode.right);
+                }
+            }
+            ans.add(new LinkedList<>(levelList));
+            isOrderLeft = !isOrderLeft;
+        }
+        return ans;
+//        boolean left = false;
+//        List<List<Integer>> result = new ArrayList<>();
+//        if (root == null) {
+//            return result;
+//        }
+//        Queue<TreeNode> queue = new ArrayDeque<>();
+//        queue.add(root);
+//        int size = 1;
+//        List<Integer> nodeList = new ArrayList<>();
+//        while (!queue.isEmpty()) {
+//            TreeNode node = queue.poll();
+//            nodeList.add(node.val);
+//            TreeNode rightNode = node.right;
+//            TreeNode leftNode = node.left;
+//            if (left) {
+//                if (leftNode != null) {
+//                    queue.add(leftNode);
+//                }
+//                if (rightNode != null) {
+//                    queue.add(rightNode);
+//                }
+//            } else {
+//                if (rightNode != null) {
+//                    queue.add(rightNode);
+//                }
+//                if (leftNode != null) {
+//                    queue.add(leftNode);
+//                }
+//            }
+//            size--;
+//            if (size == 0) {
+//                // 上一层结束开始新的一层
+//                size = queue.size();
+//                left = !left;
+//                result.add(nodeList);
+//                nodeList = new ArrayList<>();
+//            }
+//        }
+//        return result;
     }
 
 //    public static void main(String[] args) {
-//        TreeNode root3 = new TreeNode(15);
-//        TreeNode root4 = new TreeNode(7);
-//        TreeNode root1 = new TreeNode(9);
-//        TreeNode root2 = new TreeNode(20,root3,root4);
-//        TreeNode root = new TreeNode(3, root1, root2);
+//        TreeNode root3 = new TreeNode(4);
+//        TreeNode root4 = new TreeNode(5);
+//        TreeNode root1 = new TreeNode(2, root3, null);
+//        TreeNode root2 = new TreeNode(3, null, root4);
+//        TreeNode root = new TreeNode(1, root1, root2);
 //        List<List<Integer>> result = zigzagLevelOrder_103(root);
 //        System.out.println(JSON.toJSONString(result));
 //    }
@@ -220,8 +477,7 @@ public class LcTop202305 {
      * @return
      */
     public List<List<Integer>> combine_77(int n, int k) {
-        // *** 核心在于用树型结构深度递归 ***
-        //
+        // *** 核心在于用 树型结构 深度递归 ***
         Deque<Integer> path = new ArrayDeque<>();
         List<List<Integer>> ans = new ArrayList<>();
         combineDFS(n, k, 1, path, ans);
@@ -241,6 +497,10 @@ public class LcTop202305 {
         }
     }
 
+    public static void main(String[] args) {
+        Top top = new Top();
+        System.out.println(top.combine_77(5, 2));
+    }
 
     /**
      * 75. 颜色分类， 0、 1 和 2 分别表示红色、白色和蓝色并按照红色、白色、蓝色顺序排列
@@ -451,7 +711,7 @@ public class LcTop202305 {
             }
             path.addLast(candidates[index]);
             combinationDFS(candidates, index, target - candidates[index], ans, path);
-            // 第3步：开始循环的下一个节点前把前面的移除了
+            // 第3步：开始循环的下一个节点前把前面的移除了，因为这个节点已经添加到结果列表了
             path.removeLast();
         }
     }
@@ -874,7 +1134,7 @@ public class LcTop202305 {
             return s;
         }
         // *** 动态规划：P(i,j) = P(i+1,j−1) && Si == Sj ; dp[i][j]代表着从i到j区间是否满足回文要求 ***
-        // *** 简单来说是先L(0<L<len)大小的dp[i][j]是否满足回文，然后再根据s[i-1]==s[j+1]来依次判断dp[i-1][j+1]是否满足回文 ***
+        // *** 简单来说是dp[i][j]是否满足回文，然后再根据s[i-1]==s[j+1]来依次判断dp[i-1][j+1]是否满足回文 ***
         // 第1步：所有单个dp[i][i]=true
         boolean[][] dp = new boolean[len][len];
         for (int i = 0; i < len; i++) {
@@ -896,6 +1156,7 @@ public class LcTop202305 {
                     if (j - i < 3) {
                         dp[i][j] = true;
                     } else {
+                        // 外面的看里面的是否回文。所以L循环得在外面保证L大的能兼容L小的
                         dp[i][j] = dp[i + 1][j - 1];
                     }
                 }
@@ -909,6 +1170,11 @@ public class LcTop202305 {
         }
         return s.substring(begin, begin + maxLen);
     }
+
+//    public static void main(String[] args) {
+//        Top top = new Top();
+//        System.out.println(top.longestPalindrome_dp("afabccba"));
+//    }
 
     /**
      * 2.两数相加：两个非空的链表表示两个非负的整数。它们每位数字都是按照逆序的方式存储的，并且每个节点只能存储一位数字
