@@ -2,7 +2,6 @@ package com.fang.doit.algo.lc.test;
 
 import com.fang.doit.algo.dst.linked.ListNode;
 import com.fang.doit.algo.tree.TreeNode;
-import com.google.common.collect.Lists;
 
 import java.util.*;
 
@@ -17,25 +16,274 @@ import java.util.*;
 public class Top {
 
     /**
-     *  ------------------- 每天写3道是保持代码手感最好的方式！！！ -----------------
-     *  1、**** 每天2道保持手感
-     *  2、**** 每行代码都要手写，理解思路&读懂代码
-     *  3、**** 每天review T-1的代码
-     *
-     *  ------------------------------------------------------
+     * 1、2024-02-25 : top200-middle over
      */
 
+
+    /**
+     * 164.给定一个无序的数组 nums，返回 数组在排序之后，相邻元素之间最大的差值 。如果数组元素个数小于 2，则返回 0 。
+     * <p>
+     * [3,6,9,1] -> 3
+     *
+     * @param nums
+     * @return
+     */
+    public int maximumGap(int[] nums) {
+        // 必须编写一个在「线性时间」内运行并使用「线性额外空间」的算法
+        // 桶排序。。
+        return 0;
+    }
+
+    /**
+     * 162.峰值元素是指其值严格大于左右相邻值的元素。
+     * 给你一个整数数组 nums，找到峰值元素并返回其索引。数组可能包含多个峰值，在这种情况下，返回 任何一个峰值 所在位置即可。
+     * 你可以假设 nums[-1] = nums[n] = -∞ 。
+     * [1,2,3,1] --> 2
+     * [1,2,1,3,5,6,4] -> 1 或 5
+     *
+     * @param nums
+     * @return
+     */
+    public int findPeakElement(int[] nums) {
+        // 必须实现时间复杂度为 O(log n) 的算法来解决此问题。
+        // 二分法：往上走的一定有波峰
+        int left = 0;
+        int right = nums.length - 1;
+        //二分法
+        while (left < right) {
+            int mid = (left + right) / 2;
+            // 右边是往下，不一定有坡峰
+            if (nums[mid] > nums[mid + 1]) {
+                right = mid;
+            }
+            // 右边是往上，一定能找到波峰
+            else {
+                left = mid + 1;
+            }
+        }
+        //其中一个波峰
+        return right;
+    }
+
+    /**
+     * 159.给你一个字符串 s ，请你找出至多包含两个不同字符的最长子串，并返回该子串的长度
+     * "eceba" --> 3 "ece"
+     * ccaabbb --> 5 "aabbb"
+     *
+     * @param s
+     * @return
+     */
+    public int lengthOfLongestSubstringTwoDistinct(String s) {
+        // 暴力循环：每个节点不断回退前两个不同点，时间复杂度O(n^2)
+        // 左右指针：保证left-right指针区间内的数据类型==2,通过左右指针差求最大值
+        // 滑动窗口:利用数组集合代替map,保持窗口内类型在2否则一直移动
+
+        int[] window = new int[128];
+        int length = s.length();
+        int left = 0, right = 0;
+        // count代表当前窗口的字符类型多少
+        for (int count = 0; right < length; ) {
+            // 左侧字符进窗口：如果不在窗口区则窗口数量和字符数都加1，否则数量加1
+            if (window[s.charAt(right++)]++ == 0) {
+                count++;
+            }
+            // 如果字符数量大于2：则窗口不断移动直到数量清零
+            if (count > 2) {
+                if (--window[s.charAt(left++)] == 0) {
+                    count--;
+                }
+            }
+        }
+        return right - left;
+    }
+
+    /**
+     * 156.上下翻转二叉树；左节点->根节点，根节点->右节点，右节点->左节点
+     *
+     * @param root
+     * @return
+     */
+    public TreeNode upsideDownBinaryTree(TreeNode root) {
+        return null;
+    }
+
+
+    /**
+     * 数组 [a[0], a[1], a[2], ..., a[n-1]] 旋转一次的结果为数组 [a[n-2],a[n-1], a[0], a[1], a[2], ..., a[n-3]]
+     * <p> [ 5,4,3,2,1] [ 5,4,3,2,1,6]
+     * 给你一个元素值互不相同的数组 nums ，它原来是一个升序排列的数组，并按上述情形进行了多次旋转。请你找出并返回数组中的最小元素
+     *
+     * @param nums 2024-02-22
+     * @return
+     */
+    public static int findMin(int[] nums) {
+        // 你必须设计一个时间复杂度为 O(log n) 的算法解决此问题
+        // 二分法：找到节点的左右侧都大于它的或者它最小的
+//        int low = 0;
+//        int high = nums.length - 1;
+//        int middle = (low + high) / 2;
+//        while (low < high) {
+//            // 先保证middle不是最小值
+//            if (nums[middle + 1] > nums[middle] && nums[middle - 1] > nums[middle]) {
+//                return nums[middle];
+//            }
+//            // 右边大，往左找
+//            if (nums[middle + 1] > nums[middle]) {
+//                high = middle - 1;
+//            }
+//            // 左边大，往右找
+//            if (nums[middle - 1] > nums[middle]) {
+//                low = middle + 1;
+//            }
+//            // ⚠️ 二分法查找一定要避免出现middle一直不变的死循环
+//            middle = (low + high) / 2;
+//        }
+//        return nums[middle];
+
+        // 这么简单吗。。。是我想复杂了？？？
+        int low = 0;
+        int high = nums.length - 1;
+        while (low < high) {
+            // 不用和下一个比，和最后一个比或者第一个比。保证在这个区间是否升降级
+            int pivot = low + (high - low) / 2;
+            if (nums[pivot] < nums[high]) {
+                high = pivot;
+            } else {
+                low = pivot + 1;
+            }
+        }
+        return nums[low];
+    }
+
+//    public static void main(String[] args) {
+//        int[] nums = {5,4,3,2,1,1,6};
+//        System.out.println(findMin(nums));
+//    }
+
+
+    /**
+     * 152.给你一个整数数组 nums ，请你找出数组中乘积最大的非空连续子数组（该子数组中至少包含一个数字），并返回该子数组所对应的乘积
+     * nums = [2,3,-2,4] ==> 6(2 * 3)
+     * [-3,-1,-1]
+     * [-2,3,-4]
+     *
+     * @param nums 2024-02-22
+     * @return
+     */
+    public static int maxProduct_152_xx(int[] nums) {
+//        int[] dp = new int[nums.length];
+//        dp[0] = nums[0];
+//        int max = dp[0];
+//        for (int i = 1; i < nums.length; i++) {
+//            // 要连续
+//            if (dp[i - 1] * nums[i] > dp[i - 1]) {
+//                dp[i] = dp[i - 1] * nums[i];
+//            }else {
+//                dp[i] = nums[i];
+//            }
+//            max = Math.max(max, dp[i]);
+//        }
+//        return max;
+        int maxF = nums[0], minF = nums[0], ans = nums[0];
+        int length = nums.length;
+        for (int i = 1; i < length; ++i) {
+            int mx = maxF, mn = minF;
+            maxF = Math.max(mx * nums[i], Math.max(nums[i], mn * nums[i]));
+            minF = Math.min(mn * nums[i], Math.min(nums[i], mx * nums[i]));
+            ans = Math.max(maxF, ans);
+        }
+        return ans;
+    }
+
+    /**
+     * 151.给你一个字符串 s ，请你反转字符串中 单词 的顺序（空格隔开）
+     * s = "the sky is blue" ==》 "blue is sky the"
+     *
+     * @param s 2024-02-22
+     * @return
+     */
+    public static String reverseWords_151(String s) {
+        // 除去开头和末尾的空白字符
+        s = s.trim();
+        // 正则匹配连续的空白字符作为分隔符分割
+        List<String> wordList = Arrays.asList(s.split("\\s+"));
+        Collections.reverse(wordList);
+        return String.join(" ", wordList);
+    }
+
+//    public static void main(String[] args) {
+//        System.out.println(reverseWords("  hello world  ").length());
+//    }
+
+    /**
+     * 148.链表的头结点 head ，请将其按升序排列并返回排序后的链表
+     * [4,2,7,5,9] -> [2,4,5,7,9]
+     *
+     * @param head 2024-02-22 again..
+     * @return
+     */
+    public ListNode sortList_148_xx(ListNode head) {
+        // 归并排序：数组不断按中间节点分割成最小但愿如此，然后递归合并排序。简称先归一再合并
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode middle = findMiddleNode(head);
+        ListNode rightHead = middle.next;
+        // 中间侧断开保证下一次遍历只有前半部分（由于后续不会再用到这个链表所以不用担心链表接不上的问题）
+        middle.next = null;
+        ListNode left = sortList_148_xx(head);
+        ListNode right = sortList_148_xx(rightHead);
+        return mergeListNode(left, right);
+    }
+
+    private ListNode findMiddleNode(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode slow = head;
+        // 因为要从中间分成两截，跟正常的快慢不一样，fast提前走保证slow在中间点左侧
+        ListNode fast = head.next.next;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    private ListNode mergeListNode(ListNode a, ListNode b) {
+        ListNode sentry = new ListNode(-1);
+        ListNode curr = sentry;
+        while (a != null && b != null) {
+            if (a.val < b.val) {
+                curr.next = a;
+                a = a.next;
+            } else {
+                curr.next = b;
+                b = b.next;
+            }
+            curr = curr.next;
+        }
+        curr.next = a == null ? b : a;
+        return sentry.next;
+    }
+
+//    public static void main(String[] args) {
+//        Top top = new Top();
+//        top.sortList_148(new ListNode(3,new ListNode(5,new ListNode(2,new ListNode(1))))).print();
+//    }
 
     /**
      * 139.给你一个字符串 s 和一个字符串列表 wordDict 作为字典。如果可以利用字典中出现的一个或多个单词拼接出 s 则返回 true
      * <p>
      * s = "leetcode", wordDict = ["leet", "code"] ==》 true
      *
-     * @param s
+     * @param s 2024-02-21
      * @param wordDict
      * @return
      */
-    public static boolean wordBreak(String s, List<String> wordDict) {
+    static boolean wordBreak = false;
+
+    public static boolean wordBreak_139(String s, List<String> wordDict) {
         // 不要求字典中出现的单词全部都使用，并且字典中的单词可以重复使用
         if (s == null || "".equals(s)) {
             return true;
@@ -44,34 +292,46 @@ public class Top {
             return false;
         }
         // 树型递归:只有要一条链路都包含在字典内即可
-        return dfs(s, 0, wordDict);
+        dfs(s, 0, wordDict);
+        return wordBreak;
     }
 
-    private static boolean dfs(String s, Integer start, List<String> wordDict) {
+    private static void dfs(String s, Integer start, List<String> wordDict) {
         if (start == s.length()) {
-            return true;
+            wordBreak = true;
+            return;
         }
         for (int i = start; i < s.length(); i++) {
             String word = s.substring(start, i + 1);
             if (!wordDict.contains(word)) {
                 continue;
             }
-            return dfs(s, i + 1, wordDict);
+            // 不能直接return返回，否则会导致for后面的遍历跳过
+            dfs(s, i + 1, wordDict);
         }
-        return false;
     }
 
+
+//    public static void main(String[] args) {
+//        System.out.println(wordBreak("catsandog", Lists.newArrayList("cats","dog","sand","and","cat")));
+//    }
 
 
     /**
      * 143.重排链表 L0 → L1 → … → Ln - 1 → Ln  ===》 L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 →
      *
-     * @param head
+     * @param head 2024-02-21
      */
     public static void reorderList_143(ListNode head) {
         // 涉及到链表3个知识：先通过快慢指针找到中间点、再反转后半部分链表、最后做前后插入
-        ListNode dummy = new ListNode(0, head);
         // 1、找到中间节点
+        ListNode middle = findMiddle(new ListNode(0, head));
+        // 2、反转slow后到到尾部链表
+        ListNode last = reversal(middle);
+        // 3、插入
+        insertLast(head, last);
+    }
+    private static ListNode findMiddle(ListNode dummy){
         ListNode fast = dummy;
         ListNode slow = dummy;
         while (fast.next != null) {
@@ -82,16 +342,14 @@ public class Top {
             }
             slow = slow.next;
         }
-        // 2、反转slow后到到尾部链表
-        ListNode last = reversal(slow);
-        // 3、插入
-        insertLast(head, last);
+        return slow;
     }
     private static ListNode reversal(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
         ListNode cur = head;
+        // 反转pre节点设置为null，否则会进入节点反向依赖
         ListNode pre = null;
         while (cur != null) {
             ListNode next = cur.next;
@@ -124,18 +382,21 @@ public class Top {
 
     /**
      * 142. 给定一个链表的头节点 head ，返回链表开始入环的第一个节点。 如果链表无环，则返回 null
-     * @param head
+     *
+     * @param head 2024-02-21
      * @return
      */
-    public ListNode detectCycle(ListNode head) {
+    public ListNode detectCycle_142(ListNode head) {
         // 1、哈希表
-        HashMap<Integer, ListNode> hashMap = new HashMap<>();
-        while (head.next != null) {
-            ListNode node = head.next;
-            if (hashMap.containsKey(node.val)) {
-                return node;
+        ListNode pos = head;
+        Set<ListNode> visited = new HashSet<>();
+        while (pos != null) {
+            if (visited.contains(pos)) {
+                return pos;
+            } else {
+                visited.add(pos);
             }
-            hashMap.put(node.val, node);
+            pos = pos.next;
         }
 
         // 2、快慢指针
@@ -145,7 +406,7 @@ public class Top {
     /**
      * 137.给你一个整数数组 nums ，除某个元素仅出现 一次 外，其余每个元素都恰出现 三次
      *
-     * @param nums
+     * @param nums 2024-02-22
      * @return 返回那个只出现了一次的元素
      */
     public int singleNumber_137(int[] nums) {
@@ -170,7 +431,7 @@ public class Top {
      * <p>
      * s = "aab" ==》[["a","a","b"],["aa","b"]]
      *
-     * @param s
+     * @param s 2024-02-20
      * @return s 所有可能的分割方案
      */
 
@@ -185,17 +446,18 @@ public class Top {
         for (int i = 0; i < n; ++i) {
             Arrays.fill(f[i], true);
         }
-        // 两层循环遍历所有[i,j]节点，同时满足i+1和j-1依次从大到小和从小到大
+        // 两层循环：遍历所有[i,j]节点，同时满足i+1和j-1依次从大到小和从小到大
         for (int i = n - 1; i >= 0; --i) {
             for (int j = i + 1; j < n; ++j) {
                 f[i][j] = (s.charAt(i) == s.charAt(j)) && f[i + 1][j - 1];
             }
         }
+        // 深度递归：字符串解析成一层一层的树结构，然后从上到下递归遍历。注意要移除前一棵树枝的节点
         dfs(s, 0);
         return ret;
     }
 
-    public void dfs(String s, int i) {
+    private void dfs(String s, int i) {
         if (i == n) {
             ret.add(new ArrayList<>(ans));
             return;
@@ -220,7 +482,7 @@ public class Top {
      * 128.给定一个未排序的整数数组 nums ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度
      * [100,4,200,1,3,2] ==》 4 [1, 2, 3, 4]
      *
-     * @param nums
+     * @param nums 2024-02-20
      * @return O(n) 的算法解决此问题
      */
     public int longestConsecutive_128(int[] nums) {
@@ -261,7 +523,7 @@ public class Top {
      * [1,2,3,4,5] ==> 4（1买5卖）
      * [7,6,4,3,1] ==> 0
      *
-     * @param prices
+     * @param prices 2024-02-20
      * @return 最大利润
      */
     public int maxProfit_122(int[] prices) {
@@ -286,7 +548,7 @@ public class Top {
      * 120.三角形 triangle ，找出自顶向下的最小路径和，每一步只能移动到下一行中相邻的结点上
      * 如：triangle = [[2],[3,4],[6,5,7],[4,1,8,3]] ==> 11（2-3-5-1）
      *
-     * @param triangle
+     * @param triangle 2024-02-19
      * @return
      */
     public int minimumTotal_120(List<List<Integer>> triangle) {
@@ -336,7 +598,7 @@ public class Top {
      * 103. root返回其节点值的锯齿形层序遍历
      * root = [3,9,20,null,null,15,7] ==》[[3],[20,9],[15,7]]
      *
-     * @param root
+     * @param root 2024-02-19
      * @return
      */
     public static List<List<Integer>> zigzagLevelOrder_103(TreeNode root) {
@@ -497,10 +759,10 @@ public class Top {
         }
     }
 
-    public static void main(String[] args) {
-        Top top = new Top();
-        System.out.println(top.combine_77(5, 2));
-    }
+//    public static void main(String[] args) {
+//        Top top = new Top();
+//        System.out.println(top.combine_77(5, 2));
+//    }
 
     /**
      * 75. 颜色分类， 0、 1 和 2 分别表示红色、白色和蓝色并按照红色、白色、蓝色顺序排列

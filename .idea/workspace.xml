@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f63dfa9-bcae-4a6d-866f-88d725a0b767" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/test/LruCache.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/test/LcTop202305.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/test/Top.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/dst/linked/ListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/dst/linked/ListNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/test/Top.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/test/Top.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +25,7 @@
         <option value="Class" />
       </list>
     </option>
+    <option name="SCHEME" value="Project" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -67,7 +68,7 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="http.proxy" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="ReaderModeSettings">
     <option name="showRenderedDocs" value="false" />
@@ -77,7 +78,7 @@
       <recent name="com.fang.doit.algo.lc.test" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.LcTop202305">
+  <component name="RunManager" selected="Application.DepthTree">
     <configuration name="DepthTree" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.stage1.DepthTree" />
       <module name="doit" />
@@ -172,7 +173,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.LcTop202305" />
         <item itemvalue="Application.MidSearch_Lack" />
         <item itemvalue="Application.DepthTree" />
         <item itemvalue="Application.SlidingWindow" />
@@ -339,7 +339,8 @@
       <workItem from="1708222676197" duration="28217000" />
       <workItem from="1708395161598" duration="638000" />
       <workItem from="1708395887544" duration="4136000" />
-      <workItem from="1708400691028" duration="23213000" />
+      <workItem from="1708400691028" duration="55398000" />
+      <workItem from="1708675726860" duration="1220000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1646476425173</created>
@@ -404,7 +405,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708345785105</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="commit 2024/02/21">
+      <created>1708504276859</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1708504276859</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,7 +464,8 @@
     <MESSAGE value="commit 2023/09/21 comeback" />
     <MESSAGE value="commit 2024/01/29" />
     <MESSAGE value="commit 2024/02/19" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 2024/02/19" />
+    <MESSAGE value="commit 2024/02/21" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 2024/02/21" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
