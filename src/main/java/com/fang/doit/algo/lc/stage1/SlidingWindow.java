@@ -97,8 +97,7 @@ public class SlidingWindow {
      * @param k
      * @return
      */
-    public int[] maxSlidingWindow(int[] nums, int k) {
-        // 优先队列大顶堆：维护滑动队列 每次向队列
+    public int[] x_maxSlidingWindow(int[] nums, int k) {
         // 核心在于：只要队列维护最大值，那它就是这个窗口内的最大值
         // 难点在于：当最大值在窗口的最左边时候需要被移除，优先队列就需要重新调整队列大小为k并找到新的最大值。可以用map或int[]来维护这样的一个key-value结构
         PriorityQueue<int[]> queue = new PriorityQueue<>((o1, o2) -> o1[0] != o2[0] ? o2[0] - o1[0] : o2[1] - o1[1]);
@@ -109,7 +108,7 @@ public class SlidingWindow {
         target[0] = queue.peek()[0];
         for (int i = k; i < nums.length; i++) {
             queue.offer(new int[]{nums[i], i});
-            // ++ 只要不在i-k范围内的数据都被移除
+            // 只要不在i-k范围内的数据都被移除
             while (queue.peek()[1] <= i - k) {
                 queue.poll();
             }

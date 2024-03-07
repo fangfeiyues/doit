@@ -1,4 +1,4 @@
-package com.fang.doit.algo.lc.test;
+package com.fang.doit.algo.lc.top;
 
 import com.fang.doit.algo.dst.linked.ListNode;
 import com.fang.doit.algo.tree.TreeNode;
@@ -16,9 +16,713 @@ import java.util.*;
 public class Top {
 
     /**
-     * 1、2024-02-25 : top200-middle over
+     * 271.请你设计一个算法，可以将一个 字符串列表 编码成为一个 字符串。这个编码后的字符串是可以通过网络进行高效传送的，并且可以在接收端被解码回原来的字符串列表
      */
 
+
+    /**
+     * 267. 给定一个字符串 s ，返回 其重新排列组合后可能构成的所有回文字符串，并去除重复的组合
+     * s = "aabb" ==> ["abba", "baab"]
+     *
+     * @param s
+     * @return
+     */
+    public List<String> generatePalindromes(String s) {
+
+        return null;
+    }
+
+    /**
+     * 264.一个整数 n ，请你找出并返回第 n 个 丑数
+     * n = 10 ==> 12 [0, 2, 3, 4, 5, 6, 8, 9, 10, 12] 是由前 10 个丑数组成的序列
+     *
+     * @param n
+     * @return
+     */
+    public int x_nthUglyNumber_264(int n) {
+        // 丑数就是质因子只包含 2、3 和 5 的正整数
+        int[] dp = new int[n];
+        dp[0] = 1;
+        int p2 = 0, p3 = 0, p5 = 0;
+        for (int i = 1; i < n; i++) {
+            // 三个指针分别指向 2、3、5
+            int num2 = dp[p2] * 2, num3 = dp[p3] * 3, num5 = dp[p5] * 5;
+            // 取最小值
+            dp[i] = Math.min(num2, Math.min(num3, num5));
+            // 如果是最小值，指针后移
+            if (dp[i] == num2) {
+                p2++;
+            }
+            if (dp[i] == num3) {
+                p3++;
+            }
+            if (dp[i] == num5) {
+                p5++;
+            }
+        }
+        return dp[n - 1];
+    }
+
+    /**
+     * 260.给你一个整数数组 nums，其中恰好有两个元素只出现一次，其余所有元素均出现两次。
+     * 找出只出现一次的那两个元素。你可以按 任意顺序 返回答案
+     *
+     * [1,2,1,3,2,5] => [3,5] / [5, 3]
+     * @param nums
+     * @return
+     */
+    public int[] singleNumber(int[] nums) {
+
+        return null;
+    }
+
+    /**
+     * 255.给定一个无重复元素的整数数组preorder，如果它是以二叉搜索树的先序遍历排列返回true
+     * <p>
+     * preorder = [5,2,1,3,6] ==> true
+     * preorder = [5,2,6,1,3] ==> false
+     *
+     * @param preorder
+     * @return
+     */
+    public boolean xx_verifyPreorder_255(int[] preorder) {
+        // ** 核心是找到左右子树的分界点，然后判断右子树是否都大于左子树的根节点 **
+        // ** 二叉树的核心一般都是用栈来实现 **
+        Stack<Integer> stack = new Stack<>();
+        int max = Integer.MIN_VALUE;
+        for (int cur : preorder) {
+            // 先序拐点在根节点：后续右子树节点都要大于此节点
+            while (!stack.isEmpty() && cur > stack.peek()) {
+                max = stack.pop();
+            }
+            // 右子树的节点都应该大于左子树的根节点
+            if (cur < max) {
+                return false;
+            }
+            stack.push(cur);
+        }
+        return true;
+    }
+
+    /**
+     * 如果它是以二叉搜索树的后序遍历排列返回true
+     * @param preorder
+     * @return
+     */
+    public boolean verifyPreorderV2(int[] preorder) {
+        if (preorder == null || preorder.length == 0) {
+            return false;
+        }
+        Stack<Integer> stack = new Stack<>();
+        int max = Integer.MIN_VALUE;
+        for (int cur : preorder) {
+            if (cur < max) {
+                return false;
+            }
+            // 后续拐点在根节点：后续右子树节点都要大于此节点
+            while (!stack.isEmpty() && stack.peek() < cur) {
+                max = stack.pop();
+            }
+            stack.push(cur);
+        }
+        return true;
+    }
+
+    /**
+     * 254.整数可以被看作是其因子的乘积
+     * <p>
+     * 12 ==> [
+     * [2, 6],
+     * [2, 2, 3],
+     * [3, 4]
+     * ]
+     *
+     * @param n
+     * @return
+     */
+    List<List<Integer>> factors_res = new ArrayList<>();
+    public List<List<Integer>> getFactors_254(int n) {
+
+        /**
+         * 注意：
+         *
+         * 你可以假定 n 为永远为正数
+         * 因子必须大于 1 并且小于 n
+         */
+
+        // 递归实现
+        // 1. 递归的定义：dfs(n, start, path) 表示 n 的因子列表，因子的起始位置为 start，已经选择的因子列表为 path
+        dfs(n, 2, new ArrayList<>());
+        return factors_res;
+    }
+    private void dfs(int n, int start, List<Integer> path) {
+        if (n == 1) {
+            if (path.size() > 1) {
+                factors_res.add(new ArrayList<>(path));
+            }
+            return;
+        }
+        for (int i = start; i <= n; i++) {
+            if (n % i == 0) {
+                path.add(i);
+                dfs(n / i, i, path);
+                path.remove(path.size() - 1);
+            }
+        }
+    }
+
+    /**
+     * 253.给你一个会议时间安排的数组intervals ，每个会议时间都会包括开始和结束的时间intervals[i] = [starti, endi]
+     * intervals = [[0,30],[5,10],[15,20]] ==> 2
+     *
+     * @param intervals
+     * @return 所需会议室的最小数量
+     */
+    public int xx_minMeetingRooms_253(int[][] intervals) {
+        // ** 看的是思路：小顶堆维护的是当前进行的会议室 **
+        if (intervals == null || intervals.length == 0) {
+            return 0;
+        }
+        // 从定义排序按照进入时间排序
+        Arrays.sort(intervals, Comparator.comparingInt(v -> v[0]));
+        // 定义一个小顶堆的优先队列，存放当前进行的会议室
+        PriorityQueue<Integer> heap = new PriorityQueue<>();
+        int meetingCount = 0;
+        for (int[] meeting : intervals) {
+            // 每次新的会议进来则遍历判断当前正在进行的是否可以结束，否则加1
+            while (!heap.isEmpty() && meeting[0] >= heap.peek()) {
+                heap.poll();
+            }
+            heap.add(meeting[1]);
+            meetingCount = Math.max(meetingCount, heap.size());
+        }
+        return meetingCount;
+    }
+
+    /**
+     * 247。给定一个整数 n ，返回所有长度为 n 的 中心对称数 。你可以以 任何顺序 返回答案
+     * n = 2 ==》 ["11","69","88","96"]
+     * @param n
+     * @return
+     */
+    public List<String> findStrobogrammatic(int n) {
+        // 中心对称数是一个数字在旋转了 180 度之后看起来依旧相同的数字（或者上下颠倒地看）
+        return null;
+    }
+
+    /**
+     * 240.编写一个高效的算法来搜索 m x n 矩阵 matrix 中的一个目标值 target 。该矩阵具有以下特性：
+     * 每行的元素从左到右升序排列。
+     * 每列的元素从上到下升序排列。
+     * @param matrix
+     * @param target
+     * @return
+     */
+    public boolean searchMatrix(int[][] matrix, int target) {
+        // 一个比较巧妙的解法：通过大小的增减
+        int row = matrix.length - 1;
+        int col = 0;
+        while (row >= 0 && col < matrix[0].length) {
+            if (matrix[row][col] > target) {
+                row--;
+            } else if (matrix[row][col] < target) {
+                col++;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 239.给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。
+     * 你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
+     * <p>
+     * [1,3,-1,-3,5,3,6,7] k = 3 ==> [3,3,5,5,6,7]
+     *
+     * @param nums
+     * @param k
+     * @return 滑动窗口中的最大值
+     */
+    public int[] maxSlidingWindow_239(int[] nums, int k) {
+        /**
+         * 将一个元素放入优先队列的时间复杂度为 O(logn)，因此总时间复杂度为 O(nlogn)
+         */
+        PriorityQueue<int[]> queue = new PriorityQueue<>((o1, o2) -> o1[0] != o2[0] ? o2[0] - o1[0] : o2[1] - o1[1]);
+        for (int i = 0; i < k; i++) {
+            queue.offer(new int[]{nums[i], i});
+        }
+        int[] target = new int[nums.length - k + 1];
+        target[0] = queue.peek()[0];
+        for (int i = k; i < nums.length; i++) {
+            queue.offer(new int[]{nums[i], i});
+            // 队列中位置不在 i-k 范围内的数据都被移除
+            while (queue.peek()[1] <= i - k) {
+                queue.poll();
+            }
+            target[i - k + 1] = queue.peek()[0];
+        }
+        return target;
+    }
+
+    public int[] xxx_maxSlidingWindow_v2(int[] nums, int k) {
+        /**
+         * 滑动窗口的核心在于通过 左右指针 或者 双端队列 控制窗口内的数据保证其满足要求
+         */
+
+        // 总时间复杂度为 O(n)
+        int n = nums.length;
+        Deque<Integer> deque = new LinkedList<>();
+        for (int i = 0; i < k; ++i) {
+            // 1、新加入的值如果大于队头，则代表在后面的窗口内队头数据再也不会是最大值; 同时一直循环比较移除队尾次从而保证队列递减
+            while (!deque.isEmpty() && nums[i] >= nums[deque.peekLast()]) {
+                deque.pollLast();
+            }
+            deque.offerLast(i);
+        }
+
+        int[] ans = new int[n - k + 1];
+        ans[0] = nums[deque.peekFirst()];
+        for (int i = k; i < n; ++i) {
+            while (!deque.isEmpty() && nums[i] >= nums[deque.peekLast()]) {
+                deque.pollLast();
+            }
+            deque.offerLast(i);
+            // 2、只需要看最大值在不在区间内即可
+            while (deque.peekFirst() <= i - k) {
+                deque.pollFirst();
+            }
+            ans[i - k + 1] = nums[deque.peekFirst()];
+        }
+        return ans;
+    }
+
+//    public static void main(String[] args) {
+//        Top top = new Top();
+//        int[] nums = {1, 3, 2, 5, 4, 3, 7, 5, 6, 8};
+//        int[] res = top.xxx_maxSlidingWindow_v2(nums, 3);
+//        for (int i = 0; i < res.length; i++) {
+//            System.out.println(res[i]);
+//        }
+//    }
+    /**
+     * 236.给定一个二叉树, 找到该树中两个指定节点的最近公共祖先
+     *
+     * @param cur
+     * @param p
+     * @param q
+     * @return
+     */
+    public TreeNode xxx_lowestCommonAncestor(TreeNode cur, TreeNode p, TreeNode q) {
+        if (cur == null || cur == p || cur == q) {
+            return cur;
+        }
+        // 1、先左侧节点一撸到底；2、再逐步回塑右侧节点；3、在当前节点视角判断子树下是否存在指定节点，存在两则返回cur存在一则返回left/right都不存在则null
+        TreeNode left = xxx_lowestCommonAncestor(cur.left, p, q);
+        TreeNode right = xxx_lowestCommonAncestor(cur.right, p, q);
+        // ⚠️ ！！！这两个判断&返回的是核心：cur节点的左右子树是否存在指定节点，不存在即返回另一个节点都存在则返回当前节点。然后一直把节点往上回溯比较！！！
+        if (left == null) {
+            // left为空：说明当前节点的左子树一撸到底没有遇到指定节点，那就在右节点则直接返回右节点值
+            return right;
+        }
+        if (right == null) {
+            // right为空：说明当前节点的右子树一撸到底没有遇到指定节点，那就在左节点则直接返回左节点值
+            return left;
+        }
+        // 如果left和right都不为空：说明这两个节点一个在cur的左子树上一个在cur的右子树上
+        // return的数值代表啥？？？ -- 代表当前节点可能所存在的树
+        return cur;
+    }
+
+    /**
+     * 235.给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先
+     * @param cur
+     * @param p
+     * @param q
+     * @return 好题：深度了解树的遍历
+     */
+    public TreeNode lowestCommonAncestor(TreeNode cur, TreeNode p, TreeNode q) {
+        // 二叉搜索树有排序的特征，可以利用这个特性
+        if (cur == null || (cur.val < p.val && cur.val < q.val)) {
+            return null;
+        }
+        if (cur.val > p.val) {
+            return p;
+        }
+        if (cur.val > q.val) {
+            return q;
+        }
+        TreeNode left = lowestCommonAncestor(cur.left, p, q);
+        TreeNode right = lowestCommonAncestor(cur.right, p, q);
+        if (left == null) {
+            return right;
+        }
+        if (right == null) {
+            return left;
+        }
+        return cur;
+    }
+
+//    public static void main(String[] args) {
+//        TreeNode treeNode7 = new TreeNode(7);
+//        TreeNode treeNode8 = new TreeNode(8);
+//        TreeNode treeNode6 = new TreeNode(6);
+//        TreeNode treeNode5 = new TreeNode(5, treeNode7, treeNode8);
+//        TreeNode treeNode4 = new TreeNode(4,null, treeNode6);
+//        TreeNode treeNode3 = new TreeNode(3);
+//        TreeNode treeNode2 = new TreeNode(2, treeNode4, treeNode5);
+//        TreeNode treeNode1 = new TreeNode(1, treeNode2, treeNode3);
+//        Top top = new Top();
+//        System.out.println(top.xxx_lowestCommonAncestor(treeNode1, treeNode3, treeNode8).val);
+//    }
+
+    /**
+     * 230.给定一个二叉搜索树的根节点 root ，和一个整数 k ，请你设计一个算法查找其中第 k 个最小元素（从 1 开始计数）
+     * @param root
+     * @param k
+     * @return
+     */
+    private int kth_smallest_res = 0;
+    int rank = 0;
+    private int kthSmallest_230(TreeNode root, int k) {
+        if (root == null) {
+            return 0;
+        }
+        traverse(root, k);
+        return kth_smallest_res;
+    }
+
+    private void traverse(TreeNode root, int k) {
+        if (root == null) {
+            return;
+        }
+        traverse(root.left, k);
+        // 核心在于不能把左节点看作左节点，而是一个中间节点
+        rank++;
+        if (k == rank) {
+            kth_smallest_res = root.val;
+            return;
+        }
+        traverse(root.right, k);
+    }
+
+    /**
+     * 221.在一个由 '0' 和 '1' 组成的二维矩阵内，找到只包含 '1' 的最大正方形，并返回其面积
+     *
+     * @param matrix
+     * @return
+     */
+    public int maximalSquare(char[][] matrix) {
+        int m = matrix.length, n = matrix[0].length, a = 0;
+//        二维数组dp，dp(i,j)表示以matrix(i,j)为右下角的只包含“1“的正方形的最大边长
+//        如果i==0或者j==0，则dp(i,j)为对应的0或1
+//        如果matrix(i,j)==0，则dp(i,j)=0
+//        否则，dp(i,j) = min(dp(i-1,j),dp(i,j-1),dp(i-1,j-1))+1
+//        即正方形的右下角要取决于其上方、左侧、左上方三个单元格的情况。是三者所构成正方形最大边长的最小值+1
+//        时间复杂度O(mn)，空间复杂度O(mn)
+        int[][] dp = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == 0 || j == 0) {
+                    dp[i][j] = matrix[i][j] - '0';
+                } else if (matrix[i][j] == '1') {
+                    dp[i][j] = Math.min(dp[i - 1][j - 1], Math.min(dp[i][j - 1], dp[i - 1][j])) + 1;
+                }
+                a = Math.max(a, dp[i][j]);
+            }
+        }
+        return a * a;
+    }
+
+    /**
+     * 216.找出所有相加之和为 n 的 k 个数的组合，且满足下列条件：
+     * 1、只使用数字1到9;
+     * 2、每个数字最多使用一次
+     *
+     * @param k
+     * @param n
+     * @return 所有可能的有效组合的列表 。该列表不能包含相同的组合两次，组合可以以任何顺序返回
+     */
+    List<List<Integer>> res = new ArrayList<>();
+    List<Integer> list = new ArrayList<>();
+
+    public List<List<Integer>> combinationSum3_216(int k, int n) {
+        for (int j = 1; j < 9; j++) {
+            list.add(j);
+            combinationSum3DFS(n - j, k - 1, j, list);
+            list.remove(list.size() - 1);
+        }
+        return res;
+    }
+
+    private void combinationSum3DFS(int n, int k, int i, List<Integer> list) {
+        if (n < 0) {
+            return;
+        }
+        if (n == 0 && k == 0) {
+            res.add(new ArrayList<>(list));
+            return;
+        }
+        if (k == 0) {
+            return;
+        }
+        for (int j = i + 1; j < 9; j++) {
+            if (n < j) {
+                continue;
+            }
+            list.add(j);
+            combinationSum3DFS(n - j, k - 1, j, list);
+            list.remove(list.size() - 1);
+        }
+    }
+
+//    public static void main(String[] args) {
+//        System.out.println(JSON.toJSONString(combinationSum3(3, 9)));
+//    }
+
+    /**
+     * 214. 给定一个字符串 s，你可以通过在字符串前面添加字符将其转换为回文串。找到并返回可以用这种方式转换的最短回文串
+     * "aacecaaa" ==》"aaacecaaa"
+     * "abcd" ==》"dcbabcd"
+     *
+     * @param s
+     * @return
+     */
+    public String xxx_shortestPalindrome(String s) {
+        // https://blog.csdn.net/weixin_45333934/article/details/108356016
+        return shortestPalindrome_v1(s);
+    }
+
+
+    public String shortestPalindrome_v1(String s) {
+        // 双向指针s[i]==s[j]则i++,j--；否则j--。 -- 这种方法不好想
+        int i = 0, j = s.length() - 1;
+        char[] c = s.toCharArray();
+        while (j >= 0) {
+            if (i == j) {
+                continue;
+            }
+            if (c[i] == c[j]) {
+                i++;
+            }
+            j--;
+        }
+        //此时代表整个字符串是回文串
+        if (i == s.length()) {
+            return s;
+        }
+        //后缀
+        String suffix = s.substring(i);
+        //后缀倒置
+        String reverse = new StringBuilder(suffix).reverse().toString();
+        //加到开头
+        return reverse + s;
+    }
+
+    /**
+     * 213. 第一个房屋和最后一个房屋是紧挨着的，同时相邻的房屋装有相互连通的防盗系统。如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警
+     * [1,3,1] ==> 3
+     *
+     * @param nums
+     * @return 在不触动警报装置的情况下 ，今晚能够偷窃到的最高金额
+     */
+    public static int rob_213(int[] nums) {
+        if (nums.length < 2) {
+            return nums[0];
+        }
+        // 动态规划看n-2的大小
+        int[] dp = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            dp[i] = nums[i];
+        }
+        int max = Math.max(dp[0], dp[1]);
+        dp[1] = max;
+        for (int i = 2; i < nums.length; i++) {
+            // 金额肯定都是大于0的，dp[i-2] + nums[i] 和 dp[i-1]
+            dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1]);
+            max = Math.max(max, dp[i]);
+        }
+        return max;
+    }
+
+//    public static void main(String[] args) {
+//        System.out.println(rob_213(new int[]{1, 3, 1}));
+//    }
+
+
+    /**
+     * 207. 你这个学期必须选修 numCourses 门课程，记为 0 到 numCourses - 1 。 prerequisites[i] = [ai, bi] ，表示如果要学习课程ai则必须先学习课程bi
+     * numCourses = 2, prerequisites = [[1,0]] ==> true
+     * numCourses = 2, prerequisites = [[1,0],[0,1]] ==> false
+     *
+     * @param numCourses
+     * @param prerequisites
+     * @return 是否可能完成所有课程的学习
+     */
+    List<List<Integer>> edges;
+    int[] visited;
+    boolean valid = true;
+
+    public boolean xx_canFinish_207(int numCourses, int[][] prerequisites) {
+        edges = new ArrayList<>();
+        for (int i = 0; i < numCourses; ++i) {
+            edges.add(new ArrayList<>());
+        }
+        visited = new int[numCourses];
+        for (int[] info : prerequisites) {
+            edges.get(info[1]).add(info[0]);
+        }
+        // 「题目理解错误..是这几门课序号都要完成」
+        for (int i = 0; i < numCourses && valid; ++i) {
+            if (visited[i] == 0) {
+                dfs(i);
+            }
+        }
+        return valid;
+    }
+
+    public void dfs(int u) {
+        // 课程完成前、完成中、完成后
+        visited[u] = 1;
+        for (int v : edges.get(u)) {
+            if (visited[v] == 0) {
+                dfs(v);
+                if (!valid) {
+                    return;
+                }
+            } else if (visited[v] == 1) {
+                // 在完成中再次访问节点说明有环存在
+                valid = false;
+                return;
+            }
+        }
+        visited[u] = 2;
+    }
+
+    // 广度遍历算法
+    int[] indeg;
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        edges = new ArrayList<>();
+        for (int i = 0; i < numCourses; ++i) {
+            edges.add(new ArrayList<>());
+        }
+        indeg = new int[numCourses];
+        for (int[] info : prerequisites) {
+            edges.get(info[1]).add(info[0]);
+            ++indeg[info[0]];
+        }
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < numCourses; ++i) {
+            if (indeg[i] == 0) {
+                queue.offer(i);
+            }
+        }
+        int visited = 0;
+        while (!queue.isEmpty()) {
+            ++visited;
+            int u = queue.poll();
+            for (int v: edges.get(u)) {
+                --indeg[v];
+                if (indeg[v] == 0) {
+                    queue.offer(v);
+                }
+            }
+        }
+        return visited == numCourses;
+    }
+
+
+    /**
+     * 199.给定一个二叉树的根节点root，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值
+     * [1,2,3,null,5,null,4] ==> [1,3,4]
+     *
+     * @param root 2024-02-27
+     * @return
+     */
+    public List<Integer> x_rightSideView(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+        Queue<TreeNode> dq = new LinkedList<>();
+        dq.offer(root);
+        while (!dq.isEmpty()) {
+            // 上一层的大小，不断遍历减小
+            int size = dq.size();
+            while (size > 0) {
+                TreeNode node = dq.poll();
+                if (node.left != null) {
+                    dq.offer(node.left);
+                }
+                if (node.right != null) {
+                    dq.offer(node.right);
+                }
+                if (size == 1) {
+                    res.add(node.val);
+                }
+                size--;
+            }
+        }
+        return res;
+    }
+
+
+    /**
+     * 172.给定一个整数 n ，返回 n! 结果中尾随零的数量
+     *
+     * @param n 2024-02-26
+     * @return
+     */
+    public int trailingZeroes_172(int n) {
+        // 找到数字中因子5的数量就是后面0的次数，因为2*5=10而2的肯定会比5多，所以看5的就行
+        int ans = 0;
+        for (int i = 5; i <= n; i += 5) {
+            int temp = i;
+            while (temp % 5 == 0) {
+                ans++;
+                temp /= 5;
+            }
+        }
+        return ans;
+    }
+
+    /**
+     * 167. 给你一个下标从 1 开始的整数数组 numbers ，该数组已按非递减顺序排列，请你从数组中找出满足相加之和等于目标数 target 的两个数
+     * numbers = [2,7,11,15], target = 9 ==> [1,2]
+     * numbers = [2,3,4], target = 6 ==> [1,3]
+     *
+     * @param numbers 2024-02-26
+     * @param target
+     * @return
+     */
+    public int[] twoSum_167(int[] numbers, int target) {
+        for (int i = 0; i < numbers.length - 1; i++) {
+            int left = i + 1, right = numbers.length - 1, mid;
+            while (left <= right) {
+                mid = (right - left) / 2 + left;
+                if (numbers[mid] > target - numbers[i]) {
+                    right = mid - 1;
+                } else if (numbers[mid] < target - numbers[i]) {
+                    left = mid + 1;
+                } else {
+                    return new int[]{i + 1, mid + 1};
+                }
+            }
+        }
+        return new int[0];
+    }
+
+    public int[] twoSum_v2(int[] numbers, int target) {
+        int left = 0, right = numbers.length - 1;
+        while (numbers[left] != target - numbers[right]) {
+            if (numbers[left] > target - numbers[right]) {
+                right--;
+            } else {
+                left++;
+            }
+        }
+        return new int[]{left + 1, right + 1};
+    }
 
     /**
      * 164.给定一个无序的数组 nums，返回 数组在排序之后，相邻元素之间最大的差值 。如果数组元素个数小于 2，则返回 0 。
@@ -44,7 +748,7 @@ public class Top {
      * @param nums
      * @return
      */
-    public int findPeakElement(int[] nums) {
+    public int findPeakElement_162(int[] nums) {
         // 必须实现时间复杂度为 O(log n) 的算法来解决此问题。
         // 二分法：往上走的一定有波峰
         int left = 0;
@@ -73,11 +777,10 @@ public class Top {
      * @param s
      * @return
      */
-    public int lengthOfLongestSubstringTwoDistinct(String s) {
+    public int xxx_lengthOfLongestSubstringTwoDistinct_159(String s) {
         // 暴力循环：每个节点不断回退前两个不同点，时间复杂度O(n^2)
         // 左右指针：保证left-right指针区间内的数据类型==2,通过左右指针差求最大值
-        // 滑动窗口:利用数组集合代替map,保持窗口内类型在2否则一直移动
-
+        // 滑动窗口:利用数组集合代替map,保持窗口内类型在2否则一直移动 -- 题目有点精妙
         int[] window = new int[128];
         int length = s.length();
         int left = 0, right = 0;
@@ -94,6 +797,7 @@ public class Top {
                 }
             }
         }
+        // 要在right-left间保持最大值，也就是说窗口只会大不会小。如果右侧进来相同的右移动，否则左右都移动
         return right - left;
     }
 
@@ -116,7 +820,7 @@ public class Top {
      * @param nums 2024-02-22
      * @return
      */
-    public static int findMin(int[] nums) {
+    public static int xxx_findMin_154(int[] nums) {
         // 你必须设计一个时间复杂度为 O(log n) 的算法解决此问题
         // 二分法：找到节点的左右侧都大于它的或者它最小的
 //        int low = 0;
@@ -148,16 +852,19 @@ public class Top {
             int pivot = low + (high - low) / 2;
             if (nums[pivot] < nums[high]) {
                 high = pivot;
-            } else {
+            } else if (nums[pivot] > nums[high]) {
                 low = pivot + 1;
+            } else {
+                // 如果pivot和high一样大小，从high位置向前走！！！（二分就是要把各种可能都想一边 各种变种）
+                high -= 1;
             }
         }
         return nums[low];
     }
 
 //    public static void main(String[] args) {
-//        int[] nums = {5,4,3,2,1,1,6};
-//        System.out.println(findMin(nums));
+//        int[] nums = {1, 3, 3};
+//        System.out.println(findMin_154(nums));
 //    }
 
 
@@ -170,7 +877,7 @@ public class Top {
      * @param nums 2024-02-22
      * @return
      */
-    public static int maxProduct_152_xx(int[] nums) {
+    public static int xxx_maxProduct_152(int[] nums) {
 //        int[] dp = new int[nums.length];
 //        dp[0] = nums[0];
 //        int max = dp[0];
@@ -219,11 +926,11 @@ public class Top {
      * 148.链表的头结点 head ，请将其按升序排列并返回排序后的链表
      * [4,2,7,5,9] -> [2,4,5,7,9]
      *
-     * @param head 2024-02-22 again..
+     * @param head 2024-02-22 again
      * @return
      */
-    public ListNode sortList_148_xx(ListNode head) {
-        // 归并排序：数组不断按中间节点分割成最小但愿如此，然后递归合并排序。简称先归一再合并
+    public ListNode xx_sortList_148(ListNode head) {
+        // 归并排序：数组不断按中间节点分割成最小，然后递归合并排序。简称先归一再合并
         if (head == null || head.next == null) {
             return head;
         }
@@ -231,8 +938,8 @@ public class Top {
         ListNode rightHead = middle.next;
         // 中间侧断开保证下一次遍历只有前半部分（由于后续不会再用到这个链表所以不用担心链表接不上的问题）
         middle.next = null;
-        ListNode left = sortList_148_xx(head);
-        ListNode right = sortList_148_xx(rightHead);
+        ListNode left = xx_sortList_148(head);
+        ListNode right = xx_sortList_148(rightHead);
         return mergeListNode(left, right);
     }
 
@@ -440,19 +1147,19 @@ public class Top {
     List<String> ans = new ArrayList<>();
     int n;
 
-    public List<List<String>> partition_131(String s) {
+    public List<List<String>> xxx_partition_131(String s) {
         n = s.length();
         f = new boolean[n][n];
         for (int i = 0; i < n; ++i) {
             Arrays.fill(f[i], true);
         }
-        // 两层循环：遍历所有[i,j]节点，同时满足i+1和j-1依次从大到小和从小到大
+        // 1、每两个点间是否回文：找到左右指针[i,j]不断遍历
         for (int i = n - 1; i >= 0; --i) {
             for (int j = i + 1; j < n; ++j) {
                 f[i][j] = (s.charAt(i) == s.charAt(j)) && f[i + 1][j - 1];
             }
         }
-        // 深度递归：字符串解析成一层一层的树结构，然后从上到下递归遍历。注意要移除前一棵树枝的节点
+        // 2、深度递归树找到[i,j]
         dfs(s, 0);
         return ret;
     }

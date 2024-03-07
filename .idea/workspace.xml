@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f63dfa9-bcae-4a6d-866f-88d725a0b767" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/top/Codec.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/dst/linked/ListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/dst/linked/ListNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/test/Top.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/test/Top.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/SlidingWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/SlidingWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/test/Top.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/top/Top.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +69,9 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="ReaderModeSettings">
@@ -78,7 +82,7 @@
       <recent name="com.fang.doit.algo.lc.test" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DepthTree">
+  <component name="RunManager" selected="Application.Top">
     <configuration name="DepthTree" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.stage1.DepthTree" />
       <module name="doit" />
@@ -136,12 +140,12 @@
       </method>
     </configuration>
     <configuration name="Top" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.test.Top" />
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.top.Top" />
       <module name="doit" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.fang.doit.algo.lc.test.*" />
+          <option name="PATTERN" value="com.fang.doit.algo.lc.top.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -173,6 +177,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Top" />
         <item itemvalue="Application.MidSearch_Lack" />
         <item itemvalue="Application.DepthTree" />
         <item itemvalue="Application.SlidingWindow" />
@@ -340,7 +345,9 @@
       <workItem from="1708395161598" duration="638000" />
       <workItem from="1708395887544" duration="4136000" />
       <workItem from="1708400691028" duration="55398000" />
-      <workItem from="1708675726860" duration="1220000" />
+      <workItem from="1708675726860" duration="51010000" />
+      <workItem from="1709285182085" duration="446000" />
+      <workItem from="1709307146499" duration="28536000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1646476425173</created>
@@ -412,7 +419,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708504276859</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="commit 2024/02/23">
+      <created>1708680889207</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1708680889207</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -465,7 +479,8 @@
     <MESSAGE value="commit 2024/01/29" />
     <MESSAGE value="commit 2024/02/19" />
     <MESSAGE value="commit 2024/02/21" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 2024/02/21" />
+    <MESSAGE value="commit 2024/02/23" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 2024/02/23" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
