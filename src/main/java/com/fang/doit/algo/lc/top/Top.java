@@ -15,6 +15,280 @@ import java.util.*;
  */
 public class Top {
 
+
+    /**
+     * 316. 给你一个字符串 s ，请你去除字符串中重复的字母，使得每个字母只出现一次。需保证 返回结果的
+     * 字典序 最小（要求不能打乱其他字符的相对位置）
+     *
+     * s = "bcabc" ==> abc
+     * s = "cbacdcbc" ==> acdb
+     * @param s
+     * @return
+     */
+    public String removeDuplicateLetters(String s) {
+        return null;
+    }
+
+    /**
+     * 315.给你一个整数数组 nums ，按要求返回一个新数组 counts 。数组 counts 有该性质： counts[i] 的值是  nums[i] 右侧小于 nums[i] 的元素的数量
+     *
+     * nums = [5,2,6,1] ==> [2,1,1,0]
+     *
+     * 5 的右侧有 2 个更小的元素 (2 和 1)
+     * 2 的右侧仅有 1 个更小的元素 (1)
+     * 6 的右侧有 1 个更小的元素 (1)
+     * 1 的右侧有 0 个更小的元素
+     * @param nums
+     * @return
+     */
+    public List<Integer> countSmaller(int[] nums) {
+        return null;
+    }
+
+    /**
+     * 313.超级丑数 超级丑数 是一个正整数，并满足其所有质因数都出现在质数数组 primes 中
+     *
+     * 给你一个整数 n 和一个整数数组 primes ，返回第 n 个 超级丑数
+     *
+     * n = 12, primes = [2,7,13,19] ==》32 给定长度为 4 的质数数组 primes = [2,7,13,19]，前 12 个超级丑数序列为：[1,2,4,7,8,13,14,16,19,26,28,32]
+     * @param n
+     * @param primes
+     * @return
+     */
+    public int nthSuperUglyNumber(int n, int[] primes) {
+        return 0;
+    }
+
+    /**
+     * 309. 给定一个整数数组prices，其中第  prices[i] 表示第 i 天的股票价格
+     *
+     * 设计一个算法计算出最大利润。在满足以下约束条件下，你可以尽可能地完成更多的交易（多次买卖一支股票）:
+     *
+     * 卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)。
+     * 注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）
+     *
+     *
+     * prices = [1,2,3,0,2] ==> 3 [买入, 卖出, 冷冻期, 买入, 卖出]
+     * @param prices
+     * @return
+     */
+    public int xxx_maxProfit_309(int[] prices) {
+        if (prices.length == 0) {
+            return 0;
+        }
+        int n = prices.length;
+        // f[i][0]: 手上持有股票的最大收益
+        // f[i][1]: 手上不持有股票，并且处于冷冻期中的累计最大收益
+        // f[i][2]: 手上不持有股票，并且不在冷冻期中的累计最大收益
+        int[][] f = new int[n][3];
+        f[0][0] = -prices[0];
+        for (int i = 1; i < n; ++i) {
+            // 第i天持有股票：第i-1持有的 或者 第i天买入（则第i-1就不能买入且不处于冷冻期）
+            f[i][0] = Math.max(f[i - 1][0], f[i - 1][2] - prices[i]);
+            // 第i天卖出：即第i-1天持有
+            f[i][1] = f[i - 1][0] + prices[i];
+            // 第i天没操作
+            f[i][2] = Math.max(f[i - 1][1], f[i - 1][2]);
+        }
+        return Math.max(f[n - 1][1], f[n - 1][2]);
+    }
+
+
+    /**
+     * 306.累加数 是一个字符串，组成它的数字可以形成累加序列。
+     *
+     * 一个有效的 累加序列 必须 至少 包含 3 个数。除了最开始的两个数以外，序列中的每个后续数字必须是它之前两个数字之和。
+     *
+     * 给你一个只包含数字 '0'-'9' 的字符串，编写一个算法来判断给定输入是否是 累加数 。如果是，返回 true ；否则，返回 false
+     *
+     *
+     * 112358 -->true
+     * 199100199 --> true
+     * @param num
+     * @return
+     */
+    public boolean isAdditiveNumber(String num) {
+
+        return false;
+    }
+
+
+    /**
+     * 304.给定一个二维矩阵 matrix，以下类型的多个请求
+     *
+     * 计算其子矩形范围内元素的总和，该子矩阵的 左上角 为 (row1, col1) ，右下角 为 (row2, col2)
+     *
+     * [[[[3,0,1,4,2],[5,6,3,2,1],[1,2,0,1,5],[4,1,0,1,7],[1,0,3,0,5]]],[2,1,4,3],[1,1,2,2],[1,2,2,4]]
+     *  ==>
+     * numMatrix.sumRegion(2, 1, 4, 3); // return 8 (红色矩形框的元素总和)
+     * numMatrix.sumRegion(1, 1, 2, 2); // return 11 (绿色矩形框的元素总和)
+     * numMatrix.sumRegion(1, 2, 2, 4); // return 12 (蓝色矩形框的元素总和)
+     */
+
+
+
+    /**
+     * 301.给你一个由若干括号和字母组成的字符串 s ，删除最小数量的无效括号，使得输入的字符串有效
+     *
+     * s = "()())()" ==》["(())()","()()()"]
+     * @param s
+     * @return
+     */
+    public List<String> removeInvalidParentheses(String s) {
+        return null;
+    }
+
+
+    /**
+     * 300. 给你一个整数数组 nums ，找到其中最长严格递增子序列的长度
+     * <p>
+     * nums = [10,9,2,3,7,101,18] ==》4 [2,3,7,101]
+     *
+     * @param nums
+     * @return
+     */
+    public static int lengthOfLIS(int[] nums) {
+        // 左右指针
+        int left = 0, right = 0;
+        int max = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] > nums[right]) {
+                right++;
+            } else {
+                max = Math.max(max, right - left);
+                right = i;
+                left = i;
+            }
+        }
+        return max > 0 ? max + 1 : max;
+    }
+
+    /**
+     * 287. 给定一个包含n + 1个整数的数组 nums ，其数字都在[1, n]范围内（包括 1 和 n），可知至少存在一个重复的整数
+     * [3,2,5,4,6,1,4] ==> 4
+     *
+     * @param nums
+     * @return 假设nums只有一个重复的整数 ，返回这个重复的数
+     */
+    public int xxx_findDuplicate_287(int[] nums) {
+        // 解决方案必须不修改数组nums 且 只用常量级O(1)的额外空间
+        // 二分法：findDuplicate_4_mid -- 常量级的时间复杂度和空间复杂
+        // 快慢指针：findDuplicate_4_slow -- 保证了在快慢指针能在重复节点相遇
+        return 0;
+    }
+
+    private int findDuplicate_4_mid(int[] nums) {
+        int left = 1;
+        int right = nums.length - 1;
+        while (left < right) {
+            int mid = (left + right) / 2;
+            int cnt = 0;
+            for (int num : nums) {
+                if (num <= mid) {
+                    cnt++;
+                }
+            }
+            // 多数都小于数字mid的话说明多的数比mid小，则说明值在[1,数字mid间]
+            if (cnt > mid) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
+
+    private int findDuplicate_4_slow(int[] nums) {
+        // 通过nums[n] --> nums[nums[n]]的指向构建成一个环（不在意环的位置是否是链表最后只要保证环存在即可）
+        int slow = nums[0];
+        int fast = nums[nums[0]];
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        }
+        fast = 0;
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        return slow;
+    }
+
+    /**
+     * 285.给定一棵二叉搜索树和其中的一个节点 p ，找到该节点在树中的中序后继。如果节点没有中序后继，请返回 null
+     * root = [2,1,3], p = 1 ==》2
+     * root = [5,3,6,2,4,null,null,1], p = 6  ==> null
+     *
+     * @param root
+     * @param p
+     * @return
+     */
+    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+        // 中序遍历放到stack，然后找到该节点
+        Stack<TreeNode> stack = new Stack<>();
+        inorderSuccessor(root, stack);
+        TreeNode pre = null;
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            if (node == p) {
+                return pre;
+            }
+            pre = node;
+        }
+        return pre;
+    }
+    private void inorderSuccessor(TreeNode root, Stack<TreeNode> stack) {
+        if (root == null) {
+            return;
+        }
+        inorderSuccessor(root.left, stack);
+        stack.push(root);
+        inorderSuccessor(root.right, stack);
+    }
+
+//    public static void main(String[] args) {
+//        TreeNode find = new TreeNode(1);
+//        TreeNode root = new TreeNode(2, find, new TreeNode(3));
+//        Top top = new Top();
+//        TreeNode result = top.inorderSuccessor(root, find);
+//        System.out.println(result == null ? null : result.val);
+//    }
+
+
+    /**
+     * 279.给你一个整数 n ，返回和为 n 的完全平方数的最少数量
+     * （完全平方数是其值等于一个整数自乘的积。例如，1、4、9 和 16 都是完全平方数，而 3 和 11 不是 ）
+     * n = 12 ==> 3 4+4+4
+     *
+     * @param n
+     * @return
+     */
+    public int xxx_numSquares_279(int n) {
+        // ** 核心：之前的动态规划都是正向推进如dp[i] = dp[i-1]+nums[i]，这个是倒着推前一个最小的从而找到心在最大的 **
+        int[] dp = new int[n + 1];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 0;
+        // 遍历[1,n]所有的数，取得dp[i]的值然后通过dp[i]->dp[n]
+        for (int i = 1; i <= n; i++) {
+            // 遍历所有的完全平方数
+            for (int j = 1; j * j <= i; j++) {
+                // 状态转移方程：把i前一个能通过完全平方数到i的都遍历一遍，从而找到最小的
+                dp[i] = Math.min(dp[i], dp[i - j * j] + 1);
+            }
+        }
+        return dp[n];
+    }
+
+//    public static void main(String[] args) {
+//        Top service = new Top();
+//        System.out.println(service.xxx_numSquares_279(12));
+//    }
+
+    /**
+     * 多线程控制ABC循环打印
+     */
+
+
     /**
      * 271.请你设计一个算法，可以将一个 字符串列表 编码成为一个 字符串。这个编码后的字符串是可以通过网络进行高效传送的，并且可以在接收端被解码回原来的字符串列表
      */
@@ -33,23 +307,20 @@ public class Top {
     }
 
     /**
-     * 264.一个整数 n ，请你找出并返回第 n 个 丑数
-     * n = 10 ==> 12 [0, 2, 3, 4, 5, 6, 8, 9, 10, 12] 是由前 10 个丑数组成的序列
+     * 264.一个整数n，返回第n个丑数（ 丑数就是质因子只包含 2、3 和 5 的正整数 ）
+     * n = 10 ==> 12 [0, 2, 3, 4, 5, 6, 8, 9, 10, 12] 丑数组成的前10列表
      *
      * @param n
      * @return
      */
     public int x_nthUglyNumber_264(int n) {
-        // 丑数就是质因子只包含 2、3 和 5 的正整数
+        // ** 核心：不算是动态规划，本质是2、3、5三条线推进。所以遇到问题最先开始做的是最朴素的想法，再寻求优化 **
         int[] dp = new int[n];
         dp[0] = 1;
         int p2 = 0, p3 = 0, p5 = 0;
         for (int i = 1; i < n; i++) {
-            // 三个指针分别指向 2、3、5
             int num2 = dp[p2] * 2, num3 = dp[p3] * 3, num5 = dp[p5] * 5;
-            // 取最小值
             dp[i] = Math.min(num2, Math.min(num3, num5));
-            // 如果是最小值，指针后移
             if (dp[i] == num2) {
                 p2++;
             }
@@ -85,9 +356,8 @@ public class Top {
      * @param preorder
      * @return
      */
-    public boolean xx_verifyPreorder_255(int[] preorder) {
-        // ** 核心是找到左右子树的分界点，然后判断右子树是否都大于左子树的根节点 **
-        // ** 二叉树的核心一般都是用栈来实现 **
+    public boolean xxx_verifyPreorder_255(int[] preorder) {
+        // ** 核心是找到左右子树的分界点，然后判断右子树是否都大于左子树的根节点。另外二叉树的核心一般都是用栈来实现 **
         Stack<Integer> stack = new Stack<>();
         int max = Integer.MIN_VALUE;
         for (int cur : preorder) {
@@ -109,7 +379,7 @@ public class Top {
      * @param preorder
      * @return
      */
-    public boolean verifyPreorderV2(int[] preorder) {
+    private boolean verifyPreorderV2(int[] preorder) {
         if (preorder == null || preorder.length == 0) {
             return false;
         }
@@ -142,16 +412,8 @@ public class Top {
      */
     List<List<Integer>> factors_res = new ArrayList<>();
     public List<List<Integer>> getFactors_254(int n) {
-
-        /**
-         * 注意：
-         *
-         * 你可以假定 n 为永远为正数
-         * 因子必须大于 1 并且小于 n
-         */
-
-        // 递归实现
-        // 1. 递归的定义：dfs(n, start, path) 表示 n 的因子列表，因子的起始位置为 start，已经选择的因子列表为 path
+        // 注意： 你可以假定 n 为永远为正数 因子必须大于 1 并且小于 n
+        //  递归的定义：dfs(n, start, path) 表示 n 的因子列表，因子的起始位置为 start，已经选择的因子列表为 path
         dfs(n, 2, new ArrayList<>());
         return factors_res;
     }
@@ -178,7 +440,7 @@ public class Top {
      * @param intervals
      * @return 所需会议室的最小数量
      */
-    public int xx_minMeetingRooms_253(int[][] intervals) {
+    public int x_minMeetingRooms_253(int[][] intervals) {
         // ** 看的是思路：小顶堆维护的是当前进行的会议室 **
         if (intervals == null || intervals.length == 0) {
             return 0;
@@ -218,7 +480,7 @@ public class Top {
      * @param target
      * @return
      */
-    public boolean searchMatrix(int[][] matrix, int target) {
+    public boolean searchMatrix_240(int[][] matrix, int target) {
         // 一个比较巧妙的解法：通过大小的增减
         int row = matrix.length - 1;
         int col = 0;
@@ -235,8 +497,7 @@ public class Top {
     }
 
     /**
-     * 239.给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。
-     * 你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
+     * 239.给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧，你只可以看到在滑动窗口内的 k 个数字
      * <p>
      * [1,3,-1,-3,5,3,6,7] k = 3 ==> [3,3,5,5,6,7]
      *
@@ -245,9 +506,7 @@ public class Top {
      * @return 滑动窗口中的最大值
      */
     public int[] maxSlidingWindow_239(int[] nums, int k) {
-        /**
-         * 将一个元素放入优先队列的时间复杂度为 O(logn)，因此总时间复杂度为 O(nlogn)
-         */
+        // 将一个元素放入优先队列的时间复杂度为 O(logn)，因此总时间复杂度为 O(nlogn)
         PriorityQueue<int[]> queue = new PriorityQueue<>((o1, o2) -> o1[0] != o2[0] ? o2[0] - o1[0] : o2[1] - o1[1]);
         for (int i = 0; i < k; i++) {
             queue.offer(new int[]{nums[i], i});
@@ -266,11 +525,7 @@ public class Top {
     }
 
     public int[] xxx_maxSlidingWindow_v2(int[] nums, int k) {
-        /**
-         * 滑动窗口的核心在于通过 左右指针 或者 双端队列 控制窗口内的数据保证其满足要求
-         */
-
-        // 总时间复杂度为 O(n)
+        // 滑动窗口的核心在于通过 左右指针/双端队列 控制窗口数据保持队头是当前窗口的最大值。总时间复杂度为 O(n)
         int n = nums.length;
         Deque<Integer> deque = new LinkedList<>();
         for (int i = 0; i < k; ++i) {
@@ -280,7 +535,6 @@ public class Top {
             }
             deque.offerLast(i);
         }
-
         int[] ans = new int[n - k + 1];
         ans[0] = nums[deque.peekFirst()];
         for (int i = k; i < n; ++i) {
@@ -313,13 +567,13 @@ public class Top {
      * @param q
      * @return
      */
-    public TreeNode xxx_lowestCommonAncestor(TreeNode cur, TreeNode p, TreeNode q) {
+    public TreeNode xxx_lowestCommonAncestor_263(TreeNode cur, TreeNode p, TreeNode q) {
         if (cur == null || cur == p || cur == q) {
             return cur;
         }
         // 1、先左侧节点一撸到底；2、再逐步回塑右侧节点；3、在当前节点视角判断子树下是否存在指定节点，存在两则返回cur存在一则返回left/right都不存在则null
-        TreeNode left = xxx_lowestCommonAncestor(cur.left, p, q);
-        TreeNode right = xxx_lowestCommonAncestor(cur.right, p, q);
+        TreeNode left = xxx_lowestCommonAncestor_263(cur.left, p, q);
+        TreeNode right = xxx_lowestCommonAncestor_263(cur.right, p, q);
         // ⚠️ ！！！这两个判断&返回的是核心：cur节点的左右子树是否存在指定节点，不存在即返回另一个节点都存在则返回当前节点。然后一直把节点往上回溯比较！！！
         if (left == null) {
             // left为空：说明当前节点的左子树一撸到底没有遇到指定节点，那就在右节点则直接返回右节点值
@@ -495,7 +749,7 @@ public class Top {
 
 
     public String shortestPalindrome_v1(String s) {
-        // 双向指针s[i]==s[j]则i++,j--；否则j--。 -- 这种方法不好想
+        // 双向指针s[i]==s[j]则i++,j--；否则j--
         int i = 0, j = s.length() - 1;
         char[] c = s.toCharArray();
         while (j >= 0) {
@@ -526,7 +780,7 @@ public class Top {
      * @param nums
      * @return 在不触动警报装置的情况下 ，今晚能够偷窃到的最高金额
      */
-    public static int rob_213(int[] nums) {
+    public static int x_rob_213(int[] nums) {
         if (nums.length < 2) {
             return nums[0];
         }
@@ -538,16 +792,16 @@ public class Top {
         int max = Math.max(dp[0], dp[1]);
         dp[1] = max;
         for (int i = 2; i < nums.length; i++) {
-            // 金额肯定都是大于0的，dp[i-2] + nums[i] 和 dp[i-1]
+            // 对于第i晚有两个选择：不偷跟着前一晚的，或者 偷了+前前一晚（感觉绕进去了想的有点复杂了）
             dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1]);
             max = Math.max(max, dp[i]);
         }
         return max;
     }
 
-//    public static void main(String[] args) {
-//        System.out.println(rob_213(new int[]{1, 3, 1}));
-//    }
+    public static void main(String[] args) {
+        System.out.println(x_rob_213(new int[]{1, 3, 4, 1}));
+    }
 
 
     /**
@@ -563,7 +817,7 @@ public class Top {
     int[] visited;
     boolean valid = true;
 
-    public boolean xx_canFinish_207(int numCourses, int[][] prerequisites) {
+    public boolean xxx_canFinish_207(int numCourses, int[][] prerequisites) {
         edges = new ArrayList<>();
         for (int i = 0; i < numCourses; ++i) {
             edges.add(new ArrayList<>());
@@ -647,7 +901,6 @@ public class Top {
         Queue<TreeNode> dq = new LinkedList<>();
         dq.offer(root);
         while (!dq.isEmpty()) {
-            // 上一层的大小，不断遍历减小
             int size = dq.size();
             while (size > 0) {
                 TreeNode node = dq.poll();
@@ -687,7 +940,7 @@ public class Top {
     }
 
     /**
-     * 167. 给你一个下标从 1 开始的整数数组 numbers ，该数组已按非递减顺序排列，请你从数组中找出满足相加之和等于目标数 target 的两个数
+     * 167. 给你一个下标从 1 开始的整数数组 numbers ，该数组已按非递减顺序排列，请你从数组中找出满足相加之和等于目标数target的两个数
      * numbers = [2,7,11,15], target = 9 ==> [1,2]
      * numbers = [2,3,4], target = 6 ==> [1,3]
      *
@@ -739,8 +992,7 @@ public class Top {
     }
 
     /**
-     * 162.峰值元素是指其值严格大于左右相邻值的元素。
-     * 给你一个整数数组 nums，找到峰值元素并返回其索引。数组可能包含多个峰值，在这种情况下，返回 任何一个峰值 所在位置即可。
+     * 162.峰值元素是指其值严格大于左右相邻值的元素。给你一个整数数组 nums，找到峰值元素并返回其索引。数组可能包含多个峰值，在这种情况下，返回 任何一个峰值 所在位置即可
      * 你可以假设 nums[-1] = nums[n] = -∞ 。
      * [1,2,3,1] --> 2
      * [1,2,1,3,5,6,4] -> 1 或 5
@@ -748,24 +1000,20 @@ public class Top {
      * @param nums
      * @return
      */
-    public int findPeakElement_162(int[] nums) {
+    public int x_findPeakElement_162(int[] nums) {
         // 必须实现时间复杂度为 O(log n) 的算法来解决此问题。
         // 二分法：往上走的一定有波峰
         int left = 0;
         int right = nums.length - 1;
-        //二分法
         while (left < right) {
             int mid = (left + right) / 2;
-            // 右边是往下，不一定有坡峰
+            // 往大一侧走，一定能找到波峰
             if (nums[mid] > nums[mid + 1]) {
                 right = mid;
-            }
-            // 右边是往上，一定能找到波峰
-            else {
+            } else {
                 left = mid + 1;
             }
         }
-        //其中一个波峰
         return right;
     }
 
@@ -813,7 +1061,7 @@ public class Top {
 
 
     /**
-     * 数组 [a[0], a[1], a[2], ..., a[n-1]] 旋转一次的结果为数组 [a[n-2],a[n-1], a[0], a[1], a[2], ..., a[n-3]]
+     * 154.数组 [a[0], a[1], a[2], ..., a[n-1]] 旋转一次的结果为数组 [a[n-2],a[n-1], a[0], a[1], a[2], ..., a[n-3]]
      * <p> [ 5,4,3,2,1] [ 5,4,3,2,1,6]
      * 给你一个元素值互不相同的数组 nums ，它原来是一个升序排列的数组，并按上述情形进行了多次旋转。请你找出并返回数组中的最小元素
      *
@@ -877,23 +1125,11 @@ public class Top {
      * @param nums 2024-02-22
      * @return
      */
-    public static int xxx_maxProduct_152(int[] nums) {
-//        int[] dp = new int[nums.length];
-//        dp[0] = nums[0];
-//        int max = dp[0];
-//        for (int i = 1; i < nums.length; i++) {
-//            // 要连续
-//            if (dp[i - 1] * nums[i] > dp[i - 1]) {
-//                dp[i] = dp[i - 1] * nums[i];
-//            }else {
-//                dp[i] = nums[i];
-//            }
-//            max = Math.max(max, dp[i]);
-//        }
-//        return max;
+    public static int x_maxProduct_152(int[] nums) {
         int maxF = nums[0], minF = nums[0], ans = nums[0];
         int length = nums.length;
         for (int i = 1; i < length; ++i) {
+            // 为了解决负负得正问题，最大和最小值都乘上nums[i]然后比较大小
             int mx = maxF, mn = minF;
             maxF = Math.max(mx * nums[i], Math.max(nums[i], mn * nums[i]));
             minF = Math.min(mn * nums[i], Math.min(nums[i], mx * nums[i]));
@@ -929,7 +1165,7 @@ public class Top {
      * @param head 2024-02-22 again
      * @return
      */
-    public ListNode xx_sortList_148(ListNode head) {
+    public ListNode xxx_sortList_148(ListNode head) {
         // 归并排序：数组不断按中间节点分割成最小，然后递归合并排序。简称先归一再合并
         if (head == null || head.next == null) {
             return head;
@@ -938,8 +1174,8 @@ public class Top {
         ListNode rightHead = middle.next;
         // 中间侧断开保证下一次遍历只有前半部分（由于后续不会再用到这个链表所以不用担心链表接不上的问题）
         middle.next = null;
-        ListNode left = xx_sortList_148(head);
-        ListNode right = xx_sortList_148(rightHead);
+        ListNode left = xxx_sortList_148(head);
+        ListNode right = xxx_sortList_148(rightHead);
         return mergeListNode(left, right);
     }
 
@@ -1111,7 +1347,7 @@ public class Top {
     }
 
     /**
-     * 137.给你一个整数数组 nums ，除某个元素仅出现 一次 外，其余每个元素都恰出现 三次
+     * 137.给你一个整数数组 nums ，除某个元素仅出现一次外，其余每个元素都恰出现 三次
      *
      * @param nums 2024-02-22
      * @return 返回那个只出现了一次的元素
@@ -1153,7 +1389,7 @@ public class Top {
         for (int i = 0; i < n; ++i) {
             Arrays.fill(f[i], true);
         }
-        // 1、每两个点间是否回文：找到左右指针[i,j]不断遍历
+        // 1、找到字符的回文串（对比下面方式，推荐这种方式 简答明了）
         for (int i = n - 1; i >= 0; --i) {
             for (int j = i + 1; j < n; ++j) {
                 f[i][j] = (s.charAt(i) == s.charAt(j)) && f[i + 1][j - 1];
@@ -1163,6 +1399,12 @@ public class Top {
         dfs(s, 0);
         return ret;
     }
+
+//     for (int L = 2; L <= len; L++) {
+//        for (int i = 0; i < len; i++) {
+//            int j = i + L - 1;
+//        }
+//     }
 
     private void dfs(String s, int i) {
         if (i == n) {
@@ -1198,10 +1440,9 @@ public class Top {
         for (int j : nums) {
             map.put(j, true);
         }
-        // 都看后面数字是否存在
+        // 遍历到每个数字的时候都看看后面一位的数字是否存在，保证时间复杂度在O(n)
         int max = 0;
-
-        for(Map.Entry<Integer,Boolean> entry:map.entrySet()){
+        for (Map.Entry<Integer, Boolean> entry : map.entrySet()) {
             Integer num = entry.getKey();
             int length = 1;
             int stack = num;
@@ -1245,9 +1486,9 @@ public class Top {
     }
 
 //    public static void main(String[] args) {
-//        LcTop202305 lcTop202305 = new LcTop202305();
-//        int[] prices = {7,6,4,3,1};
-//        System.out.println(lcTop202305.maxProfit(prices));
+//        Top lcTop202305 = new Top();
+//        int[] prices = {7,1,5,3,6,4};
+//        System.out.println(lcTop202305.maxProfit_122(prices));
 //    }
 
 
@@ -1338,45 +1579,6 @@ public class Top {
             isOrderLeft = !isOrderLeft;
         }
         return ans;
-//        boolean left = false;
-//        List<List<Integer>> result = new ArrayList<>();
-//        if (root == null) {
-//            return result;
-//        }
-//        Queue<TreeNode> queue = new ArrayDeque<>();
-//        queue.add(root);
-//        int size = 1;
-//        List<Integer> nodeList = new ArrayList<>();
-//        while (!queue.isEmpty()) {
-//            TreeNode node = queue.poll();
-//            nodeList.add(node.val);
-//            TreeNode rightNode = node.right;
-//            TreeNode leftNode = node.left;
-//            if (left) {
-//                if (leftNode != null) {
-//                    queue.add(leftNode);
-//                }
-//                if (rightNode != null) {
-//                    queue.add(rightNode);
-//                }
-//            } else {
-//                if (rightNode != null) {
-//                    queue.add(rightNode);
-//                }
-//                if (leftNode != null) {
-//                    queue.add(leftNode);
-//                }
-//            }
-//            size--;
-//            if (size == 0) {
-//                // 上一层结束开始新的一层
-//                size = queue.size();
-//                left = !left;
-//                result.add(nodeList);
-//                nodeList = new ArrayList<>();
-//            }
-//        }
-//        return result;
     }
 
 //    public static void main(String[] args) {
@@ -1515,7 +1717,6 @@ public class Top {
                     // 每次过来要么是从上要么是从左，其实和背包问题有异曲同工之妙
                     dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
                 }
-                System.out.println("i=" + i + " j=" + j + " dp=" + dp[i][j]);
             }
         }
         return dp[grid.length - 1][grid[0].length - 1];
@@ -1625,7 +1826,7 @@ public class Top {
             if (used[i]) {
                 continue;
             }
-            // 防止出现[1,2,2,1] 两次121的情况
+            // 在这一层的树上 防止出现 [1,2,2,1] 两次121的情况
             used[i] = true;
             path.addLast(nums[i]);
             permuteDFS(nums, depth + 1, used, path, res);
@@ -1704,7 +1905,7 @@ public class Top {
      * @param target
      * @return 必须设计并实现时间复杂度为 O(log n) 的算法解决此问题
      */
-    private int[] searchRange_12(int[] nums, int target) {
+    private int[] x_searchRange_12(int[] nums, int target) {
         int low = 0;
         int high = nums.length - 1;
         while (low <= high) {
@@ -1776,7 +1977,7 @@ public class Top {
     }
 
     /**
-     * 31. 下一个排列：指其整数的下一个字典序更大的排列
+     * 31.下一个排列：指其整数的下一个字典序更大的排列
      * 例如，arr = [1,2,3] 的下一个排列是 [1,3,2] 。 类似地，arr = [2,3,1] 的下一个排列是 [3,1,2]
      *
      * @param nums
@@ -1823,7 +2024,7 @@ public class Top {
             return head;
         }
         ListNode newHead = head.next;
-        // 第1步：构造虚拟结点。涉及节点交换移除的都可以考虑
+        // 第1步：构造虚拟结点（涉及节点交换、移除的都可以考虑，这里主要第一个就要操作）
         ListNode dummy = new ListNode(0, head);
         // 第2步：dummy.next和next.next交换
         ListNode first;
@@ -1850,10 +2051,8 @@ public class Top {
         List<String> combinations = new ArrayList<>();
         // 暴力求解法
         generateAll(new char[2 * n], 0, combinations);
-
         // 回溯法
         backtrack(combinations, new StringBuilder(), 0, 0, n);
-
         // 动态规划
         return combinations;
     }
@@ -1902,14 +2101,14 @@ public class Top {
 
 
     /**
-     * 19：删除链表的倒数第 N 个结点 你能尝试使用一趟扫描实现吗？
+     * 19：删除链表的倒数第 N 个结点 你能尝试使用一趟扫描实现吗
      *
      * @param head
      * @param n
      * @return
      */
     public ListNode removeNthFromEnd_19(ListNode head, int n) {
-        // 第1步：虚拟个头节点。这是为了在落在N结点前一个
+        // 第1步：虚拟个头节点。这是为了在落在N结点前一个（头指针为了数据）
         ListNode dummy = new ListNode(0, head);
         // 第2步：两个快慢指针
         ListNode fast = head;
@@ -1940,8 +2139,8 @@ public class Top {
 
 
     /**
-     * 17.电话号码d的字母组合？？？
-     *  TODO description
+     * 17.电话号码d的字母组合
+     *
      * @param digits
      * @return
      */
@@ -2024,10 +2223,10 @@ public class Top {
      * 给你一个整数数组nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i != j、i != k 且 j != k ，同时还满足 nums[i] + nums[j] + nums[k] == 0
      *
      * @param nums
-     * @return 返回所有和为 0 且不重复的三元组。
+     * @return 返回所有和为 0 且 不重复的三元组
      */
-    public List<List<Integer>> threeSum_04(int[] nums) {
-        // *** 难点在于如何去除重复解：可以排序后，保证每一层的循环节点nums[n]!=nums[n-1]。正常的三层循环时间复杂度是：O(n^3)，但这里我们可以通过「双指针」解决复杂度 ***
+    public List<List<Integer>> xxx_threeSum_15(int[] nums) {
+        // *** 难点在于如何去除重复解：可以排序后，保证每一层的循环节点nums[n]!=nums[n-1]。正常的三层循环时间复杂度是：O(n^3)，但这里我们可以通过「三指针」解决复杂度 ***
         Arrays.sort(nums);
         int len = nums.length;
         List<List<Integer>> ans = new ArrayList<>();
@@ -2065,12 +2264,10 @@ public class Top {
 
     /**
      * 11. 盛最多水的容器
-     * TODO description
      * @param height
      * @return
      */
     public int maxArea_11(int[] height) {
-        // 一眼看知道是左右指针处理，但怎么才能确定最多？
         // 想在O(n)的事件范围内找到最大的，那么l、r的范围在缩小的时候就要小的前进一位保证结果最大化
         int l = 0, r = height.length - 1, ans = 0;
         while (l <= r) {
@@ -2086,10 +2283,10 @@ public class Top {
     }
 
 
-
     /**
      * 一个字符串s，找到s中最长的回文子串（如果字符串的反序与原始字符串相同，则该字符串称为回文字符串）
      * qabcabcdd --> abcabc
+     *
      * @param s
      * @return
      */
@@ -2097,13 +2294,13 @@ public class Top {
         // 1、暴力求解：每个字符循环一遍比较 时间复杂度：O(n^2)
         return longestPalindrome_dp(s);
     }
+
     private String longestPalindrome_dp(String s) {
         int len = s.length();
         if (len < 2) {
             return s;
         }
-        // *** 动态规划：P(i,j) = P(i+1,j−1) && Si == Sj ; dp[i][j]代表着从i到j区间是否满足回文要求 ***
-        // *** 简单来说是dp[i][j]是否满足回文，然后再根据s[i-1]==s[j+1]来依次判断dp[i-1][j+1]是否满足回文 ***
+        // *** 动态规划 dp[i][j] ==> s[i-1][j+1] ***
         // 第1步：所有单个dp[i][i]=true
         boolean[][] dp = new boolean[len][len];
         for (int i = 0; i < len; i++) {
@@ -2125,7 +2322,7 @@ public class Top {
                     if (j - i < 3) {
                         dp[i][j] = true;
                     } else {
-                        // 外面的看里面的是否回文。所以L循环得在外面保证L大的能兼容L小的
+                        // 外面的看里面的是否回文。所以L循环得在外面保证L大的能兼容L小的（这样理论上L=5的一定能兼容L=3的）
                         dp[i][j] = dp[i + 1][j - 1];
                     }
                 }
@@ -2147,7 +2344,7 @@ public class Top {
 
     /**
      * 2.两数相加：两个非空的链表表示两个非负的整数。它们每位数字都是按照逆序的方式存储的，并且每个节点只能存储一位数字
-     * eg. 输入：l1 = [2,4,3], l2 = [5,6,4] ==》 输出：[7,0,8] ； 342 + 465 = 807.然后反转
+     * [2,4,3] + [5,6,4] ==> [7,0,8] ； 342 + 465 = 807.然后反转
      *
      * @param l1
      * @param l2

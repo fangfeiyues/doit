@@ -1,6 +1,6 @@
 package com.fang.doit.algo.lc.stage1;
 
-import com.fang.doit.algo.design.DesignLRUCache;
+import com.fang.doit.algo.lc.top.LRUCache;
 import com.fang.doit.algo.design.DesignMyCircularDeque;
 
 /**
@@ -12,7 +12,7 @@ public class Design11 {
     /**
      * 146:最近最少使用 == 双端队列+Map
      *
-     * @see DesignLRUCache
+     * @see LRUCache
      */
     public void designLRU() {
     }
