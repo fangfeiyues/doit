@@ -10,11 +10,49 @@ import java.util.*;
  * @version V1.0
  * @Project: doit
  * @Package com.fang.doit.algo.lc.test
- * @Description: 2023.05月刷题记录
+ * @Description: 2023.05~2024.05刷题记录
  * @date Date : 2023-05-07 4:21 下午
  */
 public class Top {
 
+
+    /**
+     * 343. 给定一个正整数 n ，将其拆分为 k 个 正整数 的和（ k >= 2 ），并使这些整数的乘积最大化。返回 你可以获得的最大乘积
+     *
+     * n = 10 ==> 10 = 3 + 3 + 4, 3 × 3 × 4 = 36
+     *
+     * @param n
+     * @return
+     */
+    public int integerBreak(int n) {
+
+        return 0;
+    }
+
+    /**
+     * 340.给你一个字符串 s 和一个整数 k ，请你找出 至多 包含 k 个 不同 字符的最长子串 并返回该子串的长度
+     * s = "eceba", k = 2 ==> 3 "ece"
+     * s = "aa", k = 1 ==> 2 "aa"
+     *
+     * @param s
+     * @param k
+     * @return
+     */
+    public int lengthOfLongestSubstringKDistinct(String s, int k) {
+
+        return 0;
+    }
+
+    /**
+     * 314. 二叉树的垂直遍历
+     * root = [3,9,20,null,null,15,7] ==》 [[9],[3,15],[20],[7]]
+     *
+     * @param root
+     * @return
+     */
+    public List<List<Integer>> verticalOrder(TreeNode root) {
+        return null;
+    }
 
     /**
      * 316. 给你一个字符串 s ，请你去除字符串中重复的字母，使得每个字母只出现一次。需保证 返回结果的
@@ -42,54 +80,580 @@ public class Top {
      * @return
      */
     public List<Integer> countSmaller(int[] nums) {
+        // TODO 归并插入有点难
         return null;
     }
 
     /**
-     * 313.超级丑数 超级丑数 是一个正整数，并满足其所有质因数都出现在质数数组 primes 中
+     * 334.整数数组 nums ，判断这个数组中是否存在长度为3的递增子序列（递增不限于连续）
+     * nums = [1,2,3,4,5] ==> true
+     * nums = [5,4,3,2,1] ==> false
+     * nums = [2,1,5,0,4,6] ==> true
      *
-     * 给你一个整数 n 和一个整数数组 primes ，返回第 n 个 超级丑数
-     *
-     * n = 12, primes = [2,7,13,19] ==》32 给定长度为 4 的质数数组 primes = [2,7,13,19]，前 12 个超级丑数序列为：[1,2,4,7,8,13,14,16,19,26,28,32]
-     * @param n
-     * @param primes
+     * @param nums
      * @return
      */
-    public int nthSuperUglyNumber(int n, int[] primes) {
-        return 0;
+    public boolean x_increasingTriplet_334(int[] nums) {
+        int n = nums.length;
+        if (n < 3) {
+            return false;
+        }
+        // 表示在某个位置i左侧的最小值
+        int[] leftMin = new int[n];
+        leftMin[0] = nums[0];
+        for (int i = 1; i < n; i++) {
+            leftMin[i] = Math.min(leftMin[i - 1], nums[i]);
+        }
+        // 表示在某个位置i右侧的最大值
+        int[] rightMax = new int[n];
+        rightMax[n - 1] = nums[n - 1];
+        for (int i = n - 2; i >= 0; i--) {
+            rightMax[i] = Math.max(rightMax[i + 1], nums[i]);
+        }
+        // 当i的位置 大于左边最小值 且 小于右边最大值 的时候说明可行
+        for (int i = 1; i < n - 1; i++) {
+            if (nums[i] > leftMin[i - 1] && nums[i] < rightMax[i + 1]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * 333. 给定一个二叉树，找到其中最大的二叉搜索树（BST）子树并返回该子树的大小（最大指的是子树节点数最多的）
+     * <p>
+     * 输入：root = [10,5,15,1,8,null,7] ==> 输出：3
+     * 输入：root = [4,2,7,2,3,5,null,2,null,null,null,null,null,1] ==> 输出：2
+     *
+     * @param root
+     * @return
+     */
+    int largestBSTSubtreeRes = 0;
+    public int xxx_largestBSTSubtree_333(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        dfs(root);
+        return largestBSTSubtreeRes;
+    }
+
+    private Node dfs(TreeNode root) {
+        if (root.left == null && root.right == null) {
+            largestBSTSubtreeRes = Math.max(largestBSTSubtreeRes, 1);
+            return new Node(root.val, root.val, 1);
+        }
+        int min = root.val;
+        int max = root.val;
+        int size = 1;
+        boolean valid = true;
+        // 左子树：存在子树 且 跟节点大于子树最大值 则重置节点size、L、R
+        if (root.left != null) {
+            Node L = dfs(root.left);
+            if (L.size != -1 && root.val > L.max) {
+                size += L.size;
+                min = L.min;
+            } else {
+                valid = false;
+            }
+        }
+        // 右子树：存在子树 且 跟节点小于子树最小值 则重置节点size、L、R
+        if (root.right != null) {
+            Node R = dfs(root.right);
+            if (R.size != -1 && root.val < R.min) {
+                size += R.size;
+                max = R.max;
+            } else {
+                valid = false;
+            }
+        }
+        // 如果左右子树任意一个非BST，那么根节点都不是BST
+        if (valid) {
+            largestBSTSubtreeRes = Math.max(size, largestBSTSubtreeRes);
+            return new Node(min, max, size);
+        }
+        return new Node(-1, -1, -1);
+    }
+
+    class Node {
+        //最小值
+        int min;
+        //最大值
+        int max;
+        //节点个数，如果不是bst则为-1
+        int size;
+
+        Node(int min, int max, int size) {
+            this.min = min;
+            this.max = max;
+            this.size = size;
+        }
+    }
+
+//    public static void main(String[] args) {
+//        TreeNode root = new TreeNode(10, new TreeNode(5,new TreeNode(1),new TreeNode(8)), new TreeNode(15,null,new TreeNode(7)));
+//        Top top = new Top();
+//        System.out.println(top.xxx_largestBSTSubtree_333(root));
+//    }
+
+
+    //    public int largestBSTSubtree_ee(TreeNode root) {
+//        return largestBSTSubtreeDFS(root,0);
+//    }
+//
+//    public int largestBSTSubtreeDFS(TreeNode root, int path) {
+//        if (root == null) {
+//            return path;
+//        }
+//        // 后序遍历
+//        int left = largestBSTSubtreeDFS(root.left, path);
+//        int right = largestBSTSubtreeDFS(root.right, path);
+//        // 叶子节点：只有一个
+//        if (root.right == null && root.left == null) {
+//            return 1;
+//        }
+//        // 左右节点都行：
+//        if ((root.left != null && root.val > root.left.val)
+//                && (root.right != null && root.val < root.right.val)) {
+//            return left + right + 1;
+//        }
+//        return 0;
+//    }
+
+
+    /**
+     * 329.给定一个 m x n 整数矩阵 matrix，找出其中最长递增路径的长度（对于每个单元格，你可以往上下左右四个方向移动）
+     * matrix = [[9,9,4],[6,6,8],[2,1,1]]  输出：4 解释：最长递增路径为 [1, 2, 6, 9]
+     * matrix = [[3,4,5],[3,2,6],[2,2,1]] 输出：4 解释：最长递增路径是 [3, 4, 5, 6]
+     *
+     * @param matrix
+     * @return
+     */
+    int[][] moves = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+    int longestIncreasingPath = 0;
+
+    public int x_longestIncreasingPath_329(int[][] matrix) {
+        if (matrix.length == 0) {
+            return 0;
+        }
+        // ⚠️ 每个节点前后左右递归判断 -- 超出时间限制!!!
+        int[][] used = new int[matrix.length][matrix[0].length];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                int path = longestIncreasingPathDFS(i, j, matrix, used, 1);
+                used[i][j] = path;
+                longestIncreasingPath = Math.max(longestIncreasingPath, path);
+            }
+        }
+        return longestIncreasingPath;
+    }
+
+    private int longestIncreasingPathDFS(int row, int col, int[][] matrix, int[][] used, int path) {
+        if (used[row][col] > 0) {
+            return path + used[row][col] - 1;
+        }
+        int next = path;
+        for (int i = 0; i < moves.length; i++) {
+            int[] move = moves[i];
+            // 最上面不能在往上走
+            if (row == 0 && move[0] < 0) {
+                continue;
+            }
+            // 最下面不能在往下走
+            if (row == matrix.length - 1 && move[0] > 0) {
+                continue;
+            }
+            // 最左面不能在往左走
+            if (col == 0 && move[1] < 0) {
+                continue;
+            }
+            // 最右面不能在往右走
+            if (col == matrix[0].length - 1 && move[1] > 0) {
+                continue;
+            }
+            int newRow = row + move[0];
+            int newCol = col + move[1];
+            if (matrix[newRow][newCol] <= matrix[row][col]) {
+                continue;
+            }
+            path = Math.max(path, longestIncreasingPathDFS(newRow, newCol, matrix, used, next + 1));
+        }
+        return path;
+    }
+
+
+//    public static void main(String[] args) {
+//        Top top = new Top();
+//        // [[3,4,5],[3,2,6],[2,2,1]]
+//        // [[9,9,4],[6,6,8],[2,1,1]]
+//        // [[7,7,5],[2,4,6],[8,2,0]]
+//        // int[][] matrix = {{3, 4, 5}, {3, 2, 6}, {2, 2, 1}};
+//        // int[][] matrix = {{9, 9, 4}, {6, 6, 8}, {2, 1, 1}};
+//        int[][] matrix = {{7, 7, 5}, {2, 4, 6}, {8, 2, 0}};
+//        System.out.println(top.longestIncreasingPath_329(matrix));
+//    }
+
+    /**
+     * 328.给定单链表的头节点 head ，将所有索引为奇数的节点和索引为偶数的节点分别组合在一起，然后返回重新排序的列表。
+     *
+     * 第一个节点的索引被认为是奇数 ， 第二个节点的索引为偶数 ，以此类推。
+     *
+     * 请注意，偶数组和奇数组内部的相对顺序应该与输入时保持一致。
+     *
+     * 你必须在 O(1) 的额外空间复杂度和 O(n) 的时间复杂度下解决这个问题
+     *
+     *  head = [1,2,3,4,5] ==> [1,3,5,2,4]
+     *
+     *  head = [2,1,3,5,6,4,7] ==> [2,3,6,7,1,5,4]
+     *
+     * @param head
+     * @return
+     */
+    public ListNode oddEvenList(ListNode head) {
+
+        return null;
     }
 
     /**
-     * 309. 给定一个整数数组prices，其中第  prices[i] 表示第 i 天的股票价格
+     * 325.给定一个数组 nums 和一个目标值 k，找到和等于 k 的最长连续子数组长度。如果不存在任意一个符合要求的子数组，则返回 0
+     * <p>
+     * nums = [1,-1,5,-2,3], k = 3
      *
-     * 设计一个算法计算出最大利润。在满足以下约束条件下，你可以尽可能地完成更多的交易（多次买卖一支股票）:
+     * @param nums
+     * @param k
+     * @return
+     */
+    private static int maxSubArrayLen_ee(int[] nums, int k) {
+        // 滑动窗口啊
+        int windowSum = 0;
+        int max = 0;
+        Queue<Integer> queue = new LinkedList<>();
+        for (int j : nums) {
+            queue.add(j);
+            windowSum = windowSum + j;
+            // windowSum存在负数的话，就不满足滑动窗口，不能保证窗口内的一定是最大值
+            while (queue.size() > 0 && windowSum > k) {
+                int num = queue.poll();
+                windowSum -= num;
+            }
+            if (windowSum == k) {
+                max = Math.max(max, queue.size());
+            }
+        }
+        return max;
+    }
+
+//    public static void main(String[] args) {
+//        int[] nums = {3, 1, -1, 5, -2, 3};
+//        System.out.println(xxx_maxSubArrayLen_325(nums, 3));
+//    }
+
+    public static int xxx_maxSubArrayLen_325(int[] nums, int k) {
+        int prefixSum = 0;
+        int longestSubarray = 0;
+        // <前缀和，位置i>
+        HashMap<Integer, Integer> indices = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            prefixSum += nums[i];
+            // 最长的连续子数组为k的可能性有二
+            // 1、从头开始连续大小为k
+            if (prefixSum == k) {
+                longestSubarray = i + 1;
+            }
+            // 2、某一段区间大小为k，即[prefixSum - k, prefixSum]
+            if (indices.containsKey(prefixSum - k)) {
+                longestSubarray = Math.max(longestSubarray, i - indices.get(prefixSum - k));
+            }
+            // 不更新prefixSum，保证区间值最大
+            if (!indices.containsKey(prefixSum)) {
+                indices.put(prefixSum, i);
+            }
+        }
+        return longestSubarray;
+    }
+
+
+    /**
+     * 324.摆动排序 给你一个整数数组 nums，将它重新排列成 nums[0] < nums[1] > nums[2] < nums[3]... 的顺序
+     * <p>
+     * nums = [1,5,1,1,6,4] ==> [1,6,1,5,1,4]
+     * 解释：[1,4,1,5,1,6] 同样是符合题目要求的结果，可以被判题程序接受
      *
-     * 卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)。
+     * @param nums
+     */
+    public void wiggleSort_324(int[] nums) {
+        // 暴力点：排序后分成两组，然后合并插入即可O(n^2)
+        Arrays.sort(nums);
+
+        // 归并排序：merge的时候直接按照小大来？-- 归并的优势在哪
+        // 小1大1小1大1 小2大2小2大2
+
+        // 三指针重新排序
+        int[] arr = nums.clone();
+        Arrays.sort(arr);
+        int n = nums.length;
+        int x = (n + 1) / 2;
+        // 两个点：一个从中间开始，一个从最后开始，依次往前填塞
+        for (int i = 0, j = x - 1, k = n - 1; i < n; i += 2, j--, k--) {
+            nums[i] = arr[j];
+            if (i + 1 < n) {
+                nums[i + 1] = arr[k];
+            }
+        }
+    }
+
+    /**
+     * 323：无向图中连通分量的数目
+     * 你有一个包含 n 个节点的图。给定一个整数 n 和一个数组 edges ，其中 edges[i] = [ai, bi] 表示图中 ai 和 bi 之间有一条边
+     * n = 5, [[0, 1], [1, 2], [3, 4]] ==> 2
+     * n = 5, [[0,1], [1,2], [2,3], [3,4]] ==> 1
+     *
+     * n=5 [[0,1],[0,4],[1,4],[2,3]]
+     * @param n
+     * @param edges
+     * @return 图中已连接分量的数目
+     */
+    private static int ee_countComponents_323(int n, int[][] edges) {
+        // 排序后，然后遍历
+        Arrays.sort(edges, Comparator.comparingInt(v -> v[0]));
+        int pre = edges[0][1];
+        int count = 1;
+        for (int i = 1; i < edges.length; i++) {
+            if (edges[i][0] > pre) {
+                count++;
+            }
+            pre = edges[i][1];
+        }
+        return count;
+    }
+
+    public int xxx_countComponents_323(int n, int[][] edges) {
+        int components = 0;
+        int[] visited = new int[n];
+        // 数组列表 或者 哈希列表都可
+        List<Integer>[] adjList = new ArrayList[n];
+        for (int i = 0; i < n; i++) {
+            adjList[i] = new ArrayList<>();
+        }
+        for (int i = 0; i < edges.length; i++) {
+            // 双向联通的 a->b b->a
+            adjList[edges[i][0]].add(edges[i][1]);
+            adjList[edges[i][1]].add(edges[i][0]);
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (visited[i] == 0) {
+                // 这么简单的DFS.. 怎么想不到呢
+                components++;
+                countComponentsDFS(adjList, visited, i);
+            }
+        }
+        return components;
+    }
+
+    private void countComponentsDFS(List<Integer>[] adjList, int[] visited, int startNode) {
+        visited[startNode] = 1;
+        for (int i = 0; i < adjList[startNode].size(); i++) {
+            if (visited[adjList[startNode].get(i)] == 0) {
+                countComponentsDFS(adjList, visited, adjList[startNode].get(i));
+            }
+        }
+    }
+
+
+    public static void main(String[] args) {
+        // [[0,1],[0,4],[1,4],[2,3]]
+//        int[][] edges = {{0, 1}, {1, 2}, {3, 4}};
+//        System.out.println(ee_countComponents_323(5, edges));
+    }
+
+    /**
+     * 322. 给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。
+     * <p>
+     * 计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。
+     * <p>
+     * 你可以认为每种硬币的数量是无限的
+     * <p>
+     * <p>
+     * 输入：coins = [1, 2, 5], amount = 11
+     * 输出：3
+     * 解释：11 = 5 + 5 + 1
+     *
+     * @param coins
+     * @param amount
+     * @return
+     */
+    public static int coinChange_322(int[] coins, int amount) {
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, amount + 1);
+        dp[0] = 0;
+        Arrays.sort(coins);
+        for (int i = 1; i <= amount; i++) {
+            for (int j = 0; j < coins.length; j++) {
+                if (coins[j] > i) {
+                    break;
+                }
+                dp[i] = Math.min(dp[i - coins[j]] + 1, dp[i]);
+            }
+        }
+        return dp[amount] > amount ? -1 : dp[amount];
+    }
+
+//    public static void main(String[] args) {
+//        int[] coins = {1,2,5};
+//        System.out.println(coinChange_322(coins, 11));
+//    }
+
+    /**
+     * 319. 灯泡开关
+     *
+     * 初始时有 n 个灯泡处于关闭状态。第一轮，你将会打开所有灯泡。接下来的第二轮，你将会每两个灯泡关闭第二个。
+     *
+     * 第三轮，你每三个灯泡就切换第三个灯泡的开关（即，打开变关闭，关闭变打开）。第 i 轮，你每 i 个灯泡就切换第 i 个灯泡的开关。直到第 n 轮，你只需要切换最后一个灯泡的开关。
+     *
+     * 找出并返回 n 轮后有多少个亮着的灯泡
+     *
+     * 输入：n = 3
+     * 输出：1
+     * 解释：
+     * 初始时, 灯泡状态 [关闭, 关闭, 关闭].
+     * 第一轮后, 灯泡状态 [开启, 开启, 开启].
+     * 第二轮后, 灯泡状态 [开启, 关闭, 开启].
+     * 第三轮后, 灯泡状态 [开启, 关闭, 关闭].
+     * @param n
+     * @return
+     */
+    public int bulbSwitch_319(int n) {
+        // 暴力循环 1:开；0：关 -- 直接超出时间限制
+        int[] nums = new int[n];
+        Arrays.fill(nums, 1);
+        for (int i = 1; i < n; i++) {
+            // 时间复杂度:O(n^2)
+            for (int j = 0; j < n; j++) {
+                // 整除 /；取余 %
+                if ((j + 1) % (i + 1) == 0) {
+                    nums[j]++;
+                }
+            }
+        }
+        int num = 0;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] % 2 == 1) {
+                num++;
+            }
+        }
+
+        // 看一个数被[1,n]能整除多少次即可 --
+        // 只有当 k 是「完全平方数」时，它才会有奇数个约数，否则一定有偶数个约数 ？？
+        return (int) Math.sqrt(n + 0.5);
+    }
+
+
+    /**
+     * 313.超级丑数 是一个正整数，并满足其所有质因数都出现在质数数组 primes 中，给你一个整数 n 和一个整数数组 primes ，
+     *
+     * n = 12, primes = [2,7,13,19] ==》32 ，12 个超级丑数序列为：[1,2,4,7,8,13,14,16,19,26,28,32]
+     * @param n
+     * @param primes
+     * @return 返回第 n 个 超级丑数
+     * @see
+     */
+    public int xxx_nthSuperUglyNumber(int n, int[] primes) {
+        // 记录第n次的最小数
+        int[] dp = new int[n + 1];
+        int m = primes.length;
+        // 记录丑数列表的每个数字累加了多少次
+        int[] pointers = new int[m];
+        // 记录在point次后该位数的最小值
+        int[] nums = new int[m];
+        Arrays.fill(nums, 1);
+        for (int i = 1; i <= n; i++) {
+            int minNum = Arrays.stream(nums).min().getAsInt();
+            dp[i] = minNum;
+            // 循环找到本次的最小值是谁，然后把最小值继续推进：
+            for (int j = 0; j < m; j++) {
+                if (nums[j] == minNum) {
+                    pointers[j]++;
+                    // pointers[j]: j指针执行次数； dp[pointers[j]] j指针执行几次后，dp产生的最小值？？？（死记吧）
+                    nums[j] = dp[pointers[j]] * primes[j];
+                    // nums[j] = pointers[j] * primes[j]; // 错误：不是乘积的关系，是幂的关系
+                }
+            }
+        }
+        return dp[n];
+    }
+
+//    public static void main(String[] args) {
+//        Top top = new Top();
+//        int[] nums = {2,7,13,19};
+//        System.out.println(top.xxx_nthSuperUglyNumber(12, nums));
+//    }
+
+
+    /**
+     * 264.一个整数n，返回第n个丑数（ 丑数就是质因子只包含 2、3 和 5 的正整数 ）
+     * n = 10 ==> 12 [1, 2, 3, 4, 5, 6, 8, 9, 10, 12] 丑数组成的前10列表
+     *
+     * @param n
+     * @return
+     */
+    public int xxx_nthUglyNumber_264(int n) {
+        int[] dp = new int[n];
+        dp[0] = 1;
+        int p2 = 0, p3 = 0, p5 = 0;
+        for (int i = 1; i < n; i++) {
+            // 2*2*2.. ｜ 3*3*3..  | 5*5*5.. 之间的比较
+            int num2 = dp[p2] * 2, num3 = dp[p3] * 3, num5 = dp[p5] * 5;
+            dp[i] = Math.min(num2, Math.min(num3, num5));
+            System.out.println(dp[i] + " ");
+            if (dp[i] == num2) {
+                p2++;
+            }
+            if (dp[i] == num3) {
+                p3++;
+            }
+            if (dp[i] == num5) {
+                p5++;
+            }
+        }
+        return dp[n - 1];
+    }
+
+//    public static void main(String[] args) {
+//        Top top = new Top();
+//        top.xxx_nthUglyNumber_264(20);
+//    }
+
+    /**
+     * 309. 给定一个整数数组prices，其中第  prices[i] 表示第 i 天的股票价格。设计一个算法计算出最大利润 在满足以下约束条件下，
+     * 你可以尽可能地完成更多的交易（多次买卖一支股票） 卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)
      * 注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）
+     * <p>
+     * eg.prices = [1,2,3,0,2] ==> 3 [买入, 卖出, 冷冻期, 买入, 卖出]
      *
-     *
-     * prices = [1,2,3,0,2] ==> 3 [买入, 卖出, 冷冻期, 买入, 卖出]
      * @param prices
      * @return
      */
     public int xxx_maxProfit_309(int[] prices) {
+        // 核心是：
         if (prices.length == 0) {
             return 0;
         }
-        int n = prices.length;
         // f[i][0]: 手上持有股票的最大收益
         // f[i][1]: 手上不持有股票，并且处于冷冻期中的累计最大收益
         // f[i][2]: 手上不持有股票，并且不在冷冻期中的累计最大收益
+        int n = prices.length;
         int[][] f = new int[n][3];
         f[0][0] = -prices[0];
         for (int i = 1; i < n; ++i) {
             // 第i天持有股票：第i-1持有的 或者 第i天买入（则第i-1就不能买入且不处于冷冻期）
             f[i][0] = Math.max(f[i - 1][0], f[i - 1][2] - prices[i]);
-            // 第i天卖出：即第i-1天持有
+            // 不持有&在冷冻期：第i-1天持有&卖出
             f[i][1] = f[i - 1][0] + prices[i];
-            // 第i天没操作
+            // 不持有&不在冷冻：第i-1天没操作，可能在冷冻也可能不在
             f[i][2] = Math.max(f[i - 1][1], f[i - 1][2]);
         }
+        // 最后一天肯定不会持有股票
         return Math.max(f[n - 1][1], f[n - 1][2]);
     }
 
@@ -188,10 +752,11 @@ public class Top {
                     cnt++;
                 }
             }
-            // 多数都小于数字mid的话说明多的数比mid小，则说明值在[1,数字mid间]
+            // cnt > mid 说明重复数在 mid 的左边，则值在 [1,mid]
             if (cnt > mid) {
                 right = mid;
             } else {
+                // cnt = mid 说明在左侧或自己，left可以返回
                 left = mid + 1;
             }
         }
@@ -199,7 +764,7 @@ public class Top {
     }
 
     private int findDuplicate_4_slow(int[] nums) {
-        // 通过nums[n] --> nums[nums[n]]的指向构建成一个环（不在意环的位置是否是链表最后只要保证环存在即可）
+        // 通过nums[n] -> nums[nums[n]]的指向构建成一个环（不在意环的位置是否是链表最后只要保证环存在即可）
         int slow = nums[0];
         int fast = nums[nums[0]];
         while (slow != fast) {
@@ -257,7 +822,7 @@ public class Top {
 
     /**
      * 279.给你一个整数 n ，返回和为 n 的完全平方数的最少数量
-     * （完全平方数是其值等于一个整数自乘的积。例如，1、4、9 和 16 都是完全平方数，而 3 和 11 不是 ）
+     * （完全平方数是其值等于一个整数自乘的积，例如，1、4、9 和 16 都是完全平方数，而 3 和 11 不是 ）
      * n = 12 ==> 3 4+4+4
      *
      * @param n
@@ -268,11 +833,9 @@ public class Top {
         int[] dp = new int[n + 1];
         Arrays.fill(dp, Integer.MAX_VALUE);
         dp[0] = 0;
-        // 遍历[1,n]所有的数，取得dp[i]的值然后通过dp[i]->dp[n]
+        // 状态转移方程：找到所有 [n-i*i] --> n的，然后比较各个值最小的
         for (int i = 1; i <= n; i++) {
-            // 遍历所有的完全平方数
             for (int j = 1; j * j <= i; j++) {
-                // 状态转移方程：把i前一个能通过完全平方数到i的都遍历一遍，从而找到最小的
                 dp[i] = Math.min(dp[i], dp[i - j * j] + 1);
             }
         }
@@ -304,34 +867,6 @@ public class Top {
     public List<String> generatePalindromes(String s) {
 
         return null;
-    }
-
-    /**
-     * 264.一个整数n，返回第n个丑数（ 丑数就是质因子只包含 2、3 和 5 的正整数 ）
-     * n = 10 ==> 12 [0, 2, 3, 4, 5, 6, 8, 9, 10, 12] 丑数组成的前10列表
-     *
-     * @param n
-     * @return
-     */
-    public int x_nthUglyNumber_264(int n) {
-        // ** 核心：不算是动态规划，本质是2、3、5三条线推进。所以遇到问题最先开始做的是最朴素的想法，再寻求优化 **
-        int[] dp = new int[n];
-        dp[0] = 1;
-        int p2 = 0, p3 = 0, p5 = 0;
-        for (int i = 1; i < n; i++) {
-            int num2 = dp[p2] * 2, num3 = dp[p3] * 3, num5 = dp[p5] * 5;
-            dp[i] = Math.min(num2, Math.min(num3, num5));
-            if (dp[i] == num2) {
-                p2++;
-            }
-            if (dp[i] == num3) {
-                p3++;
-            }
-            if (dp[i] == num5) {
-                p5++;
-            }
-        }
-        return dp[n - 1];
     }
 
     /**
@@ -440,7 +975,7 @@ public class Top {
      * @param intervals
      * @return 所需会议室的最小数量
      */
-    public int x_minMeetingRooms_253(int[][] intervals) {
+    public int xxx_minMeetingRooms_253(int[][] intervals) {
         // ** 看的是思路：小顶堆维护的是当前进行的会议室 **
         if (intervals == null || intervals.length == 0) {
             return 0;
@@ -773,6 +1308,36 @@ public class Top {
         return reverse + s;
     }
 
+
+    /**
+     * 337.打家劫舍III 除了 root 之外，每栋房子有且只有一个“父“房子与之相连。一番侦察之后，聪明的小偷意识到“这个地方的所有房屋的排列类似于一棵二叉树”。
+     * 如果两个直接相连的房子在同一天晚上被打劫 ，房屋将自动报警
+     * <p>
+     * root = [3,2,3,null,3,null,1] ==> 3 + 3 + 1 = 7
+     * root = [3,4,5,1,3,null,1] ==> 4 + 5 = 9
+     *
+     * @param root 二叉树的 root
+     * @return 在不触动警报的情况下 ，小偷能够盗取的最高金额
+     */
+    public int x_rob_iii(TreeNode root) {
+        int[] rootStatus = rob_dfs(root);
+        return Math.max(rootStatus[0], rootStatus[1]);
+    }
+
+    public int[] rob_dfs(TreeNode node) {
+        if (node == null) {
+            return new int[]{0, 0};
+        }
+        // 后续遍历：先看左右节点，在看根节点
+        int[] l = rob_dfs(node.left);
+        int[] r = rob_dfs(node.right);
+        // 节点选中：当前节点值 + 左未 + 右未
+        int selected = node.val + l[1] + r[1];
+        // 节点未选中：左可选中亦可未选中，右可选中亦可未选中
+        int notSelected = Math.max(l[0], l[1]) + Math.max(r[0], r[1]);
+        return new int[]{selected, notSelected};
+    }
+
     /**
      * 213. 第一个房屋和最后一个房屋是紧挨着的，同时相邻的房屋装有相互连通的防盗系统。如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警
      * [1,3,1] ==> 3
@@ -799,9 +1364,9 @@ public class Top {
         return max;
     }
 
-    public static void main(String[] args) {
-        System.out.println(x_rob_213(new int[]{1, 3, 4, 1}));
-    }
+//    public static void main(String[] args) {
+//        System.out.println(x_rob_213(new int[]{1, 3, 4, 1}));
+//    }
 
 
     /**
@@ -1434,7 +1999,7 @@ public class Top {
      * @param nums 2024-02-20
      * @return O(n) 的算法解决此问题
      */
-    public int longestConsecutive_128(int[] nums) {
+    public int x_longestConsecutive_128(int[] nums) {
         // 连续数字..（遇到一下子没思路的题的时候可以尝试从暴力解法入手）
         Map<Integer, Boolean> map = new HashMap<>();
         for (int j : nums) {
@@ -1466,6 +2031,7 @@ public class Top {
 
     /**
      * 122.整数数组 prices ，其中 prices[i] 表示某支股票第 i 天的价格
+     * 在每一天，你可以决定是否购买和/或出售股票。你在任何时候最多只能持有一股股票
      * <p>
      * [7,1,5,3,6,4] ==> 7（1-5，3-6）
      * [1,2,3,4,5] ==> 4（1买5卖）
@@ -1475,8 +2041,7 @@ public class Top {
      * @return 最大利润
      */
     public int maxProfit_122(int[] prices) {
-        // 在每一天，你可以决定是否购买和/或出售股票。你在任何时候最多只能持有一股股票
-        // 动态规划：dp[i] = dp[i-1] + prices[i]
+        // 动态规划：dp[i] = dp[i-1] + 第i天赚的最大值
         int[] dp = new int[prices.length];
         dp[0] = 0;
         for (int i = 1; i < prices.length; i++) {
@@ -1504,7 +2069,7 @@ public class Top {
         if (triangle == null || triangle.size() == 0) {
             return 0;
         }
-        // 最优解法：1、动态规划时间复杂度高；2、
+        // 最优解法：1、动态规划时间复杂度高；
         int columns = triangle.size();
         int row = triangle.get(columns - 1).size();
         int[][] dp = new int[row][columns];
@@ -1543,22 +2108,24 @@ public class Top {
 //    }
 
     /**
-     * 103. root返回其节点值的锯齿形层序遍历
+     * 103. root返回其节点值的锯齿形层序遍历（蛇形走位）
      * root = [3,9,20,null,null,15,7] ==》[[3],[20,9],[15,7]]
      *
      * @param root 2024-02-19
      * @return
      */
-    public static List<List<Integer>> zigzagLevelOrder_103(TreeNode root) {
+    public static List<List<Integer>> xxx_zigzagLevelOrder_103(TreeNode root) {
+        // note：不用自己处理锯齿，借用双端队列的offerLast、offerFirst来处理左右端节点
         List<List<Integer>> ans = new LinkedList<>();
         if (root == null) {
             return ans;
         }
-        // 用了一个双向队列Deque存储结果：都是从左到右遍历然后利用双端队列选择插左还是插右
-        Queue<TreeNode> nodeQueue = new ArrayDeque<>();
-        nodeQueue.offer(root);
         boolean isOrderLeft = true;
+        // tips: Queue队列一般用LinkedList实现，有可快速插入删除支持大数据等好处
+        Queue<TreeNode> nodeQueue = new LinkedList<>();
+        nodeQueue.offer(root);
         while (!nodeQueue.isEmpty()) {
+            // step1：用了一个双向队列Deque存储结果，都是从左到右遍历 然后 利用双端队列选择插左还是插右
             Deque<Integer> levelList = new LinkedList<>();
             int size = nodeQueue.size();
             for (int i = 0; i < size; ++i) {
@@ -1592,7 +2159,7 @@ public class Top {
 //    }
 
     /**
-     * 92. 单链表的头指针head和两个整数left和right ，其中 left <= right 。反转从位置left到位置right的链表节点
+     * 92. 单链表的头指针head和两个整数left和right ，其中 left <= right ，反转从位置left到位置right的链表节点
      *
      * @param head
      * @param left
@@ -1641,7 +2208,7 @@ public class Top {
 
 
     /**
-     * 77. 组合 : 给定两个整数n和k，返回范围 [1, n] 中所有可能的k个数的组合
+     * 77. 组合 : 给定两个整数 n 和 k，返回范围 [1, n] 中所有可能的k个数的组合
      *
      * @param n
      * @param k
