@@ -5,13 +5,68 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f63dfa9-bcae-4a6d-866f-88d725a0b767" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/timer/HashedWheelTimer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/timer/HashedWheelTimerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/timer/Timeout.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/timer/Timer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/timer/TimerTask.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/ClassesTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/top/Top.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/top/Top.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/DesignMyCircularDeque.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/DesignOnlyGetAndRemoveTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/dst/linked/ListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/linked/ListNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/dst/list/MyArrayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/list/MyArrayList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/dst/list/MyArrayListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/list/MyArrayListTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/dst/list/MyLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/list/MyLinkedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/dst/list/MyLinkedListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/list/MyLinkedListTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/dst/queue/CircularQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/queue/CircularQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/dst/structure.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/structure.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Bit05.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/CanCompleteCircuit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DepthTree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Design11.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Divide14.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DoublePointer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Dp13.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/DynamicProgramming.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Graph10.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Greedy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Heap02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Linked17.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/MidSearch_Lack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/MyCircularQueue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Queue18.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Recall12.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/SlidingWindow.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Sort04.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/Stack01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/String16.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/TwoWayListNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/TwoWayPointer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/UF.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/UnionFind09.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/WidthTree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeDesignLruCache.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeFind.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeLinked.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeSlideSolution.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeSort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeStack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeTree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/test/LruCache.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/top/LRUCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/LRUCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/top/NumMatrix.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/top/Top.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Top.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/search/BinarySearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/search/BinarySearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/search/BinarySearchPlus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/search/BinarySearchPlus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/search/Search.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/search/Search.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/InsertSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/tree/sort/InsertSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/LcMergeSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/tree/sort/LcMergeSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/LcSubSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/tree/sort/LcSubSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/MergeSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/tree/sort/MergeSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/QuickSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/tree/sort/QuickSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/sort/StringSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/tree/sort/StringSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/tree/TreeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/tree/TreeNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/tree/search/BinaryTreeForeach.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/tree/search/BinaryTreeForeach.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/tree/search/Tree06.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/tree/search/Tree06.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/tree/search/TreeSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/tree/search/TreeSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/tree/width/CBTInserter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/tree/width/CBTInserter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,11 +97,6 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/MidSearch_Lack.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage2/LeetCodeTree.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/stage1/WidthTree.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -82,12 +132,16 @@
     <option name="showRenderedDocs" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.fang.doit.algo.design" />
       <recent name="com.fang.doit.algo.design.timer" />
       <recent name="com.fang.doit.algo.lc.test" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Top">
+  <component name="RunManager" selected="Application.LRUCache">
     <configuration name="DepthTree" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.stage1.DepthTree" />
       <module name="doit" />
@@ -102,13 +156,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LogJdkDynProxy" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.thought.design.proxy.jdk.LogJdkDynProxy" />
+    <configuration name="DoitTop" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.DoitTop" />
       <module name="doit" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.fang.doit.thought.design.proxy.jdk.*" />
+          <option name="PATTERN" value="com.fang.doit.algo.design.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LRUCache" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.design.LRUCache" />
+      <module name="doit" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fang.doit.algo.design.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -144,20 +212,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Top" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.top.Top" />
-      <module name="doit" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.fang.doit.algo.lc.top.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -182,11 +236,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Top" />
+        <item itemvalue="Application.LRUCache" />
+        <item itemvalue="Application.DoitTop" />
         <item itemvalue="Application.MidSearch_Lack" />
         <item itemvalue="Application.DepthTree" />
         <item itemvalue="Application.SlidingWindow" />
-        <item itemvalue="Application.LogJdkDynProxy" />
       </list>
     </recent_temporary>
   </component>
@@ -364,7 +418,8 @@
       <workItem from="1711697709016" duration="7773000" />
       <workItem from="1711934476580" duration="37861000" />
       <workItem from="1712213861397" duration="2257000" />
-      <workItem from="1712455547024" duration="12177000" />
+      <workItem from="1712455547024" duration="24678000" />
+      <workItem from="1712733154919" duration="325000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1646476425173</created>
@@ -457,7 +512,14 @@
       <option name="project" value="LOCAL" />
       <updated>1711337606789</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="commit 2024/04/08">
+      <created>1712544407424</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1712544407424</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -513,9 +575,19 @@
     <MESSAGE value="commit 2024/02/23" />
     <MESSAGE value="commit 2024/03/07" />
     <MESSAGE value="commit 2024/03/25" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 2024/03/25" />
+    <MESSAGE value="commit 2024/04/08" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 2024/04/08" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/LRUCache.java</url>
+          <line>118</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="com.fang.doit.algo.tree.TreeNode" memberName="right" />
