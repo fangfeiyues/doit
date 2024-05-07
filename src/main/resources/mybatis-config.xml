@@ -31,14 +31,14 @@
 
     <!--typeAliases 用于定义别名-->
     <typeAliases>
-        <!--<package name="com.fang.doit.frame.spring.mybatis"/>-->
-        <typeAlias type="com.fang.doit.frame.spring.mybatis.User" alias="user"/>
+        <!--<package name="com.fang.doit.spring.mybatis"/>-->
+        <typeAlias type="com.fang.doit.spring.mybatis.User" alias="user"/>
 
     </typeAliases>
 
     <!-- plugins 提供插件机制用户可以自定义在SQL的某一点进行拦截-->
     <plugins>
-        <plugin interceptor="com.fang.doit.frame.spring.mybatis.RecordSqlPlugin">
+        <plugin interceptor="com.fang.doit.spring.mybatis.RecordSqlPlugin">
             <property name="dialect" value="mysql"/>
         </plugin>
     </plugins>
@@ -53,7 +53,7 @@
 
     <!-- 用于定义全局的类型处理器 -->
     <!--<typeHandlers>-->
-        <!--&lt;!&ndash;<typeHandler handler="com.fang.doit.frame.spring.mybatis.UserTypeHandler"></typeHandler>&ndash;&gt;-->
+        <!--&lt;!&ndash;<typeHandler handler="com.fang.doit.spring.mybatis.UserTypeHandler"></typeHandler>&ndash;&gt;-->
     <!--</typeHandlers>-->
 
     <!-- 不结合Spring 单独配置数据源 -->

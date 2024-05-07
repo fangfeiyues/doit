@@ -70,7 +70,7 @@
 
     <!-- 3. 配置事务切入点, 以及把事务切入点和事务属性关联起来 -->
     <aop:config>
-        <aop:pointcut expression="execution(* com.fang.doit.frame.spring.*.*(..))" id="txPointCut"/>
+        <aop:pointcut expression="execution(* com.fang.doit.spring.*.*(..))" id="txPointCut"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
     </aop:config>
 

@@ -3,7 +3,7 @@
 	a. invoker = refprotocol.refer(interfaceClass, url);      生成invoker，并开启netty-client
 	  1.1 RegistryProtocol 注册zookeeper
 	      RegistryProtocol#refer(Class<T> type, URL url)
-	  1.2 ProtocolFilterWrapper 拿到DubboInvoker之后组装一链串的new Invoker(){ invoke(){ filter.invoke(next, invocation) }}
+	  1.2 ProtocolFilterWrapper 拿到 DubboInvoker 之后组装一链串的 new Invoker(){ invoke(){ filter.invoke(next, invocation) }}
 	  1.3 ProtocolListenerWrapper
 	  1.4 DubboProtocol
 		  1.4.0 DubboProtocol / RedisProtocol / InjvmProtocol / ThriftProtocol
@@ -209,9 +209,6 @@ Invoker<T> = RegistryProtocol.refer(Class<T> type, URL url)
 几种服务注册
 1. Zookeeper
 2. Ectd
-
-
-
 
 --------------------------------- 框架 -------------------------							
 [异步调用] & RocketMQ

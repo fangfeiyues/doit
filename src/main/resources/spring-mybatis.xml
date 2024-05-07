@@ -10,7 +10,7 @@
     http://www.springframework.org/schema/aop
     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-<!--    <context:component-scan base-package="com.fang.doit.frame.spring"></context:component-scan>-->
+<!--    <context:component-scan base-package="com.fang.doit.spring"></context:component-scan>-->
 
     <context:property-placeholder location="classpath:jdbc.properties"
                                   ignore-unresolvable="true"/>
@@ -53,7 +53,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <!-- 配置数据库表对应的java实体类 -->
-        <property name="typeAliasesPackage" value="com.fang.doit.frame.spring.mybatis"/>
+        <property name="typeAliasesPackage" value="com.fang.doit.spring.mybatis"/>
 
         <!-- 自动扫描entity目录, 可以省mybatis-config.xml里的手工配置 -->
         <!--<property name="mapperLocations" value="classpath:mybatis/*.xml"/>-->
@@ -62,7 +62,7 @@
 
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.fang.doit.frame.spring.mybatis"/>
+        <property name="basePackage" value="com.fang.doit.spring.mybatis"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
