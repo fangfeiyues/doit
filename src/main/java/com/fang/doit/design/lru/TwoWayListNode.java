@@ -1,10 +1,10 @@
-package com.fang.doit.algo.design.lru;
+package com.fang.doit.design.lru;
 
 /**
  * @author : fangfeiyue
  * @version V1.0
  * @Project: doit
- * @Package com.fang.doit.algo.design.lru
+ * @Package com.fang.doit.design.lru
  * @Description:
  * @date Date : 2024-04-10 5:11 下午
  */

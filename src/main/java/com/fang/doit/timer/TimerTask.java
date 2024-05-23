@@ -1,4 +1,4 @@
-package com.fang.doit.algo.design.timer;
+package com.fang.doit.timer;
 
 import java.util.concurrent.TimeUnit;
 
@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
  * @author : fangfeiyue
  * @version V1.0
  * @Project: doit
- * @Package com.fang.doit.algo.design.timer
+ * @Package com.fang.doit.timer
  * @Description:
  * @date Date : 2024-04-07 3:35 下午
  */

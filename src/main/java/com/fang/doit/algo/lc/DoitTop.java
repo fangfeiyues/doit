@@ -3,6 +3,7 @@ package com.fang.doit.algo.lc;
 import com.fang.doit.algo.classes.linked.ListNode;
 import com.fang.doit.algo.classes.tree.TreeNode;
 import com.fang.doit.algo.classes.tree.Trie;
+import com.fang.doit.design.serialize.Codec;
 import com.google.common.collect.Lists;
 
 import java.util.*;
@@ -17,6 +18,136 @@ import java.util.*;
  */
 public class DoitTop {
 
+
+    /**
+     * 450.给定一个二叉搜索树的根节点 root 和一个值 key，删除二叉搜索树中的 key 对应的节点，并保证二叉搜索树的性质不变。返回二叉搜索树（有可能被更新）的根节点的引用
+     *
+     * 一般来说，删除节点可分为两个步骤：首先找到需要删除的节点，如果找到了，删除它
+     *
+     * root = [5,3,6,2,4,null,7], key = 3  ==》[5,4,6,2,null,null,7] 或 [5,2,6,null,4,null,7]
+     * root = [5,3,6,2,4,null,7], key = 0  ==》[5,3,6,2,4,null,7]
+     *
+     * @param root
+     * @param key
+     * @return
+     */
+    public TreeNode deleteNode(TreeNode root, int key) {
+
+        return null;
+    }
+
+
+    /**
+     * 449.设计一个算法来序列化和反序列化二叉搜索树，编码的字符串应尽可能紧凑
+     *
+     * @param root
+     * @return
+     */
+    public String serializeCodec_449(TreeNode root) {
+        // 序列化是将数据结构或对象转换为一系列位的过程，以便它可以存储在文件或内存缓冲区中，或通过网络连接链路传输，以便稍后在同一个或另一个计算机环境中重建
+        Codec codec = new Codec();
+        return codec.serialize(root);
+    }
+
+    /**
+     * 445. 两个非空链表来代表两个非负整数，数字最高位位于链表开始位置，它们的每个节点只存储一位数字，将这两数相加会返回一个新的链表。
+     * <p>
+     * l1 = [7,2,4,3], l2 = [5,6,4] ==》[7,8,0,7]
+     * l1 = [2,4,3], l2 = [5,6,4] ==> [8,0,7]
+     *
+     * @param l1
+     * @param l2
+     * @return
+     */
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        if (l1 == null && l2 == null) {
+            return null;
+        }
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
+
+        // -> 链表倒转
+        ListNode l1_reverse = addTwoNumbersReverse(l1);
+        ListNode l2_reverse = addTwoNumbersReverse(l2);
+
+        // -> 相加
+        int carry = 0;
+        ListNode head = new ListNode(-1);
+        ListNode node = new ListNode(-1);
+        while (l1_reverse != null && l2_reverse != null) {
+            int val = l1_reverse.val + l2_reverse.val + carry;
+            carry = val / 10;
+            val = val % 10;
+            ListNode curr = new ListNode(val);
+            head.setNext(curr);
+            node = curr;
+            l1_reverse = l1_reverse.next;
+            l2_reverse = l2_reverse.next;
+        }
+        while (l1_reverse != null) {
+            node.setNext(l1_reverse);
+            l1_reverse = l1_reverse.next;
+        }
+
+        while (l2_reverse != null) {
+            node.setNext(l2_reverse);
+            l2_reverse = l2_reverse.next;
+        }
+        return head.next;
+    }
+
+//    public static void main(String[] args) {
+//        ListNode l1 = new ListNode(7,new ListNode(2,new ListNode(4,new ListNode(3))));
+//        ListNode l2 = new ListNode(5,new ListNode(6,new ListNode(4)));
+//
+//        DoitTop doitTop = new DoitTop();
+//        doitTop.addTwoNumbers(l1,l2);
+//    }
+
+
+    private ListNode addTwoNumbersReverse(ListNode node) {
+        ListNode pre = null;
+        while (node != null) {
+            ListNode next = node.next;
+            node.next = pre;
+            pre = node;
+            node = next;
+        }
+        return pre;
+    }
+
+    /**
+     * 442. 给你一个长度为 n 的整数数组 nums ，其中 nums 的所有整数都在范围 [1, n] 内，且每个整数出现 一次 或 两次 ，请你找出所有出现 两次 的整数
+     * <p>
+     * 时间复杂度为 O(n) 且仅使用常量额外空间
+     * <p>
+     * nums = [4,3,2,7,8,2,3,1]  ==> [2,3]
+     *
+     * @param nums
+     * @return
+     */
+    public static List<Integer> findDuplicates_442(int[] nums) {
+        ArrayList<Integer> resultList = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            int num = Math.abs(nums[i]);
+            if (nums[num - 1] > 0) {
+                // num下标的数据nums[i]正反交替
+                nums[num - 1] = -nums[num - 1];
+            } else {
+                resultList.add(num);
+            }
+        }
+        return resultList;
+    }
+
+//    public static void main(String[] args) {
+//        int[] nums = {4, 3, 2, 7, 8, 2, 3, 1};
+//        System.out.println(findDuplicates_442(nums));
+//    }
 
     /**
      * 435. 给定一个区间的集合 intervals ，其中 intervals[i] = [starti, endi] 。返回需要移除区间的最小数量，使剩余区间互不重叠
@@ -40,6 +171,7 @@ public class DoitTop {
      * s = "ABAB", k = 2 ==》 4  用两个'A'替换为两个'B',反之亦然
      * s = "AABABBA", k = 1 ==》4  "AABBBBA"
      * "ABCCDFGCFG" K = 2
+     *
      * @param s
      * @param k
      * @return
@@ -87,22 +219,20 @@ public class DoitTop {
 
 
     /**
-     *
-     *
      * 与（AND）运算：&
-     *  如果两个相应的位都是1，则结果位是1；
-     *  如果任一相应的位是0，则结果位是0
-     *
+     * 如果两个相应的位都是1，则结果位是1；
+     * 如果任一相应的位是0，则结果位是0
+     * <p>
      * 或（OR）运算：|
-     *  如果两个相应的位中至少有一个是1，则结果位是1；
-     *  如果两个相应的位都是0，则结果位是0
-     *
+     * 如果两个相应的位中至少有一个是1，则结果位是1；
+     * 如果两个相应的位都是0，则结果位是0
+     * <p>
      * 异或（XOR）运算：^
-     *  如果两个相应的位不同，则结果位是1
-     *  如果两个相应的位相同，则结果位是0
-     *
+     * 如果两个相应的位不同，则结果位是1
+     * 如果两个相应的位相同，则结果位是0
+     * <p>
      * 非（NOT）运算：
-     *  反转每一位，即0变成1，1变成0
+     * 反转每一位，即0变成1，1变成0
      *
      * @param num
      */
@@ -192,7 +322,7 @@ public class DoitTop {
         }
         // 排序后，左右指针
         Arrays.sort(nums);
-        int l = 0,l_s = nums[l], r = nums.length - 1,r_s = nums[r];
+        int l = 0, l_s = nums[l], r = nums.length - 1, r_s = nums[r];
         int d = 0;
         while (l <= r) {
             d = r_s - l_s;
@@ -259,9 +389,10 @@ public class DoitTop {
 
     /**
      * 402. 给你一个以字符串表示的非负整数 num 和一个整数 k ，移除这个数中的 k 位数字，使得剩下的数字最小。请你以字符串形式返回这个最小的数字
-     *
+     * <p>
      * num = "1432219", k = 3 ==> 1219  移除掉三个数字 4, 3, 和 2 形成一个新的最小的数字 1219
      * num = "10200", k = 1 ==> "200" 移掉首位的 1 剩下的数字为 200. 注意输出不能有任何前导零
+     *
      * @param num
      * @param k
      * @return
@@ -334,7 +465,7 @@ public class DoitTop {
      * @return
      */
     public static int maxRotateFunction_396(int[] nums) {
-        if(nums.length == 1){
+        if (nums.length == 1) {
             return nums[0];
         }
         // dp推导：多个 n-1的头，少length-1个 n-1的尾
@@ -506,7 +637,7 @@ public class DoitTop {
      * @param nums
      * @return
      */
-    public int[] singleNumber(int[] nums) {
+    public int[] singleNumber_260(int[] nums) {
         // 数组查找：滑动窗口、双指针、动态规划、二分法、
         // 性时间复杂度 + 常数空间复杂度
 
@@ -519,13 +650,13 @@ public class DoitTop {
 
     /**
      * 343. 给定一个正整数 n ，将其拆分为 k 个 正整数 的和（ k >= 2 ），并使这些整数的乘积最大化，返回你可以获得的最大乘积
-     *
+     * <p>
      * n = 10 ==> 10 = 3 + 3 + 4, 3 × 3 × 4 = 36
      *
      * @param n
      * @return
      */
-    public int x_integerBreak(int n) {
+    public int x_integerBreak_343(int n) {
         // 暴力点就DFS
         // dp[i] 表示拆分 i 可获得的最大乘积
         int[] dp = new int[n + 1];
@@ -554,7 +685,7 @@ public class DoitTop {
      * @param k
      * @return
      */
-    public int lengthOfLongestSubstringKDistinct(String s, int k) {
+    public int lengthOfLongestSubstringKDistinct_340(String s, int k) {
         if (s.length() == 0 || s.length() <= k) {
             return s.length();
         }
@@ -583,7 +714,7 @@ public class DoitTop {
      */
     public List<List<Integer>> verticalOrder(TreeNode root) {
         // 以根节点为基点，左减右加
-        HashMap<Integer,List<Integer>> hashMap = new HashMap<>();
+        HashMap<Integer, List<Integer>> hashMap = new HashMap<>();
         verticalOrderDFS(root, hashMap, 0);
 
         List<List<Integer>> res = Lists.newArrayList();
@@ -591,7 +722,7 @@ public class DoitTop {
         return res;
     }
 
-    private void verticalOrderDFS(TreeNode root, HashMap<Integer,List<Integer>> hashMap, int index) {
+    private void verticalOrderDFS(TreeNode root, HashMap<Integer, List<Integer>> hashMap, int index) {
         if (root == null) {
             return;
         }
@@ -660,7 +791,7 @@ public class DoitTop {
      * @param nums
      * @return
      */
-    public List<Integer> countSmaller(int[] nums) {
+    public List<Integer> countSmaller_315(int[] nums) {
         // 暴力求解 时间复杂度 O(n^2)
         // 归并插入 从右往左比较 时间复杂度O(nlogn)
         int[] res = nums.clone();
@@ -670,7 +801,7 @@ public class DoitTop {
 
     private void countSmallerMerge(int[] res, int[] nums, int start, int end) {
         // 归并递归不知道怎么写..
-        if(start>=end){
+        if (start >= end) {
             return;
         }
         int mid = (start + end) / 2;
@@ -681,10 +812,10 @@ public class DoitTop {
     }
 
 
-    private void merge(int[] res, int[] nums, int start, int mid, int end){
+    private void merge(int[] res, int[] nums, int start, int mid, int end) {
         // mid 右边的比较给左边的
         for (int i = start; i < mid; i++) {
-            for(int j = mid;j<end;j++){
+            for (int j = mid; j < end; j++) {
                 // 还是O(n^2)
             }
         }
@@ -736,6 +867,7 @@ public class DoitTop {
      * @return
      */
     int largestBSTSubtreeRes = 0;
+
     public int xxx_largestBSTSubtree_333(TreeNode root) {
         if (root == null) {
             return 0;
@@ -901,16 +1033,16 @@ public class DoitTop {
 
     /**
      * 328.给定单链表的头节点 head ，将所有索引为奇数的节点和索引为偶数的节点分别组合在一起，然后返回重新排序的列表。
-     *
+     * <p>
      * 第一个节点的索引被认为是奇数 ， 第二个节点的索引为偶数 ，以此类推。
-     *
+     * <p>
      * 请注意，偶数组和奇数组内部的相对顺序应该与输入时保持一致。
-     *
+     * <p>
      * 你必须在 O(1) 的额外空间复杂度和 O(n) 的时间复杂度下解决这个问题
-     *
-     *  head = [1,2,3,4,5] ==> [1,3,5,2,4]
-     *
-     *  head = [2,1,3,5,6,4,7] ==> [2,3,6,7,1,5,4]
+     * <p>
+     * head = [1,2,3,4,5] ==> [1,3,5,2,4]
+     * <p>
+     * head = [2,1,3,5,6,4,7] ==> [2,3,6,7,1,5,4]
      *
      * @param head
      * @return
@@ -1013,8 +1145,9 @@ public class DoitTop {
      * 你有一个包含 n 个节点的图。给定一个整数 n 和一个数组 edges ，其中 edges[i] = [ai, bi] 表示图中 ai 和 bi 之间有一条边
      * n = 5, [[0, 1], [1, 2], [3, 4]] ==> 2
      * n = 5, [[0,1], [1,2], [2,3], [3,4]] ==> 1
-     *
+     * <p>
      * n=5 [[0,1],[0,4],[1,4],[2,3]]
+     *
      * @param n
      * @param edges
      * @return 图中已连接分量的数目
@@ -1107,13 +1240,13 @@ public class DoitTop {
 
     /**
      * 319. 灯泡开关
-     *
+     * <p>
      * 初始时有 n 个灯泡处于关闭状态。第一轮，你将会打开所有灯泡。接下来的第二轮，你将会每两个灯泡关闭第二个。
-     *
+     * <p>
      * 第三轮，你每三个灯泡就切换第三个灯泡的开关（即，打开变关闭，关闭变打开）。第 i 轮，你每 i 个灯泡就切换第 i 个灯泡的开关。直到第 n 轮，你只需要切换最后一个灯泡的开关。
-     *
+     * <p>
      * 找出并返回 n 轮后有多少个亮着的灯泡
-     *
+     * <p>
      * 输入：n = 3
      * 输出：1
      * 解释：
@@ -1121,6 +1254,7 @@ public class DoitTop {
      * 第一轮后, 灯泡状态 [开启, 开启, 开启].
      * 第二轮后, 灯泡状态 [开启, 关闭, 开启].
      * 第三轮后, 灯泡状态 [开启, 关闭, 关闭].
+     *
      * @param n
      * @return
      */
@@ -1152,8 +1286,9 @@ public class DoitTop {
 
     /**
      * 313.超级丑数 是一个正整数，并满足其所有质因数都出现在质数数组 primes 中，给你一个整数 n 和一个整数数组 primes ，
-     *
+     * <p>
      * n = 12, primes = [2,7,13,19] ==》32 ，12 个超级丑数序列为：[1,2,4,7,8,13,14,16,19,26,28,32]
+     *
      * @param n
      * @param primes
      * @return 返回第 n 个 超级丑数
@@ -1261,14 +1396,15 @@ public class DoitTop {
 
     /**
      * 306.累加数 是一个字符串，组成它的数字可以形成累加序列。
-     *
+     * <p>
      * 一个有效的 累加序列 必须 至少 包含 3 个数。除了最开始的两个数以外，序列中的每个后续数字必须是它之前两个数字之和。
-     *
+     * <p>
      * 给你一个只包含数字 '0'-'9' 的字符串，编写一个算法来判断给定输入是否是 累加数 。如果是，返回 true ；否则，返回 false
-     *
-     *
+     * <p>
+     * <p>
      * 112358 -->true
      * 199100199 --> true
+     *
      * @param num
      * @return
      */
@@ -1291,11 +1427,11 @@ public class DoitTop {
      */
 
 
-
     /**
      * 301.给你一个由若干括号和字母组成的字符串 s ，删除最小数量的无效括号，使得输入的字符串有效
-     *
+     * <p>
      * s = "()())()" ==》["(())()","()()()"]
+     *
      * @param s
      * @return
      */
@@ -1413,6 +1549,7 @@ public class DoitTop {
         }
         return pre;
     }
+
     private void inorderSuccessor(TreeNode root, Stack<TreeNode> stack) {
         if (root == null) {
             return;
@@ -1476,7 +1613,7 @@ public class DoitTop {
             while (!stack.isEmpty() && cur > stack.peek()) {
                 max = stack.pop();
             }
-            // 右子树的节点都应该大于左子树的根节点
+            // 右子树 > 根 > 左子树
             if (cur < max) {
                 return false;
             }
@@ -1485,8 +1622,15 @@ public class DoitTop {
         return true;
     }
 
+    public static void main(String[] args) {
+        int[] preorder = {4,2,1,3,5,6};
+        DoitTop doitTop = new DoitTop();
+        System.out.println(doitTop.xxx_verifyPreorder_255(preorder));
+    }
+
     /**
      * 如果它是以二叉搜索树的后序遍历排列返回true
+     *
      * @param preorder
      * @return
      */
@@ -1522,12 +1666,14 @@ public class DoitTop {
      * @return
      */
     List<List<Integer>> factors_res = new ArrayList<>();
+
     public List<List<Integer>> getFactors_254(int n) {
         // 注意： 你可以假定 n 为永远为正数 因子必须大于 1 并且小于 n
         //  递归的定义：dfs(n, start, path) 表示 n 的因子列表，因子的起始位置为 start，已经选择的因子列表为 path
         dfs(n, 2, new ArrayList<>());
         return factors_res;
     }
+
     private void dfs(int n, int start, List<Integer> path) {
         if (n == 1) {
             if (path.size() > 1) {
@@ -1576,6 +1722,7 @@ public class DoitTop {
     /**
      * 247。给定一个整数 n ，返回所有长度为 n 的 中心对称数 。你可以以 任何顺序 返回答案
      * n = 2 ==》 ["11","69","88","96"]
+     *
      * @param n
      * @return
      */
@@ -1587,8 +1734,9 @@ public class DoitTop {
     /**
      * 240.编写一个高效的算法来搜索 m x n 矩阵 matrix 中的一个目标值 target
      * 该矩阵具有以下特性：
-     *   1、每行的元素从左到右升序排列。
-     *   2、每列的元素从上到下升序排列。
+     * 1、每行的元素从左到右升序排列。
+     * 2、每列的元素从上到下升序排列。
+     *
      * @param matrix
      * @param target
      * @return
@@ -1672,6 +1820,7 @@ public class DoitTop {
 //            System.out.println(res[i]);
 //        }
 //    }
+
     /**
      * 236.给定一个二叉树, 找到该树中两个指定节点的最近公共祖先
      *
@@ -1703,6 +1852,7 @@ public class DoitTop {
 
     /**
      * 235.给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先
+     *
      * @param cur
      * @param p
      * @param q
@@ -1745,12 +1895,14 @@ public class DoitTop {
 
     /**
      * 230.给定一个二叉搜索树的根节点 root ，和一个整数 k ，请你设计一个算法查找其中第 k 个最小元素（从 1 开始计数）
+     *
      * @param root
      * @param k
      * @return
      */
     private int kth_smallest_res = 0;
     int rank = 0;
+
     private int kthSmallest_230(TreeNode root, int k) {
         if (root == null) {
             return 0;
@@ -1849,7 +2001,7 @@ public class DoitTop {
 
     /**
      * 214. 给定一个字符串 s，你可以通过在字符串前面添加字符将其转换为回文串。找到并返回可以用这种方式转换的最短回文串
-     *
+     * <p>
      * "aacecaaa" ==》"aaacecaaa"
      * "abcd" ==》"dcbabcd"
      *
@@ -2006,6 +2158,7 @@ public class DoitTop {
 
     // 广度遍历算法
     int[] indeg;
+
     private boolean canFinish(int numCourses, int[][] prerequisites) {
         edges = new ArrayList<>();
         for (int i = 0; i < numCourses; ++i) {
@@ -2026,7 +2179,7 @@ public class DoitTop {
         while (!queue.isEmpty()) {
             ++visited;
             int u = queue.poll();
-            for (int v: edges.get(u)) {
+            for (int v : edges.get(u)) {
                 --indeg[v];
                 if (indeg[v] == 0) {
                     queue.offer(v);
@@ -2813,6 +2966,7 @@ public class DoitTop {
         combineDFS(n, k, 1, path, ans);
         return ans;
     }
+
     private void combineDFS(int n, int k, int begin, Deque<Integer> path, List<List<Integer>> ans) {
         if (k == 0) {
             ans.add(new ArrayList<>(path));
@@ -2929,6 +3083,7 @@ public class DoitTop {
         // 动态规划：dp[i]求解i位置的最大值 O(n)
         return maxSubArray4dp(nums);
     }
+
     private int maxSubArray4Greedy(int[] nums) {
         // 即当前元素之前的和小于0 则丢弃之前的元素。保证自己加上后不会结果比自己一个人更差(但不一定是最好)
         int preSum = 0;
@@ -2943,6 +3098,7 @@ public class DoitTop {
         }
         return max;
     }
+
     private int maxSubArray4dp(int[] nums) {
         // 即dp[i]即代表在i位置的最大值
         int[] dp = new int[nums.length];
@@ -2975,6 +3131,7 @@ public class DoitTop {
         permuteDFS(nums, 0, used, path, res);
         return res;
     }
+
     private void permuteDFS(int[] nums, int depth, boolean[] used, Deque<Integer> path, List<List<Integer>> res) {
         if (depth == nums.length) {
             res.add(new ArrayList<>(path));
@@ -3028,6 +3185,7 @@ public class DoitTop {
         combinationDFS(candidates, 0, target, ans, path);
         return ans;
     }
+
     private void combinationDFS(int[] candidates, int begin, int target, List<List<Integer>> ans, Deque<Integer> path) {
         if (target == 0) {
             ans.add(new ArrayList<>(path));
@@ -3155,11 +3313,13 @@ public class DoitTop {
         }
         reverse(nums, i + 1);
     }
+
     private void swap(int[] nums, int i, int j) {
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
     }
+
     private void reverse(int[] nums, int start) {
         int left = start, right = nums.length - 1;
         while (left < right) {
@@ -3215,6 +3375,7 @@ public class DoitTop {
         // 动态规划
         return combinations;
     }
+
     private void generateAll(char[] current, int pos, List<String> result) {
         if (pos == current.length) {
             if (valid(current)) {
@@ -3227,6 +3388,7 @@ public class DoitTop {
             generateAll(current, pos + 1, result);
         }
     }
+
     private boolean valid(char[] current) {
         int balance = 0;
         for (char c : current) {
@@ -3241,6 +3403,7 @@ public class DoitTop {
         }
         return balance == 0;
     }
+
     private void backtrack(List<String> ans, StringBuilder cur, int open, int close, int max) {
         if (cur.length() == max * 2) {
             ans.add(cur.toString());
@@ -3423,6 +3586,7 @@ public class DoitTop {
 
     /**
      * 11. 盛最多水的容器
+     *
      * @param height
      * @return
      */

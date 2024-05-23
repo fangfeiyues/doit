@@ -1,10 +1,10 @@
-package com.fang.doit.algo.design.timer;
+package com.fang.doit.timer;
 
 /**
  * @author : fangfeiyue
  * @version V1.0
  * @Project: doit
- * @Package com.fang.doit.algo.design.timer
+ * @Package com.fang.doit.timer
  * @Description:
  * @date Date : 2024-04-07 3:34 下午
  */

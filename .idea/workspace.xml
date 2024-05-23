@@ -5,132 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f63dfa9-bcae-4a6d-866f-88d725a0b767" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/tree/Trie.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/lru/TwoWayListNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/juc/ConditionCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/serialize/Codec.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/202310.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/8Gu/202310.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/Hello.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/proxy/jdk/Hello.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/IHello.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/proxy/jdk/IHello.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes/tree/sort/MergeSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/LRUCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/lru/LRUCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/lru/LRUCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/lru/LRUCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/lru/TwoWayListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/lru/TwoWayListNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/timer/HashedWheelTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/timer/HashedWheelTimer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/timer/HashedWheelTimerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/timer/HashedWheelTimerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/timer/Timeout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/timer/Timeout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/timer/Timer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/timer/Timer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/timer/TimerTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/timer/TimerTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DoitTop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DoitTop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/BeanMapperMain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/ContextSwitchMain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/DelayedTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/FinalCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/FunctionMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/juc/FunctionMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/LambalTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/LinkedMain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/MyClassLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/OptionalMain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/ReflectCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/StreamMain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/StringMain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/juc/BoundedQueue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/juc/ConditionUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/juc/FairAndUnfairTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/juc/Mutex.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/juc/ParkAndCheckInterrupt.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/lock/CompletableFutureDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/juc/CompletableFutureDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/lock/CompletableFutureV2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/lock/CountDownLatchDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/juc/CountDownLatchDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/lock/InterruptDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/juc/InterruptDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/lock/SyncThread.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/lock/SynchronizedDemo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/reflect/Child1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/reflect/Parent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/runorder/A.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/runorder/B.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/runorder/InterruptedMain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/base/runorder/ReentrantLockTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/juc/ReentrantLockCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/FrameTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/cache/FunnelRateLimiter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/AAAA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/AAAA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/HashedWheelTimerDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/HashedWheelTimerDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/client/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/client/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/client/EchoOutClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/client/EchoOutClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/common/CustomHeartbeatHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/common/CustomHeartbeatHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/netty.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/netty.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/nio/FileChannelMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/nio/FileChannelMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/server/EchoInServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/server/EchoInServerHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/netty/server/ServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/netty/server/ServerHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/SpringContextUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/SpringContextUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/SpringMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/SpringMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/aop/JDBCTransactionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/aop/JDBCTransactionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/aop/TransactionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/aop/TransactionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/ioc/Metrics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/ioc/Metrics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/ioc/MetricsAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/ioc/MetricsAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/mybatis/Grade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/Grade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/mybatis/RecordSqlPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/RecordSqlPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/mybatis/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/mybatis/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/mybatis/UserResultHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/UserResultHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/mybatis/UserTypeHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/mybatis/UserTypeHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/service/AbstractDemoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/service/AbstractDemoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/service/ApplicationContextAwareDemoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/service/ApplicationContextAwareDemoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/service/BeanPostProcessorDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/service/BeanPostProcessorDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/service/DemoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/service/DemoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/service/DemoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/service/DemoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/service/DemoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/service/DemoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/frame/spring/service/DemoServiceImpl2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/spring/service/DemoServiceImpl2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/img.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/ThoughtTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/ddd/DDDService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/ddd/DDDService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/ddd/order/KitchenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/ddd/order/KitchenService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/ddd/order/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/ddd/order/Ticket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/ddd/order/event/AbstractAggregateDomainEventPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/ddd/order/event/AbstractAggregateDomainEventPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/ddd/order/event/DomainEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/ddd/order/event/DomainEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/ddd/order/event/DomainEventPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/ddd/order/event/DomainEventPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/ddd/order/event/TicketAcceptEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/ddd/order/event/TicketAcceptEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/ddd/order/event/TicketDomainEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/ddd/order/event/TicketDomainEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/ddd/order/event/TicketDomainEventPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/ddd/order/event/TicketDomainEventPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/ddd/order/repository/TicketRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/ddd/order/repository/TicketRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/adapter/Adapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/adapter/Adapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/adapter/Clienter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/adapter/Clienter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/adapter/Ps2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/adapter/Ps2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/adapter/Usb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/adapter/Usb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/adapter/Usber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/adapter/Usber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/chain/ChainMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/chain/ChainMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/chain/Leader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/chain/Leader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/chain/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/chain/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/chain/QingjiaRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/chain/QingjiaRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/chain/Zhuren.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/chain/Zhuren.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/decorator/Decorator1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/decorator/Decorator1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/decorator/Decorator2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/decorator/Decorator2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/decorator/Decorator3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/decorator/Decorator3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/decorator/DecoratorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/decorator/DecoratorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/decorator/Sourcable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/decorator/Sourcable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/decorator/Source.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/decorator/Source.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/limiter/RateLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/limiter/RateLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/observer/AsyncEventBus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/observer/AsyncEventBus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/observer/EventBus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/observer/EventBus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/observer/ObserverAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/observer/ObserverAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/observer/ObserverRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/observer/ObserverRegistry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/observer/Subscribe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/observer/Subscribe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/observer/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/observer/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/thought/design/proxy/jdk/LogJdkDynProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/proxy/jdk/LogJdkDynProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/aglo_14.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/8Gu/aglo_14.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/base_32.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/8Gu/base_32.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/cache_21.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/8Gu/cache_21.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/distributed_40.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/8Gu/distributed_40.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/frame_17.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/8Gu/frame_17.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/jvm.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/8Gu/jvm.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/mq_12.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/8Gu/mq_12.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/8Gu/mysql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/os_10.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/8Gu/os_10.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/tcp_16.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/8Gu/tcp_16.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/view/thread_28.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/8Gu/thread_28.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/note/dubbo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/dubbo.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/note/springmvc.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/springmvc.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/spring-mybatis.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring-mybatis.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/seckill.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/note/seckill.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/fang/doit/frame/spring/MybatisTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/fang/doit/spring/MybatisTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/juc/CompletableFutureDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/juc/CompletableFutureCase.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +85,12 @@
       <recent name="com.fang.doit.algo.design.lru" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/note" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/fang/doit/8Gu" />
       <recent name="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.fang.doit" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.fang.doit.algo.design" />
@@ -208,7 +98,35 @@
       <recent name="com.fang.doit.algo.lc.test" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Codec">
+    <configuration name="Codec" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.design.serialize.Codec" />
+      <module name="doit" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fang.doit.design.serialize.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CompletableFutureCase" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.juc.CompletableFutureCase" />
+      <module name="doit" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fang.doit.juc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ConditionCase" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.fang.doit.base.juc.ConditionCase" />
       <module name="doit" />
@@ -243,35 +161,7 @@
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.fang.doit.algo.design.lru.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MidSearch_Lack" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.stage1.MidSearch_Lack" />
-      <module name="doit" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.fang.doit.algo.lc.stage1.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SlidingWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.stage1.SlidingWindow" />
-      <module name="doit" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.fang.doit.algo.lc.stage1.*" />
+          <option name="PATTERN" value="com.fang.doit.design.lru.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -303,11 +193,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Codec" />
+        <item itemvalue="Application.DoitTop" />
+        <item itemvalue="Application.CompletableFutureCase" />
         <item itemvalue="Application.ConditionCase" />
         <item itemvalue="Application.ConditionUseCase" />
-        <item itemvalue="Application.DoitTop" />
-        <item itemvalue="Application.SlidingWindow" />
-        <item itemvalue="Application.MidSearch_Lack" />
       </list>
     </recent_temporary>
   </component>
@@ -508,7 +398,9 @@
       <workItem from="1714961757983" duration="552000" />
       <workItem from="1714965186434" duration="604000" />
       <workItem from="1714999965036" duration="1677000" />
-      <workItem from="1715065799642" duration="5069000" />
+      <workItem from="1715065799642" duration="13949000" />
+      <workItem from="1715508268289" duration="7144000" />
+      <workItem from="1716348693434" duration="8755000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1646476425173</created>
@@ -615,7 +507,14 @@
       <option name="project" value="LOCAL" />
       <updated>1712733682944</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="re_build 2024/05/07">
+      <created>1715084366696</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1715084366696</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -673,20 +572,26 @@
     <MESSAGE value="commit 2024/03/25" />
     <MESSAGE value="commit 2024/04/08" />
     <MESSAGE value="commit 2024/04/10" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 2024/04/10" />
+    <MESSAGE value="re_build 2024/05/07" />
+    <option name="LAST_COMMIT_MESSAGE" value="re_build 2024/05/07" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/lru/LRUCache.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/com/fang/doit/design/lru/LRUCache.java</url>
           <line>118</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DoitTop.java</url>
-          <line>1870</line>
+          <line>2022</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DoitTop.java</url>
+          <line>1612</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

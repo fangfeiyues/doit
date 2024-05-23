@@ -1,4 +1,4 @@
-package com.fang.doit.algo.design.lru;
+package com.fang.doit.design.lru;
 
 
 import java.util.HashMap;
