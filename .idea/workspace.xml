@@ -5,17 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f63dfa9-bcae-4a6d-866f-88d725a0b767" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/serialize/Codec.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/limiter/LeakyBucketLimiter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/limiter/SlidingWindowLimiter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/limiter/TokenBucketLimiter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/lru/LRUCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/lru/LRUCache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/lru/TwoWayListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/lru/TwoWayListNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/timer/HashedWheelTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/timer/HashedWheelTimer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/timer/HashedWheelTimerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/timer/HashedWheelTimerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/timer/Timeout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/timer/Timeout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/timer/Timer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/timer/Timer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/design/timer/TimerTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/timer/TimerTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DoitTop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DoitTop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/juc/CompletableFutureDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/juc/CompletableFutureCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/design/limiter/RateLimiter.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +93,7 @@
       <recent name="com.fang.doit.algo.lc.test" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Codec">
+  <component name="RunManager" selected="Application.RateLimiter">
     <configuration name="Codec" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.fang.doit.design.serialize.Codec" />
       <module name="doit" />
@@ -141,20 +136,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ConditionUseCase" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.base.juc.ConditionUseCase" />
-      <module name="doit" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.fang.doit.base.juc.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="DoitTop" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.DoitTop" />
       <module name="doit" />
@@ -162,6 +143,20 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.fang.doit.design.lru.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RateLimiter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.design.limiter.RateLimiter" />
+      <module name="doit" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fang.doit.design.limiter.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -193,11 +188,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Codec" />
+        <item itemvalue="Application.RateLimiter" />
         <item itemvalue="Application.DoitTop" />
+        <item itemvalue="Application.Codec" />
         <item itemvalue="Application.CompletableFutureCase" />
         <item itemvalue="Application.ConditionCase" />
-        <item itemvalue="Application.ConditionUseCase" />
       </list>
     </recent_temporary>
   </component>
@@ -400,7 +395,7 @@
       <workItem from="1714999965036" duration="1677000" />
       <workItem from="1715065799642" duration="13949000" />
       <workItem from="1715508268289" duration="7144000" />
-      <workItem from="1716348693434" duration="8755000" />
+      <workItem from="1716348693434" duration="50370000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1646476425173</created>
@@ -514,7 +509,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715084366696</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="commit 2024/05/23">
+      <created>1716473130590</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1716473130590</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -573,7 +575,8 @@
     <MESSAGE value="commit 2024/04/08" />
     <MESSAGE value="commit 2024/04/10" />
     <MESSAGE value="re_build 2024/05/07" />
-    <option name="LAST_COMMIT_MESSAGE" value="re_build 2024/05/07" />
+    <MESSAGE value="commit 2024/05/23" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 2024/05/23" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -582,16 +585,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/fang/doit/design/lru/LRUCache.java</url>
           <line>118</line>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DoitTop.java</url>
-          <line>2022</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DoitTop.java</url>
-          <line>1612</line>
-          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
