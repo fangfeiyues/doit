@@ -6,7 +6,8 @@ import java.util.Map;
 
 /**
  * 设计一个最近最少使用缓存，是否可以在 O(1) 时间复杂度内完成这两种操作get&put
- * （ 最近最少使用算法，是一种内存数据淘汰策略，使用常见是当内存不足时，需要淘汰最近最少使用的数据 ）
+ *
+ * （最近最少使用算法，是一种内存数据淘汰策略，使用常见是当内存不足时，需要淘汰最近最少使用的数据）
  *
  * @author fangfeiyue
  * @Date 2020/12/19 10:53 下午
@@ -17,7 +18,6 @@ public class LRUCache {
      * 哈希表：保证get O(1)的时间复杂度
      * 双向链表：保证O(1)快速移除&插入
      */
-
 
     private Map<Integer, TwoWayListNode> cache;
     TwoWayListNode head, tail;
@@ -50,11 +50,11 @@ public class LRUCache {
     }
 
     private void appendAtTail(TwoWayListNode node) {
-        // 1、自己不会已经是队尾
+        // 1、自己已经是队尾
         if (tail.next == node) {
             return;
         }
-        // 2、把自己从当前节点摘除（注意双向链表pre、next都要处理）
+        // 2、把自己从当前节点摘除（双向链表找到pre、next保证了O(1)的复杂度）
         if (null != node.pre && null != node.next) {
             TwoWayListNode prev = node.pre;
             prev.next = node.next;
@@ -98,7 +98,6 @@ public class LRUCache {
 
 
     private void removeHead() {
-        // 移除缓存cache、链表头节点
         TwoWayListNode next = head.next ;
         next.pre = null;
         head.next = null;

@@ -1,4 +1,4 @@
-package com.fang.doit.design.proxy.jdk;
+package com.fang.doit.design.proxy;
 
 /**
  * created by fang on 2019/3/3/003 16:53

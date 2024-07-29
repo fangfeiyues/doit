@@ -1,4 +1,4 @@
-package com.fang.doit.design.proxy.jdk;
+package com.fang.doit.design.proxy;
 
 import com.alibaba.fastjson.JSON;
 
