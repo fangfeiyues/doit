@@ -6,7 +6,7 @@ import javafx.util.Pair;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
+        
 /**
  * @author : fangfeiyue
  * @version V1.0
@@ -275,7 +275,7 @@ public class Hot100 {
     }
 
 
-    public List<List<Integer>> verticalOrderBFS(TreeNode root) {
+    private List<List<Integer>> verticalOrderBFS(TreeNode root) {
         List<List<Integer>> output = new ArrayList();
         if (root == null) {
             return output;
@@ -308,11 +308,8 @@ public class Hot100 {
         return output;
     }
     /**
-     * 484.寻找排列：由范围 [1,n] 内所有整数组成的 n 个整数的排列 perm 可以表示为长度为 n - 1 的字符串 s ，
-     * 其中:
-     *   如果 perm[i] < perm[i + 1] ，那么 s[i] == 'I'
-     *   如果 perm[i] > perm[i + 1] ，那么 s[i] == 'D'
-     * 给定一个字符串 s ，重构字典序上最小的排列 perm 并返回它
+     * 484.寻找排列：由范围 [1,n] 内所有整数组成的 n 个整数的排列 perm 可以表示为长度为 n - 1 的字符串 s ，其中:
+     * 如果 perm[i] < perm[i + 1] ，那么 s[i] == 'I'，如果 perm[i] > perm[i + 1] ，那么 s[i] == 'D'，给定一个字符串 s ，重构字典序上最小的排列 perm 并返回它
      *
      * 输入： s = "I"
      * 输出： [1,2]
@@ -324,7 +321,7 @@ public class Hot100 {
      * @param s
      * @return
      */
-    public static int[] findPermutation(String s) {
+    public static int[] xxx_findPermutation(String s) {
         // 有意思的题目，好难，没有思路..
         int[] res = new int[s.length() + 1];
         Stack<Integer> stack = new Stack<>();
@@ -377,11 +374,8 @@ public class Hot100 {
     }
 
 
-
-
-
     /**
-     * 298. 二叉树最长连续序列，给你一棵指定的二叉树的根节点 root ，请你计算其中最长连续序列路径的长度
+     * 298. 二叉树最长连续序列，给你一棵指定的二叉树的根节点 root ，请你计算其中最长连续序列路径的长度，
      * 最长连续序列路径 是依次递增 1 的路径，该路径，可以是从某个初始节点到树中任意节点，通过「父 - 子」关系连接而产生的任意路径，且必须从父节点到子节点，反过来是不可以的
      * <p>
      * 输入：root = [1,null,3,2,4,null,null,null,5]
@@ -600,7 +594,7 @@ public class Hot100 {
 
 
     /**
-     * 41.给你一个未排序的整数数组 nums ，找出其中没有出现的最小的正整数，实现时间复杂度为 O(n) 并且只使用常数级别额外空间的解决方案
+     * 41.给你一个未排序的整数数组 nums ，找出其中没有出现的最小正整数，实现时间复杂度为 O(n) 并且只使用常数级别额外空间的解决方案
      * <p>
      * [2,4,0,5] ==> 1
      * [-1, 2, 4, 1] ==> 4
@@ -608,7 +602,7 @@ public class Hot100 {
      * @param nums
      * @return
      */
-    public static int firstMissingPositive_xxx(int[] nums) {
+    public static int xxx_firstMissingPositive(int[] nums) {
         int n = nums.length;
         for (int i = 0; i < n; ++i) {
             if (nums[i] <= 0) {
@@ -785,7 +779,7 @@ public class Hot100 {
 //        return max == 0 ? nums.length : max;
 //    }
 
-    public int findMaxConsecutiveOnes_xxx(int[] nums) {
+    public int xx_findMaxConsecutiveOnes(int[] nums) {
         int l = 0, r = 0;
         int ans = 0, n = nums.length;
         boolean flag = true;
@@ -843,7 +837,7 @@ public class Hot100 {
     }
 
     /**
-     * 239.给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧，你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位,返回 滑动窗口中的最大值
+     * 239.给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧，你只可以看到在滑动窗口内的 k 个数字，滑动窗口每次只向右移动一位,返回滑动窗口中的最大值
      *
      * 输入：nums = [1,3,-1,-3,5,3,6,7], k = 3 ==》[3,3,5,5,6,7]
      * 输入：nums = [1], k = 1
@@ -854,7 +848,7 @@ public class Hot100 {
      * @param k
      * @return
      */
-    public static int[] maxSlidingWindow(int[] nums, int k) {
+    public static int[] xxx_maxSlidingWindow(int[] nums, int k) {
         int n = nums.length;
         Deque<Integer> deque = new LinkedList<>();
         for (int i = 0; i < k; ++i) {
@@ -896,7 +890,7 @@ public class Hot100 {
     Map<Character, Integer> ori = new HashMap<>();
     Map<Character, Integer> cnt = new HashMap<>();
 
-    public String minWindow_xxx(String s, String t) {
+    public String xxx_minWindow(String s, String t) {
         int tLen = t.length();
         for (int i = 0; i < tLen; i++) {
             char c = t.charAt(i);
@@ -906,13 +900,13 @@ public class Hot100 {
         int len = Integer.MAX_VALUE, ansL = -1, ansR = -1;
         int sLen = s.length();
         while (r < sLen) {
-            // R日常前进，把结果统计到CNT的集合内（想到了这一步..但感觉复杂度过高，看来还是要坚持走下去才行）
             ++r;
             if (r < sLen && ori.containsKey(s.charAt(r))) {
                 cnt.put(s.charAt(r), cnt.getOrDefault(s.charAt(r), 0) + 1);
             }
             // 满足涵盖条件，则更新长度len，并把L继续前进
             while (check() && l <= r) {
+                // 更新涵盖的最小字串
                 if (r - l + 1 < len) {
                     len = r - l + 1;
                     ansL = l;
@@ -1076,14 +1070,10 @@ public class Hot100 {
 
 
     /**
-     * 186.给你一个字符数组 s ，反转其中 单词 的顺序，单词 的定义为：单词是一个由非空格字符组成的序列。s 中的单词将会由单个空格分隔
-     * 必须设计并实现 原地 解法来解决此问题，即不分配额外的空间
-     *
-     * 示例 1：
+     * 186.给你一个字符数组 s ，反转其中单词的顺序，单词的定义为：单词是一个由非空格字符组成的序列。s 中的单词将会由单个空格分隔，必须设计并实现原地解法来解决此问题，即不分配额外的空间
      *
      * 输入：s = ["t","h","e"," ","s","k","y"," ","i","s"," ","b","l","u","e"]
      * 输出：["b","l","u","e"," ","i","s"," ","s","k","y"," ","t","h","e"]
-     * 示例 2：
      *
      * 输入：s = ["a"]
      * 输出：["a"]
@@ -1093,6 +1083,7 @@ public class Hot100 {
     public void reverseWords(char[] s) {
         // 整个字符数组反转
         reverseCharacters(s);
+
         // 再反转每个单词
         reverseEachWord(s);
     }
@@ -1134,8 +1125,7 @@ public class Hot100 {
 
 
     /**
-     * 161. 给定两个字符串 s 和 t ，如果它们的编辑距离为 1 ，则返回 true ，否则返回 false
-     * 字符串 s 和字符串 t 之间满足编辑距离等于 1 有三种可能的情形：
+     * 161. 给定两个字符串 s 和 t ，如果它们的编辑距离为 1 ，则返回 true ，否则返回 false，字符串 s 和字符串 t 之间满足编辑距离等于 1 有三种可能的情形：
      *   往 s 中插入 恰好一个 字符得到 t
      *   从 s 中删除 恰好一个 字符得到 t
      *   在 s 中用 一个不同的字符 替换 恰好一个 字符得到 t
@@ -1237,11 +1227,9 @@ public class Hot100 {
 
 
     /**
-     * 128.最长连续数组，给定一个未排序的整数数组 nums ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度
+     * 128.最长连续数组，给定一个未排序的整数数组 nums ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度，请你设计并实现时间复杂度为 O(n) 的算法解决此问题
      *
-     * 请你设计并实现时间复杂度为 O(n) 的算法解决此问题
-     *
-     * nums = [100,4,200,1,3,2] ==>4 [1, 2, 3, 4]
+     * nums = [100,4,200,1,3,2] ==> 4 [1, 2, 3, 4]
      * nums = [0,3,7,2,5,8,4,6,0,1] => 9
      *
      * @param nums
@@ -1266,11 +1254,8 @@ public class Hot100 {
 
 
     /**
-     * 11.给定一个长度为 n 的整数数组 height 。有 n 条垂线，第 i 条线的两个端点是 (i, 0) 和 (i, height[i]) 。
-     *
-     * 找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水,返回容器可以储存的最大水量
-     *
-     *
+     * 11.给定一个长度为 n 的整数数组 height , 有 n 条垂线，第 i 条线的两个端点是 (i, 0) 和 (i, height[i]) ，找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水,返回容器可以储存的最大水量
+     * <p>
      * [1,8,6,2,5,4,8,3,7] ==> 49
      *
      * @param height
@@ -1335,11 +1320,9 @@ public class Hot100 {
     }
 
     /**
-     * 624.给定 m 个数组，每个数组都已经按照升序排好序了。
-     * 现在你需要从两个不同的数组中选择两个整数（每个数组选一个）并且计算它们的距离。
-     * 两个整数 a 和 b 之间的距离定义为它们差的绝对值 |a-b| ，找到最大距离
-     *
-     *  [[1,2,3],[4,5],[1,2,3]] ==> 4
+     * 624.给定 m 个数组，每个数组都已经按照升序排好序了。现在你需要从两个不同的数组中选择两个整数（每个数组选一个）并且计算它们的距离，两个整数 a 和 b 之间的距离定义为它们差的绝对值 |a-b| ，找到最大距离
+     * <p>
+     * [[1,2,3],[4,5],[1,2,3]] ==> 4
      *
      * @param arrays
      * @return
@@ -1369,7 +1352,7 @@ public class Hot100 {
      *
      * @param nums
      */
-    public void swap(int[] nums, int i, int j) {
+    private void swap(int[] nums, int i, int j) {
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
@@ -1383,17 +1366,18 @@ public class Hot100 {
     }
 
     /**
-     * 1、给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出和为目标值 target  的那 两个 整数，并返回它们的数组下标
+     * 给定一个整数数组 nums 和 一个整数目标值 target，请你在该数组中找出和为目标值 target 的那两个整数，并返回它们的数组下标
      *
      * <p>
-     * nums = [2,7,11,15], target = 9 ==》[0,1]
-     * nums = [3,2,4], target = 6 ==》[1,2]
+     * nums = [2,7,11,15], target = 9  ==>  [0,1]
+     * nums = [3,2,4], target = 6  ==>  [1,2]
      *
      * @param nums
      * @param target
      * @return
      */
     public int[] twoSum(int[] nums, int target) {
+        // 1、HashMap 的 containsKey
         Map<Integer, Integer> hashtable = new HashMap<>();
         for (int i = 0; i < nums.length; ++i) {
             if (hashtable.containsKey(target - nums[i])) {
@@ -1401,15 +1385,16 @@ public class Hot100 {
             }
             hashtable.put(nums[i], i);
         }
+
+        // 2、排序后，左右指针判断
         return new int[0];
     }
 
 
     /**
-     * 49. 给你一个字符串数组，请你将字母异位词相同的组合在一起，可以按任意顺序返回结果列表
-     *    （字母异位词是由重新排列源单词的所有字母得到的一个新单词）
+     * 49. 给你一个字符串数组，请你将字母异位词相同的组合在一起，可以按任意顺序返回结果列表（字母异位词是由重新排列源单词的所有字母得到的一个新单词）
      * <p>
-     * strs = ["eat", "tea", "tan", "ate", "nat", "bat"] ==》[["bat"],["nat","tan"],["ate","eat","tea"]]
+     * strs = ["eat", "tea", "tan", "ate", "nat", "bat"]  ==>  [["bat"],["nat","tan"],["ate","eat","tea"]]
      *
      * @param strs
      * @return
@@ -1418,6 +1403,7 @@ public class Hot100 {
         Map<String, List<String>> map = new HashMap<>(strs.length);
         for (String s : strs) {
             char[] cs = s.toCharArray();
+            // 排序字符
             Arrays.sort(cs);
             String strKey = String.valueOf(cs);
             if (!map.containsKey(strKey)) {

@@ -1,6 +1,7 @@
 package com.fang.doit.algo.lc;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 /**
  * @author : fangfeiyue
@@ -12,10 +13,117 @@ import java.util.Arrays;
  */
 public class Prime75 {
 
+    /**
+     * 2390. 从字符串中移除星号， 给你一个包含若干星号*的字符串s，在一步操作中，你可以选中s中的一个星号、移除星号左侧最近的那个非星号字符，并移除该星号自身，返回移除所有星号之后的字符串
+     * 注意： 生成的输入保证总是可以执行题面中描述的操作；可以证明结果字符串是唯一的
+     *
+     * <p>
+     * 输入：s = "leet**cod*e"
+     * 输出："lecoe"
+     *
+     * 输入：s = "erase*****"
+     * 输出：""
+     * @param s
+     * @return
+     */
+    public static String removeStars(String s) {
+        // 栈存放，遇到*则移除一个字符
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < s.length(); i++) {
+            if(s.charAt(i) == '*' && !stack.isEmpty()){
+                stack.pop();
+                continue;
+            }
+            stack.push(s.charAt(i));
+        }
 
-    public static void main(String[] args) {
-//        System.out.println(longestOnes(new int[]{1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0}, 2));
-        System.out.println(longestSubarray(new int[]{1,1,0,1}));
+        // 反转stack
+        StringBuilder res = new StringBuilder();
+        while (!stack.isEmpty()){
+            res.append(stack.pop().toString());
+        }
+        return res.reverse().toString();
+    }
+
+
+    /**
+     * 735 小行星碰撞
+     * 给定一个整数数组 asteroids，表示在同一行的小行星。对于数组中的每一个元素，其绝对值表示小行星的大小，正负表示小行星的移动方向（正表示向右移动，负表示向左移动）。每一颗小行星以相同的速度移动，找出碰撞后剩下的所有小行星
+     * 碰撞规则：两个小行星相互碰撞，较小的小行星会爆炸。如果两颗小行星大小相同，则两颗小行星都会爆炸。两颗移动方向相同的小行星，永远不会发生碰撞
+     * <p>
+     * 输入：asteroids = [5,10,-5] ==》输出：[5,10]  解释：10 和 -5 碰撞后只剩下 10 。 5 和 10 永远不会发生碰撞
+     * 输入：asteroids = [8,-8] ==》输出：[]  解释：8 和 -8 碰撞后，两者都发生爆炸。
+     * 输入：asteroids = [10,2,-5] ==》输出：[10] 解释：2 和 -5 发生碰撞后剩下 -5 。10 和 -5 发生碰撞后剩下 10
+     *
+     * @param asteroids
+     * @return
+     */
+    public int[] asteroidCollision(int[] asteroids) {
+
+        //
+
+        return new int[]{};
+    }
+
+
+    /**
+     * 1657. 确定两个字符串是否接近
+     * <p>
+     * 如果可以使用以下操作从一个字符串得到另一个字符串，则认为两个字符串 接近 ：
+     * 操作 1：交换任意两个 现有 字符。例如，abcde -> aecdb
+     * 操作 2：将一个 现有 字符的每次出现转换为另一个 现有 字符，并对另一个字符执行相同的操作。例如，aacabb -> bbcbaa（所有 a 转化为 b ，而所有的 b 转换为 a ）
+     * <p>
+     * 输入：word1 = "abc", word2 = "bca"
+     * 输出：true
+     *
+     * @param word1
+     * @param word2
+     * @return
+     */
+    public boolean closeStrings(String word1, String word2) {
+        int[] count1 = new int[26], count2 = new int[26];
+        for (char c : word1.toCharArray()) {
+            count1[c - 'a']++;
+        }
+        for (char c : word2.toCharArray()) {
+            count2[c - 'a']++;
+        }
+        for (int i = 0; i < 26; i++) {
+            if (count1[i] > 0 && count2[i] == 0 || count1[i] == 0 && count2[i] > 0) {
+                return false;
+            }
+        }
+        Arrays.sort(count1);
+        Arrays.sort(count2);
+        return Arrays.equals(count1, count2);
+    }
+
+
+    /**
+     * 2352. 相等行列对
+     * <p>
+     * 给你一个下标从 0 开始、大小为 n x n 的整数矩阵 grid ，返回满足 Ri 行和 Cj 列相等的行列对 (Ri, Cj) 的数目。
+     * 如果行和列以相同的顺序包含相同的元素（即相等的数组），则认为二者是相等的
+     * <p>
+     * 输入：grid = [[3,2,1],[1,7,6],[2,7,7]]
+     * 输出：1
+     * 解释：存在一对相等行列对：
+     * - (第 2 行，第 1 列)：[2,7,7]
+     * <p>
+     * <p>
+     * 输入：grid = [[3,1,2,2],[1,4,4,5],[2,4,2,2],[2,4,2,2]]
+     * 输出：3
+     * 解释：存在三对相等行列对：
+     * - (第 0 行，第 0 列)：[3,1,2,2]
+     * - (第 2 行, 第 2 列)：[2,4,2,2]
+     * - (第 3 行, 第 2 列)：[2,4,2,2]
+     *
+     * @param grid
+     * @return
+     */
+    public int equalPairs(int[][] grid) {
+
+        return 0;
     }
 
     /**
@@ -35,17 +143,14 @@ public class Prime75 {
             if (nums[right] == 0 && k >= 0) {
                 k--;
             }
-
             // 左区间：k<0说明要还回去一个
             while (k < 0) {
                 if (nums[left++] == 0) {
                     k++;
                 }
             }
-
             // 保证左右两边都是1，再计算区间
             count = Math.max(count, right - left + 1);
-
             right++;
         }
         return count;
@@ -74,30 +179,50 @@ public class Prime75 {
      * @param nums
      * @return
      */
-    public static int longestSubarray(int[] nums) {
-        int left = 0, right = 0, count = 0, len = 0;
-        while (right < nums.length) {
+//    public static int longestSubarray(int[] nums) {
+//        int left = 0, right = 0, count = 0, len = 0;
+//        while (right < nums.length) {
+//
+//            if (nums[right] != 1) {
+//                count++;
+//            }
+//
+//            while (count > 1) {
+//                if (nums[left++] != 1) {
+//                    count--;
+//                }
+//            }
+//
+//            len = Math.max(len, right - left - count);
+//
+//            right++;
+//        }
+//
+//        if(count ==0){
+//            len --;
+//        }
+//
+//        return len;
+//    }
 
-            if (nums[right] != 1) {
-                count++;
+
+    public int longestSubarray(int[] nums) {
+        int ans = 0;
+        int p0 = 0, p1 = 0;
+        for (int num : nums) {
+            if (num == 0) {
+                p1 = p0;
+                p0 = 0;
+            } else {
+                ++p0;
+                ++p1;
             }
-
-            while (count > 1) {
-                if (nums[left++] != 1) {
-                    count--;
-                }
-            }
-
-            len = Math.max(len, right - left - count);
-
-            right++;
+            ans = Math.max(ans, p1);
         }
-
-        if(count ==0){
-            len --;
+        if (ans == nums.length) {
+            --ans;
         }
-
-        return len;
+        return ans;
     }
 
     /**
@@ -299,10 +424,18 @@ public class Prime75 {
             return nums[k];
         }
         // i 和 j 交叉后，即 x 在自己的位置上
-        int x = nums[l], i = l - 1, j = r + 1;
+        // [3,2,3,1,2,4,5,5,6], k = 4 ==》4
+//        int x = nums[l], i = l - 1, j = r + 1;
+        int x = nums[l], i = l, j = r;
         while (i < j) {
-            do i++; while (nums[i] < x);
-            do j--; while (nums[j] > x);
+//            do i++; while (nums[i] < x);
+//            do j--; while (nums[j] > x);
+            while (nums[i] < x) {
+                i++;
+            }
+            while (nums[j] > x) {
+                j--;
+            }
             if (i < j) {
                 int tmp = nums[i];
                 nums[i] = nums[j];
@@ -319,7 +452,7 @@ public class Prime75 {
 
 //    public static void main(String[] args) {
 //        Prime75 prime75 = new Prime75();
-//        System.out.println(prime75.findKthLargestByHeap(new int[]{3,2,3,1,2,4,5,5,6}, 5));
+//        System.out.println(prime75.findKthLargestByQuick(new int[]{3, 2, 3, 1, 2, 4, 5, 5, 6}, 5));
 //    }
 
 
