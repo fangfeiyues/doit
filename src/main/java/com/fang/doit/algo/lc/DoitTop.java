@@ -398,7 +398,6 @@ public class DoitTop {
      * @return
      */
     public static int xxxx_characterReplacement_424(String s, int k) {
-        // 窗口大小 - 最大相同数量 > 可变的字母数k，则说明到达极限即最大值，此时左窗口移动
         int len = s.length();
         int[] map = new int[26];
         int left = 0;
@@ -411,6 +410,7 @@ public class DoitTop {
             maxSame = Math.max(maxSame, map[index]);
             int windowsLen = right - left + 1;
             if (windowsLen - maxSame > k) {
+                // 说明超出K次替换了
                 map[s.charAt(left) - 'A']--;
                 left++;
             }
@@ -749,7 +749,7 @@ public class DoitTop {
             counter.put(s.charAt(i), counter.getOrDefault(s.charAt(i), 0) + 1);
         }
         for (char c : counter.keySet()) {
-            // count < k 则只能在两字符分割区间内找，不能在外找，因为外部肯定包含这不满足条件的字符
+            // count < k 则只能在两字符分割区间内找，不能在外找，因为外部肯定包含数量小于k的字符
             if (counter.get(c) < k) {
                 int res = 0;
                 for (String t : s.split(String.valueOf(c))) {
@@ -1305,25 +1305,25 @@ public class DoitTop {
         // 滑动窗口啊
         int windowSum = 0;
         int max = 0;
-        Queue<Integer> queue = new LinkedList<>();
-        for (int j : nums) {
-            queue.add(j);
-            windowSum = windowSum + j;
-            // TODO windowSum存在负数的话，就不满足滑动窗口，不能保证窗口内的一定是最大值
-            while (queue.size() > 0 && windowSum > k) {
-                int num = queue.poll();
-                windowSum -= num;
-            }
-            if (windowSum == k) {
-                max = Math.max(max, queue.size());
-            }
-        }
+//        Queue<Integer> queue = new LinkedList<>();
+//        for (int j : nums) {
+//            queue.add(j);
+//            windowSum = windowSum + j;
+//            // TODO windowSum存在负数的话，就不满足滑动窗口，不能保证窗口内的一定是最大值
+//            while (queue.size() > 0 && windowSum > k) {
+//                int num = queue.poll();
+//                windowSum -= num;
+//            }
+//            if (windowSum == k) {
+//                max = Math.max(max, queue.size());
+//            }
+//        }
         return max;
     }
 
 //    public static void main(String[] args) {
 //        int[] nums = {3, 1, -1, 5, -2, 3};
-//        System.out.println(xxx_maxSubArrayLen_325(nums, 3));
+//        System.out.println(maxSubArrayLen_ee(nums, 3));
 //    }
 
     public static int xxx_maxSubArrayLen_325(int[] nums, int k) {

@@ -3,8 +3,6 @@ package com.fang.doit.algo.lc;
 import com.fang.doit.algo.classes.linked.ListNode;
 import com.fang.doit.algo.classes.tree.TreeNode;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -608,41 +606,119 @@ public class Review0107 {
      * @param nums
      * @return
      */
-    public int findDuplicate(int[] nums) {
+    private int findDuplicate_4_mid(int[] nums) {
+        // 时间复杂度:O(logn)，空间复杂度：O(1)
+        // 巧妙利用二分法
+        int left = 1;
+        int right = nums.length - 1;
+        while (left < right) {
+            int mid = (left + right) / 2;
+            int cnt = 0;
+            // 找到所有小于mid的数
+            for (int num : nums) {
+                if (num <= mid) {
+                    cnt++;
+                }
+            }
+            // cnt > mid 说明重复数在 mid 的左边，则值在 [1,mid]
+            if (cnt > mid) {
+                right = mid;
+            } else {
+                // cnt = mid 说明在左侧或自己，left可以返回
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
 
-        return 0;
+    private int findDuplicate_4_slow(int[] nums) {
+        // 通过nums[n] -> nums[nums[n]]的指向构建成一个环（不在意环的位置是否是链表最后只要保证环存在即可）
+        int slow = nums[0];
+        int fast = nums[nums[0]];
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        }
+        fast = 0;
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        return slow;
     }
 
 
     /**
-     * 309. 给定一个整数数组prices，其中第  prices[i] 表示第 i 天的股票价格。设计一个算法计算出最大利润在满足以下约束条件下，
-     * 你可以尽可能地完成更多的交易（多次买卖一支股票） 卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)
+     * 309. 给定一个整数数组prices，其中第  prices[i] 表示第 i 天的股票价格。设计一个算法计算出最大利润在满足以下约束条件下，你可以尽可能地完成更多的交易，卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)
      * 注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）
      * <p>
-     * eg.prices = [1,2,3,0,2] ==> 3 [买入, 卖出, 冷冻期, 买入, 卖出]
+     * eg. prices = [1,2,3,0,2] ==> 3 [买入, 卖出, 冷冻期, 买入, 卖出]
      *
      * @param prices
      * @return
      */
-    public int maxProfit(int[] prices) {
-
-        return 0;
+    public static int x_maxProfit(int[] prices) {
+        // 某一天最大利润，前一天买入/卖出/冷冻期 ==> 选择当天视角或者前一天视角理论上都行，这里是当前之始视角
+        int[][] dp = new int[prices.length][3];
+        int n = prices.length;
+        dp[0][0] = 0;
+        for (int i = 1; i < prices.length; i++) {
+            // 手上持有股票: 一直持有 或 前一天买入
+            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][2] - prices[0]);
+            // 手上不持有股票且处于冷冻期: 前一天卖出
+            dp[i][1] = dp[i - 1][0] + prices[i - 1];
+            // 手上不持有股票且不处于冷冻期：第i-1天没操作，可能在冷冻也可能不在
+            dp[i][2] = Math.max(dp[i - 1][1], dp[i - 1][2]);
+        }
+        return Math.max(dp[n - 1][1], dp[n - 1][2]);
     }
 
 
+//    public static void main(String[] args) {
+//        System.out.println(x_maxProfit(new int[]{1, 2, 3, 0, 2}));
+//    }
+
+
     /**
-     * 264.一个整数n，返回第n个丑数（丑数就是质因子只包含 2、3 和 5 的正整数）
+     * 264.一个整数n，返回第n个丑数，丑数就是质因子只包含 2、3 和 5 的正整数
      * <p>
      * n = 10 ==> 12 [1, 2, 3, 4, 5, 6, 8, 9, 10, 12] 丑数组成的前10列表
      *
      * @param n
      * @return
      */
-    public int nthUglyNumber(int n) {
+    public static int nthUglyNumber(int n) {
+        // 在i的最小丑数值
+        int[] dp = new int[n];
+        dp[0] = 1;
 
-        return 0;
+        // 2、3、5丑数每次在之前的基础上再乘以自身数字，找到最小的那个
+
+        // p 表示当前数字乘了几次
+        int p2 = 0, p3 = 0, p5 = 0;
+        for (int i = 1; i < n; i++) {
+            // dp[p2] 代表上一次2的累计值，那么下一次关于2的乘就是 dp[p2] * 2，如果是最小那么 P2+1
+            int nums2 = dp[p2] * 2, nums3 = dp[p3] * 3, nums5 = dp[p5] * 5;
+            dp[i] = Math.min(nums2, Math.min(nums3, nums5));
+            if (dp[i] == nums2) {
+                p2++;
+            }
+            if (dp[i] == nums3) {
+                p3++;
+            }
+            if (dp[i] == nums5) {
+                p5++;
+            }
+        }
+        return dp[n - 1];
     }
 
+
+//    public static void main(String[] args) {
+//
+//        System.out.println(nthUglyNumber(10));
+//
+//    }
 
     /**
      * 313.超级丑数是一个正整数，并满足其所有质因数都出现在质数数组 primes 中，给你一个整数 n 和一个整数数组 primes ，返回第 n 个 超级丑数
@@ -654,10 +730,34 @@ public class Review0107 {
      * @return
      * @see
      */
-    public int nthSuperUglyNumber(int n, int[] primes) {
+    public static int x_nthSuperUglyNumber(int n, int[] primes) {
+        int[] dp = new int[n];
+        dp[0] = 1;
 
-        return 0;
+        // 临时记录每次 primes++ 后的 nums, 为下一次 * primes[i] 准备
+//        int[] nums = new int[primes.length];
+        int[] nums = Arrays.copyOf(primes, primes.length);
+
+        int[] p = new int[primes.length];
+        for (int i = 1; i < n; i++) {
+            // 找到本次的最小值，并把相关的 primes + 1
+            int min = Arrays.stream(nums).min().getAsInt();
+            dp[i] = min;
+            for (int j = 0; j < primes.length; j++) {
+                if (min == nums[j]) {
+                    p[j]++;
+                    // 关键点：p点的下一位乘积，比如现在 p 乘了2次，这次又是最小值，那么下一次就是 3 * primes[j] 作为 nums[p] 的值
+                    nums[j] = dp[p[j]] * primes[j];
+                }
+            }
+        }
+        return dp[n - 1];
     }
+
+
+//    public static void main(String[] args) {
+//        System.out.println(nthSuperUglyNumber(12, new int[]{2, 7, 13, 19}));
+//    }
 
 
     /**
@@ -665,17 +765,43 @@ public class Review0107 {
      * <p>
      * n = 5, [[0, 1], [1, 2], [3, 4]] ==> 2
      * n = 5, [[0,1], [1,2], [2,3], [3,4]] ==> 1
-     * n=5 [[0,1],[0,4],[1,4],[2,3]]
+     * n = 5 [[0,1],[0,4],[1,4],[2,3]]
      *
      * @param n
      * @param edges
      * @return
      */
-    private static int countComponents(int n, int[][] edges) {
+    public int xxx_countComponents_323(int n, int[][] edges) {
+        int components = 0;
+        int[] visited = new int[n];
+        // 数组列表 或者 哈希列表都可
+        List<Integer>[] adjList = new ArrayList[n];
+        for (int i = 0; i < n; i++) {
+            adjList[i] = new ArrayList<>();
+        }
+        for (int i = 0; i < edges.length; i++) {
+            // 注意是双向联通的：a->b b->a
+            adjList[edges[i][0]].add(edges[i][1]);
+            adjList[edges[i][1]].add(edges[i][0]);
+        }
 
-        return 0;
+        for (int i = 0; i < n; i++) {
+            if (visited[i] == 0) {
+                components++;
+                countComponentsDFS(adjList, visited, i);
+            }
+        }
+        return components;
     }
 
+    private void countComponentsDFS(List<Integer>[] adjList, int[] visited, int startNode) {
+        visited[startNode] = 1;
+        for (int i = 0; i < adjList[startNode].size(); i++) {
+            if (visited[adjList[startNode].get(i)] == 0) {
+                countComponentsDFS(adjList, visited, adjList[startNode].get(i));
+            }
+        }
+    }
 
     /**
      * 325.给定一个数组 nums 和一个目标值 k，找到和等于 k 的最长连续子数组长度。如果不存在任意一个符合要求的子数组，则返回 0
@@ -686,10 +812,30 @@ public class Review0107 {
      * @param k
      * @return
      */
-    private static int maxSubArrayLen(int[] nums, int k) {
+    private static int x_maxSubArrayLen(int[] nums, int k) {
 
-        return 0;
+        // 滑动窗口，可能有负数 双端才行
+
+        // 前缀和，pre[j] - pre[i] = k 的情况下说明 j-i的长度满足要求
+        int preSum = 0, max = 0;
+        Map<Integer, Integer> point = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (point.containsKey(preSum - k)) {
+                max = Math.max(max, i - point.get(preSum - k));
+            }
+            preSum = preSum + nums[i];
+
+            // 要更新，保证最长
+            point.put(preSum, i);
+        }
+        return max;
     }
+
+//    public static void main(String[] args) {
+//
+//        System.out.println(maxSubArrayLen(new int[]{1, -1, 5, -2, 3}, 3));
+//
+//    }
 
 
     /**
@@ -702,7 +848,9 @@ public class Review0107 {
      * @return
      */
 
-    public int largestBSTSubtree(TreeNode root) {
+    public int x_largestBSTSubtree(TreeNode root) {
+
+        // 二叉搜索树，左小右大，深度递归后逐步找到满足条件的节点树，通过节点标识是否是BST、大小SIZE、及最大最小值
 
         return 0;
     }
@@ -718,13 +866,13 @@ public class Review0107 {
      * @return
      */
     public String removeDuplicateLetters(String s) {
-
+        // 放弃xxx
         return "";
     }
 
 
     /**
-     * 340.给你一个字符串 s 和一个整数 k ，请你找出 至多 包含 k 个 不同 字符的最长子串并返回该子串的长度
+     * 340.给你一个字符串 s 和一个整数 k ，请你找出至多包含 k 个不同字符的最长子串并返回该子串的长度
      * <p>
      * s = "eceba", k = 2 ==> 3 "ece"
      * s = "aa", k = 1 ==> 2 "aa"
@@ -733,10 +881,33 @@ public class Review0107 {
      * @param k
      * @return
      */
-    public int lengthOfLongestSubstringKDistinct(String s, int k) {
+    public static int lengthOfLongestSubstringKDistinct(String s, int k) {
+        // 滑动窗口，统计窗口内不同字符的数量
+        int[] nums = new int[128];
+        int left = 0, right = 0, count = 0, max = 1;
+        while (right < s.length()) {
+            // 有新入的
+            if (nums[s.charAt(right++)]++ == 0) {
+                count++;
+            }
+            // 超过k的
+            while (count > k) {
+                if (--nums[s.charAt(left++)] == 0) {
+                    count--;
+                }
+            }
 
-        return 0;
+            // 这里的 right 是下一次循环要进入窗口的，所以这里 right - left 后不用再 +1
+            max = Math.max(max, right - left);
+        }
+        return max;
     }
+
+//    public static void main(String[] args) {
+//
+//        System.out.println(lengthOfLongestSubstringKDistinct("eceba", 2));
+//
+//    }
 
 
     /**
@@ -747,9 +918,24 @@ public class Review0107 {
      * @param n
      * @return
      */
-    public int integerBreak(int n) {
+    public int x_integerBreak(int n) {
+        // 动态规划来看，找到某一个值的最大乘机即是过去某一个的最大乘机再乘以（i-j）
 
-        return 0;
+        int[] dp = new int[n + 1];
+        for (int i = 2; i <= n; i++) {
+            int tmpMax = 0;
+            /*
+                先将 i 分解为 j 和 i - j
+                如果 i - j 不再分解，那么 dp[i] = j * (i - j)
+                如果 i - j 继续分解，那么 dp[i] = j * dp[i - j]
+                为什么要单独捞出 j * (i - j) 这种情况？
+            */
+            for (int j = 1; j < i; j++) {
+                tmpMax = Math.max(tmpMax, Math.max(j * (i - j), j * dp[i - j]));
+            }
+            dp[i] = tmpMax;
+        }
+        return dp[n];
     }
 
 
@@ -765,10 +951,14 @@ public class Review0107 {
      */
     public static List<Integer> topKFrequent_queue(int[] nums, int k) {
 
+        // 统计出现次数，然后丢到大顶堆
+
+
+
         return null;
     }
 
-    public List<Integer> topKFrequent_bat(int[] nums, int k) {
+    public static List<Integer> topKFrequent_bat(int[] nums, int k) {
 
         return null;
     }
@@ -784,9 +974,35 @@ public class Review0107 {
      * @param k
      * @return
      */
-    public int longestSubstring(String s, int k) {
-        // tips：不断分割不满足条件的字符，判断分割的字符内是否否满足条件，并找到最大的那个
-        return 0;
+    public int x_longestSubstring(String s, int k) {
+        // 出现次数不少于k:
+        // 1、滑动窗口？不行，不能判断最后一个字符出现在哪
+        // 2、分割，把不满足条件的字符全部分割出去后留下的最大的字符即是结果
+
+        return longestSubstring(s,k);
+    }
+
+
+    private int longestSubstring(String s, int k) {
+        // 统计字符内出现的次数
+        Map<Character, Integer> counter = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            counter.put(s.charAt(i), counter.getOrDefault(s.charAt(i), 0) + 1);
+        }
+
+        int res = 0;
+        for (char c : counter.keySet()) {
+            // 字符出现次数不满足条件，应该要被分割出去
+            if (counter.get(s.charAt(c)) < k) {
+                for (String t : s.split(String.valueOf(c))) {
+                    // 字符左右分割后，再看看不含有字符的两个字符串哪个满足条件
+                    res = Math.max(res, longestSubstring(t, k));
+                }
+                return res;
+            }
+        }
+
+        return s.length();
     }
 
 
@@ -802,6 +1018,24 @@ public class Review0107 {
      */
     public String removeKdigit(String num, int k) {
 
+        // 雪耻之题！！！
+
+        // 队列先进先出，下一个来的时候不断找前一个小的
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < num.length(); i++) {
+            while (k > 0 && !stack.isEmpty() && stack.peek() > num.charAt(i)) {
+                stack.pop();
+                k--;
+            }
+            stack.push(num.charAt(i));
+        }
+        // 如果是一直递减，那么k的值不变，则需要从头拿掉k位
+        for (int i = 0; i < k; i++) {
+            stack.pop();
+        }
+
+        // 最后再把stack的数字倒着输出即可
+
         return null;
     }
 
@@ -810,17 +1044,35 @@ public class Review0107 {
      * 413 给你一个整数数组 nums ，返回数组 nums 中所有等差数组的子数组个数
      * <p>
      * nums = [1,2,3,4] ==》3 子等差数组：[1, 2, 3]、[2, 3, 4] 、[1,2,3,4]
-     *
+     * [1, 2, 3]、[2, 3, 4] 、[1,2,3,4]、[1,2,3,4,5]
      * @param nums
      * @return
      */
-    public int numberOfArithmeticSlices(int[] nums) {
+    public static int numberOfArithmeticSlices(int[] nums) {
         // 1、深度遍历 复杂度太高且实现有点难
         // 2、动态规划..（傻逼了居然没想到）
 
-        return 0;
+        int n = nums.length;
+        int ans = 0;
+        int temp = 0;
+        int d = nums[1] - nums[0];
+        for (int i = 2; i < n; i++) {
+            if (nums[i] - nums[i - 1] == d) {
+                temp++;
+            } else {
+                // 如果不符合等差，清零并更新差
+                temp = 0;
+                d = nums[i] - nums[i - 1];
+            }
+            // 每新增一位则加 temp 个子数组，如 [1,2,3,4] 时 temp = 2，那么 [1,2,3,4,5] 后会新增 temp = 3 个连续等差
+            ans += temp;
+        }
+        return ans;
     }
 
+//    public static void main(String[] args) {
+//        System.out.println(numberOfArithmeticSlices(new int[]{1,2,3,4,5}));
+//    }
 
     /**
      * 424. 给你一个字符串 s 和一个整数 k 。你可以选择字符串中的任一字符，并将其更改为任何其他大写英文字符，该操作最多可执行 k 次，在执行上述操作后，返回包含相同字母的最长子字符串的长度
@@ -835,8 +1087,21 @@ public class Review0107 {
      * @return
      */
     public int characterReplacement(String s, int k) {
-
-        return 0;
+        int left = 0, right = 0, max = 0;
+        int[] window = new int[26];
+        while (right < s.length()) {
+            int num = s.charAt(left) - 'A';
+            window[num]++;
+            max = Math.max(max, window[num]);
+            int wl = right - left + 1;
+            // 最大替换次数 + 可替换的次数k > 窗口就说明窗口内还有空间则可以继续右进,否则就要出
+            if (max + k < wl) {
+                window[num]--;
+                left++;
+            }
+            right++;
+        }
+        return right - left;
     }
 
 
@@ -850,10 +1115,48 @@ public class Review0107 {
      * @param key
      * @return 根节点
      */
-    public TreeNode deleteNode(TreeNode root, int key) {
-        // tips：找到删除节点后，把节点的右子树的左子树最小节点作为新的根
-        return null;
+    private TreeNode deleteNode(TreeNode root, int key) {
+        if (root == null) {
+            return null;
+        }
+        if (root.val > key) {
+            // 如果 root.left 正好是删除节点，那么 root.left = successor
+            root.left = deleteNode(root.left, key);
+            return root;
+        }
+        if (root.val < key) {
+            // 如果 root.right 正好是删除节点，那么 root.right = successor
+            root.right = deleteNode(root.right, key);
+            return root;
+        }
+
+        // ------- root.val == key --------
+        // 如果节点的左右子树都为null，则直接返回null，作为删除状态
+        if (root.left == null && root.right == null) {
+            return null;
+        }
+        // 如果右节点为空，则左子树直接衔接上
+        if (root.right == null) {
+            return root.left;
+        }
+        // 如果左节点为空，则右子树直接衔接上
+        if (root.left == null) {
+            return root.right;
+        }
+
+        // 1、找到root右子树的最小节点，即右子树的左子树叶子节点
+        TreeNode successor = root.right;
+        while (successor.left != null) {
+            successor = successor.left;
+        }
+        // 2、删除右子树的该节点
+        root.right = deleteNode(root.right, successor.val);
+        // 3、把该节点作为新的根节点（该节点满足大于root的所有左子树，且小于root所有右子树）
+        successor.right = root.right;
+        successor.left = root.left;
+        return successor;
     }
+
 
 
     /**
@@ -866,7 +1169,33 @@ public class Review0107 {
      * @return
      */
     public boolean makesquare(int[] matchsticks) {
+        int totalLen = Arrays.stream(matchsticks).sum();
+        if (totalLen % 4 != 0) {
+            return false;
+        }
+        Arrays.sort(matchsticks);
+        for (int i = 0, j = matchsticks.length - 1; i < j; i++, j--) {
+            int temp = matchsticks[i];
+            matchsticks[i] = matchsticks[j];
+            matchsticks[j] = temp;
+        }
 
+        int[] edges = new int[4];
+        // 对于数字index来说，每次都有4个选择，每次深度递归尝试后，可以则返回TRUE，否则返回FALSE，
+        return makesquaredfs(0, matchsticks, edges, totalLen / 4);
+    }
+
+    private boolean makesquaredfs(int index, int[] matchsticks, int[] edges, int len) {
+        if (index == matchsticks.length) {
+            return true;
+        }
+        for (int i = 0; i < edges.length; i++) {
+            edges[i] += matchsticks[index];
+            if (edges[i] <= len && makesquaredfs(index + 1, matchsticks, edges, len)) {
+                return true;
+            }
+            edges[i] -= matchsticks[index];
+        }
         return false;
     }
 
