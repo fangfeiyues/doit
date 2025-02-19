@@ -325,6 +325,7 @@ public class Review0107 {
      * @return 是否可能完成所有课程的学习
      */
     static boolean canFinish = false;
+
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         Map<Integer, int[]> preMap = new HashMap<>();
         for (int i = 0; i < prerequisites.length; i++) {
@@ -334,7 +335,7 @@ public class Review0107 {
 
         int[] visited = new int[prerequisites.length];
         for (int i = 0; i < numCourses; i++) {
-            if(visited[numCourses] == 0){
+            if (visited[numCourses] == 0) {
                 //
             }
         }
@@ -387,17 +388,20 @@ public class Review0107 {
     public static int x_rob(TreeNode root) {
         // 深度遍历树，最终会得到两个选择：父节点选或不选
         int[] rob = robDFS(root);
-        return Math.max(rob[0],rob[1]);
+        return Math.max(rob[0], rob[1]);
     }
 
     private static int[] robDFS(TreeNode node) {
         if (node == null) {
             return new int[]{0, 0};
         }
+        // 自下往上遍历，能不能上到下？
         int[] l = robDFS(node.left);
         int[] r = robDFS(node.right);
-        // 当天可偷最大金额为：父节点被偷（子节点不能偷） 或 父节点没偷（可偷两子节点）
+
+        // 当天可偷最大金额为：父节点被偷（子节点不能偷） 或 父节点没偷（可偷两子节点中任一）
         int steal = node.val + l[1] + r[1];
+        // 层层遍历，好题
         int no_steal = Math.max(Math.max(l[0], l[1]), Math.max(r[0], r[1]));
         return new int[]{steal, no_steal};
     }
@@ -557,25 +561,28 @@ public class Review0107 {
      * @param preorder
      * @return
      */
-    public boolean x_verifyPreorder(int[] preorder) {
+    public static boolean x_verifyPreorder(int[] preorder) {
         // 先序排序规则：先根节点，再左节点，最后右节点；是先递减在递增回溯的过程
 
-        // 先进后出的堆栈，作为根节点的集合
-        int max = Integer.MIN_VALUE;
         Stack<Integer> stack = new Stack<>();
-        for (int i : preorder) {
-            // 找到当前节点的根节点
-            while (!stack.isEmpty() && preorder[i] > stack.peek()) {
-                max = stack.pop();
+        int left_max = Integer.MIN_VALUE;
+        for (int cur : preorder) {
+            // 先序拐点在根节点：后续右子树节点都要大于此节点
+            while (!stack.isEmpty() && cur > stack.peek()) {
+                left_max = stack.pop();
             }
-            if (preorder[i] < max) {
+            // max：左子树的最大值，cur：右子树的最小值，cur < max 说明不是二叉搜索树
+            if (cur < left_max) {
                 return false;
             }
-            stack.add(preorder[i]);
+            stack.push(cur);
         }
         return true;
     }
 
+//    public static void main(String[] args) {
+//        System.out.println(x_verifyPreorder(new int[]{5, 2, 6, 1, 3}));
+//    }
 
     /**
      * 279.给你一个整数 n ，返回和为 n 的完全平方数的最少数量（ 完全平方数：是其值等于一个整数自乘的积，例如 1、4、9 和 16 都是完全平方数，而 3 和 11 不是 ）
@@ -658,12 +665,12 @@ public class Review0107 {
      * @return
      */
     public static int x_maxProfit(int[] prices) {
-        // 某一天最大利润，前一天买入/卖出/冷冻期 ==> 选择当天视角或者前一天视角理论上都行，这里是当前之始视角
+        // 某一天最大利润，前一天买入/卖出/冷冻期 ==> 选择当天视角或者前一天视角理论上都行，这里是当前视角
         int[][] dp = new int[prices.length][3];
         int n = prices.length;
         dp[0][0] = 0;
         for (int i = 1; i < prices.length; i++) {
-            // 手上持有股票: 一直持有 或 前一天买入
+            // 手上持有股票: 一直持有 或 前一天非冷冻期买入
             dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][2] - prices[0]);
             // 手上不持有股票且处于冷冻期: 前一天卖出
             dp[i][1] = dp[i - 1][0] + prices[i - 1];
@@ -731,16 +738,14 @@ public class Review0107 {
      * @see
      */
     public static int x_nthSuperUglyNumber(int n, int[] primes) {
+        // 值：记录更新后的值
+        int[] nums = Arrays.copyOf(primes, primes.length);
+        // 次数：
+        int[] p = new int[primes.length];
+        // 丑数
         int[] dp = new int[n];
         dp[0] = 1;
-
-        // 临时记录每次 primes++ 后的 nums, 为下一次 * primes[i] 准备
-//        int[] nums = new int[primes.length];
-        int[] nums = Arrays.copyOf(primes, primes.length);
-
-        int[] p = new int[primes.length];
         for (int i = 1; i < n; i++) {
-            // 找到本次的最小值，并把相关的 primes + 1
             int min = Arrays.stream(nums).min().getAsInt();
             dp[i] = min;
             for (int j = 0; j < primes.length; j++) {
@@ -756,7 +761,7 @@ public class Review0107 {
 
 
 //    public static void main(String[] args) {
-//        System.out.println(nthSuperUglyNumber(12, new int[]{2, 7, 13, 19}));
+//        System.out.println(x_nthSuperUglyNumber(12, new int[]{2, 7, 13, 19}));
 //    }
 
 
@@ -771,7 +776,7 @@ public class Review0107 {
      * @param edges
      * @return
      */
-    public int xxx_countComponents_323(int n, int[][] edges) {
+    public int x_countComponents_323(int n, int[][] edges) {
         int components = 0;
         int[] visited = new int[n];
         // 数组列表 或者 哈希列表都可
@@ -954,7 +959,6 @@ public class Review0107 {
         // 统计出现次数，然后丢到大顶堆
 
 
-
         return null;
     }
 
@@ -979,7 +983,7 @@ public class Review0107 {
         // 1、滑动窗口？不行，不能判断最后一个字符出现在哪
         // 2、分割，把不满足条件的字符全部分割出去后留下的最大的字符即是结果
 
-        return longestSubstring(s,k);
+        return longestSubstring(s, k);
     }
 
 
@@ -1045,6 +1049,7 @@ public class Review0107 {
      * <p>
      * nums = [1,2,3,4] ==》3 子等差数组：[1, 2, 3]、[2, 3, 4] 、[1,2,3,4]
      * [1, 2, 3]、[2, 3, 4] 、[1,2,3,4]、[1,2,3,4,5]
+     *
      * @param nums
      * @return
      */
@@ -1156,7 +1161,6 @@ public class Review0107 {
         successor.left = root.left;
         return successor;
     }
-
 
 
     /**

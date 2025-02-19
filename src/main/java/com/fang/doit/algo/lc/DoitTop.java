@@ -1863,11 +1863,11 @@ public class DoitTop {
         return true;
     }
 
-//    public static void main(String[] args) {
-//        int[] preorder = {4,2,1,3,5,6};
-//        DoitTop doitTop = new DoitTop();
-//        System.out.println(doitTop.xxx_verifyPreorder_255(preorder));
-//    }
+    public static void main(String[] args) {
+        int[] preorder = {4,2,1,3,5,6};
+        DoitTop doitTop = new DoitTop();
+        System.out.println(doitTop.xxx_verifyPreorder_255(preorder));
+    }
 
     /**
      * 如果它是以二叉搜索树的后序遍历排列返回true
