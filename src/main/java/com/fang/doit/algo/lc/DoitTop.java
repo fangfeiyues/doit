@@ -1864,7 +1864,7 @@ public class DoitTop {
     }
 
     public static void main(String[] args) {
-        int[] preorder = {4,2,1,3,5,6};
+        int[] preorder = {4, 2, 1, 3, 5, 6};
         DoitTop doitTop = new DoitTop();
         System.out.println(doitTop.xxx_verifyPreorder_255(preorder));
     }
