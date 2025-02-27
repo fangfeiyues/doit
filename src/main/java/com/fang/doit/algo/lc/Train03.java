@@ -1,16 +1,9 @@
 package com.fang.doit.algo.lc;
 
-
 import java.util.*;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.DelayQueue;
 
-/**
- * @author : fangfeiyue
- * @version V1.0
- * @Project: doit
- * @Package com.fang.doit.algo.lc
- * @Description:
- * @date Date : 2025-02-24 17:43
- */
 public class Train03 {
 
     // 2025-02-25 开始挑战 *2
@@ -70,7 +63,8 @@ public class Train03 {
 
 
     /**
-     * 239.给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧，你只可以看到在滑动窗口内的 k 个数字，滑动窗口每次只向右移动一位,返回滑动窗口中的最大值
+     * 239.给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧，
+     * 你只可以看到在滑动窗口内的 k 个数字，滑动窗口每次只向右移动一位,返回滑动窗口中的最大值
      * <p>
      * 输入：nums = [1,3,-1,-3,5,3,6,7], k = 3 ==》[3,3,5,5,6,7]
      * 输入：nums = [1], k = 1
@@ -82,15 +76,37 @@ public class Train03 {
      */
     public static int[] maxSlidingWindow(int[] nums, int k) {
         int n = nums.length;
+
+        // 窗口内的最大值，每次保持窗口递增即可
+        Deque<Integer> queue = new ArrayDeque<>();
+        for (int i = 0; i < k; i++) {
+            if (!queue.isEmpty() && queue.peekLast() < nums[i]) {
+                queue.pollLast();
+            }
+            queue.offerLast(i);
+        }
+
         int[] ans = new int[n - k + 1];
+        ans[0] = nums[queue.peekFirst()];
 
-
+        for (int i = k + 1; i < nums.length; i++) {
+            // 进
+            if (!queue.isEmpty() && queue.peekLast() < nums[i]) {
+                queue.pollLast();
+            }
+            queue.offerLast(nums[i]);
+            // 出
+            if (!queue.isEmpty() && queue.peekFirst() <= i - k) {
+                queue.pollFirst();
+            }
+            ans[i - k + 1] = nums[queue.peekFirst()];
+        }
         return ans;
     }
 
 
     /**
-     * 76.给你一个字符串 s 、一个字符串 t，返回 s 中涵盖 t 所有字符的最小子串，如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 ""
+     * 76.给你一个字符串 s 、一个字符串 t，返回 s 中涵盖 t 所有字符的最小子串，如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串""
      * <p>
      * s = "ADOBECODEBANC", t = "ABC" ==> "BANC"
      * s = "a", t = "aa" ==> ""
@@ -99,10 +115,61 @@ public class Train03 {
      * @param t
      * @return
      */
+
+    Map<Character, Integer> ori = new HashMap<>();
+    Map<Character, Integer> cnt = new HashMap<>();
+
     public String minWindow(String s, String t) {
 
-        return null;
+        // 滑动窗口，left 找到第一个满足条件的，right一直找到全部满足条件的
+        int tLen = t.length();
+        for (int i = 0; i < tLen; i++) {
+            char c = t.charAt(i);
+            ori.put(c, ori.getOrDefault(c, 0) + 1);
+        }
+        int l = 0, r = -1;
+        int len = Integer.MAX_VALUE, ansL = -1, ansR = -1;
+        int sLen = s.length();
+        while (r < sLen) {
+            ++r;
+            if (r < sLen && ori.containsKey(s.charAt(r))) {
+                cnt.put(s.charAt(r), cnt.getOrDefault(s.charAt(r), 0) + 1);
+            }
+
+            // 在满足覆盖的条件下，不断轮训，这点没想到
+            while (checkContains() && l <= r) {
+                if (r - l + 1 < len) {
+                    len = r - l + 1;
+                    ansL = l;
+                    ansR = l + len;
+                }
+                if (ori.containsKey(s.charAt(l))) {
+                    cnt.put(s.charAt(l), cnt.getOrDefault(s.charAt(l), 0) - 1);
+                }
+                ++l;
+            }
+        }
+        return ansL == -1 ? "" : s.substring(ansL, ansR);
     }
+
+    private boolean checkContains() {
+        Iterator<Map.Entry<Character, Integer>> iter = ori.entrySet().iterator();
+        while (iter.hasNext()) {
+            Map.Entry entry = iter.next();
+            Character key = (Character) entry.getKey();
+            Integer val = (Integer) entry.getValue();
+            if (cnt.getOrDefault(key, 0) < val) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+//    public static void main(String[] args) {
+//        Train03 train03 = new Train03();
+//        System.out.println(train03.minWindow("ADOBECODEBANC", "ABC"));
+//    }
 
 
 }
