@@ -17,7 +17,7 @@ public class Train03 {
      * 输出： [1,2]
      * 解释： [1,2] 是唯一合法的可以生成秘密签名 "I" 的特定串，数字 1 和 2 构成递增关系
      * <p>
-     * 输入： s = "DIIIDDDDI"
+     * 输入： s = "DIIIIDDDI"
      * 输出： [2,1,3,4,5,9,8,7,6,10]
      *
      * @param s
@@ -25,7 +25,25 @@ public class Train03 {
      */
     public static int[] findPermutation(String s) {
         int[] res = new int[s.length() + 1];
-
+        int point = 0;
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 1; i <= s.length(); i++) {
+            if (s.charAt(i - 1) == 'D') {
+                stack.push(i);
+            } else {
+                // 如果前一个是 I 则先入栈，再出栈
+                stack.push(i);
+                while (!stack.isEmpty()) {
+                    res[point++] = stack.pop();
+                }
+            }
+        }
+        // 不管是多少，都把最后一个PUSH进去
+        stack.push(s.length() + 1);
+        while (!stack.isEmpty()) {
+            // 最后可能 D 结尾
+            res[point++] = stack.pop();
+        }
         return res;
     }
 
@@ -41,9 +59,25 @@ public class Train03 {
      */
     public static int firstMissingPositive(int[] nums) {
         int n = nums.length;
+        // 先剪除负数
+        for (int i = 0; i < n; ++i) {
+            if (nums[i] <= 0) {
+                nums[i] = n + 1;
+            }
+        }
 
-
-        return 0;
+        for (int i = 0; i < n; ++i) {
+            int num = Math.abs(nums[i]);
+            if (num <= n) {
+                nums[num - 1] = -Math.abs(nums[num - 1]);
+            }
+        }
+        for (int i = 0; i < n; ++i) {
+            if (nums[i] > 0) {
+                return i + 1;
+            }
+        }
+        return n + 1;
     }
 
 
@@ -56,10 +90,29 @@ public class Train03 {
      * @param nums
      * @return
      */
-    public int findMaxConsecutiveOnes(int[] nums) {
+    public static int findMaxConsecutiveOnes(int[] nums) {
+        // 最长连续个数，保证窗口内最多只有一个0的时候最大字符串
+        int left = 0, right = 0, position = -1,len = nums.length, max = 0;
 
-        return 0;
+        while (right < len) {
+            if (nums[right] == 0) {
+                if (position > 0) {
+                    // 非第一次进 0,则left更新位置从上一个0的后一位开始
+                    left = position;
+                    left++;
+                }
+                // 更新新的0位置
+                position = right;
+            }
+            max = Math.max(max, right - left + 1);
+            right++;
+        }
+        return max;
     }
+
+//    public static void main(String[] args) {
+//        System.out.println(findMaxConsecutiveOnes(new int[]{1, 0, 1, 1, 0}));
+//    }
 
 
     /**
@@ -80,6 +133,7 @@ public class Train03 {
         // 窗口内的最大值，每次保持窗口递增即可
         Deque<Integer> queue = new ArrayDeque<>();
         for (int i = 0; i < k; i++) {
+            // 这里注意First表示先入的队 Last表示后进的队
             if (!queue.isEmpty() && queue.peekLast() < nums[i]) {
                 queue.pollLast();
             }
@@ -90,12 +144,12 @@ public class Train03 {
         ans[0] = nums[queue.peekFirst()];
 
         for (int i = k + 1; i < nums.length; i++) {
-            // 进
+            // 进：从尾部
             if (!queue.isEmpty() && queue.peekLast() < nums[i]) {
                 queue.pollLast();
             }
             queue.offerLast(nums[i]);
-            // 出
+            // 出：在头部大的
             if (!queue.isEmpty() && queue.peekFirst() <= i - k) {
                 queue.pollFirst();
             }
@@ -136,7 +190,7 @@ public class Train03 {
                 cnt.put(s.charAt(r), cnt.getOrDefault(s.charAt(r), 0) + 1);
             }
 
-            // 在满足覆盖的条件下，不断轮训，这点没想到
+            // 在满足覆盖的条件下，不断轮训直到 这点没想到!!!
             while (checkContains() && l <= r) {
                 if (r - l + 1 < len) {
                     len = r - l + 1;
