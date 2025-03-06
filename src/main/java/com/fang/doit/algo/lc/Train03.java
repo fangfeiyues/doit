@@ -27,21 +27,19 @@ public class Train03 {
         int[] res = new int[s.length() + 1];
         int point = 0;
         Stack<Integer> stack = new Stack<>();
+        // 从后一个开始，可以解决D的时候两个数字问题
         for (int i = 1; i <= s.length(); i++) {
-            if (s.charAt(i - 1) == 'D') {
-                stack.push(i);
-            } else {
-                // 如果前一个是 I 则先入栈，再出栈
-                stack.push(i);
+            stack.push(i);
+            if (s.charAt(i - 1) == 'I') {
                 while (!stack.isEmpty()) {
                     res[point++] = stack.pop();
                 }
             }
         }
-        // 不管是多少，都把最后一个PUSH进去
+        // 数字多一位
         stack.push(s.length() + 1);
+        // 清空堆栈
         while (!stack.isEmpty()) {
-            // 最后可能 D 结尾
             res[point++] = stack.pop();
         }
         return res;
