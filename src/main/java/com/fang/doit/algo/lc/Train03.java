@@ -7,7 +7,6 @@ import java.util.concurrent.DelayQueue;
 public class Train03 {
 
     // 2025-02-25 开始挑战 *2
-
     /**
      * 484.寻找排列：由范围 [1,n] 内所有整数组成的 n 个整数的排列 perm 可以表示为长度为 n - 1 的字符串 s ，其中:
      * 如果 perm[i] < perm[i + 1] ，那么 s[i] == 'I'，如果 perm[i] > perm[i + 1] ，那么 s[i] == 'D'，给定一个字符串 s ，重构字典序上最小的排列 perm 并返回它
