@@ -1,12 +1,123 @@
 package com.fang.doit.algo.lc;
 
+import com.fang.doit.design.lru.LRUCache;
+import com.fang.doit.design.lru.TwoWayListNode;
+
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.DelayQueue;
+import java.util.stream.Collectors;
+
 
 public class Train03 {
 
-    // 2025-02-25 开始挑战 *2
+    // 03.17 ~ 05.17 挑战 Mid*2
+
+
+    /**
+     * 138.给定一个未排序的整数数组 nums ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。
+     * 请你设计并实现时间复杂度为 O(n) 的算法解决此问题
+     * <p>
+     * nums = [100,4,200,1,3,2] -> 最长数字连续序列是 [1, 2, 3, 4]。它的长度为 4
+     * nums = [0,3,7,2,5,8,4,6,0,1] -> 9
+     *
+     * @param nums
+     * @return
+     */
+
+    public int longestConsecutive(int[] nums) {
+        // TODO 执行效率超时
+        if(nums.length ==0){
+            return 0;
+        }
+        List<Integer> list = Arrays.stream(nums).boxed().collect(Collectors.toList());
+        int max = 1;
+        for (int i = 0; i < nums.length; i++) {
+            int k = 1;
+            while (list.contains(++nums[i])) {
+                k++;
+            }
+            max = Math.max(k, max);
+        }
+        return max;
+    }
+
+
+// 139.给你一个字符串 s 和 一个字符串列表 wordDict 作为字典。如果可以利用字典中出现的一个或多个单词拼接出 s 则返回 true。
+// 注意：不要求字典中出现的单词全部都使用，并且字典中的单词可以重复使用。
+//
+//    输入: s = "leetcode", wordDict = ["leet", "code"]
+//    输出: true
+//    解释: 返回 true 因为 "leetcode" 可以由 "leet" 和 "code" 拼接成。
+//
+//    输入: s = "applepenapple", wordDict = ["apple", "pen"]
+//    输出: true
+//    解释: 返回 true 因为 "applepenapple" 可以由 "apple" "pen" "apple" 拼接成。
+//    注意，你可以重复使用字典中的单词。
+//
+//    输入: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
+//    输出: false
+
+    public boolean wordBreakFlag = false;
+
+    public boolean wordBreak(String s, List<String> wordDict) {
+        // 不错的题，通过深度一一遍历枚举包含的字符
+        wordBreakDFS(0, s, wordDict);
+        return wordBreakFlag;
+    }
+
+    private void wordBreakDFS(int i, String s, List<String> wordDict) {
+        if (i == s.length()) {
+            wordBreakFlag = true;
+            return;
+        }
+        for (int k = i + 1; k < s.length(); k++) {
+            String word = s.substring(i, k);
+            if (wordDict.contains(word)) {
+                wordBreakDFS(k, s, wordDict);
+            }
+        }
+
+    }
+
+
+//    146.请你设计并实现一个满足  LRU (最近最少使用) 缓存 约束的数据结构
+//    函数 get 和 put 必须以 O(1) 的平均时间复杂度运行。
+
+    /**
+     * @see com.fang.doit.design.lru.LRUCache
+     */
+
+    static class LRUCache {
+
+        // HashMap 保证 get 查询
+        private HashMap<Integer, Integer> map;
+
+        //
+        private int capacity, size;
+
+        // 双向链表（或TreeMap）保证 get & put 在 O(1) 更新其位置
+        TwoWayListNode head, tail;
+
+        public LRUCache(int capacity) {
+
+            // 以 正整数 作为容量 capacity 初始化 LRU 缓存
+
+        }
+
+        public int get(int key) {
+
+            //  如果关键字 key 存在于缓存中，则返回关键字的值，否则返回 -1
+
+            return 0;
+        }
+
+        public void put(int key, int value) {
+
+            // 如果关键字 key 已经存在，则变更其数据值 value ；如果不存在，则向缓存中插入该组 key-value
+            // 如果插入操作导致关键字数量超过 capacity ，则应该 逐出 最久未使用的关键字
+
+        }
+    }
+
     /**
      * 484.寻找排列：由范围 [1,n] 内所有整数组成的 n 个整数的排列 perm 可以表示为长度为 n - 1 的字符串 s ，其中:
      * 如果 perm[i] < perm[i + 1] ，那么 s[i] == 'I'，如果 perm[i] > perm[i + 1] ，那么 s[i] == 'D'，给定一个字符串 s ，重构字典序上最小的排列 perm 并返回它
@@ -89,7 +200,6 @@ public class Train03 {
     public static int findMaxConsecutiveOnes(int[] nums) {
         // 最长连续个数，保证窗口内最多只有一个0的时候最大字符串
         int left = 0, right = 0, position = -1,len = nums.length, max = 0;
-
         while (right < len) {
             if (nums[right] == 0) {
                 if (position > 0) {
@@ -97,7 +207,7 @@ public class Train03 {
                     left = position;
                     left++;
                 }
-                // 更新新的0位置
+                // 更新的0位置
                 position = right;
             }
             max = Math.max(max, right - left + 1);
@@ -220,6 +330,47 @@ public class Train03 {
 //        Train03 train03 = new Train03();
 //        System.out.println(train03.minWindow("ADOBECODEBANC", "ABC"));
 //    }
+
+    /**
+     * 402. 给你一个以字符串表示的非负整数 num 和 一个整数 k ，移除这个数中的 k 位数字，使得剩下的数字最小
+     * <p>
+     * num = "143219", k = 3 ==> 1225  移除掉三个数字 4, 3, 和 2 形成一个新的最小的数字 1219
+     * num = "10200", k = 1 ==> "200" 移掉首位的 1 剩下的数字为 200. 注意输出不能有任何前导零
+     *
+     * @param num
+     * @param k
+     * @return
+     */
+
+    public String removeKdigit(String num, int k) {
+        // 剩下的最小，保持递减，双端队列可以
+        Deque<Character> deque = new ArrayDeque<>();
+        for (int i = 0; i < num.length(); i++) {
+            while (k > 0 && !deque.isEmpty() && deque.peekLast() > num.charAt(i)) {
+                deque.removeLast();
+                k--;
+            }
+            deque.offerLast(num.charAt(i));
+        }
+
+        // 如果此时 k > 0，则说明队列 deque 中的元素已经是单调递增了，只需将队尾元素移除 k 次
+        for (int i = 0; i < k; i++) {
+            deque.pollLast();
+        }
+
+        // 防止结果中出现前导 0，所以如果第一个元素为 0，则直接跳过
+        boolean flag = true;
+        StringBuilder res = new StringBuilder();
+        while (!deque.isEmpty()) {
+            Character c = deque.pollFirst();
+            if (flag && c == '0') {
+                continue;
+            }
+            flag = false;
+            res.append(c);
+        }
+        return res.length() == 0 ? "0" : res.toString();
+    }
 
 
 }
