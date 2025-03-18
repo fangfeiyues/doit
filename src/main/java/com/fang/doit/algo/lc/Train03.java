@@ -11,6 +11,150 @@ public class Train03 {
 
     // 03.17 ~ 05.17 挑战 Mid*2
 
+    /**
+     * 22.
+     *
+     * 数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
+     *
+     *
+     *
+     * 示例 1：
+     *
+     * 输入：n = 3
+     * 输出：["((()))","(()())","(())()","()(())","()()()"]
+     * 示例 2：
+     *
+     * 输入：n = 1
+     * 输出：["()"]
+     * @param n
+     * @return
+     */
+    public List<String> generateParenthesis(int n) {
+
+        return null;
+    }
+
+    /**
+     * 207. 你这个学期必须选修 numCourses 门课程，记为 0 到 numCourses - 1 。
+     * 在选修某些课程之前需要一些先修课程。 先修课程按数组 prerequisites 给出，其中 prerequisites[i] = [ai, bi] ，表示如果要学习课程 ai 则 必须 先学习课程  bi 。
+     *
+     * 例如，先修课程对 [0, 1] 表示：想要学习课程 0 ，你需要先完成课程 1 。
+     * 请你判断是否可能完成所有课程的学习？如果可以，返回 true ；否则，返回 false
+     *
+     * 示例 1：
+     *
+     * 输入：numCourses = 2, prerequisites = [[1,0]]
+     * 输出：true
+     * 解释：总共有 2 门课程。学习课程 1 之前，你需要完成课程 0 。这是可能的。
+     * 示例 2：
+     *
+     * 输入：numCourses = 2, prerequisites = [[1,0],[0,1]]
+     * 输出：false
+     * 解释：总共有 2 门课程。学习课程 1 之前，你需要先完成​课程 0 ；并且学习课程 0 之前，你还应先完成课程 1 。这是不可能的。
+     *
+     * @param numCourses
+     * @param prerequisites
+     * @return
+     */
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+
+        return false;
+    }
+
+
+    /**
+     * 208. Trie（发音类似 "try"）或者说 前缀树 是一种树形数据结构，用于高效地存储和检索字符串数据集中的键。这一数据结构有相当多的应用情景，例如自动补全和拼写检查。
+     *
+     * 请你实现 Trie 类：
+     *
+     * Trie() 初始化前缀树对象。
+     * void insert(String word) 向前缀树中插入字符串 word 。
+     * boolean search(String word) 如果字符串 word 在前缀树中，返回 true（即，在检索之前已经插入）；否则，返回 false 。
+     * boolean startsWith(String prefix) 如果之前已经插入的字符串 word 的前缀之一为 prefix ，返回 true ；否则，返回 false 。
+     *
+     * 输入
+     * ["Trie", "insert", "search", "search", "startsWith", "insert", "search"]
+     * [[], ["apple"], ["apple"], ["app"], ["app"], ["app"], ["app"]]
+     * 输出
+     * [null, null, true, false, true, null, true]
+     *
+     * 解释
+     * Trie trie = new Trie();
+     * trie.insert("apple");
+     * trie.search("apple");   // 返回 True
+     * trie.search("app");     // 返回 False
+     * trie.startsWith("app"); // 返回 True
+     * trie.insert("app");
+     * trie.search("app");     // 返回 True
+     *
+     */
+
+    static class Trie {
+
+        public Trie() {
+
+        }
+
+        public void insert(String word) {
+
+        }
+
+        public boolean search(String word) {
+
+        }
+
+        public boolean startsWith(String prefix) {
+
+        }
+    }
+
+
+    /**
+     *
+     * 输入：
+     * ["MinStack","push","push","push","getMin","pop","top","getMin"]
+     * [[],[-2],[0],[-3],[],[],[],[]]
+     *
+     * 输出：
+     * [null,null,null,null,-3,null,0,-2]
+     *
+     * 解释：
+     * MinStack minStack = new MinStack();
+     * minStack.push(-2);
+     * minStack.push(0);
+     * minStack.push(-3);
+     * minStack.getMin();   --> 返回 -3.
+     * minStack.pop();
+     * minStack.top();      --> 返回 0.
+     * minStack.getMin();   --> 返回 -2.
+     *
+     */
+
+    static class MinStack {
+
+        public MinStack() {
+
+        }
+
+        public void push(int val) {
+
+        }
+
+        public void pop() {
+
+            //删除堆栈顶部的元素。
+        }
+
+        public int top() {
+
+            //  获取堆栈顶部的元素。
+            return 0;
+        }
+
+        public int getMin() {
+            return 0;
+        }
+    }
 
     /**
      * 138.给定一个未排序的整数数组 nums ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。
