@@ -2,7 +2,6 @@ package com.fang.doit.algo.lc;
 
 import com.fang.doit.algo.classes.linked.ListNode;
 import com.fang.doit.algo.classes.tree.TreeNode;
-import com.fang.doit.algo.classes.tree.Trie;
 import com.fang.doit.design.lru.LFUCache;
 import com.fang.doit.design.serialize.Codec;
 import com.google.common.collect.Lists;
@@ -428,17 +427,17 @@ public class DoitTop {
      * @param nums
      * @return
      */
-    Trie root = new Trie();
-
-    public int findMaximumXOR_421(int[] nums) {
-        int n = nums.length;
-        int x = 0;
-        for (int i = 1; i < n; ++i) {
-            append(nums[i - 1]);
-            x = Math.max(x, check(nums[i]));
-        }
-        return x;
-    }
+//    Trie root = new Trie();
+//
+//    public int findMaximumXOR_421(int[] nums) {
+//        int n = nums.length;
+//        int x = 0;
+//        for (int i = 1; i < n; ++i) {
+//            append(nums[i - 1]);
+//            x = Math.max(x, check(nums[i]));
+//        }
+//        return x;
+//    }
 
 
     /**
@@ -459,54 +458,54 @@ public class DoitTop {
      *
      * @param num
      */
-    private void append(int num) {
-        Trie cur = root;
-        // 数字按bit位拆分成0-1字典树
-        // 每个数字的二进制位，从高位到低位存储到前缀树中，也就是说前缀树中仅有0和1这两个数字
-        // 每个数字跟字字典树进行异或，其中最长的分支，就是最大值
-
-        // 1 << 30 左移30位 即最大的数；
-        // k >>= 1 右移1位 即 k = k / 2
-        for (int k = 1 << 30; k > 0; k >>= 1) {
-            //
-            int bit = num & k;
-            if (bit == 0) {
-                if (cur.left == null) {
-                    cur.left = new Trie();
-                }
-                cur = cur.left;
-            } else {
-                if (cur.right == null) {
-                    cur.right = new Trie();
-                }
-                cur = cur.right;
-            }
-        }
-    }
-
-    private int check(int num) {
-        Trie cur = root;
-        int x = 0;
-        for (int k = 1 << 30; k > 0; k >>= 1) {
-            int bit = num & k;
-            if (bit == 0) {
-                if (cur.right != null) {
-                    cur = cur.right;
-                    x += k;
-                } else {
-                    cur = cur.left;
-                }
-            } else {
-                if (cur.left != null) {
-                    cur = cur.left;
-                    x += k;
-                } else {
-                    cur = cur.right;
-                }
-            }
-        }
-        return x;
-    }
+//    private void append(int num) {
+//        Trie cur = root;
+//        // 数字按bit位拆分成0-1字典树
+//        // 每个数字的二进制位，从高位到低位存储到前缀树中，也就是说前缀树中仅有0和1这两个数字
+//        // 每个数字跟字字典树进行异或，其中最长的分支，就是最大值
+//
+//        // 1 << 30 左移30位 即最大的数；
+//        // k >>= 1 右移1位 即 k = k / 2
+//        for (int k = 1 << 30; k > 0; k >>= 1) {
+//            //
+//            int bit = num & k;
+//            if (bit == 0) {
+//                if (cur.left == null) {
+//                    cur.left = new Trie();
+//                }
+//                cur = cur.left;
+//            } else {
+//                if (cur.right == null) {
+//                    cur.right = new Trie();
+//                }
+//                cur = cur.right;
+//            }
+//        }
+//    }
+//
+//    private int check(int num) {
+//        Trie cur = root;
+//        int x = 0;
+//        for (int k = 1 << 30; k > 0; k >>= 1) {
+//            int bit = num & k;
+//            if (bit == 0) {
+//                if (cur.right != null) {
+//                    cur = cur.right;
+//                    x += k;
+//                } else {
+//                    cur = cur.left;
+//                }
+//            } else {
+//                if (cur.left != null) {
+//                    cur = cur.left;
+//                    x += k;
+//                } else {
+//                    cur = cur.right;
+//                }
+//            }
+//        }
+//        return x;
+//    }
 
     /**
      * 417 给定一个 m x n 的整数矩阵 heights ， heights[r][c] 表示坐标 (r, c) 上单元格 高于海平面的高度 。

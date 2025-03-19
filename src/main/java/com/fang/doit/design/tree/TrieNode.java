@@ -9,6 +9,10 @@ package com.fang.doit.design.tree;
  * @date Date : 2024-06-30 14:45
  */
 class TrieNode {
+    // 1. 数组 TrieNode[] children
+    // 2. List<TrieNode>
+
+
     private TrieNode[] children;
     private boolean isEndOfWord;
 

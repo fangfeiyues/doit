@@ -1,6 +1,5 @@
 package com.fang.doit.algo.lc;
 
-import com.fang.doit.design.lru.LRUCache;
 import com.fang.doit.design.lru.TwoWayListNode;
 
 import java.util.*;
@@ -12,58 +11,77 @@ public class Train03 {
     // 03.17 ~ 05.17 挑战 Mid*2
 
     /**
-     * 22.
-     *
-     * 数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
-     *
-     *
-     *
-     * 示例 1：
-     *
+     * 22.数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且有效的括号组合
+     * <p>
      * 输入：n = 3
      * 输出：["((()))","(()())","(())()","()(())","()()()"]
      * 示例 2：
-     *
+     * <p>
      * 输入：n = 1
      * 输出：["()"]
+     *
      * @param n
      * @return
      */
     public List<String> generateParenthesis(int n) {
+
+        // ( 后跟一个 )，深度遍历
+
+        // 有点思维上的转变
 
         return null;
     }
 
     /**
      * 207. 你这个学期必须选修 numCourses 门课程，记为 0 到 numCourses - 1 。
-     * 在选修某些课程之前需要一些先修课程。 先修课程按数组 prerequisites 给出，其中 prerequisites[i] = [ai, bi] ，表示如果要学习课程 ai 则 必须 先学习课程  bi 。
-     *
-     * 例如，先修课程对 [0, 1] 表示：想要学习课程 0 ，你需要先完成课程 1 。
-     * 请你判断是否可能完成所有课程的学习？如果可以，返回 true ；否则，返回 false
-     *
-     * 示例 1：
-     *
-     * 输入：numCourses = 2, prerequisites = [[1,0]]
-     * 输出：true
-     * 解释：总共有 2 门课程。学习课程 1 之前，你需要完成课程 0 。这是可能的。
-     * 示例 2：
-     *
-     * 输入：numCourses = 2, prerequisites = [[1,0],[0,1]]
-     * 输出：false
-     * 解释：总共有 2 门课程。学习课程 1 之前，你需要先完成​课程 0 ；并且学习课程 0 之前，你还应先完成课程 1 。这是不可能的。
+     * 先修课程按数组 prerequisites 给出，其中 prerequisites[i] = [ai, bi] ，表示如果要学习课程 ai 则 必须 先学习课程  bi
+
+     * 输入：numCourses = 2, prerequisites = [[1,0]] ==》输出：true
+     * 输入：numCourses = 2, prerequisites = [[1,0],[0,1]] ==》输出：false
      *
      * @param numCourses
      * @param prerequisites
      * @return
      */
+    boolean canFinish = false;
     public boolean canFinish(int numCourses, int[][] prerequisites) {
+        // 不能存在循环
+        HashMap<Integer, List<Integer>> preMap = new HashMap<>(prerequisites.length);
+        for (int i = 0; i < prerequisites.length; i++) {
+            int key = prerequisites[i][0];
+            int value = prerequisites[i][1];
+            List<Integer> list = preMap.getOrDefault(key, new ArrayList<>());
+            list.add(value);
+            preMap.put(key, list);
+        }
 
-        return false;
+        int[] visit = new int[numCourses];
+        for (int i = 0; i < numCourses; i++) {
+            if (visit[i] == 0) {
+                canFinishDFS(i, preMap, visit);
+            }
+        }
+        return canFinish;
+    }
+
+    private void canFinishDFS(int i, HashMap<Integer, List<Integer>> preMap, int[] visit) {
+        visit[i] = 1;
+        List<Integer> preList = preMap.get(i);
+        if (preList == null) {
+            return;
+        }
+        for (Integer course : preList) {
+            if(visit[course] == 1){
+                canFinish = false;
+                return;
+            }
+            canFinishDFS(course, preMap, visit);
+        }
     }
 
 
     /**
-     * 208. Trie（发音类似 "try"）或者说 前缀树 是一种树形数据结构，用于高效地存储和检索字符串数据集中的键。这一数据结构有相当多的应用情景，例如自动补全和拼写检查。
+     * 208. Trie（发音类似 "try"）或者说前缀树是一种树形数据结构，用于高效地存储和检索字符串数据集中的键。这一数据结构有相当多的应用情景，例如自动补全和拼写检查
      *
      * 请你实现 Trie 类：
      *
@@ -100,37 +118,36 @@ public class Train03 {
         }
 
         public boolean search(String word) {
-
+            // search 可能到包含关系的字符？这时要判断是否还存在下一个节点
+            return false;
         }
 
         public boolean startsWith(String prefix) {
-
+            // 字符检索怎么做？二维数组作为树节点，每个二维数组的点同时关联下一个二维数组
+            return false;
         }
     }
 
 
     /**
-     *
-     * 输入：
-     * ["MinStack","push","push","push","getMin","pop","top","getMin"]
-     * [[],[-2],[0],[-3],[],[],[],[]]
-     *
-     * 输出：
-     * [null,null,null,null,-3,null,0,-2]
-     *
+     * 最小栈，能在常数时间内返回栈中的最小元素
+     * <p>
      * 解释：
      * MinStack minStack = new MinStack();
      * minStack.push(-2);
      * minStack.push(0);
      * minStack.push(-3);
+     * <p>
      * minStack.getMin();   --> 返回 -3.
      * minStack.pop();
      * minStack.top();      --> 返回 0.
      * minStack.getMin();   --> 返回 -2.
-     *
      */
 
     static class MinStack {
+
+
+
 
         public MinStack() {
 
@@ -142,16 +159,17 @@ public class Train03 {
 
         public void pop() {
 
-            //删除堆栈顶部的元素。
+            // 删除堆栈顶部的元素
         }
 
         public int top() {
 
-            //  获取堆栈顶部的元素。
+            // 获取堆栈顶部的元素
             return 0;
         }
 
         public int getMin() {
+            // 常量级
             return 0;
         }
     }
