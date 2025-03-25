@@ -12,7 +12,6 @@ class TrieNode {
     // 1. 数组 TrieNode[] children
     // 2. List<TrieNode>
 
-
     private TrieNode[] children;
     private boolean isEndOfWord;
 
