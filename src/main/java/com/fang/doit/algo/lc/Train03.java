@@ -23,14 +23,46 @@ public class Train03 {
      * @param n
      * @return
      */
-    public List<String> generateParenthesis(int n) {
-
+    public static List<String> generateParenthesis(int n) {
         // ( 后跟一个 )，深度遍历
-
-        // 深度递归回溯
-
-        return null;
+        // 堆栈，左括号入栈，右括号出栈
+        List<String> res = new ArrayList<>();
+        generateParenthesisDFS(n, n, "", res);
+        return res;
     }
+
+    private static void generateParenthesisDFS(int left, int right, String str, List<String> res) {
+        if (left == 0 && right == 0) {
+            res.add(str);
+            return;
+        }
+        if (left > right) {
+            return;
+        }
+        // 左括号先入栈，然后进行下一轮（想成一颗二叉树，左子树是左括号，右子树是右括号）
+        if (left > 0) {
+            generateParenthesisDFS(left - 1, right, str + "(", res);
+        }
+        if (right > 0) {
+            generateParenthesisDFS(left, right - 1, str + ")", res);
+        }
+    }
+
+    public static void main(String[] args) {
+        generateParenthesis(3).forEach(System.out::println);
+    }
+
+    /**
+     * 46.给定一个 没有重复 数字的序列，返回其所有可能的全排列
+     * <p>
+     * 输入：nums = [1,2,3]
+     * 输出：[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+     *
+     * @param nums
+     * @return
+     */
+
+
 
     /**
      * 207. 你这个学期必须选修 numCourses 门课程，记为 0 到 numCourses - 1 。
