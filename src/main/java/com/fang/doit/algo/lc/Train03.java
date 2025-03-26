@@ -1,5 +1,6 @@
 package com.fang.doit.algo.lc;
 
+import com.fang.doit.algo.classes.linked.ListNode;
 import com.fang.doit.design.lru.TwoWayListNode;
 
 import java.util.*;
@@ -9,6 +10,75 @@ import java.util.stream.Collectors;
 public class Train03 {
 
     // 03.17 ~ 05.17 挑战 Mid*2
+
+    /**
+     * 23. 合并 K 个升序链表 给你一个链表数组，每个链表都已经按升序排列。请你将所有链表合并到一个升序链表中，返回合并后的链表。
+     *
+     * 输入：lists = [[1,4,5],[1,3,4],[2,6]]
+     * 输出：[1,1,2,3,4,4,5,6]
+     * 解释：链表数组如下：
+     * [
+     *   1->4->5,
+     *   1->3->4,
+     *   2->6
+     * ]
+     * 将它们合并到一个有序链表中得到。
+     * 1->1->2->3->4->4->5->6
+     *
+     * @param lists
+     * @return
+     */
+    public ListNode mergeKLists(ListNode[] lists) {
+        return null;
+    }
+
+
+    /**
+     * 25. K 个一组翻转链表
+     * 给你链表的头节点 head ，每 k 个节点一组进行翻转，请你返回修改后的链表。
+     * k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。
+     * 你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换
+     *
+     * 输入：head = [1,2,3,4,5], k = 2
+     * 输出：[2,1,4,3,5]
+     *
+     * 输入：head = [1,2,3,4,5], k = 3
+     * 输出：[3,2,1,4,5]
+     *
+     * @param head
+     * @param k
+     * @return
+     */
+    public ListNode reverseKGroup(ListNode head, int k) {
+
+        return null;
+    }
+
+    /**
+     * 32. 最长有效括号,给你一个只包含 '(' 和 ')' 的字符串，找出最长有效（格式正确且连续）括号子串的长度。
+     *
+     * 示例 1：
+     *
+     * 输入：s = "(()"
+     * 输出：2
+     * 解释：最长有效括号子串是 "()"
+     * 示例 2：
+     *
+     * 输入：s = ")()())"
+     * 输出：4
+     * 解释：最长有效括号子串是 "()()"
+     * 示例 3：
+     *
+     * 输入：s = ""
+     * 输出：0
+     *
+     * @param s
+     * @return
+     */
+    public int longestValidParentheses(String s) {
+
+        return 0;
+    }
 
     /**
      * 22.数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且有效的括号组合
