@@ -12,38 +12,59 @@ public class Train03 {
     // 03.17 ~ 05.17 挑战 Mid*2
 
     /**
-     * 23. 合并 K 个升序链表 给你一个链表数组，每个链表都已经按升序排列。请你将所有链表合并到一个升序链表中，返回合并后的链表。
-     *
+     * 23. 合并 K 个升序链表。给你一个链表数组，每个链表都已经按升序排列。请你将所有链表合并到一个升序链表中，返回合并后的链表。
+     * <p>
      * 输入：lists = [[1,4,5],[1,3,4],[2,6]]
      * 输出：[1,1,2,3,4,4,5,6]
      * 解释：链表数组如下：
      * [
-     *   1->4->5,
-     *   1->3->4,
-     *   2->6
+     * 1->4->5,
+     * 1->3->4,
+     * 2->6
      * ]
-     * 将它们合并到一个有序链表中得到。
-     * 1->1->2->3->4->4->5->6
+     * 将它们合并到一个有序链表中得到：1->1->2->3->4->4->5->6
      *
      * @param lists
      * @return
      */
     public ListNode mergeKLists(ListNode[] lists) {
-        return null;
+        // 一个一个的合并
+        ListNode res = null;
+        for (ListNode list : lists) {
+            // 这种递归的方式合并真挺难理解
+            res = mergeTwoLists(res, list);
+        }
+        return res;
+    }
+
+    private ListNode mergeTwoLists(ListNode res, ListNode list) {
+        if (res == null) {
+            return list;
+        }
+
+        if (list == null) {
+            return res;
+        }
+
+        // 两个节点比大小：大在前小在后，然后把大的next和小的继续比，其中下一个大的作为这个的next
+        if (res.val > list.val) {
+            res.next = mergeTwoLists(res.next, list);
+            return res;
+        } else {
+            list.next = mergeTwoLists(list.next, res);
+            return list;
+        }
+
     }
 
 
     /**
-     * 25. K 个一组翻转链表
-     * 给你链表的头节点 head ，每 k 个节点一组进行翻转，请你返回修改后的链表。
-     * k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。
-     * 你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换
+     * 25. K 个一组翻转链表，给你链表的头节点 head ，每 k 个节点一组进行翻转，请你返回修改后的链表
      *
-     * 输入：head = [1,2,3,4,5], k = 2
-     * 输出：[2,1,4,3,5]
+     * k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序
      *
-     * 输入：head = [1,2,3,4,5], k = 3
-     * 输出：[3,2,1,4,5]
+     * 输入：head = [1,2,3,4,5], k = 2 ==》[2,1,4,3,5]
+     * 输入：head = [1,2,3,4,5], k = 3 ==》[3,2,1,4,5]
      *
      * @param head
      * @param k
@@ -54,30 +75,23 @@ public class Train03 {
         return null;
     }
 
+
+
+
     /**
-     * 32. 最长有效括号,给你一个只包含 '(' 和 ')' 的字符串，找出最长有效（格式正确且连续）括号子串的长度。
-     *
-     * 示例 1：
-     *
-     * 输入：s = "(()"
-     * 输出：2
-     * 解释：最长有效括号子串是 "()"
-     * 示例 2：
-     *
-     * 输入：s = ")()())"
-     * 输出：4
-     * 解释：最长有效括号子串是 "()()"
-     * 示例 3：
-     *
-     * 输入：s = ""
-     * 输出：0
+     * 32. 最长有效括号, 给你一个只包含'(' 和 ')' 的字符串，找出最长有效（格式正确且连续）括号子串的长度
+     * <p>
+     * 输入：s = "(()" ==》2  "()"
+     * 输入：s = ")()())" ==〉4  "()()"
      *
      * @param s
      * @return
      */
     public int longestValidParentheses(String s) {
+        // 动态规划
+        int max = 0;
 
-        return 0;
+        return max;
     }
 
     /**
@@ -109,7 +123,8 @@ public class Train03 {
         if (left > right) {
             return;
         }
-        // 左括号先入栈，然后进行下一轮（想成一颗二叉树，左子树是左括号，右子树是右括号）
+        // 左括号先入栈，然后进行下一轮
+        // 怎么理解？
         if (left > 0) {
             generateParenthesisDFS(left - 1, right, str + "(", res);
         }
@@ -118,9 +133,9 @@ public class Train03 {
         }
     }
 
-    public static void main(String[] args) {
-        generateParenthesis(3).forEach(System.out::println);
-    }
+//    public static void main(String[] args) {
+//        generateParenthesis(3).forEach(System.out::println);
+//    }
 
     /**
      * 46.给定一个 没有重复 数字的序列，返回其所有可能的全排列
