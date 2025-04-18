@@ -11,6 +11,91 @@ public class Train03 {
 
     // 03.17 ~ 05.17 挑战 Mid*2
 
+
+    /**
+     * 25. K 个一组翻转链表，给你链表的头节点 head ，每 k 个节点一组进行翻转，请你返回修改后的链表
+     *
+     * k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序
+     *
+     * 输入：head = [1,2,3,4,5], k = 2 ==》[2,1,4,3,5]
+     * 输入：head = [1,2,3,4,5], k = 3 ==》[3,2,1,4,5]
+     *
+     * @param head
+     * @param k
+     * @return
+     */
+    public ListNode reverseKGroup(ListNode head, int k) {
+
+        return null;
+    }
+
+
+    /**
+     * 32. 最长有效括号, 给你一个只包含'(' 和 ')' 的字符串，找出最长有效（格式正确且连续）括号子串的长度
+     * <p>
+     * 输入：s = "(()" ==》2  "()"
+     * 输入：s = ")()())" ==〉4  "()()"
+     *
+     * @param s
+     * @return
+     */
+    public int longestValidParentheses(String s) {
+        int max = 0;
+
+        // 动态规划：左侧括号
+        int[] dp = new int[s.length()];
+        for (int i = 0; i < s.length(); i++) {
+
+
+        }
+
+        return max;
+    }
+
+
+    /**
+     * 22.数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且有效的括号组合
+     * <p>
+     * 输入：n = 3
+     * 输出：["((()))","(()())","(())()","()(())","()()()"]
+     * 示例 2：
+     * <p>
+     * 输入：n = 1
+     * 输出：["()"]
+     *
+     * @param n
+     * @return
+     */
+    public static List<String> generateParenthesis(int n) {
+        // ( 后跟一个 )，深度遍历
+        // 堆栈，左括号入栈，右括号出栈
+        List<String> res = new ArrayList<>();
+        generateParenthesisDFS(n, n, "", res);
+        return res;
+    }
+
+    private static void generateParenthesisDFS(int left, int right, String str, List<String> res) {
+        if (left == 0 && right == 0) {
+            res.add(str);
+            return;
+        }
+        if (left > right) {
+            return;
+        }
+        // 左括号先入栈，然后进行下一轮
+        // 怎么理解？
+        if (left > 0) {
+            generateParenthesisDFS(left - 1, right, str + "(", res);
+        }
+        if (right > 0) {
+            generateParenthesisDFS(left, right - 1, str + ")", res);
+        }
+    }
+
+//    public static void main(String[] args) {
+//        generateParenthesis(3).forEach(System.out::println);
+//    }
+
     /**
      * 23. 合并 K 个升序链表。给你一个链表数组，每个链表都已经按升序排列。请你将所有链表合并到一个升序链表中，返回合并后的链表。
      * <p>
@@ -56,86 +141,6 @@ public class Train03 {
         }
 
     }
-
-
-    /**
-     * 25. K 个一组翻转链表，给你链表的头节点 head ，每 k 个节点一组进行翻转，请你返回修改后的链表
-     *
-     * k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序
-     *
-     * 输入：head = [1,2,3,4,5], k = 2 ==》[2,1,4,3,5]
-     * 输入：head = [1,2,3,4,5], k = 3 ==》[3,2,1,4,5]
-     *
-     * @param head
-     * @param k
-     * @return
-     */
-    public ListNode reverseKGroup(ListNode head, int k) {
-
-        return null;
-    }
-
-
-
-
-    /**
-     * 32. 最长有效括号, 给你一个只包含'(' 和 ')' 的字符串，找出最长有效（格式正确且连续）括号子串的长度
-     * <p>
-     * 输入：s = "(()" ==》2  "()"
-     * 输入：s = ")()())" ==〉4  "()()"
-     *
-     * @param s
-     * @return
-     */
-    public int longestValidParentheses(String s) {
-        // 动态规划
-        int max = 0;
-
-        return max;
-    }
-
-    /**
-     * 22.数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且有效的括号组合
-     * <p>
-     * 输入：n = 3
-     * 输出：["((()))","(()())","(())()","()(())","()()()"]
-     * 示例 2：
-     * <p>
-     * 输入：n = 1
-     * 输出：["()"]
-     *
-     * @param n
-     * @return
-     */
-    public static List<String> generateParenthesis(int n) {
-        // ( 后跟一个 )，深度遍历
-        // 堆栈，左括号入栈，右括号出栈
-        List<String> res = new ArrayList<>();
-        generateParenthesisDFS(n, n, "", res);
-        return res;
-    }
-
-    private static void generateParenthesisDFS(int left, int right, String str, List<String> res) {
-        if (left == 0 && right == 0) {
-            res.add(str);
-            return;
-        }
-        if (left > right) {
-            return;
-        }
-        // 左括号先入栈，然后进行下一轮
-        // 怎么理解？
-        if (left > 0) {
-            generateParenthesisDFS(left - 1, right, str + "(", res);
-        }
-        if (right > 0) {
-            generateParenthesisDFS(left, right - 1, str + ")", res);
-        }
-    }
-
-//    public static void main(String[] args) {
-//        generateParenthesis(3).forEach(System.out::println);
-//    }
 
     /**
      * 46.给定一个 没有重复 数字的序列，返回其所有可能的全排列
