@@ -14,14 +14,14 @@ import java.util.stream.Collectors;
  * @Description:
  * @date Date : 2024-06-17 1:39 上午
  */
-public class Hot100 {
+public class Train02 {
 
     /**
      * -- 2024.06.17 开始挑战!!! 工作日 * 2，休息日 * 5 --
      */
 
     public static void main(String[] args) {
-        Hot100 hot100 = new Hot100();
+        Train02 hot100 = new Train02();
 //        System.out.println(hot100.trap(new int[]{4, 2, 0, 3, 2, 5}));
 //        System.out.println(hot100.shortestWay("abc","abcbc"));
 //        System.out.println(hot100.lengthOfLongestSubstringTwoDistinct("eceba"));
@@ -54,50 +54,6 @@ public class Hot100 {
 
         System.out.println(hot100.parseTernary("T ? T ? F : 5 : 3"));
 
-    }
-
-
-    /**
-     * 616.给字符串添加加粗标签，给定字符串 s 和字符串数组 words，对于 s 内部的子字符串，若其存在于 words 数组中， 则通过添加闭合的粗体标签 <b> 和 </b> 进行加粗标记
-     * 如果两个这样的子字符串重叠，你应该仅使用一对闭合的粗体标签将它们包围起来，如果被粗体标签包围的两个子字符串是连续的，你应该将它们合并，返回添加加粗标签后的字符串 s
-     *
-     * 输入：s = "abcxyz123", words = ["abc","123"] ==》输出："<b>abc</b>xyz<b>123</b>"
-     * 输入：s = "aaabbb", words = ["aa","b"] ==》输出："<b>aaabbb</b>"
-     *
-     * @param s
-     * @param words
-     * @return
-     */
-    public String boldWords(String s, String[] words) {
-        int len = s.length();
-        boolean[] mask = new boolean[len];
-        for (int i = 0; i < len; ++i) {
-            for (String word : words) {
-                search:
-                {
-                    for (int k = 0; k < word.length(); ++k) {
-                        if (k + i >= s.length() || s.charAt(k + i) != word.charAt(k)) {
-                            break search;
-                        }
-                    }
-                    for (int j = i; j < i + word.length(); ++j) {
-                        mask[j] = true;
-                    }
-                }
-            }
-        }
-        StringBuilder ans = new StringBuilder();
-        int anchor = 0;
-        for (int i = 0; i < len; ++i) {
-            if (mask[i] && (i == 0 || !mask[i - 1])) {
-                ans.append("<b>");
-            }
-            ans.append(s.charAt(i));
-            if (mask[i] && (i == len - 1 || !mask[i + 1])) {
-                ans.append("</b>");
-            }
-        }
-        return ans.toString();
     }
 
     /**
