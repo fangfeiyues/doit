@@ -2,7 +2,6 @@ package com.fang.doit.algo.lc;
 
 
 import com.fang.doit.algo.classes.tree.TreeNode;
-import javafx.util.Pair;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -275,38 +274,38 @@ public class Hot100 {
     }
 
 
-    private List<List<Integer>> verticalOrderBFS(TreeNode root) {
-        List<List<Integer>> output = new ArrayList();
-        if (root == null) {
-            return output;
-        }
-        Map<Integer, ArrayList> columnTable = new HashMap();
-        Queue<Pair<TreeNode, Integer>> queue = new ArrayDeque();
-        int column = 0;
-        queue.offer(new Pair(root, column));
-        while (!queue.isEmpty()) {
-            Pair<TreeNode, Integer> p = queue.poll();
-            root = p.getKey();
-            column = p.getValue();
-
-            if (root != null) {
-                if (!columnTable.containsKey(column)) {
-                    columnTable.put(column, new ArrayList<Integer>());
-                }
-                columnTable.get(column).add(root.val);
-
-                queue.offer(new Pair(root.left, column - 1));
-                queue.offer(new Pair(root.right, column + 1));
-            }
-        }
-        List<Integer> sortedKeys = new ArrayList<>(columnTable.keySet());
-        Collections.sort(sortedKeys);
-        for(int k : sortedKeys) {
-            output.add(columnTable.get(k));
-        }
-
-        return output;
-    }
+//    private List<List<Integer>> verticalOrderBFS(TreeNode root) {
+//        List<List<Integer>> output = new ArrayList();
+//        if (root == null) {
+//            return output;
+//        }
+//        Map<Integer, ArrayList> columnTable = new HashMap();
+//        Queue<Pair<TreeNode, Integer>> queue = new ArrayDeque();
+//        int column = 0;
+//        queue.offer(new Pair(root, column));
+//        while (!queue.isEmpty()) {
+//            Pair<TreeNode, Integer> p = queue.poll();
+//            root = p.getKey();
+//            column = p.getValue();
+//
+//            if (root != null) {
+//                if (!columnTable.containsKey(column)) {
+//                    columnTable.put(column, new ArrayList<Integer>());
+//                }
+//                columnTable.get(column).add(root.val);
+//
+//                queue.offer(new Pair(root.left, column - 1));
+//                queue.offer(new Pair(root.right, column + 1));
+//            }
+//        }
+//        List<Integer> sortedKeys = new ArrayList<>(columnTable.keySet());
+//        Collections.sort(sortedKeys);
+//        for(int k : sortedKeys) {
+//            output.add(columnTable.get(k));
+//        }
+//
+//        return output;
+//    }
     /**
      * 484.寻找排列：由范围 [1,n] 内所有整数组成的 n 个整数的排列 perm 可以表示为长度为 n - 1 的字符串 s ，其中:
      * 如果 perm[i] < perm[i + 1] ，那么 s[i] == 'I'，如果 perm[i] > perm[i + 1] ，那么 s[i] == 'D'，给定一个字符串 s ，重构字典序上最小的排列 perm 并返回它
