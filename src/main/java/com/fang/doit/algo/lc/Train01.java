@@ -48,6 +48,7 @@ public class Train01 {
     }
 
     private boolean makesquaredfs(int index, int[] matchsticks, int[] edges, int len) {
+        // 重点在于，理解递归的两个边界一个index总长一个每条边长len/4，如果不满足边界后回溯递归
         if (index == matchsticks.length) {
             return true;
         }
@@ -96,12 +97,13 @@ public class Train01 {
     }
 
     /**
-     * 460 最不经常使用
+     * 460 Least Frequently Used 最不经常使用，记录的是次数
      *
      * @see LFUCache
      */
-    public void LFUCache() {
-
+    public void xxx_LFUCache() {
+        // 1、LRU 最近使用：计时器，双向链表，快速移出某个节点到头部；Map，快速查找
+        // 2、LFU 最少使用：计数器
     }
 
     /**
@@ -396,20 +398,19 @@ public class Train01 {
      * @param k
      * @return
      */
-    public static int xxxx_characterReplacement_424(String s, int k) {
+    public static int xxx_characterReplacement_424(String s, int k) {
+        // 重点在于，记录下窗口内的最大重复数，然后 windowsLen - maxSame 跟 k 比较是否超出
         int len = s.length();
         int[] map = new int[26];
         int left = 0;
         int right = 0;
         int maxSame = 0;
-        // 左右指针维护滑动窗口 + 窗口内重复字符次数
         while (right < len) {
             int index = s.charAt(right) - 'A';
             map[index]++;
             maxSame = Math.max(maxSame, map[index]);
             int windowsLen = right - left + 1;
             if (windowsLen - maxSame > k) {
-                // 说明超出K次替换了
                 map[s.charAt(left) - 'A']--;
                 left++;
             }
@@ -574,7 +575,7 @@ public class Train01 {
      * @param nums
      * @return
      */
-    public int xxxx_numberOfArithmeticSlices_413(int[] nums) {
+    public int xxx_numberOfArithmeticSlices_413(int[] nums) {
         // 1、深度遍历 复杂度太高且实现有点难
         // 2、动态规划..（傻逼了居然没想到）
 
@@ -621,8 +622,8 @@ public class Train01 {
      * @param k
      * @return
      */
-    public String xxxx_removeKdigit_402(String num, int k) {
-        // 核心：逐个放入队列中，但在放进前要保证队列中比自己大的都移除；然后再从队列的另一端拿出来
+    public String xxx_removeKdigit_402(String num, int k) {
+        // 重点在于，使用双端队列可以在Last控制进和出，从而使得队列保持递减。那么最终从First出来的就是最小
         int length = num.length();
         if (length == k) {
             return "0";
@@ -630,7 +631,7 @@ public class Train01 {
 
         // -------------------------------------
 
-        // 定义递增的双端队列，从左到右移除前k个 nums[i] > nums[i+1] 数字
+        // 定义递减的双端队列，就要在Last位置不断移出大的数字
         Deque<Character> deque = new LinkedList<>();
         for (int i = 0; i < length; i++) {
             char c = num.charAt(i);
@@ -734,8 +735,8 @@ public class Train01 {
      * @param k
      * @return
      */
-    public int xxxx_longestSubstring_395(String s, int k) {
-        // tips：不断分割不满足条件的字符，判断分割的字符内是否否满足条件，并找到最大的那个
+    public int xxx_longestSubstring_395(String s, int k) {
+        // tips：找到出现 次数<k 的字符，不断切割其左右字符串，递归比较最终左右切割结果（好思路！！！）
         return longestSubstring(s, k);
     }
 
@@ -817,7 +818,7 @@ public class Train01 {
             }
             list[i].add(key);
         }
-        // 遍历桶 <次数，数字>, 然后倒序即是前k个
+        // 遍历桶 <出现次数，数字>, 然后倒序即是前k个
         List<Integer> res = new ArrayList();
         for (int i = list.length - 1; i >= 0 && res.size() < k; i--) {
             if (list[i] == null) {
@@ -919,6 +920,7 @@ public class Train01 {
      * @return
      */
     public int xxx_lengthOfLongestSubstringKDistinct_340(String s, int k) {
+        // 重点在于，一道普通的窗口题怎么统计窗口的最大值 (r-l)
         if (s.length() == 0 || s.length() <= k) {
             return s.length();
         }
@@ -1064,7 +1066,8 @@ public class Train01 {
      * @return
      */
     public boolean xxx_increasingTriplet_334(int[] nums) {
-        // tips：前缀和的思想
+        // tips：前缀和，正好当前点加上左右的一大一小，组成3个
+        // 如果是长度为4怎么办？简单，继续判断左节点的左边或者右节点的右边是否还有更小更大值
         int n = nums.length;
         if (n < 3) {
             return false;
