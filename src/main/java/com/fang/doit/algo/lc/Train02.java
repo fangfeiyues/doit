@@ -94,7 +94,8 @@ public class Train02 {
 
     /**
      * 1055. 对于任何字符串，我们可以通过删除其中一些字符（也可能不删除）来构造该字符串的子序列 (例如，“ace” 是 “abcde” 的子序列，而 “aec” 不是)
-     * 给定源字符串 source 和目标字符串 target，返回 源字符串 source 中能通过串联形成目标字符串 target 的 子序列 的最小数量 ，如果无法通过串联源字符串中的子序列来构造目标字符串，则返回 -1
+     * 给定源字符串 source 和目标字符串 target，返回 源字符串 source 中能通过串联形成目标字符串 target 的 子序列 的最小数量 ，
+     * 如果无法通过串联源字符串中的子序列来构造目标字符串，则返回 -1
      *
      * <p>
      * source = "abc", target = "abcbc" ==> 2 目标字符串 "abcbc" 可以由 "abc" 和 "bc" 形成，它们都是源字符串 "abc" 的子序列
@@ -106,7 +107,7 @@ public class Train02 {
      * @return
      */
 
-    public int shortestWay_xxx(String source, String target) {
+    public int xxx_shortestWay(String source, String target) {
         // 标记源的所有字符的布尔数组
         boolean[] sourceChars = new boolean[26];
         for (char c : source.toCharArray()) {
@@ -804,6 +805,7 @@ public class Train02 {
      * @return
      */
     public static int[] xxx_maxSlidingWindow(int[] nums, int k) {
+        // 重点在于，维护递减序列，无论是 PriorityQueue 还是 Deque 都行
         int n = nums.length;
         Deque<Integer> deque = new LinkedList<>();
         for (int i = 0; i < k; ++i) {
