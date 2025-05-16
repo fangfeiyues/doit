@@ -85,6 +85,14 @@ public class Train03 {
         reverse(nums, i + 1);
     }
 
+
+//    public static void main(String[] args) {
+//        Train03 train03 = new Train03();
+//        int[] nums = new int[]{2, 3, 8, 6,1};
+//        train03.nextPermutation(nums);
+//        Arrays.stream(nums).forEach(System.out::print);
+//    }
+
     private void swap(int[] nums, int i, int j) {
         int temp = nums[i];
         nums[i] = nums[j];
