@@ -1164,7 +1164,8 @@ public class Train03 {
 
 
     /**
-     * 473. 一个整数数组 matchsticks ，其中 matchsticks[i] 是第 i 个火柴棒的长度，你要用所有的火柴棍拼成一个正方形，不能折断任何一根火柴棒，但可以把它们连在一起，而且每根火柴棒必须使用一次
+     * 473. 一个整数数组 matchsticks ，其中 matchsticks[i] 是第 i 个火柴棒的长度，你要用所有的火柴棍拼成一个正方形，
+     * 不能折断任何一根火柴棒，但可以把它们连在一起，而且每根火柴棒必须使用一次
      * <p>
      * matchsticks = [1,1,2,2,2] ==> true
      * matchsticks = [3,3,3,3,4] ==> false
