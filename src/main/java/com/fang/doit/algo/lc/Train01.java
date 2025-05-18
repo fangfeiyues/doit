@@ -48,6 +48,7 @@ public class Train01 {
     }
 
     private boolean makesquaredfs(int index, int[] matchsticks, int[] edges, int len) {
+        // 重点在于，理解递归的两个边界一个index总长一个每条边长len/4，如果不满足边界后回溯递归
         if (index == matchsticks.length) {
             return true;
         }
@@ -96,12 +97,13 @@ public class Train01 {
     }
 
     /**
-     * 460 最不经常使用
+     * 460 Least Frequently Used 最不经常使用，记录的是次数
      *
      * @see LFUCache
      */
-    public void LFUCache() {
-
+    public void xxx_LFUCache() {
+        // 1、LRU 最近使用：计时器，双向链表，快速移出某个节点到头部；Map，快速查找
+        // 2、LFU 最少使用：计数器
     }
 
     /**
@@ -396,20 +398,19 @@ public class Train01 {
      * @param k
      * @return
      */
-    public static int xxxx_characterReplacement_424(String s, int k) {
+    public static int xxx_characterReplacement_424(String s, int k) {
+        // 重点在于，记录下窗口内的最大重复数，然后 windowsLen - maxSame 跟 k 比较是否超出
         int len = s.length();
         int[] map = new int[26];
         int left = 0;
         int right = 0;
         int maxSame = 0;
-        // 左右指针维护滑动窗口 + 窗口内重复字符次数
         while (right < len) {
             int index = s.charAt(right) - 'A';
             map[index]++;
             maxSame = Math.max(maxSame, map[index]);
             int windowsLen = right - left + 1;
             if (windowsLen - maxSame > k) {
-                // 说明超出K次替换了
                 map[s.charAt(left) - 'A']--;
                 left++;
             }
@@ -574,7 +575,7 @@ public class Train01 {
      * @param nums
      * @return
      */
-    public int xxxx_numberOfArithmeticSlices_413(int[] nums) {
+    public int xxx_numberOfArithmeticSlices_413(int[] nums) {
         // 1、深度遍历 复杂度太高且实现有点难
         // 2、动态规划..（傻逼了居然没想到）
 
@@ -621,8 +622,8 @@ public class Train01 {
      * @param k
      * @return
      */
-    public String xxxx_removeKdigit_402(String num, int k) {
-        // 核心：逐个放入队列中，但在放进前要保证队列中比自己大的都移除；然后再从队列的另一端拿出来
+    public String xxx_removeKdigit_402(String num, int k) {
+        // 重点在于，使用双端队列可以在Last控制进和出，从而使得队列保持递减。那么最终从First出来的就是最小
         int length = num.length();
         if (length == k) {
             return "0";
@@ -630,7 +631,7 @@ public class Train01 {
 
         // -------------------------------------
 
-        // 定义递增的双端队列，从左到右移除前k个 nums[i] > nums[i+1] 数字
+        // 定义递减的双端队列，就要在Last位置不断移出大的数字
         Deque<Character> deque = new LinkedList<>();
         for (int i = 0; i < length; i++) {
             char c = num.charAt(i);
@@ -734,8 +735,8 @@ public class Train01 {
      * @param k
      * @return
      */
-    public int xxxx_longestSubstring_395(String s, int k) {
-        // tips：不断分割不满足条件的字符，判断分割的字符内是否否满足条件，并找到最大的那个
+    public int xxx_longestSubstring_395(String s, int k) {
+        // tips：找到出现 次数<k 的字符，不断切割其左右字符串，递归比较最终左右切割结果（好思路！！！）
         return longestSubstring(s, k);
     }
 
@@ -817,7 +818,7 @@ public class Train01 {
             }
             list[i].add(key);
         }
-        // 遍历桶 <次数，数字>, 然后倒序即是前k个
+        // 遍历桶 <出现次数，数字>, 然后倒序即是前k个
         List<Integer> res = new ArrayList();
         for (int i = list.length - 1; i >= 0 && res.size() < k; i--) {
             if (list[i] == null) {
@@ -919,6 +920,7 @@ public class Train01 {
      * @return
      */
     public int xxx_lengthOfLongestSubstringKDistinct_340(String s, int k) {
+        // 重点在于，一道普通的窗口题怎么统计窗口的最大值 (r-l)
         if (s.length() == 0 || s.length() <= k) {
             return s.length();
         }
@@ -1064,7 +1066,8 @@ public class Train01 {
      * @return
      */
     public boolean xxx_increasingTriplet_334(int[] nums) {
-        // tips：前缀和的思想
+        // tips：前缀和，正好当前点加上左右的一大一小，组成3个
+        // 如果是长度为4怎么办？简单，继续判断左节点的左边或者右节点的右边是否还有更小更大值
         int n = nums.length;
         if (n < 3) {
             return false;
@@ -1406,17 +1409,16 @@ public class Train01 {
     public int xxx_countComponents_323(int n, int[][] edges) {
         int components = 0;
         int[] visited = new int[n];
-        // 数组列表 或者 哈希列表都可
         List<Integer>[] adjList = new ArrayList[n];
         for (int i = 0; i < n; i++) {
             adjList[i] = new ArrayList<>();
         }
         for (int i = 0; i < edges.length; i++) {
-            // 双向联通的：a->b b->a
+            // 双向联通的，可以a->b，也可以 b->a
             adjList[edges[i][0]].add(edges[i][1]);
             adjList[edges[i][1]].add(edges[i][0]);
         }
-
+        // 重点在于，遍历节点后，打上一个已读标签。通过标签来识别存在的路径数量
         for (int i = 0; i < n; i++) {
             if (visited[i] == 0) {
                 // 这么简单的DFS.. 怎么想不到呢
@@ -1600,17 +1602,17 @@ public class Train01 {
 //    }
 
     /**
-     * 309. 给定一个整数数组prices，其中第  prices[i] 表示第 i 天的股票价格。设计一个算法计算出最大利润在满足以下约束条件下，
-     * 你可以尽可能地完成更多的交易（多次买卖一支股票） 卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)
-     * 注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）
+     * 309. 给定一个整数数组prices，其中第 prices[i] 表示第 i 天的股票价格。设计一个算法计算出最大利润在满足以下约束条件下，
+     *      你可以尽可能地完成更多的交易（多次买卖一支股票） 卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)
+     *      注意：你不能同时参与多笔交易，你必须在再次购买前出售掉之前的股票
      * <p>
      * eg.prices = [1,2,3,0,2] ==> 3 [买入, 卖出, 冷冻期, 买入, 卖出]
      *
      * @param prices
      * @return
      */
-    public int xxxx_maxProfit_309(int[] prices) {
-        // 核心是：在于要找到达到第i的N条路径
+    public int xxx_maxProfit_309(int[] prices) {
+        // 重点在于，分析出今天利润的各种可能：有股票（只能有一只所以不会在冷冻期）、无股票且在冷冻期、无股票不在冷冻期
         if (prices.length == 0) {
             return 0;
         }
@@ -1621,9 +1623,9 @@ public class Train01 {
         int[][] f = new int[n][3];
         f[0][0] = -prices[0];
         for (int i = 1; i < n; ++i) {
-            // 持有股票：第i-1一直持有的 或者 第i-1天买入的
+            // 持有股票：一直持有的 或者 前一天天买入的
             f[i][0] = Math.max(f[i - 1][0], f[i - 1][2] - prices[i]);
-            // 不持有&在冷冻期：第i-1天持有&卖出
+            // 不持有&在冷冻期：第i-1天持有股票，后卖出（注意，这里的值都是一天之初的情况）
             f[i][1] = f[i - 1][0] + prices[i - 1];
             // 不持有&不在冷冻：第i-1天没操作，可能在冷冻也可能不在
             f[i][2] = Math.max(f[i - 1][1], f[i - 1][2]);
@@ -1710,6 +1712,7 @@ public class Train01 {
 
     /**
      * 287. 给定一个包含n + 1个整数的数组 nums ，其数字都在[1, n]范围内，可知至少存在一个重复的整数返回这个重复的数（假设nums只有一个重复的整数）
+     * 解决方案必须不修改数组nums 且 只用常量级O(1)的额外空间
      * <p>
      * [3,2,5,4,6,1,4] ==> 4
      *
@@ -1717,7 +1720,6 @@ public class Train01 {
      * @return
      */
     public int xxx_findDuplicate_287(int[] nums) {
-        // 解决方案必须不修改数组nums 且 只用常量级O(1)的额外空间
         // 二分法：findDuplicate_4_mid -- 常量级的时间复杂度和空间复杂
         // 快慢指针：findDuplicate_4_slow -- 保证了在快慢指针能在重复节点相遇
         return 0;
@@ -1749,7 +1751,7 @@ public class Train01 {
     }
 
     private int findDuplicate_4_slow(int[] nums) {
-        // 通过nums[n] -> nums[nums[n]]的指向构建成一个环（不在意环的位置是否是链表最后只要保证环存在即可）
+        // 通过 nums[n] -> nums[nums[n]] 的指向构建成一个环（不在意环的位置是否是链表最后只要保证环存在即可）
         int slow = nums[0];
         int fast = nums[nums[0]];
         while (slow != fast) {
@@ -1809,6 +1811,7 @@ public class Train01 {
 
     /**
      * 279.给你一个整数 n ，返回和为 n 的完全平方数的最少数量
+     *
      * 完全平方数：是其值等于一个整数自乘的积，例如 1、4、9 和 16 都是完全平方数，而 3 和 11 不是
      *
      * n = 12 ==> 3 4+4+4
@@ -1816,7 +1819,7 @@ public class Train01 {
      * @param n
      * @return
      */
-    public int xxx_numSquares_279(int n) {
+    public int xx_numSquares_279(int n) {
         // ** 核心：之前的动态规划都是正向推进如dp[i] = dp[i-1]+nums[i]，这个是倒着推前一个最小的从而找到心在最大的 **
         int[] dp = new int[n + 1];
         Arrays.fill(dp, Integer.MAX_VALUE);
@@ -1845,11 +1848,12 @@ public class Train01 {
      * @return
      */
     public boolean xxx_verifyPreorder_255(int[] preorder) {
-        // ** 核心是找到左右子树的分界点，然后判断右子树是否都大于左子树的根节点。另外二叉树的核心一般都是用栈来实现 **
+        // 重点在于，找到左右子树的分界点，然后判断右子树是否都大于左子树的根节点
+        // 另外二叉树的核心一般都是用栈来实现
         Stack<Integer> stack = new Stack<>();
         int max = Integer.MIN_VALUE;
         for (int cur : preorder) {
-            // 先序拐点在根节点：后续右子树节点都要大于此节点
+            // 先序拐点在根节点，后续右子树节点都要大于此节点
             while (!stack.isEmpty() && cur > stack.peek()) {
                 max = stack.pop();
             }
@@ -1938,7 +1942,7 @@ public class Train01 {
      * @param intervals
      * @return
      */
-    public int xxx_minMeetingRooms_253(int[][] intervals) {
+    public int xx_minMeetingRooms_253(int[][] intervals) {
         // ** 看的是思路：小顶堆维护的是当前进行的会议室 **
         if (intervals == null || intervals.length == 0) {
             return 0;
@@ -2004,16 +2008,17 @@ public class Train01 {
      * @return
      */
     public int[] x_maxSlidingWindow_239(int[] nums, int k) {
-        // 维护大顶堆的时间复杂度为 O(logn)，因此总时间复杂度为 O(nlogn)
+        // 维护大顶堆的时间复杂度为 O(logn)，总时间复杂度为 O(nlogn)
         PriorityQueue<int[]> queue = new PriorityQueue<>((o1, o2) -> o1[0] != o2[0] ? o2[0] - o1[0] : o2[1] - o1[1]);
         for (int i = 0; i < k; i++) {
             queue.offer(new int[]{nums[i], i});
         }
         int[] target = new int[nums.length - k + 1];
         target[0] = queue.peek()[0];
+
         for (int i = k; i < nums.length; i++) {
             queue.offer(new int[]{nums[i], i});
-            // 看看新的堆顶最大元素，是否满足在区间内
+            // 移出不满足窗口内条件的元素
             while (queue.peek()[1] <= i - k) {
                 queue.poll();
             }
@@ -2023,7 +2028,8 @@ public class Train01 {
     }
 
     public int[] xxx_maxSlidingWindow_v2(int[] nums, int k) {
-        // 复杂度为 O(n)，核心在于维护一个递减的滑动窗口，即把小于当前值的全部移除（后续肯定也不会有机会出头了）然后置于队尾
+        // 重点在于，跟上门的 “移出k个数字后剩下的最小” 思路一样，
+        // 维护一个双端队列来保持递减（即把小于当前值的全部移除，后续肯定也不会有机会出头了），然后置于队尾
         int n = nums.length;
         Deque<Integer> deque = new LinkedList<>();
         for (int i = 0; i < k; ++i) {
@@ -2216,7 +2222,7 @@ public class Train01 {
      * @param s
      * @return
      */
-    public String xxxx_shortestPalindrome(String s) {
+    public String xxx_shortestPalindrome(String s) {
 //        return shortestPalindrome_v1(s);
         return null;
     }
@@ -2226,7 +2232,7 @@ public class Train01 {
         // 核心：怎么找到[0,i]区间回文，可以从尾部开始的
         int i = 0, j = s.length() - 1;
         char[] c = s.toCharArray();
-        // 1、找到[0,i]区间回文 只能死记硬背？
+        // 1、找到 [0,i] 区间回文，只能死记硬背？
         while (j >= 0) {
             if (i == j) {
                 continue;
@@ -2263,7 +2269,7 @@ public class Train01 {
      * @param root
      * @return
      */
-    public int xxxx_rob_337(TreeNode root) {
+    public int xxx_rob_337(TreeNode root) {
         int[] rootStatus = rob_dfs(root);
         return Math.max(rootStatus[0], rootStatus[1]);
     }
@@ -2302,7 +2308,7 @@ public class Train01 {
         int max = Math.max(dp[0], dp[1]);
         dp[1] = max;
         for (int i = 2; i < nums.length; i++) {
-            // 对于第i晚有两个选择：不偷跟着前一晚的，或者 偷了+前前一晚（感觉绕进去了想的有点复杂了）
+            // 对于第i晚有两个选择：不偷（同前晚金额），或者 偷了（前前晚+今偷的）
             dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1]);
             max = Math.max(max, dp[i]);
         }
@@ -2543,7 +2549,7 @@ public class Train01 {
      * @param s
      * @return
      */
-    public int xxxx_lengthOfLongestSubstringTwoDistinct_159(String s) {
+    public int xxx_lengthOfLongestSubstringTwoDistinct_159(String s) {
         // 暴力循环：每个节点不断回退前两个不同点，时间复杂度O(n^2)
         // 左右指针：保证left-right指针区间内的数据类型==2,通过左右指针差求最大值
         // 滑动窗口:利用数组集合代替map,保持窗口内类型在2否则一直移动 -- 题目有点精妙
@@ -2581,12 +2587,13 @@ public class Train01 {
 
     /**
      * 154.数组 [a[0], a[1], a[2], ..., a[n-1]] 旋转一次的结果为数组 [a[n-2], a[n-1], a[0], a[1], a[2], ..., a[n-3]]
+     *
      * 给你一个元素值互不相同的数组 nums ，它原来是一个升序排列的数组，并按上述情形进行了多次旋转。请你找出并返回数组中的最小元素
      *
      * @param nums 2024-02-22
      * @return
      */
-    public static int xxx_findMin_154(int[] nums) {
+    public static int xx_findMin_154(int[] nums) {
         // 你必须设计一个时间复杂度为 O(log n) 的算法解决此问题
         // 二分法：找到节点的左右侧都大于它的或者它最小的
 //        int low = 0;
@@ -2614,14 +2621,14 @@ public class Train01 {
         int low = 0;
         int high = nums.length - 1;
         while (low < high) {
-            // 不用和下一个比，和最后一个比或者第一个比，增长不一定能找到最小值，递减一定能找到最小值
+            // 不用和下一个比，和最后一个比或者第一个比
             int pivot = low + (high - low) / 2;
             if (nums[pivot] < nums[high]) {
                 high = pivot;
             } else if (nums[pivot] > nums[high]) {
                 low = pivot + 1;
             } else {
-                // pivot = high，从high位置向前走
+                // pivot = high，high往向前走一步
                 high -= 1;
             }
         }
@@ -2685,12 +2692,12 @@ public class Train01 {
      * @param head 2024-02-22 again
      * @return
      */
-    public ListNode xxxx_sortList_148(ListNode head) {
+    public ListNode xxx_sortList_148(ListNode head) {
         return sortList(head);
     }
 
     private ListNode sortList(ListNode head){
-        // 归并排序：数组不断按中间节点分割成最小，然后递归合并排序。先归一再合并
+        // 重点在于，归并排序：数组不断按中间节点分割成最小，然后递归合并排序。先归一再合并
         if (head == null || head.next == null) {
             return head;
         }
@@ -2911,6 +2918,7 @@ public class Train01 {
     int n;
 
     public List<List<String>> xxx_partition_131(String s) {
+        // 重点在于，找到字符串内所有的回文后，再深度递归
         n = s.length();
         f = new boolean[n][n];
         for (int i = 0; i < n; ++i) {
@@ -3073,7 +3081,7 @@ public class Train01 {
      * @param root
      * @return
      */
-    public static List<List<Integer>> xxx_zigzagLevelOrder_103(TreeNode root) {
+    public static List<List<Integer>> xx_zigzagLevelOrder_103(TreeNode root) {
         // note：不用自己处理锯齿，借用双端队列的offerLast、offerFirst来处理左右端节点
         List<List<Integer>> ans = new LinkedList<>();
         if (root == null) {
@@ -3522,24 +3530,44 @@ public class Train01 {
 
     /**
      * 31.下一个排列：指其整数的下一个字典序更大的排列
-     *
+     * <p>
      * 例如，arr = [1,2,3] 的下一个排列是 [1,3,2] 。 类似地，arr = [2,3,1] 的下一个排列是 [3,1,2]
      *
      * @param nums
      */
-    public void xxx_nextPermutation_31(int[] nums) {
-        int i = nums.length - 2;
-        while (i >= 0 && nums[i] >= nums[i + 1]) {
-            i--;
+    public void xxx_nextPermutation(int[] nums) {
+        if (nums == null || nums.length <= 0) {
+            return;
         }
+
+        int i = nums.length - 2;
+
+        // 从后往前寻找第一个满足 a[i] < a[i + 1] 的顺序对
+        while (i >= 0 && nums[i] >= nums[i + 1]) {
+            --i;
+        }
+
         if (i >= 0) {
             int j = nums.length - 1;
-            while (j >= 0 && nums[i] >= nums[j]) {
-                j--;
+            // 在 [i + 1, n) 区间，从后往前找第一个元素 j, 满足 a[i] < a[j]
+            // 能走到这，说明一定存在一个满足条件的 j,所以不用担心 j 下标越界
+            while (nums[i] >= nums[j]) {
+                --j;
             }
+            // 交换 i 和 j
             swap(nums, i, j);
         }
-        reverse(nums, i + 1);
+        // 反转 [i + 1, n) 区间的序列
+        reverse(i + 1, nums);
+    }
+
+    private void reverse(int left, int[] nums) {
+        int right = nums.length - 1;
+        while (left < right) {
+            swap(nums, left, right);
+            ++left;
+            --right;
+        }
     }
 
     private void swap(int[] nums, int i, int j) {
@@ -3548,14 +3576,6 @@ public class Train01 {
         nums[j] = temp;
     }
 
-    private void reverse(int[] nums, int start) {
-        int left = start, right = nums.length - 1;
-        while (left < right) {
-            swap(nums, left, right);
-            left++;
-            right--;
-        }
-    }
 
 
     /**
@@ -3783,7 +3803,7 @@ public class Train01 {
      * @param nums
      * @return
      */
-    public List<List<Integer>> xxx_threeSum_15(int[] nums) {
+    public List<List<Integer>> x_threeSum_15(int[] nums) {
         // *** 难点在于如何去除重复解：可以排序后，保证每一层的循环节点nums[n]!=nums[n-1]。正常的三层循环时间复杂度是：O(n^3)，但这里我们可以通过「三指针」解决复杂度 ***
         Arrays.sort(nums);
         int len = nums.length;
