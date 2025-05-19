@@ -3672,10 +3672,10 @@ public class Train01 {
     }
 
 
-//    public static void main(String[] args) {
-//        DoitTop doitTop = new DoitTop();
-//        System.out.println(doitTop.generateParenthesis_22_xxx(3));
-//    }
+    public static void main(String[] args) {
+        Train01 doitTop = new Train01();
+        System.out.println(doitTop.generateParenthesis_22_xxx(3));
+    }
 
 
     /**

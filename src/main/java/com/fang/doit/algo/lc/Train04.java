@@ -1,10 +1,7 @@
 package com.fang.doit.algo.lc;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author : fangfeiyue
@@ -19,6 +16,48 @@ public class Train04 {
 
     // 2025.05月～06月，一场漫长的战役，摆正心态、积极面对
 
+
+    /**
+     * 22. 括号生成，数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且有效的括号组合
+     * <p>
+     * 输入：n = 3
+     * 输出：["((()))","(()())","(())()","()(())","()()()"]
+     * <p>
+     * 输入：n = 1
+     * 输出：["()"]
+     *
+     * @param n
+     * @return
+     */
+    public List<String> generateParenthesis(int n) {
+        List<String> res = new ArrayList<>();
+        generateParenthesisDFS(res, new StringBuilder(), 0, 0, n);
+        return res;
+    }
+
+    private void generateParenthesisDFS(List<String> res, StringBuilder sb, int open, int close, int n) {
+        if (sb.length() == n * 2) {
+            res.add(sb.toString());
+            return;
+        }
+        if (open < n) {
+            sb.append("(");
+            generateParenthesisDFS(res, sb, open + 1, close, n);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+        // 重点，这里 close 要小于 open
+        if (close < open) {
+            sb.append(")");
+            generateParenthesisDFS(res, sb, open, close + 1, n);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+    }
+
+
+    public static void main(String[] args) {
+        Train04 train04 = new Train04();
+        System.out.println(train04.generateParenthesis(3));
+    }
 
     /**
      * 395.给你一个字符串 s 和一个整数 k ，请你找出 s 中的最长子串，要求该子串中的每个字符出现次数都不少于 k
