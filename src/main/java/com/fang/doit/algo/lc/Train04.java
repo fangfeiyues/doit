@@ -20,6 +20,58 @@ public class Train04 {
 
 
     /**
+     * 30. 串联所有单词的子串
+     *
+     * 给定一个字符串 s 和一个字符串数组 words。 words 中所有字符串 长度相同。
+     *
+     *  s 中的 串联子串 是指一个包含  words 中所有字符串以任意顺序排列连接起来的子串。
+     *
+     * 例如，如果 words = ["ab","cd","ef"]， 那么 "abcdef"， "abefcd"，"cdabef"， "cdefab"，"efabcd"， 和 "efcdab" 都是串联子串。 "acdbef" 不是串联子串，因为他不是任何 words 排列的连接。
+     * 返回所有串联子串在 s 中的开始索引。你可以以 任意顺序 返回答案
+     *
+     * 输入：s = "barfoothefoobarman", words = ["foo","bar"]
+     * 输出：[0,9]
+     * 解释：因为 words.length == 2 同时 words[i].length == 3，连接的子字符串的长度必须为 6。
+     * 子串 "barfoo" 开始位置是 0。它是 words 中以 ["bar","foo"] 顺序排列的连接。
+     * 子串 "foobar" 开始位置是 9。它是 words 中以 ["foo","bar"] 顺序排列的连接。
+     * 输出顺序无关紧要。返回 [9,0] 也是可以的。
+     *
+     * @param s
+     * @param words
+     * @return
+     */
+    public List<Integer> findSubstring(String s, String[] words) {
+
+        return null;
+    }
+
+    /**
+     * 32.最长有效括号
+     * 给你一个只包含 '(' 和 ')' 的字符串，找出最长有效（格式正确且连续）括号子串的长度。
+     * 示例 1：
+     *
+     * 输入：s = "(()"
+     * 输出：2
+     * 解释：最长有效括号子串是 "()"
+     * 示例 2：
+     *
+     * 输入：s = ")()())"
+     * 输出：4
+     * 解释：最长有效括号子串是 "()()"
+     * 示例 3：
+     *
+     * 输入：s = ""
+     * 输出：0
+     *
+     * @param s
+     * @return
+     */
+    public int longestValidParentheses(String s) {
+
+        return 0;
+    }
+
+    /**
      * 23.给你一个链表数组，每个链表都已经按升序排列，请你将所有链表合并到一个升序链表中，返回合并后的链表
      * <p>
      * 输入：lists = [[1,4,5],[1,3,4],[2,6]]
@@ -283,7 +335,7 @@ public class Train04 {
         }
         // 2. 如果没有升序对，说明已经是最大排列，直接反转
         if (i < 0) {
-            reverse(nums, 0, nums.length - 1);
+            reverseNums(nums, 0, nums.length - 1);
             return;
         }
         // 3. 找到第一个比nums[i]大的数，交换
@@ -293,7 +345,7 @@ public class Train04 {
         }
         swap(nums, i, j);
         // 4. 反转i+1到最后的元素（说明i+1后的都是递减的那么只要直接反转就行）
-        reverse(nums, i + 1, nums.length - 1);
+        reverseNums(nums, i + 1, nums.length - 1);
     }
 
     private void swap(int[] nums, int i, int j) {
@@ -302,7 +354,7 @@ public class Train04 {
         nums[j] = temp;
     }
 
-    private void reverse(int[] nums, int i, int i1) {
+    private void reverseNums(int[] nums, int i, int i1) {
         while (i < i1) {
             swap(nums, i++, i1--);
         }
