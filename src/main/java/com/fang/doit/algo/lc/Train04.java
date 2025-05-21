@@ -46,29 +46,53 @@ public class Train04 {
     }
 
     /**
-     * 32.最长有效括号
-     * 给你一个只包含 '(' 和 ')' 的字符串，找出最长有效（格式正确且连续）括号子串的长度。
-     * 示例 1：
-     *
+     * 32.最长有效括号,给你一个只包含 '(' 和 ')' 的字符串，找出最长有效（格式正确且连续）括号子串的长度。
+     * <p>
      * 输入：s = "(()"
      * 输出：2
      * 解释：最长有效括号子串是 "()"
-     * 示例 2：
-     *
+     * <p>
      * 输入：s = ")()())"
      * 输出：4
      * 解释：最长有效括号子串是 "()()"
-     * 示例 3：
-     *
-     * 输入：s = ""
-     * 输出：0
      *
      * @param s
      * @return
      */
-    public int longestValidParentheses(String s) {
+    public static int longestValidParentheses(String s) {
 
-        return 0;
+        // 堆栈队列：从"("开始，栈道内的 "(" 得大于 ")"，但堆栈不好分段统计最长
+        // 滑动窗口：窗口内满足条件的，也不知道下一个左出还是右进
+        // 动态规划：dp[i] 代表以 i 结尾的最长有效括号长度
+
+        // 1. 初始化 dp 数组
+        int[] dp = new int[s.length()];
+        int max = 0;
+        // 2. 遍历字符串
+        for (int i = 1; i < s.length(); i++) {
+            // 3. 如果是右括号
+            if (s.charAt(i) == ')') {
+
+                // 4. 如果前一个是左括号，说明可以组成有效括号
+                if (s.charAt(i - 1) == '(') {
+                    dp[i] = (i >= 2 ? dp[i - 2] : 0) + 2;
+
+                } else if (s.charAt(i - 1) == ')') {
+                    // 5. 如果前一个是右括号，说明需要判断前面 是否有左括号
+                    // i - dp[i - 1]：是什么意思？
+                    if (i - dp[i - 1] > 0 && s.charAt(i - dp[i - 1] - 1) == '(') {
+                        dp[i] = dp[i - 1] + (i >= dp[i - 1] + 2 ? dp[i - dp[i - 1] - 2] : 0) + 2;
+                    }
+                }
+                max = Math.max(max, dp[i]);
+            }
+        }
+        // 6. 返回最大值
+        return max;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(longestValidParentheses(")()()()"));
     }
 
     /**
