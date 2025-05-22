@@ -28,7 +28,6 @@ public class Train04 {
      * 数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。（请参考示例图）
      *
      *
-     *
      * @param board
      * @return
      */
@@ -39,20 +38,20 @@ public class Train04 {
 
     /**
      * 30. 串联所有单词的子串
-     *
-     * 给定一个字符串 s 和一个字符串数组 words。 words 中所有字符串 长度相同。
-     *
-     *  s 中的 串联子串 是指一个包含  words 中所有字符串以任意顺序排列连接起来的子串。
-     *
-     * 例如，如果 words = ["ab","cd","ef"]， 那么 "abcdef"， "abefcd"，"cdabef"， "cdefab"，"efabcd"， 和 "efcdab" 都是串联子串。 "acdbef" 不是串联子串，因为他不是任何 words 排列的连接。
+     * <p>
+     * 给定一个字符串 s 和 一个字符串数组 words，words 中所有字符串长度相同，s 中的串联子串是指一个包含 words 中所有字符串以任意顺序排列连接起来的子串
+     * <p>
+     * 例如，如果 words = ["ab","cd","ef"]， 那么 "abcdef"， "abefcd"，"cdabef"， "cdefab"，"efabcd"， 和 "efcdab" 都是串联子串
+     * "acdbef" 不是串联子串，因为他不是任何 words 排列的连接。
      * 返回所有串联子串在 s 中的开始索引。你可以以 任意顺序 返回答案
      *
+     * <p>
      * 输入：s = "barfoothefoobarman", words = ["foo","bar"]
      * 输出：[0,9]
-     * 解释：因为 words.length == 2 同时 words[i].length == 3，连接的子字符串的长度必须为 6。
-     * 子串 "barfoo" 开始位置是 0。它是 words 中以 ["bar","foo"] 顺序排列的连接。
-     * 子串 "foobar" 开始位置是 9。它是 words 中以 ["foo","bar"] 顺序排列的连接。
-     * 输出顺序无关紧要。返回 [9,0] 也是可以的。
+     * 解释：因为 words.length == 2 同时 words[i].length == 3，连接的子字符串的长度必须为 6
+     * 子串 "barfoo" 开始位置是 0。它是 words 中以 ["bar","foo"] 顺序排列的连接
+     * 子串 "foobar" 开始位置是 9。它是 words 中以 ["foo","bar"] 顺序排列的连接
+     * 输出顺序无关紧要。返回 [9,0] 也是可以的
      *
      * @param s
      * @param words
@@ -60,7 +59,55 @@ public class Train04 {
      */
     public List<Integer> findSubstring(String s, String[] words) {
 
-        return null;
+        // 滑动窗口：首字母存在于数组 && 数字大于words的后，
+
+        // 1. 先把所有的单词放入一个 map 中，key 为单词，value 为出现的次数
+        Map<String, Integer> map = new HashMap<>();
+        for (String word : words) {
+            map.put(word, map.getOrDefault(word, 0) + 1);
+        }
+        // 2. 计算单词的长度和总长度
+        int wordLen = words[0].length();
+        int totalLen = wordLen * words.length;
+        List<Integer> res = new ArrayList<>();
+        // 3. 遍历字符串，判断每个字符是否在 map 中
+        for (int i = 0; i <= s.length() - totalLen; i++) {
+            // 4. 如果在 map 中，判断是否是一个有效的子串
+            if (isValidSubstring(s.substring(i, i + totalLen), map, wordLen)) {
+                res.add(i);
+            }
+        }
+        return res;
+    }
+
+    private boolean isValidSubstring(String substring, Map<String, Integer> map, int wordLen) {
+        // 1. 创建一个新的 map，用于存储当前子串的单词
+        Map<String, Integer> tempMap = new HashMap<>();
+        for (int i = 0; i < substring.length(); i += wordLen) {
+            String word = substring.substring(i, i + wordLen);
+            // 2. 如果单词不在 map 中，返回 false
+            if (!map.containsKey(word)) {
+                return false;
+            }
+            // 3. 如果单词在 map 中，更新 tempMap 中的单词出现次数
+            tempMap.put(word, tempMap.getOrDefault(word, 0) + 1);
+        }
+        // 4. 判断 tempMap 中的单词出现次数是否和 map 中的单词出现次数相同
+        for (String key : map.keySet()) {
+            if (!Objects.equals(map.get(key), tempMap.get(key))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void checkFindStringDFS(String window, String subString, int i, String[] words, boolean find) {
+        for (int j = i + 1; j < words.length; j++) {
+            checkFindStringDFS(window, subString + words[j], j, words, find);
+        }
+        if (Objects.equals(window, subString)) {
+            find = true;
+        }
     }
 
     /**
@@ -78,7 +125,6 @@ public class Train04 {
      * @return
      */
     public static int longestValidParentheses(String s) {
-
         // 堆栈队列：从"("开始，栈道内的 "(" 得大于 ")"，但堆栈不好分段统计最长
         // 滑动窗口：窗口内满足条件的，也不知道下一个左出还是右进
         // 动态规划：dp[i] 代表以 i 结尾的最长有效括号长度
@@ -90,15 +136,18 @@ public class Train04 {
         for (int i = 1; i < s.length(); i++) {
             // 3. 如果是右括号
             if (s.charAt(i) == ')') {
-
                 // 4. 如果前一个是左括号，说明可以组成有效括号
                 if (s.charAt(i - 1) == '(') {
                     dp[i] = (i >= 2 ? dp[i - 2] : 0) + 2;
 
                 } else if (s.charAt(i - 1) == ')') {
-                    // 5. 如果前一个是右括号，说明需要判断前面 是否有左括号
-                    // i - dp[i - 1]：是什么意思？
+                    // 5. 如果前一个是右括号，说明需要判断前面，在有效长度之外的前一个，是否是是'('
+                    // 比如 ( ()()()(()) ) 在最后一个是 ）的情况下，看第一个是否是(，如是则能形成有效的长度
                     if (i - dp[i - 1] > 0 && s.charAt(i - dp[i - 1] - 1) == '(') {
+                        // i >= dp[i - 1] + 2 说明前面还有有效括号
+                        // dp[i - dp[i - 1] - 2] 代表在有效括号之前的有效括号长度
+                        // dp[i - 1] + 2 代表当前的有效括号长度
+                        // 总结来说，就是在新加两个长度后，还要判断再前面可不可以一起连起来，就是这个位置 dp[i - dp[i - 1] - 2]，妙啊！！！
                         dp[i] = dp[i - 1] + (i >= dp[i - 1] + 2 ? dp[i - dp[i - 1] - 2] : 0) + 2;
                     }
                 }
@@ -109,9 +158,9 @@ public class Train04 {
         return max;
     }
 
-    public static void main(String[] args) {
-        System.out.println(longestValidParentheses(")()()()"));
-    }
+//    public static void main(String[] args) {
+//        System.out.println(longestValidParentheses(")()()()"));
+//    }
 
     /**
      * 23.给你一个链表数组，每个链表都已经按升序排列，请你将所有链表合并到一个升序链表中，返回合并后的链表
