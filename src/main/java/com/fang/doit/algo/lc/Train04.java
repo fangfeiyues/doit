@@ -57,9 +57,9 @@ public class Train04 {
      * @param words
      * @return
      */
-    public List<Integer> findSubstring(String s, String[] words) {
+    public List<Integer> x_findSubstring(String s, String[] words) {
 
-        // 滑动窗口：首字母存在于数组 && 数字大于words的后，
+        // 滑动窗口：遍历字符，找到长度等于 words 拼接起来的区间，然后通过两者字符的数量对比，确定是否可相同
 
         // 1. 先把所有的单词放入一个 map 中，key 为单词，value 为出现的次数
         Map<String, Integer> map = new HashMap<>();
@@ -101,15 +101,6 @@ public class Train04 {
         return true;
     }
 
-    private void checkFindStringDFS(String window, String subString, int i, String[] words, boolean find) {
-        for (int j = i + 1; j < words.length; j++) {
-            checkFindStringDFS(window, subString + words[j], j, words, find);
-        }
-        if (Objects.equals(window, subString)) {
-            find = true;
-        }
-    }
-
     /**
      * 32.最长有效括号,给你一个只包含 '(' 和 ')' 的字符串，找出最长有效（格式正确且连续）括号子串的长度。
      * <p>
@@ -124,7 +115,7 @@ public class Train04 {
      * @param s
      * @return
      */
-    public static int longestValidParentheses(String s) {
+    public static int x_longestValidParentheses(String s) {
         // 堆栈队列：从"("开始，栈道内的 "(" 得大于 ")"，但堆栈不好分段统计最长
         // 滑动窗口：窗口内满足条件的，也不知道下一个左出还是右进
         // 动态规划：dp[i] 代表以 i 结尾的最长有效括号长度

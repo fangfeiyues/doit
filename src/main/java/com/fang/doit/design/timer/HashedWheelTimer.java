@@ -14,7 +14,7 @@
  * under the License.
  */
 
-package com.fang.doit.timer;
+package com.fang.doit.design.timer;
 
 import java.util.*;
 import java.util.concurrent.*;

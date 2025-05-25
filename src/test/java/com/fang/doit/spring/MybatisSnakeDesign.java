@@ -19,7 +19,7 @@ import java.io.InputStream;
  */
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
-public class MybatisTest {
+public class MybatisSnakeDesign {
 
     UserMapper mapper;
 

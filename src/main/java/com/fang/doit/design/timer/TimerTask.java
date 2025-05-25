@@ -1,4 +1,4 @@
-package com.fang.doit.timer;
+package com.fang.doit.design.timer;
 
 import java.util.concurrent.TimeUnit;
 

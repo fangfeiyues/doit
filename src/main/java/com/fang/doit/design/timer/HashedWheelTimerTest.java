@@ -1,4 +1,4 @@
-package com.fang.doit.timer;
+package com.fang.doit.design.timer;
 
 /**
  * @author : fangfeiyue
