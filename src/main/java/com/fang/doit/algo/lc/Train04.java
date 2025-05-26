@@ -1,6 +1,7 @@
 package com.fang.doit.algo.lc;
 
 
+import com.alibaba.fastjson.JSON;
 import com.fang.doit.algo.classes.linked.ListNode;
 
 import java.util.*;
@@ -16,7 +17,7 @@ import java.util.*;
 public class Train04 {
 
 
-    //  ------- ！！！2025.05月～06月，一场漫长的战役，摆正心态、积极面对 ！！！------------
+    //  ------------ ！！！2025.05月～06月，一场漫长的战役，摆正心态、积极面对 ！！！------------
 
 
     /**
@@ -48,27 +49,119 @@ public class Train04 {
      * @param target
      * @return
      */
-    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-
-        return null;
+    public static List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        // 深度遍历，主要是判断重复的情况
+        Arrays.sort(candidates); // 排序，方便后面判断重复
+        List<List<Integer>> res = new ArrayList<>();
+        for (int i = 0; i < candidates.length; i++) {
+            // 排除重复的情况
+            if (i > 0 && candidates[i] == candidates[i - 1]) {
+                continue;
+            }
+            List<Integer> list = new ArrayList<>();
+            list.add(candidates[i]);
+            combinationSum2DFS(candidates, target, i, candidates[i], list, res);
+        }
+        return res;
     }
 
+    private static void combinationSum2DFS(int[] candidates, int target, int i, int candidate, List<Integer> list, List<List<Integer>> res) {
+        if (candidate == target) {
+            res.add(new ArrayList<>(list));
+            return;
+        }
+        if (candidate > target) {
+            return; // 超过目标值，直接返回
+        }
+        // 深度遍历，主要是判断重复的情况
+        for (int j = i + 1; j < candidates.length; j++) {
+            // 排除重复的情况（他娘的少了 j > i + 1 ） 1 2 2 2 5
+            if (j > i + 1 && candidates[j] == candidates[j - 1]) {
+                continue;
+            }
+            list.add(candidates[j]);
+            combinationSum2DFS(candidates, target, j, candidate + candidates[j], list, res);
+            list.remove(list.size() - 1); // 回溯
+        }
+    }
+
+
+//    public static void main(String[] args) {
+//
+//         System.out.println(JSON.toJSONString(combinationSum2(new int[]{10, 1, 2, 7, 6, 1, 5}, 8)));
+//
+//        // System.out.println(JSON.toJSONString(combinationSum2(new int[]{2, 5, 2, 1, 2}, 5)));
+//    }
+
+
+//    public static List<List<Integer>> combinationSum2ByWindow(int[] candidates, int target){
+//        // 排序后滑动窗口
+//        Arrays.sort(candidates);
+//
+//        List<List<Integer>> res = new ArrayList<>();
+//        int left = 0, right = 0,sum = 0;
+//        while (right < candidates.length) {
+//            sum = sum + candidates[left];
+//            if (sum >= target) {
+//                if(sum == target){
+//                    List<Integer> list = new ArrayList<>();
+//                    for (int i = left; i <= right; i++) {
+//                        list.add(candidates[i]);
+//                    }
+//                    res.add(list);
+//                }
+//                left++;
+//            }
+//            right++;
+//        }
+//        return res;
+//    }
+
+
+
+
     /**
-     * 36.有效的数独
-     * 请你判断一个 9 x 9 的数独是否有效。只需要 根据以下规则 ，验证已经填入的数字是否有效即可。
-     *
-     * 数字 1-9 在每一行只能出现一次。
-     * 数字 1-9 在每一列只能出现一次。
-     * 数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。（请参考示例图）
-     *
+     * 36.有效的数独，请你判断一个 9 x 9 的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可
+     * <p>
+     * 数字 1-9 在每一行只能出现一次
+     * 数字 1-9 在每一列只能出现一次
+     * 数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次
      *
      * @param board
      * @return
      */
     public boolean isValidSudoku(char[][] board) {
+        // 重点在于，见识到二维数组的威力，荜动态规划好使
 
-        return false;
+        // 1. 使用三个数组分别记录行、列和宫内的数字出现情况
+        boolean[][] rows = new boolean[9][9];
+        boolean[][] cols = new boolean[9][9];
+        boolean[][] boxes = new boolean[9][9];
+        // 2. 遍历数独
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                char num = board[i][j];
+                if (num == '.') {
+                    continue; // 跳过空格
+                }
+                int n = num - '1'; // 将字符转换为数字
+                // 计算宫内索引，可都定位到 3*3宫格的某一个点如[3,0]，所以这里只要保证宫内所有的点可以汇聚一个即可
+                int boxIndex = (i / 3) * 3 + (j / 3);
+                // 3. 检查行、列和宫内是否已经存在该数字（强中自有强中手！！！）
+                if (rows[i][n] || cols[j][n] || boxes[boxIndex][n]) {
+                    return false; // 如果存在，返回 false
+                }
+
+                // 4. 标记该数字已出现
+                rows[i][n] = true;
+                cols[j][n] = true;
+                boxes[boxIndex][n] = true;
+            }
+        }
+        // 5. 如果没有冲突，返回 true
+        return true;
     }
+
 
     /**
      * 30. 串联所有单词的子串
