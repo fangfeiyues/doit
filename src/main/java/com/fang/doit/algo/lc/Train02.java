@@ -958,7 +958,7 @@ public class Train02 {
      * @param k
      * @return
      */
-    public int subarraySum_xxx(int[] nums, int k) {
+    public int xxx_subarraySum(int[] nums, int k) {
         int count = 0, pre = 0;
         // Map<前缀和，该值的次数>
         HashMap<Integer, Integer> mp = new HashMap<>();
@@ -998,7 +998,7 @@ public class Train02 {
      * @param p
      * @return
      */
-    public List<Integer> findAnagrams_xxx(String s, String p) {
+    public List<Integer> xxx_indAnagrams(String s, String p) {
         int sLen = s.length(), pLen = p.length();
         if (sLen < pLen) {
             return new ArrayList<>();
@@ -1018,6 +1018,7 @@ public class Train02 {
             // 维护一个长为 pLen 的一个滑动窗口，左进右出，保证两个窗口内容一样
             --sCount[s.charAt(i) - 'a'];
             ++sCount[s.charAt(i + pLen) - 'a'];
+            // 直接通过数组对比
             if (Arrays.equals(sCount, pCount)) {
                 ans.add(i + 1);
             }
