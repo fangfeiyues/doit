@@ -540,7 +540,7 @@ public class Train03 {
 //            meetingCount = Math.max(meetingCount, meetings.size());
 //        }
 
-        // 小顶堆：维护即将到期的会议（默认小顶堆）
+        // 小顶堆：维护即将到期的会议，默认小顶堆
         PriorityQueue<Integer> smallQueue = new PriorityQueue<>((Comparator.comparingInt(o -> o)));
         for (int i = 0; i < intervals.length; i++) {
             int start = intervals[i][0];
@@ -593,7 +593,7 @@ public class Train03 {
 //    }
 
     /**
-     * 279.给你一个整数 n ，返回和为 n 的完全平方数的最少数量（ 完全平方数：是其值等于一个整数自乘的积，例如 1、4、9 和 16 都是完全平方数，而 3 和 11 不是 ）
+     * 279.给你一个整数 n ，返回和为 n 的完全平方数的最少数量（完全平方数：是其值等于一个整数自乘的积，例如 1、4、9 和 16 都是完全平方数，而 3 和 11 不是）
      * <p>
      * n = 12 ==> 3，4+4+4
      *
@@ -621,7 +621,7 @@ public class Train03 {
      * @param nums
      * @return
      */
-    private int findDuplicate_4_mid(int[] nums) {
+    public int findDuplicate_4_mid(int[] nums) {
         // 时间复杂度:O(logn)，空间复杂度：O(1)
         // 巧妙利用二分法
         int left = 1;
@@ -736,7 +736,7 @@ public class Train03 {
 //    }
 
     /**
-     * 313.超级丑数是一个正整数，并满足其所有质因数都出现在质数数组 primes 中，给你一个整数 n 和一个整数数组 primes ，返回第 n 个 超级丑数
+     * 313. 超级丑数是一个正整数，并满足其所有质因数都出现在质数数组 primes 中，给你一个整数 n 和一个整数数组 primes ，返回第 n 个 超级丑数
      * <p>
      * n = 12, primes = [2,7,13,19] ==》32 ，12 个超级丑数序列为：[1,2,4,7,8,13,14,16,19,26,28,32]
      *
@@ -745,8 +745,11 @@ public class Train03 {
      * @return
      * @see
      */
-    public static int x_nthSuperUglyNumber(int n, int[] primes) {
-        // 值：记录更新后的值
+    public static int xxx_nthSuperUglyNumber(int n, int[] primes) {
+        // 重点在于，动态规划
+
+        // 值：找到最小值作为一次输出，然后更新
+        // 2、7、13、19 -> 4、7、13、19 -> 8、7、13、19、-> 8、14、13、19 -> 16、14、13、19 -> 16,14,26,19 -> 16,28,26,19 -> 32,28,26,19
         int[] nums = Arrays.copyOf(primes, primes.length);
         // 次数：
         int[] p = new int[primes.length];
@@ -827,9 +830,9 @@ public class Train03 {
      */
     private static int x_maxSubArrayLen(int[] nums, int k) {
 
-        // 滑动窗口，可能有负数 双端才行
-
+        // 滑动窗口，可能有负数，存在负负得正；双端才行
         // 前缀和，pre[j] - pre[i] = k 的情况下说明 j-i的长度满足要求
+
         int preSum = 0, max = 0;
         Map<Integer, Integer> point = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
@@ -909,7 +912,6 @@ public class Train03 {
                     count--;
                 }
             }
-
             // 这里的 right 是下一次循环要进入窗口的，所以这里 right - left 后不用再 +1
             max = Math.max(max, right - left);
         }
@@ -931,9 +933,8 @@ public class Train03 {
      * @param n
      * @return
      */
-    public int x_integerBreak(int n) {
+    public int integerBreak(int n) {
         // 动态规划来看，找到某一个值的最大乘机即是过去某一个的最大乘机再乘以（i-j）
-
         int[] dp = new int[n + 1];
         for (int i = 2; i <= n; i++) {
             int tmpMax = 0;
@@ -941,7 +942,7 @@ public class Train03 {
                 先将 i 分解为 j 和 i - j
                 如果 i - j 不再分解，那么 dp[i] = j * (i - j)
                 如果 i - j 继续分解，那么 dp[i] = j * dp[i - j]
-                为什么要单独捞出 j * (i - j) 这种情况？
+                为什么要单独捞出 j * (i - j) 这种情况？因为不包含
             */
             for (int j = 1; j < i; j++) {
                 tmpMax = Math.max(tmpMax, Math.max(j * (i - j), j * dp[i - j]));
@@ -1001,7 +1002,6 @@ public class Train03 {
         for (int i = 0; i < s.length(); i++) {
             counter.put(s.charAt(i), counter.getOrDefault(s.charAt(i), 0) + 1);
         }
-
         int res = 0;
         for (char c : counter.keySet()) {
             // 字符出现次数不满足条件，应该要被分割出去
@@ -1013,7 +1013,6 @@ public class Train03 {
                 return res;
             }
         }
-
         return s.length();
     }
 
@@ -1021,35 +1020,61 @@ public class Train03 {
     /**
      * 402. 给你一个以字符串表示的非负整数 num 和 一个整数 k ，移除这个数中的 k 位数字，使得剩下的数字最小
      * <p>
-     * num = "1432259", k = 3 ==> 1225  移除掉三个数字 4, 3, 和 2 形成一个新的最小的数字 1219
+     * num = "1432259", k = 3 ==> 1225  移除掉三个数字 4, 3, 和 2 形成一个新的最小的数字 1225
      * num = "10200", k = 1 ==> "200" 移掉首位的 1 剩下的数字为 200. 注意输出不能有任何前导零
      *
      * @param num
      * @param k
      * @return
      */
-    public String removeKdigit(String num, int k) {
+    public String xx_removeKdigit(String num, int k) {
 
-        // 雪耻之题！！！
+        // ！！！雪耻之题！！！
 
-        // 队列先进先出，下一个来的时候不断找前一个小的
-        Stack<Character> stack = new Stack<>();
-        for (int i = 0; i < num.length(); i++) {
-            while (k > 0 && !stack.isEmpty() && stack.peek() > num.charAt(i)) {
-                stack.pop();
+
+        int length = num.length();
+        if (length == k) {
+            return "0";
+        }
+
+        // 重点在于，理解。即窗口内任意位置它前面比它大的都移出（k范围内）！！，比如 1432259 移出3个数最小就是 1225 为什么不是 1322，
+        // 使用双端队列，可以在Last侧通过比较，保证i前面的都是比它小的（k范围内） --> 希望这次是真的雪耻
+        Deque<Character> deque = new LinkedList<>();
+        for (int i = 0; i < length; i++) {
+            char c = num.charAt(i);
+            while (!deque.isEmpty() && k > 0 && deque.peekLast() > c) {
+                deque.pollLast();
                 k--;
             }
-            stack.push(num.charAt(i));
+            deque.offerLast(c);
         }
-        // 如果是一直递减，那么k的值不变，则需要从头拿掉k位
+
+        // 如果此时 k > 0，则说明队列 deque 中的元素已经是单调递增了，只需将队尾元素移除 k 次
         for (int i = 0; i < k; i++) {
-            stack.pop();
+            deque.pollLast();
         }
 
-        // 最后再把stack的数字倒着输出即可
+        // -------------------------------------
 
-        return null;
+        // 防止结果中出现前导 0，所以如果第一个元素为 0，则直接跳过
+        boolean flag = true;
+        StringBuilder res = new StringBuilder();
+        while (!deque.isEmpty()) {
+            Character c = deque.pollFirst();
+            if (flag && c == '0') {
+                continue;
+            }
+            flag = false;
+            res.append(c);
+        }
+        return res.length() == 0 ? "0" : res.toString();
     }
+
+
+//    public static void main(String[] args) {
+//        Train03 train03 = new Train03();
+//        System.out.println(train03.xx_removeKdigit("1432259", 3));
+//    }
 
 
     /**
@@ -1088,8 +1113,8 @@ public class Train03 {
 //    }
 
     /**
-     * 424. 给你一个字符串 s 和一个整数 k 。你可以选择字符串中的任一字符，并将其更改为任何其他大写英文字符，该操作最多可执行 k 次，在执行上述操作后，返回包含相同字母的最长子字符串的长度
-     * <p>
+     * 424. 给你一个字符串 s 和一个整数 k 。你可以选择字符串中的任一字符，并将其更改为任何其他大写英文字符，
+     * 该操作最多可执行 k 次，在执行上述操作后，返回包含相同字母的最长子字符串的长度
      * <p>
      * s = "ABAB", k = 2  ==》 4  用两个'A'替换为两个'B',反之亦然
      * s = "AABABBA", k = 1  ==》4  "AABBBBA"
@@ -1099,15 +1124,18 @@ public class Train03 {
      * @param k
      * @return
      */
-    public int characterReplacement(String s, int k) {
+    public int  x_characterReplacement(String s, int k) {
         int left = 0, right = 0, max = 0;
         int[] window = new int[26];
         while (right < s.length()) {
             int num = s.charAt(left) - 'A';
             window[num]++;
             max = Math.max(max, window[num]);
+
             int wl = right - left + 1;
-            // 最大替换次数 + 可替换的次数k > 窗口就说明窗口内还有空间则可以继续右进,否则就要出
+            // 如果当前窗口的最大值 + k < 窗口长度，说明需要替换的字符数超过了k
+            // 也就是当前窗口内的非最大值字符数超过了k
+            // 需要把左边的字符移除，直到满足条件
             if (max + k < wl) {
                 window[num]--;
                 left++;
@@ -1128,6 +1156,10 @@ public class Train03 {
      * @param key
      * @return 根节点
      */
+    public TreeNode x_deleteNode(TreeNode root, int key) {
+        return deleteNode(root, key);
+    }
+
     private TreeNode deleteNode(TreeNode root, int key) {
         if (root == null) {
             return null;
@@ -1181,11 +1213,13 @@ public class Train03 {
      * @param matchsticks
      * @return
      */
-    public boolean makesquare(int[] matchsticks) {
+    public boolean x_makesquare(int[] matchsticks) {
         int totalLen = Arrays.stream(matchsticks).sum();
         if (totalLen % 4 != 0) {
             return false;
         }
+
+        // 火柴长度从大到小排序，方便后续深度递归时先尝试大火柴
         Arrays.sort(matchsticks);
         for (int i = 0, j = matchsticks.length - 1; i < j; i++, j--) {
             int temp = matchsticks[i];
@@ -1193,8 +1227,8 @@ public class Train03 {
             matchsticks[j] = temp;
         }
 
+        // 对于火柴index来说，每次都有4个选择，不断深度递归这4种选择.. 复杂度好高
         int[] edges = new int[4];
-        // 对于数字index来说，每次都有4个选择，每次深度递归尝试后，可以则返回TRUE，否则返回FALSE，
         return makesquaredfs(0, matchsticks, edges, totalLen / 4);
     }
 

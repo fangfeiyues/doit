@@ -21,6 +21,70 @@ public class Train04 {
 
 
     /**
+     * 313. 超级丑数是一个正整数，并满足其所有质因数都出现在质数数组 primes 中，给你一个整数 n 和一个整数数组 primes ，返回第 n 个 超级丑数
+     * <p>
+     * n = 12, primes = [2,7,13,19] ==》32 ，12 个超级丑数序列为：[1,2,4,7,8,13,14,16,19,26,28,32]
+     *
+     * @param n
+     * @param primes
+     * @return
+     */
+    public static int nthSuperUglyNumber(int n, int[] primes) {
+        // 重点在于，动态规划
+
+        // 值：找到最小值作为一次输出，然后更新
+        // 2、7、13、19 -> 4、7、13、19 -> 8、7、13、19、-> 8、14、13、19 -> 16、14、13、19 -> 16,14,26,19 -> 16,28,26,19 -> 32,28,26,19
+
+        // 作为每次取值后，更新的最新大小情况
+//        int minpPimes = Arrays.stream(primes).min().getAsInt();
+//        int[] nums = Arrays.copyOf(primes, primes.length);
+//        // 纯粹记录每一次的最小值
+//        int[] dp = new int[n];
+//        dp[0] = 1;
+//        for (int i = 1; i < n; i++) {
+//            int min = Arrays.stream(nums).min().getAsInt();
+//            dp[i] = min;
+//            // 更新 nums
+//            for (int k = 0; k < nums.length; k++) {
+//                if (min == nums[k]) {
+//                    nums[k] = min * minpPimes;
+//                }
+//            }
+//        }
+//        return dp[n - 1];
+
+
+        // 值：找到最小值作为一次输出
+        int[] nums = Arrays.copyOf(primes, primes.length);
+        // 次数：prime乘积的次数
+        int[] p = new int[primes.length];
+        // 丑数
+        int[] dp = new int[n];
+        dp[0] = 1;
+        for (int i = 1; i < n; i++) {
+            int min = Arrays.stream(nums).min().getAsInt();
+            dp[i] = min;
+            for (int j = 0; j < primes.length; j++) {
+                if (min == nums[j]) {
+                    p[j]++;
+                    // 关键点：p点的下一位乘积，比如现在 p 乘了2次，这次又是最小值，那么下一次就是 3 * primes[j] 作为 nums[p] 的值
+                    // p[j]: 1 ，j位置只+1，
+                    // dp[p[j]]：2 ，dp[1] = 2
+                    // primes[j]:7 ，j=1
+                    nums[j] = dp[p[j]] * primes[j];
+                }
+            }
+        }
+        return dp[n - 1];
+    }
+
+//    public static void main(String[] args) {
+//
+//        System.out.println(nthSuperUglyNumber(12, new int[]{2, 7, 13, 19}));
+//
+//    }
+
+    /**
      * 41. 缺失的第一个正数
      *
      * 给你一个未排序的整数数组 nums ，请你找出其中没有出现的最小的正整数。
@@ -47,6 +111,7 @@ public class Train04 {
 
         return 0;
     }
+
 
     /**
      * 37 解独数
