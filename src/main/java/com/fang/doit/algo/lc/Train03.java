@@ -60,21 +60,22 @@ public class Train03 {
     /**
      * 31.下一个排列：指其整数的下一个字典序更大的排列
      * <p>
-     * 例如，arr = [1,2,3] 的下一个排列是 [1,3,2] 。 类似地，arr = [2,3,1] 的下一个排列是 [3,1,2]
+     * 例如，arr = [1,2,3] 的下一个排列是 [1,3,2] 。
+     * 类似地，arr = [2,3,1] 的下一个排列是 [3,1,2]
      *
      * @param nums
      */
-    public void nextPermutation(int[] nums) {
+    public void x_nextPermutation(int[] nums) {
         // 先把最大值前移，再将后面剩下排序，2 3 1 -> 3 1 2
 
-        // 最大值：3 2 1
-        // 有几个递减
+        // 从后开始，找到第一个递增的，说明i之后必有一个大的排列,如 2, 3, 8, 6,1 的 3
+        // 如果没有递增，说明已经是最大排列了（3 2 1）
         int i = nums.length - 2;
         while (i >= 0 && nums[i] >= nums[i + 1]) {
             i--;
         }
 
-        // 存在递减的
+        // 比较i的点与从后往前第一个大于i的，即6 交换之后 2，6，8，3，1
         if (i >= 0) {
             int j = nums.length - 1;
             while (j >= 0 && nums[i] >= nums[j]) {
@@ -82,16 +83,20 @@ public class Train03 {
             }
             swap(nums, i, j);
         }
+
+        // 最后把i之后的重新排，从小到发 2，6，8，3，1 -> 2，6，1,3,8
         reverse(nums, i + 1);
     }
 
 
-//    public static void main(String[] args) {
-//        Train03 train03 = new Train03();
-//        int[] nums = new int[]{2, 3, 8, 6,1};
-//        train03.nextPermutation(nums);
-//        Arrays.stream(nums).forEach(System.out::print);
-//    }
+    public static void main(String[] args) {
+        Train03 train03 = new Train03();
+        // 26138
+        int[] nums = new int[]{2, 3, 8, 6,1};
+//        int[] nums = new int[]{1,2,3};
+        train03.x_nextPermutation(nums);
+        Arrays.stream(nums).forEach(System.out::print);
+    }
 
     private void swap(int[] nums, int i, int j) {
         int temp = nums[i];

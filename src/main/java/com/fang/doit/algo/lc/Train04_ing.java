@@ -1,7 +1,6 @@
 package com.fang.doit.algo.lc;
 
 
-import com.alibaba.fastjson.JSON;
 import com.fang.doit.algo.classes.linked.ListNode;
 
 import java.util.*;
@@ -14,7 +13,7 @@ import java.util.*;
  * @Description:
  * @date Date : 2025-05-16 10:01
  */
-public class Train04 {
+public class Train04_ing {
 
 
     //  ------------ ！！！2025.05月～06月，一场漫长的战役，摆正心态、积极面对 ！！！------------
