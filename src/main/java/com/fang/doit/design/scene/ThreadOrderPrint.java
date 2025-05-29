@@ -1,4 +1,4 @@
-package com.fang.doit.juc;
+package com.fang.doit.design.scene;
 
 import com.google.common.collect.Lists;
 
@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * 利用3个线程有序打印1-100数字
  */
-public class ThreadPrintOrderDemo {
+public class ThreadOrderPrint {
 
     // 1、原子锁
     private static final Object LOCK = new Object();
@@ -39,6 +39,10 @@ public class ThreadPrintOrderDemo {
         }
     }
 
+
+    /**
+     * synchronized并发锁 + index标识 + Object_Lock.wait() + Object_Lock.notifyAll()
+     */
     static class SynchronizedWorker implements Runnable {
         private final int index;
         public SynchronizedWorker(int index) {
@@ -69,11 +73,12 @@ public class ThreadPrintOrderDemo {
     }
 
 
+    /**
+     * ReentrantLock读写锁 + index + condition.wait() + condition.signal()
+     */
     static class ConditionWorker extends Thread {
-
         int index;
         List<Condition> conditions;
-
         public ConditionWorker(int index, List<Condition> conditions) {
             this.index = index;
             this.conditions = conditions;

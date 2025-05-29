@@ -1,4 +1,4 @@
-package com.fang.doit.design.lru;
+package com.fang.doit.design.scene;
 
 
 import java.util.HashMap;
@@ -13,7 +13,6 @@ import java.util.Map;
  * @Date 2020/12/19 10:53 下午
  */
 public class LRUCache {
-
     /**
      * 哈希表：保证get O(1)的时间复杂度
      * 双向链表：保证O(1)快速移除&插入
@@ -105,6 +104,53 @@ public class LRUCache {
         cache.remove(head.key);
     }
 
+
+    /**
+     * 双向链表节点
+     * 1、pre指向前一个节点
+     * 2、next指向后一个节点
+     * 3、key是缓存的key
+     * 4、val是缓存的值
+     */
+    static class TwoWayListNode {
+
+        public TwoWayListNode pre, next;
+
+        public int key, val;
+
+        public TwoWayListNode(int key, int val) {
+            this.key = key;
+            this.val = val;
+        }
+
+        public TwoWayListNode() {
+        }
+
+
+        public TwoWayListNode getPre() {
+            return pre;
+        }
+
+        public void setPre(TwoWayListNode pre) {
+            this.pre = pre;
+        }
+
+        public TwoWayListNode getNext() {
+            return next;
+        }
+
+        public void setNext(TwoWayListNode next) {
+            this.next = next;
+        }
+
+        public int getVal() {
+            return val;
+        }
+
+        public void setVal(int val) {
+            this.val = val;
+        }
+    }
 
     public static void main(String[] args) {
         LRUCache lruCache = new LRUCache(5);

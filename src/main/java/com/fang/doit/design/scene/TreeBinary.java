@@ -1,4 +1,4 @@
-package com.fang.doit.algo.classes.tree.search;
+package com.fang.doit.design.scene;
 
 import com.alibaba.fastjson.JSON;
 
@@ -11,7 +11,7 @@ import java.util.Stack;
  * 遍历二叉树
  * created by fang on 2019/4/7/007 19:32
  */
-public class BinaryTreeForeach {
+public class TreeBinary {
 
     public static class TreeNode {
         int val;

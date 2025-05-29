@@ -1,4 +1,4 @@
-package com.fang.doit.algo.classes.tree.search;
+package com.fang.doit.design.scene;
 
 import java.util.LinkedList;
 import java.util.Queue;

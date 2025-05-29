@@ -2,7 +2,7 @@ package com.fang.doit.algo.lc;
 
 import com.fang.doit.algo.classes.linked.ListNode;
 import com.fang.doit.algo.classes.tree.TreeNode;
-import com.fang.doit.design.lru.LFUCache;
+import com.fang.doit.design.scene.LFUCache;
 import com.fang.doit.design.serialize.Codec;
 import com.google.common.collect.Lists;
 

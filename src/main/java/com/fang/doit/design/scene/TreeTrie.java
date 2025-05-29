@@ -1,4 +1,4 @@
-package com.fang.doit.design.tree;
+package com.fang.doit.design.scene;
 
 /**
  * @author : fangfeiyue
@@ -8,11 +8,11 @@ package com.fang.doit.design.tree;
  * @Description:
  * @date Date : 2024-06-30 15:01
  */
-public class Trie {
+public class TreeTrie {
 
     private final TrieNode root;
 
-    public Trie() {
+    public TreeTrie() {
         root = new TrieNode();
     }
 
@@ -87,18 +87,54 @@ public class Trie {
         }
     }
 
+
+
+    static class TrieNode {
+        // 1. 数组 TrieNode[] children
+        // 2. List<TrieNode>
+
+        private TrieNode[] children;
+        private boolean isEndOfWord;
+
+        public TrieNode() {
+            // 用TrieNode数组的方式把各个节点字符串连起来
+            this.children = new TrieNode[26];
+            this.isEndOfWord = false;
+        }
+
+        public boolean containsKey(char ch) {
+            return children[ch - 'a'] != null;
+        }
+
+        public TrieNode get(char ch) {
+            return children[ch - 'a'];
+        }
+
+        public void put(char ch, TrieNode node) {
+            children[ch - 'a'] = node;
+        }
+
+        public void setEndOfWord() {
+            isEndOfWord = true;
+        }
+
+        public boolean isEndOfWord() {
+            return isEndOfWord;
+        }
+    }
+
     public static void main(String[] args) {
-        Trie trie = new Trie();
-        trie.insert("apple");
-        trie.insert("app");
-        trie.insert("april");
+        TreeTrie trieTree = new TreeTrie();
+        trieTree.insert("apple");
+        trieTree.insert("app");
+        trieTree.insert("april");
         // true
-        System.out.println(trie.search("app"));
+        System.out.println(trieTree.search("app"));
         // true
-        System.out.println(trie.search("al"));
+        System.out.println(trieTree.search("al"));
         // false
-        System.out.println(trie.search("appl"));
+        System.out.println(trieTree.search("appl"));
         // 输出 "app" 和 "apple"
-        trie.startsWith("app");
+        trieTree.startsWith("app");
     }
 }
