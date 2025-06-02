@@ -1,6 +1,7 @@
 package com.fang.doit.algo.lc;
 
 
+import com.alibaba.fastjson.JSON;
 import com.fang.doit.algo.classes.linked.ListNode;
 
 import java.util.*;
@@ -18,6 +19,167 @@ public class Train04_ing {
 
     //  ------------ ！！！2025.05月～06月，一场漫长的战役，摆正心态、积极面对 ！！！------------
 
+
+    /**
+     * 43.字符串相乘，给定两个以字符串形式表示的非负整数 num1 和 num2，返回 num1 和 num2 的乘积，它们的乘积也表示为字符串形式。
+     * <p>
+     * 注意：不能使用任何内置的 BigInteger 库或直接将输入转换为整数。
+     * 输入: num1 = "2", num2 = "3"
+     * 输出: "6"
+     * <p>
+     * 输入: num1 = "123", num2 = "456"
+     * 输出: "56088"
+     *
+     * @param num1
+     * @param num2
+     * @return
+     */
+    public String multiply(String num1, String num2) {
+
+        return null;
+    }
+
+    /**
+     * 41. 缺失的第一个正数
+     *
+     * 给你一个未排序的整数数组 nums ，请你找出其中没有出现的最小的正整数。
+     *
+     * 请你实现时间复杂度为 O(n) 并且只使用常数级别额外空间的解决方案。
+     *
+     * 输入：nums = [1,2,0]
+     * 输出：3
+     * 解释：范围 [1,2] 中的数字都在数组中。
+     * 示例 2：
+     *
+     * 输入：nums = [3,4,-1,1]
+     * 输出：2
+     * 解释：1 在数组中，但 2 没有。
+     * 示例 3：
+     *
+     * 输入：nums = [7,8,9,11,12]
+     * 输出：1
+     * 解释：最小的正数 1 没有出现。
+     * @param nums
+     * @return
+     */
+    public int firstMissingPositive(int[] nums) {
+
+        return 0;
+    }
+
+
+    /**
+     * 37 解独数
+     *
+     * 编写一个程序，通过填充空格来解决数独问题。
+     * 数独的解法需 遵循如下规则：
+     * 数字 1-9 在每一行只能出现一次。
+     * 数字 1-9 在每一列只能出现一次。
+     * 数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。（请参考示例图）
+     * 数独部分空格内已填入了数字，空白格用 '.' 表示
+     *
+     *
+     *
+     * @param board
+     */
+    public void solveSudoku(char[][] board) {
+
+    }
+
+    /**
+     * ：给定一个整数数组 nums，请你找到其中的最长递增子序列（LIS），并返回其长度。
+     *
+     * 递增子序列 的定义是：子序列中每个元素都比前一个元素大，且这些元素在原数组中是连续的或不连续的。
+     * 示例 1：
+     * 输入：nums = [10, 9, 2, 5, 3, 7, 101, 18]
+     * 输出：4
+     * 解释：最长递增子序列是 [2, 3, 7, 101]，其长度为 4。
+     * 示例 2：
+     * 输入：nums = [0, 1, 0, 3, 2, 3]
+     * 输出：4
+     * 解释：最长递增子序列是 [0, 1, 2, 3]，其长度为 4。
+     * 示例 3：
+     * 输入：nums = [7, 7, 7, 7, 7, 7, 7]
+     * 输出：1
+     * 解释：所有元素都相等，最长递增子序列的长度为 1。
+     */
+//    public static int findMaxInc(int[] nums) {
+//
+//        // 10, 9, 2, 5, 3, 7, 101, 180 --> 2,3,7,101
+//        // 10,
+//        // 9
+//        // 2
+//        // 2、5
+//        // 2、3
+//        // 2、3、7
+//        // 2、3、7、101
+//
+//        int max = 1;
+//        Deque<Integer> deque = new ArrayDeque<>();
+//        for (int num : nums) {
+//            if(deque.contains(num)){
+//                continue;
+//            }
+//            // 10, 9, 2, 5, 3, 7, 101, 18,19 --> 2,3,7,101
+//            while (!deque.isEmpty() && deque.peekLast() >= num) {
+//                deque.pollLast();
+//            }
+//            deque.addLast(num);
+//            System.out.println(JSON.toJSON(deque));
+//            max = Math.max(max, deque.size());
+//        }
+//        return max;
+//    }
+    public static int lengthOfLIS(int[] nums) {
+        // 动态规划 或者 深度遍历（超出限制..）
+        if (nums.length == 0) {
+            return 0;
+        }
+        int[] dp = new int[nums.length];
+        dp[0] = 1;
+        int maxans = 1;
+        for (int i = 1; i < nums.length; i++) {
+            dp[i] = 1;
+            for (int j = 0; j < i; j++) {
+                // 从之前的数字里，找到max+1
+                if (nums[i] > nums[j]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                }
+            }
+            maxans = Math.max(maxans, dp[i]);
+        }
+        return maxans;
+    }
+
+
+    public static int lengthOfLIS_V2(int[] nums) {
+        // 超出限制
+        if (nums.length == 0) {
+            return 0;
+        }
+        int max = 1;
+        for (int i = 0; i < nums.length; i++) {
+            max = Math.max(max, lengthOfLISDFS(nums, i, 1));
+        }
+        return max;
+    }
+
+    public static int lengthOfLISDFS(int[] nums, int i, int count) {
+        if (i == nums.length) {
+            return count;
+        }
+        int max = count;
+        for (int j = i + 1; j < nums.length; j++) {
+            if (nums[j] > nums[i]) {
+                max = Math.max(max, lengthOfLISDFS(nums, j, count + 1));
+            }
+        }
+        return max;
+    }
+
+//    public static void main(String[] args) {
+//        System.out.println(lengthOfLIS_V2(new int[]{10,9,2,5,3,7,101,18}));
+//    }
 
     /**
      * 313. 超级丑数是一个正整数，并满足其所有质因数都出现在质数数组 primes 中，给你一个整数 n 和一个整数数组 primes ，返回第 n 个 超级丑数
@@ -84,59 +246,10 @@ public class Train04_ing {
 //    }
 
     /**
-     * 41. 缺失的第一个正数
-     *
-     * 给你一个未排序的整数数组 nums ，请你找出其中没有出现的最小的正整数。
-     *
-     * 请你实现时间复杂度为 O(n) 并且只使用常数级别额外空间的解决方案。
-     *
-     * 输入：nums = [1,2,0]
-     * 输出：3
-     * 解释：范围 [1,2] 中的数字都在数组中。
-     * 示例 2：
-     *
-     * 输入：nums = [3,4,-1,1]
-     * 输出：2
-     * 解释：1 在数组中，但 2 没有。
-     * 示例 3：
-     *
-     * 输入：nums = [7,8,9,11,12]
-     * 输出：1
-     * 解释：最小的正数 1 没有出现。
-     * @param nums
-     * @return
-     */
-    public int firstMissingPositive(int[] nums) {
-
-        return 0;
-    }
-
-
-    /**
-     * 37 解独数
-     *
-     * 编写一个程序，通过填充空格来解决数独问题。
-     * 数独的解法需 遵循如下规则：
-     * 数字 1-9 在每一行只能出现一次。
-     * 数字 1-9 在每一列只能出现一次。
-     * 数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。（请参考示例图）
-     * 数独部分空格内已填入了数字，空白格用 '.' 表示
-     *
-     *
-     *
-     * @param board
-     */
-    public void solveSudoku(char[][] board) {
-
-    }
-
-    /**
      * 40.给定一个候选人编号的集合 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。
      * candidates 中的每个数字在每个组合中只能使用 一次 。
      *
      * 注意：解集不能包含重复的组合。
-     *
-     * 示例 1:
      *
      * 输入: candidates = [10,1,2,7,6,1,5], target = 8,
      * 输出:
@@ -547,7 +660,7 @@ public class Train04_ing {
      * @param n
      * @return
      */
-    public List<String> generateParenthesis(int n) {
+    public List<String> x_generateParenthesis(int n) {
         List<String> res = new ArrayList<>();
         generateParenthesisDFS(res, new StringBuilder(), 0, 0, n);
         return res;
@@ -643,7 +756,7 @@ public class Train04_ing {
      *
      * @param nums
      */
-    public void nextPermutation(int[] nums) {
+    public void x_nextPermutation(int[] nums) {
         // 1. 从后往前遍历，找到第一个升序对
         int i = nums.length - 2;
         while (i >= 0 && nums[i] >= nums[i + 1]) {
