@@ -10,10 +10,8 @@ import java.util.concurrent.locks.ReentrantLock;
  * 利用3个线程有序打印1-100数字
  */
 public class ThreadOrderPrint {
-
     // 1、原子锁
     private static final Object LOCK = new Object();
-
     // 2、读写锁
     private static final ReentrantLock R_LOCK = new ReentrantLock();
 
@@ -23,20 +21,20 @@ public class ThreadOrderPrint {
 
     public static void main(String[] args) {
 
-//        Thread t1 = new Thread(new SynchronizedWorker(0));
-//        Thread t2 = new Thread(new SynchronizedWorker(1));
-//        Thread t3 = new Thread(new SynchronizedWorker(2));
-//        t1.start();
-//        t2.start();
-//        t3.start();
+        Thread t1 = new Thread(new SynchronizedWorker(0));
+        Thread t2 = new Thread(new SynchronizedWorker(1));
+        Thread t3 = new Thread(new SynchronizedWorker(2));
+        t1.start();
+        t2.start();
+        t3.start();
 
-        List<Condition> conditions = Lists.newArrayList();
-        for (int i = 0; i < 3; i++) {
-            Condition condition = R_LOCK.newCondition();
-            conditions.add(condition);
-            ConditionWorker conditionWorker = new ConditionWorker(i, conditions);
-            conditionWorker.start();
-        }
+//        List<Condition> conditions = Lists.newArrayList();
+//        for (int i = 0; i < 3; i++) {
+//            Condition condition = R_LOCK.newCondition();
+//            conditions.add(condition);
+//            ConditionWorker conditionWorker = new ConditionWorker(i, conditions);
+//            conditionWorker.start();
+//        }
     }
 
 

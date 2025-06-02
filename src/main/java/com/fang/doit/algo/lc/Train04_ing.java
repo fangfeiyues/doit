@@ -1,7 +1,4 @@
 package com.fang.doit.algo.lc;
-
-
-import com.alibaba.fastjson.JSON;
 import com.fang.doit.algo.classes.linked.ListNode;
 
 import java.util.*;
