@@ -347,7 +347,7 @@ public class Train04_ing {
      * @param board
      * @return
      */
-    public boolean isValidSudoku(char[][] board) {
+    public boolean x_isValidSudoku(char[][] board) {
         // 重点在于，见识到二维数组的威力，荜动态规划好使
 
         // 1. 使用三个数组分别记录行、列和宫内的数字出现情况
@@ -594,7 +594,7 @@ public class Train04_ing {
         return dummy.next;
     }
 
-    public ListNode reverseNode(ListNode start) {
+    private ListNode reverseNode(ListNode start) {
         // 1 -> 2 -> 3 ==》 1 <- 2 <- 3 把箭头反着过来
         ListNode pre = null;
         ListNode cur = start;

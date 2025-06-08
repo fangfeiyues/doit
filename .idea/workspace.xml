@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f63dfa9-bcae-4a6d-866f-88d725a0b767" name="Default Changelist" comment="02-24">
+    <list default="true" id="1f63dfa9-bcae-4a6d-866f-88d725a0b767" name="Default Changelist" comment="06.02-Q">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Train03.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Train03.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Train04_ing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Train04_ing.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,10 +46,13 @@
   </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/fangfeiyues/doit.git&quot;,
-    &quot;accountId&quot;: &quot;b4a4aaff-2666-4a64-854e-6320e605274a&quot;
+    &quot;url&quot;: &quot;git@github.com:fangfeiyues/doit.git&quot;,
+    &quot;accountId&quot;: &quot;39fa906e-a481-476b-ae73-069911022380&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Train03.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -75,8 +78,16 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.DoitTop.executor": "Run",
+    "Application.Payment.executor": "Run",
     "Application.Review0107.executor": "Debug",
+    "Application.Test.executor": "Run",
+    "Application.ThreadOrderPrint.executor": "Run",
+    "Application.ThreadPrintOrderDemo.executor": "Run",
+    "Application.Train01.executor": "Run",
     "Application.Train03.executor": "Run",
+    "Application.Train04.executor": "Run",
+    "Application.Train04_ing.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
@@ -85,7 +96,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.github.copilot.settings.ApplicationConfigurable",
+    "settings.editor.selected.configurable": "editor.preferences.inline.completion",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -97,6 +108,7 @@
       <recent name="com.fang.doit.algo.design.lru" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/fang/doit/design/scene" />
       <recent name="$PROJECT_DIR$/src/main/note" />
       <recent name="$PROJECT_DIR$/src/main/java/com/fang/doit/8Gu" />
       <recent name="$PROJECT_DIR$/src/main/java/com/fang/doit/algo/classes" />
@@ -111,14 +123,14 @@
       <recent name="com.fang.doit.algo.lc.test" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Train03">
-    <configuration name="DoitTop" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.DoitTop" />
+  <component name="RunManager" selected="Application.Train04_ing">
+    <configuration name="Ant" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.design.scene.ant.Ant" />
       <module name="doit" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.fang.doit.design.lru.*" />
+          <option name="PATTERN" value="com.fang.doit.design.scene.ant.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -126,13 +138,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Hot100" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.Hot100" />
+    <configuration name="PaymentChannel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.design.scene.ant.PaymentChannel" />
       <module name="doit" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.fang.doit.algo.lc.*" />
+          <option name="PATTERN" value="com.fang.doit.design.scene.ant.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -140,13 +152,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Prime75_copy" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.Prime75_copy" />
+    <configuration name="SnakeDesign" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.design.scene.SnakeDesign" />
       <module name="doit" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.fang.doit.algo.lc.*" />
+          <option name="PATTERN" value="com.fang.doit.design.scene.ant.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -154,13 +166,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Review0107" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.Review0107" />
+    <configuration name="ThreadOrderPrint" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.design.scene.ThreadOrderPrint" />
       <module name="doit" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.fang.doit.algo.lc.*" />
+          <option name="PATTERN" value="com.fang.doit.design.scene.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -168,13 +180,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Train03" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.Train03" />
+    <configuration name="Train04_ing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fang.doit.algo.lc.Train04_ing" />
       <module name="doit" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.fang.doit.algo.lc.*" />
+          <option name="PATTERN" value="com.fang.doit.design.scene.ant.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -206,11 +218,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Train03" />
-        <item itemvalue="Application.Review0107" />
-        <item itemvalue="Application.DoitTop" />
-        <item itemvalue="Application.Hot100" />
-        <item itemvalue="Application.Prime75_copy" />
+        <item itemvalue="Application.Train04_ing" />
+        <item itemvalue="Application.Ant" />
+        <item itemvalue="Application.ThreadOrderPrint" />
+        <item itemvalue="Application.PaymentChannel" />
+        <item itemvalue="Application.SnakeDesign" />
       </list>
     </recent_temporary>
   </component>
@@ -481,6 +493,18 @@
       <workItem from="1740029299148" duration="597000" />
       <workItem from="1740362942859" duration="8091000" />
       <workItem from="1740448205251" duration="29984000" />
+      <workItem from="1742315831307" duration="1304000" />
+      <workItem from="1743008569238" duration="63000" />
+      <workItem from="1743008647407" duration="1664000" />
+      <workItem from="1743133630929" duration="3200000" />
+      <workItem from="1743692155920" duration="2271000" />
+      <workItem from="1744428337658" duration="5689000" />
+      <workItem from="1746074743095" duration="11292000" />
+      <workItem from="1746815259148" duration="105000" />
+      <workItem from="1746817659131" duration="642000" />
+      <workItem from="1746853243953" duration="17540000" />
+      <workItem from="1747844096674" duration="20291000" />
+      <workItem from="1748680814120" duration="31351000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1646476425173</created>
@@ -654,7 +678,111 @@
       <option name="project" value="LOCAL" />
       <updated>1740642315340</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="03.19 Question">
+      <option name="closed" value="true" />
+      <created>1742316519835</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1742316519835</updated>
+    </task>
+    <task id="LOCAL-00026" summary="03.27 question">
+      <option name="closed" value="true" />
+      <created>1743008941578</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1743008941578</updated>
+    </task>
+    <task id="LOCAL-00027" summary="05.10 Question">
+      <option name="closed" value="true" />
+      <created>1746853285798</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1746853285798</updated>
+    </task>
+    <task id="LOCAL-00028" summary="05.10 Question">
+      <option name="closed" value="true" />
+      <created>1746868900745</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1746868900745</updated>
+    </task>
+    <task id="LOCAL-00029" summary="05.10 Question">
+      <option name="closed" value="true" />
+      <created>1747543998347</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1747543998347</updated>
+    </task>
+    <task id="LOCAL-00030" summary="05.10 Question">
+      <option name="closed" value="true" />
+      <created>1747616069725</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1747616069725</updated>
+    </task>
+    <task id="LOCAL-00031" summary="0521-Q">
+      <option name="closed" value="true" />
+      <created>1747753638190</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1747753638190</updated>
+    </task>
+    <task id="LOCAL-00032" summary="0522-Q">
+      <option name="closed" value="true" />
+      <created>1747845626886</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1747845626886</updated>
+    </task>
+    <task id="LOCAL-00033" summary="0525-Q">
+      <option name="closed" value="true" />
+      <created>1748155258886</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1748155258886</updated>
+    </task>
+    <task id="LOCAL-00034" summary="0526-Q">
+      <option name="closed" value="true" />
+      <created>1748221159764</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1748221159764</updated>
+    </task>
+    <task id="LOCAL-00035" summary="0526-Q">
+      <option name="closed" value="true" />
+      <created>1748362095557</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1748362095557</updated>
+    </task>
+    <task id="LOCAL-00036" summary="06.02-Q">
+      <option name="closed" value="true" />
+      <created>1748861018810</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1748861018811</updated>
+    </task>
+    <task id="LOCAL-00037" summary="06.02-Q">
+      <option name="closed" value="true" />
+      <created>1748886669195</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1748886669195</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -693,15 +821,15 @@
             </State>
           </value>
         </entry>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="commit" />
-    <MESSAGE value="commit 2022/04/20" />
-    <MESSAGE value="commit 2022/10/05" />
-    <MESSAGE value="commit 2023/03/29" />
-    <MESSAGE value="commit 2023/05/07" />
     <MESSAGE value="commit 2023/09/21 comeback" />
     <MESSAGE value="commit 2024/01/29" />
     <MESSAGE value="commit 2024/02/19" />
@@ -719,14 +847,22 @@
     <MESSAGE value="commit 2025/02/18" />
     <MESSAGE value="refactor: improve code readability and formatting in Review0107 and DoitTop classes" />
     <MESSAGE value="02-24" />
-    <option name="LAST_COMMIT_MESSAGE" value="02-24" />
+    <MESSAGE value="03.19 Question" />
+    <MESSAGE value="03.27 question" />
+    <MESSAGE value="05.10 Question" />
+    <MESSAGE value="0521-Q" />
+    <MESSAGE value="0522-Q" />
+    <MESSAGE value="0525-Q" />
+    <MESSAGE value="0526-Q" />
+    <MESSAGE value="06.02-Q" />
+    <option name="LAST_COMMIT_MESSAGE" value="06.02-Q" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/DoitTop.java</url>
-          <line>1990</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/fang/doit/algo/lc/Train01.java</url>
+          <line>1989</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
