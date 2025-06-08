@@ -32,8 +32,36 @@ public class Train04_ing {
      * @return
      */
     public String multiply(String num1, String num2) {
-
-        return null;
+        // 1. 先判断是否有0
+        if (num1.equals("0") || num2.equals("0")) {
+            return "0";
+        }
+        // 2. 初始化结果数组，长度为两个字符串长度之和
+        int[] result = new int[num1.length() + num2.length()];
+        // 3. 从后往前遍历两个字符串
+        for (int i = num1.length() - 1; i >= 0; i--) {
+            for (int j = num2.length() - 1; j >= 0; j--) {
+                // 4. 计算当前位的乘积
+                int mul = (num1.charAt(i) - '0') * (num2.charAt(j) - '0');
+                // 5. 累加到结果数组中
+                int sum = mul + result[i + j + 1];
+                result[i + j + 1] = sum % 10; // 当前位
+                result[i + j] += sum / 10; // 进位
+            }
+        }
+        // 6. 构建结果字符串
+        StringBuilder sb = new StringBuilder();
+        for (int num : result) {
+            if (!(sb.length() == 0 && num == 0)) { // 跳过前导0
+                sb.append(num);
+            }
+        }
+        // 7. 如果结果字符串为空，说明结果为0
+        if (sb.length() == 0) {
+            return "0";
+        }
+        // 8. 返回结果字符串
+        return sb.toString();
     }
 
     /**
@@ -191,48 +219,46 @@ public class Train04_ing {
         // 重点在于，动态规划
 
         // 值：找到最小值作为一次输出，然后更新
-        // 2、7、13、19 -> 4、7、13、19 -> 8、7、13、19、-> 8、14、13、19 -> 16、14、13、19 -> 16,14,26,19 -> 16,28,26,19 -> 32,28,26,19
+        // 1 -> 2、7、13、19 -> 4、7、13、19 -> 8、7、13、19、-> 8、14、13、19 -> 16、14、13、19 -> 16,14,26,19 -> 16,28,26,19 -> 32,28,26,19
 
         // 作为每次取值后，更新的最新大小情况
-//        int minpPimes = Arrays.stream(primes).min().getAsInt();
-//        int[] nums = Arrays.copyOf(primes, primes.length);
-//        // 纯粹记录每一次的最小值
-//        int[] dp = new int[n];
-//        dp[0] = 1;
-//        for (int i = 1; i < n; i++) {
-//            int min = Arrays.stream(nums).min().getAsInt();
-//            dp[i] = min;
-//            // 更新 nums
-//            for (int k = 0; k < nums.length; k++) {
-//                if (min == nums[k]) {
-//                    nums[k] = min * minpPimes;
-//                }
-//            }
-//        }
-//        return dp[n - 1];
-
-
-        // 值：找到最小值作为一次输出
+        int minpPimes = Arrays.stream(primes).min().getAsInt();
         int[] nums = Arrays.copyOf(primes, primes.length);
-        // 次数：prime乘积的次数
-        int[] p = new int[primes.length];
-        // 丑数
+        // 纯粹记录每一次的最小值
         int[] dp = new int[n];
         dp[0] = 1;
         for (int i = 1; i < n; i++) {
             int min = Arrays.stream(nums).min().getAsInt();
             dp[i] = min;
-            for (int j = 0; j < primes.length; j++) {
-                if (min == nums[j]) {
-                    p[j]++;
-                    // 关键点：p点的下一位乘积，比如现在 p 乘了2次，这次又是最小值，那么下一次就是 3 * primes[j] 作为 nums[p] 的值
-                    // p[j]: 1 ，j位置只+1，
-                    // dp[p[j]]：2 ，dp[1] = 2
-                    // primes[j]:7 ，j=1
-                    nums[j] = dp[p[j]] * primes[j];
+            // 更新 nums
+            for (int k = 0; k < nums.length; k++) {
+                if (min == nums[k]) {
+                    nums[k] = min * minpPimes;
                 }
             }
         }
+
+        // 值：找到最小值作为一次输出
+//        int[] nums = Arrays.copyOf(primes, primes.length);
+//        // 次数：prime乘积的次数
+//        int[] p = new int[primes.length];
+//        // 丑数
+//        int[] dp = new int[n];
+//        dp[0] = 1;
+//        for (int i = 1; i < n; i++) {
+//            int min = Arrays.stream(nums).min().getAsInt();
+//            dp[i] = min;
+//            for (int j = 0; j < primes.length; j++) {
+//                if (min == nums[j]) {
+//                    p[j]++;
+//                    // 关键点：p点的下一位乘积，比如现在 p 乘了2次，这次又是最小值，那么下一次就是 3 * primes[j] 作为 nums[p] 的值
+//                    // p[j]: 1 ，j位置只+1，
+//                    // dp[p[j]]：2 ，dp[1] = 2
+//                    // primes[j]:7 ，j=1
+//                    nums[j] = dp[p[j]] * primes[j];
+//                }
+//            }
+//        }
         return dp[n - 1];
     }
 
@@ -295,13 +321,13 @@ public class Train04_ing {
         }
         // 深度遍历，主要是判断重复的情况
         for (int j = i + 1; j < candidates.length; j++) {
-            // 排除重复的情况（他娘的少了 j > i + 1 ） 1 2 2 2 5
+            // 排除重复的情况（少了 j > i + 1） 1 2 2 2 5 不能连着来？
             if (j > i + 1 && candidates[j] == candidates[j - 1]) {
                 continue;
             }
             list.add(candidates[j]);
             combinationSum2DFS(candidates, target, j, candidate + candidates[j], list, res);
-            list.remove(list.size() - 1); // 回溯
+            list.remove(list.size() - 1);
         }
     }
 
@@ -314,28 +340,29 @@ public class Train04_ing {
 //    }
 
 
-//    public static List<List<Integer>> combinationSum2ByWindow(int[] candidates, int target){
-//        // 排序后滑动窗口
-//        Arrays.sort(candidates);
-//
-//        List<List<Integer>> res = new ArrayList<>();
-//        int left = 0, right = 0,sum = 0;
-//        while (right < candidates.length) {
-//            sum = sum + candidates[left];
-//            if (sum >= target) {
-//                if(sum == target){
-//                    List<Integer> list = new ArrayList<>();
-//                    for (int i = left; i <= right; i++) {
-//                        list.add(candidates[i]);
-//                    }
-//                    res.add(list);
-//                }
-//                left++;
-//            }
-//            right++;
-//        }
-//        return res;
-//    }
+    public static List<List<Integer>> combinationSum2ByWindow(int[] candidates, int target){
+        // 排序后滑动窗口
+        Arrays.sort(candidates);
+
+        // 1 2 2 2 5 -> 排序后的滑动窗口香啊！！！
+        List<List<Integer>> res = new ArrayList<>();
+        int left = 0, right = 0,sum = 0;
+        while (right < candidates.length) {
+            sum = sum + candidates[left];
+            if (sum >= target) {
+                if(sum == target){
+                    List<Integer> list = new ArrayList<>();
+                    for (int i = left; i <= right; i++) {
+                        list.add(candidates[i]);
+                    }
+                    res.add(list);
+                }
+                left++;
+            }
+            right++;
+        }
+        return res;
+    }
 
     /**
      * 36.有效的数独，请你判断一个 9 x 9 的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可
